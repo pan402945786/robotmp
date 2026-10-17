@@ -805,3 +805,471 @@ python -m robotmp.cli experiment --trials 20 --failure-mode low_grip_force
 ```
 
 `experiment` 命令会分别运行 A（固定计划）、B（反馈纠偏）和 C（反馈纠偏加失败经验 Skill），输出成功率、错误判断率、恢复率和 Skill 应用率。
+
+## 14. 面向长期自主学习的开发计划
+
+本章是后续 agent 的实施计划，目标是把当前 MVP 从“可运行的预测—偏差—恢复演示”逐步扩展为可审计、可验证、可回滚的机器人失败经验系统。
+
+### 14.1 产品定位与边界
+
+截至 2026-10-17，市场上的机器人平台已经分别具备仿真、模仿学习、视觉语言动作模型、可复用 Skill、运行时异常检测等局部能力，但尚未形成一个普遍可用的现场闭环：
+
+```text
+预测未来状态 → 执行动作 → 观察真实结果 → 比较预测与现实
+→ 诊断偏差 → 生成候选 Skill → 在安全环境验证
+→ 更新经验库 → 下一次任务前检索并修正预测
+```
+
+本项目的产品定义是：
+
+> 具有运行时预测、失败诊断、局部恢复、经过验证的经验复用和完整证据追溯能力的机器人操作系统。
+
+本项目不把“大模型直接控制关节”作为目标。大模型只负责任务级规划、异常解释和候选 Skill 生成；实时控制、碰撞约束、力矩限制和急停由本地控制器与安全系统负责。
+
+### 14.2 总体架构
+
+```mermaid
+flowchart TD
+    A[任务目标 / 指令] --> B[任务规划器]
+    B --> C[Skill 检索与预测器]
+    C --> D[有限状态机 / 行为树]
+    D --> E[机器人技能与底层控制器]
+    E --> F[仿真环境或真实机器人]
+    F --> G[多模态传感器]
+    G --> H[状态估计与事件提取]
+    H --> I[预测与实际比较器]
+    I -->|match| J[继续执行任务]
+    I -->|uncertain| K[重新观察或安全停止]
+    I -->|deviation| L[失败诊断器]
+    L --> M[恢复策略]
+    L --> N[候选 Skill]
+    M --> E
+    N --> O[仿真与安全验证]
+    O --> P[Skill 经验库]
+    P --> C
+```
+
+系统必须保留五类数据：
+
+1. 原始数据：图像、深度、力、关节状态、控制器日志。
+2. 结构化状态：物体、机器人、接触、位姿、速度、置信度、阶段。
+3. 事件：接触、夹爪闭合、抬升、滑落、遮挡、碰撞风险等。
+4. 推理数据：预测、预测依据、偏差、诊断事实和假设。
+5. 执行结果：恢复动作、任务结果、Skill 版本、验证指标。
+
+自然语言只作为查询、解释和高层推理接口，不能替代结构化物理状态。
+
+### 14.3 核心数据契约
+
+后续实现应逐步把当前 dataclass 契约扩展为带版本的 schema。建议至少包含以下实体：
+
+```text
+Episode
+  episode_id
+  task_id
+  robot_id
+  environment_id
+  start_time / end_time
+  initial_state
+  final_result
+
+ActionRecord
+  action_id
+  action_name
+  parameters
+  precondition_result
+  start_time / end_time
+  controller_result
+
+Prediction
+  prediction_id
+  action_id
+  expected_state
+  expected_events
+  confidence
+  applied_skill_ids
+
+Observation
+  timestamp
+  structured_state
+  events
+  raw_data_refs
+  confidence
+
+Comparison
+  status: match | uncertain | deviation
+  errors
+  severity
+  evidence_refs
+
+Diagnosis
+  facts
+  hypotheses
+  rejected_hypotheses
+  confidence
+
+Skill
+  trigger_conditions
+  scope
+  correction
+  recovery
+  validation
+  version
+  status
+```
+
+必须显式区分：
+
+```text
+事实       传感器或状态估计直接支持的内容
+假设       对事实的可能原因解释
+策略       为验证假设而提出的动作
+结果       策略执行后的观测和指标
+```
+
+例如：
+
+```text
+事实：夹爪已闭合，物体没有上升
+假设：抓取点偏移或夹持力不足
+策略：刷新位姿并换抓取点重试
+结果：重试后抬升成功，恢复耗时 1.8 秒
+```
+
+### 14.4 运行时闭环规则
+
+每个可能改变世界状态的动作都应形成预测契约：
+
+1. 读取当前状态和相关 Skill。
+2. 生成动作及其预期状态、事件和置信度。
+3. 检查动作前置条件和安全边界。
+4. 执行动作。
+5. 在规定时间窗内采集观测。
+6. 比较连续值、离散状态、事件和置信度。
+7. 根据比较结果选择继续、重新观察、恢复或停止。
+8. 记录完整证据。
+
+比较结果的语义必须稳定：
+
+```text
+match       证据与预测一致，可以继续
+uncertain   证据不足或传感器冲突，先重新观察或安全停止
+deviation   有足够证据表明预测错误，进入诊断和恢复
+```
+
+\`uncertain\` 不能直接生成失败经验。只有在证据充分、偏差可重复或经过人工确认时，才允许创建候选 Skill。
+
+### 14.5 Skill 生命周期
+
+Skill 采用严格的状态机：
+
+```text
+candidate → testing → shadow → verified → deployed
+                  \                         /
+                   → disabled ← rollback
+```
+
+规则如下：
+
+- 一次失败只能生成 \`candidate\`。
+- \`candidate\` 不得自动改变生产策略。
+- \`testing\` 在仿真或安全测试环境中运行。
+- \`shadow\` 只记录“如果启用会怎样”，不改变真实动作。
+- \`verified\` 经过重复、跨场景和安全验证后才能被检索。
+- \`deployed\` 必须有版本号、作用域和回滚版本。
+- 发现性能下降、触发条件漂移或安全风险时立即 \`disabled\`。
+
+Skill 的最小内容：
+
+```yaml
+id: grasp_without_lift_v2
+status: candidate
+scope:
+  task: pick_and_place
+  object_types: [cube, cup]
+  robot_capability: parallel_jaw_gripper
+trigger_conditions:
+  - gripper_closed == true
+  - lift_window_elapsed == true
+  - object_lifted == false
+facts:
+  - gripper_closed_does_not_imply_grasp_success
+hypotheses:
+  - grasp_point_misaligned
+  - insufficient_grip_force
+prediction_correction:
+  - require_lift_evidence_before_transport
+recovery:
+  - refresh_object_pose
+  - change_grasp_point
+  - retry_grasp_if_safe
+validation:
+  trials: 0
+  recovery_success_rate: null
+  false_success_rate: null
+  unsafe_action_rate: null
+```
+
+### 14.6 安全边界
+
+安全系统必须独立于 Skill 和大模型：
+
+- Skill 不能绕过碰撞检测、速度限制、力矩限制和工作空间限制。
+- 所有恢复动作必须来自有限动作集合，并经过参数校验。
+- \`stop\`、急停和安全降级由本地低延迟系统处理。
+- 任何传感器冲突、置信度过低或状态不可观测时，默认进入 \`uncertain\`。
+- 真实机器人上首次启用新 Skill 时采用 shadow 或低风险灰度模式。
+- 禁止在任务执行过程中直接在线修改控制器参数或模型权重。
+- 大模型输出必须经过 schema、前置条件、权限和安全策略校验。
+
+### 14.7 分阶段开发路线
+
+#### 阶段 0：基线冻结与可审计性
+
+- 固定当前 \`baseline\`、\`feedback\`、\`skills\` 三种模式的结果。
+- 为每次 episode 增加唯一 ID。
+- 记录动作、预测、观测、比较和最终结果。
+- 增加 JSON Schema 或 Pydantic 校验。
+- 保证现有单元测试继续通过。
+
+验收标准：
+
+```text
+每次 episode 都能完整回放；
+同一故障在固定随机种子下结果可复现；
+旧 CLI 和测试结果不回归。
+```
+
+#### 阶段 1：事件日志与持久化
+
+目标：从“返回 RunResult”升级为“保存完整证据链”。
+
+建议新增：
+
+```text
+robotmp/events.py
+robotmp/episode_store.py
+robotmp/schemas.py
+robotmp/replay.py
+```
+
+优先使用 SQLite 保存 episode、action、prediction、observation、comparison、diagnosis 和 skill_version；原始图像和大文件只保存引用。
+
+验收标准：
+
+- 可按任务、故障类型、Skill 版本查询。
+- 可从日志重放一次失败。
+- 每个结论都能追溯到观测证据。
+
+#### 阶段 2：扩展故障注入
+
+至少加入：
+
+```text
+misaligned_grasp
+low_grip_force
+object_slip
+stale_object_pose
+occluded
+unexpected_contact
+collision_risk
+sensor_delay
+```
+
+每个故障必须定义：注入方式、可观察证据、预期偏差、恢复动作和验证标准。
+
+验收标准：
+
+- 故障注入可重复，也支持随机化。
+- 监控器能区分 \`match\`、\`uncertain\` 和 \`deviation\`。
+- 不同故障不会被错误合并为同一个 Skill。
+
+#### 阶段 3：预测器与状态估计器
+
+优先实现：
+
+- 抬升检测器。
+- 滑落检测器。
+- 物体位姿新鲜度判断。
+- 视觉遮挡判断。
+- 夹持成功概率估计。
+- 事件时间窗和迟到事件处理。
+
+先采用可解释规则和小模型，再评估是否需要训练专用模型；不建议一开始训练端到端控制模型。
+
+验收标准：
+
+- 每个预测都有置信度和有效时间窗。
+- 传感器证据不足时不会误报确定失败。
+- 预测误差可以按连续值、离散状态和事件分别统计。
+
+#### 阶段 4：诊断器与候选 Skill 生成
+
+诊断器输入：
+
+```text
+任务目标、当前阶段、原始预测、实际观测、缺失事件、时间线、已有 Skill、动作结果
+```
+
+诊断器输出：
+
+```text
+facts
+hypotheses
+rejected_hypotheses
+prediction_correction
+recovery
+scope
+confidence
+```
+
+大模型接入时必须使用结构化输出，并经过 schema、动作白名单、安全边界和冲突检测；模型只能生成 \`candidate\`。
+
+验收标准：
+
+- 事实和假设分开保存。
+- 候选 Skill 能说明触发条件和适用范围。
+- 无法解释的偏差进入人工复核或 \`uncertain\`，不能编造原因。
+
+#### 阶段 5：Skill 验证、检索和回滚
+
+验证至少覆盖：
+
+- 多个随机初始位姿。
+- 多个物体尺寸、质量和摩擦系数。
+- 传感器噪声和延迟。
+- 不同抓取点和不同失败注入强度。
+- 与旧版本和无 Skill 基线的对照。
+
+建议默认验证门槛：
+
+```yaml
+min_trials: 100
+max_false_success_rate: 0.05
+min_recovery_success_rate: 0.80
+max_unsafe_action_rate: 0.0
+max_regression_rate: 0.05
+```
+
+这些门槛是初始配置，后续应按任务风险分级调整。
+
+验收标准：
+
+- Skill 只能按作用域检索。
+- 新版本必须与旧版本比较。
+- 指标下降或出现安全违规时可自动回滚。
+
+#### 阶段 6：仿真随机化与 A/B/C 实验
+
+实验组：
+
+```text
+A  固定计划，不比较预测与实际
+B  预测—观测反馈，执行局部恢复，不保存 Skill
+C  预测—观测反馈，保存、验证并检索 Skill
+```
+
+每个故障、物体类别和环境随机种子都要分离训练、验证和测试集，避免同一轨迹泄漏到两组。
+
+必须记录：
+
+```text
+任务成功率
+false success rate
+失败检测 precision / recall
+恢复成功率
+重复同类失败频率
+平均完成时间
+恢复耗时
+模型调用次数和成本
+不安全动作次数
+Skill 迁移成功率
+```
+
+验收标准：
+
+- C 在未见过的随机场景中优于 A 和 B。
+- C 不增加不安全动作。
+- C 的收益在多个故障类型上可重复。
+- 结果具有置信区间，而不是只报告单次百分比。
+
+#### 阶段 7：模型适配器
+
+在本地确定性诊断器稳定后，再接入大模型。接口保持：
+
+```python
+class DiagnosisProvider(Protocol):
+    def generate(self, context: DiagnosisContext) -> CandidateSkill: ...
+```
+
+实现至少包括：
+
+```text
+RuleBasedDiagnoser       本地基线
+ReplayDiagnoser          从历史案例检索
+LLMDiagnoser             结构化大模型适配器
+HumanReviewDiagnoser     高风险场景人工确认
+```
+
+大模型调用失败、超时或输出非法时，系统必须回退到本地诊断器、重新观察或安全停止。
+
+#### 阶段 8：真实机器人小范围试点
+
+进入真实机器人前必须完成：
+
+- 仿真回归和安全测试。
+- 低速、低力、空载测试。
+- 传感器断连和延迟测试。
+- 控制器异常和急停测试。
+- shadow 模式对比。
+- 人工批准的 Skill 白名单。
+- 可观测日志和一键回滚。
+
+首个真实任务应选择低风险、可重复、失败后不会造成设备或人员伤害的抓取任务。真实机上只部署经过验证的恢复动作，不开放在线参数自动学习。
+
+### 14.8 后续 agent 的立即任务清单
+
+- [ ] 检查并统一文档和源码的 UTF-8 编码。
+- [ ] 新增 \`Episode\`、\`ActionRecord\`、\`Observation\`、\`Comparison\`、\`Diagnosis\` 数据模型。
+- [ ] 为 \`run_episode\` 增加 episode 日志和 replay 能力。
+- [ ] 用 SQLite 替换或并行扩展当前 JSON SkillStore。
+- [ ] 保持现有 CLI 行为不变，并增加 \`--seed\` 和 \`--output\` 参数。
+- [ ] 增加 \`misaligned_grasp\`、\`object_slip\`、\`stale_object_pose\`、\`occluded\` 故障注入。
+- [ ] 将 \`uncertain\` 分支改为重新观察或安全停止，并保存证据。
+- [ ] 将 Skill 状态扩展为 \`candidate/testing/shadow/verified/deployed/disabled\`。
+- [ ] 实现 Skill 版本、作用域、指标和回滚。
+- [ ] 增加跨随机场景的 A/B/C 测试和置信区间。
+- [ ] 为大模型诊断器定义 provider 接口，但先继续使用本地规则诊断器作为默认实现。
+- [ ] 为所有新增行为补充有意义的回归测试。
+
+### 14.9 当前阶段明确不做的事情
+
+以下事项在数据契约、回放、验证和安全边界完成前暂不实施：
+
+- 端到端视觉到关节控制。
+- 让大模型直接输出关节角、速度或力矩。
+- 一次失败后自动修改生产模型权重。
+- 未验证 Skill 自动进入真实机器人。
+- 用自然语言日志替代原始传感器和结构化状态。
+- 只用单一固定场景的成功率证明系统具备泛化能力。
+
+### 14.10 完成定义
+
+面向长期版本的最低完成标准：
+
+```text
+1. 系统能保存并回放每次任务的预测、观测、偏差和动作证据。
+2. 系统能区分确定偏差、不确定观测和正常执行。
+3. 系统能生成结构化候选 Skill，并分离事实、假设、策略和结果。
+4. 候选 Skill 必须经过重复、跨场景和安全验证才能部署。
+5. 已验证 Skill 能在后续相似任务中被检索，并修正预测或恢复策略。
+6. Skill 有作用域、版本、指标、冲突检测和回滚机制。
+7. 任何 Skill 或大模型都不能绕过本地控制器和安全系统。
+8. C 组在未见测试场景中持续优于 A、B，且不增加不安全动作。
+```
+
+后续实现应始终围绕这条主线推进：
+
+```text
+可观测 → 可预测 → 可比较 → 可诊断 → 可恢复 → 可验证 → 可复用 → 可回滚
+```

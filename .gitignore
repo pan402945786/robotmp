@@ -6,3 +6,4 @@ __pycache__/
 .coverage
 artifacts/
 *.sqlite3
+.docx_deps
