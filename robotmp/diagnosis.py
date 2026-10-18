@@ -30,6 +30,7 @@ class RuleBasedDiagnoser:
             facts=[
                 "gripper_closed_does_not_imply_grasp_success",
                 "object_lift_was_not_detected",
+                "object_may_have_been_displaced_before_grasp",
             ],
             hypotheses=[
                 "grasp_point_may_be_misaligned",

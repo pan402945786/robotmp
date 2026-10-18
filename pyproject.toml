@@ -11,8 +11,14 @@ requires-python = ">=3.10"
 authors = [{name = "robotmp contributors"}]
 dependencies = []
 
+[project.optional-dependencies]
+video = ["Pillow>=11", "imageio-ffmpeg>=0.6"]
+simulation = ["pybullet>=3.2.7", "Pillow>=11", "imageio-ffmpeg>=0.6"]
+
 [project.scripts]
 robotmp = "robotmp.cli:main"
+robotmp-sim = "robotmp.sim_cli:main"
+robotmp-sim-video = "robotmp.sim_video:main"
 
 [tool.setuptools.packages.find]
 include = ["robotmp*"]

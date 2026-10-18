@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from pathlib import Path
+from typing import Callable
 
 from .diagnosis import RuleBasedDiagnoser
 from .environment import FailureMode, PickPlaceEnv
@@ -26,69 +27,104 @@ def run_episode(
     failure_mode: FailureMode,
     skill_store: SkillStore,
     diagnoser: RuleBasedDiagnoser | None = None,
+    observer: Callable[[dict], None] | None = None,
+    env_factory: Callable[[FailureMode], object] | None = None,
+    close_env: bool = True,
 ) -> RunResult:
-    env = PickPlaceEnv(failure_mode)
+    """Run the existing policy, optionally emitting detached telemetry snapshots."""
+    env = (env_factory or PickPlaceEnv)(failure_mode)
     diagnoser = diagnoser or RuleBasedDiagnoser()
     state = env.reset()
+    prediction = None
+    comparison = None
+
+    def emit(kind: str, **details) -> None:
+        if observer is not None:
+            observer({
+                "kind": kind,
+                "state": asdict(env.observe()),
+                "prediction": asdict(prediction) if prediction else None,
+                "comparison": asdict(comparison) if comparison else None,
+                **details,
+            })
+
+    def execute(action: str) -> None:
+        env.execute(action)
+        emit("action", action=action)
+
+    def finish(result: RunResult) -> RunResult:
+        emit("result", result=asdict(result))
+        close = getattr(env, "close", None)
+        if close_env and close is not None:
+            close()
+        return result
+
+    emit("reset")
     skills: list[Skill] = []
     if mode == "skills":
         skills = skill_store.retrieve("pick_and_place", state.object.object_id, state.phase)
+        emit("retrieve", skills=[asdict(skill) for skill in skills])
 
-    env.execute("approach_object")
-    env.execute("close_gripper")
+    execute("approach_object")
+    execute("close_gripper")
     prediction = make_prediction(env.observe(), skills)
-    env.execute("lift_object")
+    emit("prediction")
+    execute("lift_object")
     observed = env.observe()
 
     if mode == "baseline":
         false_success = not observed.object.lifted
         if observed.object.lifted:
-            env.execute("move_to_target")
-            env.execute("release_object")
-        return RunResult(mode, failure_mode.value, "success" if not false_success else "false_success", false_success, False, [])
+            execute("move_to_target")
+            execute("release_object")
+        return finish(RunResult(mode, failure_mode.value, "success" if not false_success else "false_success", false_success, False, []))
 
     comparison = compare_prediction(prediction, observed)
+    emit("comparison")
     if comparison.status == "match":
-        env.execute("move_to_target")
-        env.execute("release_object")
-        return RunResult(mode, failure_mode.value, "success", False, False, prediction.applied_skill_ids)
+        execute("move_to_target")
+        execute("release_object")
+        return finish(RunResult(mode, failure_mode.value, "success", False, False, prediction.applied_skill_ids))
 
     if comparison.status == "uncertain":
-        env.execute("stop")
-        return RunResult(mode, failure_mode.value, "uncertain", False, False, prediction.applied_skill_ids)
+        execute("stop")
+        return finish(RunResult(mode, failure_mode.value, "uncertain", False, False, prediction.applied_skill_ids))
 
     candidate = diagnoser.generate(prediction, observed, comparison, skills)
+    emit("diagnosis", skill=asdict(candidate))
     if mode == "skills":
         skill_store.save_candidate(candidate)
-    env.execute("refresh_object_pose")
-    env.execute("retry_grasp")
-    env.execute("close_gripper")
-    env.execute("lift_object")
+        emit("candidate", skill=asdict(candidate))
+    execute("refresh_object_pose")
+    execute("retry_grasp")
+    execute("close_gripper")
+    execute("lift_object")
     recovered = env.observe().object.lifted
     if recovered:
-        env.execute("move_to_target")
-        env.execute("release_object")
+        execute("move_to_target")
+        execute("release_object")
     else:
-        env.execute("stop")
-    return RunResult(
+        execute("stop")
+    return finish(RunResult(
         mode,
         failure_mode.value,
         "recovered" if recovered else "failed",
         False,
         recovered,
         prediction.applied_skill_ids,
-    )
+    ))
 
 
 def validate_skill(
     skill_store: SkillStore,
     failure_mode: FailureMode = FailureMode.LOW_GRIP_FORCE,
     trials: int = 20,
+    env_factory: Callable[[FailureMode], object] | None = None,
 ) -> Skill:
     false_successes = 0
     recoveries = 0
     for _ in range(trials):
-        result = run_episode("feedback", failure_mode, skill_store)
+        result = run_episode("feedback", failure_mode, skill_store, env_factory=env_factory)
         false_successes += int(result.false_success)
         recoveries += int(result.recovered)
     return skill_store.promote_verified(
@@ -126,19 +162,20 @@ def run_ab_experiment(
     failure_mode: FailureMode,
     trials: int,
     root: str | Path = "artifacts/experiment",
+    env_factory: Callable[[FailureMode], object] | None = None,
 ) -> dict[str, dict[str, float | int]]:
     root = Path(root)
     summaries: dict[str, dict[str, float | int]] = {}
 
     for mode in ("baseline", "feedback"):
         store = default_store(root / f"{mode}.json")
-        results = [run_episode(mode, failure_mode, store) for _ in range(trials)]
+        results = [run_episode(mode, failure_mode, store, env_factory=env_factory) for _ in range(trials)]
         summaries[mode] = summarize_results(results)
 
     skill_store = default_store(root / "skills.json")
-    run_episode("skills", failure_mode, skill_store)
-    validate_skill(skill_store, failure_mode=failure_mode, trials=max(5, min(trials, 20)))
-    results = [run_episode("skills", failure_mode, skill_store) for _ in range(trials)]
+    run_episode("skills", failure_mode, skill_store, env_factory=env_factory)
+    validate_skill(skill_store, failure_mode=failure_mode, trials=max(5, min(trials, 20)), env_factory=env_factory)
+    results = [run_episode("skills", failure_mode, skill_store, env_factory=env_factory) for _ in range(trials)]
     summaries["skills"] = summarize_results(results)
     return summaries
 

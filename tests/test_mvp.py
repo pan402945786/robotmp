@@ -31,6 +31,25 @@ class MvpTests(unittest.TestCase):
         self.assertEqual(result.status, "false_success")
         self.assertTrue(result.false_success)
 
+    def test_telemetry_records_detached_states_and_original_result(self):
+        events = []
+        result = run_episode("feedback", FailureMode.LOW_GRIP_FORCE, self.store, observer=events.append)
+        self.assertEqual(events[0]["state"]["object"]["position_m"], [0.0, 0.0, 0.75])
+        self.assertEqual(events[-1]["state"]["object"]["position_m"], [0.5, 0.0, 0.9])
+        self.assertEqual(events[-1]["result"], result.__dict__)
+        comparison = next(event for event in events if event["kind"] == "comparison")
+        self.assertEqual(comparison["comparison"]["status"], "deviation")
+        self.assertFalse(comparison["state"]["object"]["lifted"])
+        self.assertEqual(comparison["prediction"]["confidence"], 0.75)
+
+    def test_occlusion_telemetry_stops_without_recovery(self):
+        events = []
+        result = run_episode("feedback", FailureMode.OCCLUDED, self.store, observer=events.append)
+        self.assertEqual(result.status, "uncertain")
+        self.assertEqual(events[-2]["action"], "stop")
+        self.assertIn("safety_stop", events[-2]["state"]["events"])
+        self.assertEqual(events[-1]["state"]["object"]["confidence"], 0.35)
+
     def test_skill_is_promoted_and_retrieved(self):
         candidate_result = run_episode("skills", FailureMode.LOW_GRIP_FORCE, self.store)
         self.assertEqual(candidate_result.status, "recovered")
