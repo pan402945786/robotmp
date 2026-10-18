@@ -74,6 +74,8 @@ Start-Process artifacts/visualization/index.html
 
 详细设计及实现状态见 [`docs/predictive_robotics_failure_skills.md`](docs/predictive_robotics_failure_skills.md)。
 
+当前实现进展、仿真入口、物理 Skill 验证结果、测试状态和边界见 [`docs/DEVELOPMENT_STATUS.md`](docs/DEVELOPMENT_STATUS.md)。
+
 ## 后续迭代
 
 1. 将轻量环境替换为 PyBullet 或 MuJoCo 适配器。
