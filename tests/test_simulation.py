@@ -59,6 +59,22 @@ class SimulationTests(unittest.TestCase):
         self.assertTrue(all(lower < upper and effort > 0 and velocity > 0 for lower, upper, effort, velocity in limits))
         self.assertFalse(lifted)
 
+    def test_xarm6_starts_clear_and_places_normal_pick(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            events = []
+            result = run_episode(
+                "feedback",
+                FailureMode.NONE,
+                default_store(Path(tmp) / "skills.json"),
+                observer=events.append,
+                env_factory=lambda failure: PyBulletPickPlaceEnv(failure, gui=False, config=SimConfig(arm_model="xarm6")),
+            )
+        reset = events[0]["state"]["object"]["position_m"]
+        approach = next(event for event in events if event.get("action") == "approach_object")["state"]["object"]["position_m"]
+        self.assertEqual(result.status, "success")
+        self.assertLess(sum((a - b) ** 2 for a, b in zip(reset, approach)) ** 0.5, 0.005)
+        self.assertEqual(events[-1]["state"]["phase"], "finished")
+
 
 if __name__ == "__main__":
     unittest.main()

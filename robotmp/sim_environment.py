@@ -293,7 +293,7 @@ class PyBulletPickPlaceEnv:
             self._step()
             position_after = self._cube_position()
             displacement = sum((a - b) ** 2 for a, b in zip(position_after, position_before)) ** 0.5
-            if displacement > 0.03:
+            if displacement > 0.01:
                 if "object_displaced_before_grasp" not in self._anomalies:
                     self._anomalies.append("object_displaced_before_grasp")
                 self._events.append("object_displaced_before_grasp")
@@ -325,7 +325,8 @@ class PyBulletPickPlaceEnv:
         elif action == "move_to_target":
             if self._lifted and self._grasped:
                 self._phase = "transport"
-                self._set_gripper_pose([0.5, self._ee_position[1], self._ee_position[2]], open_gripper=False)
+                place_z = self.config.table_z + 0.17 if self.config.arm_model in {"arm6dof", "xarm6"} else self._ee_position[2]
+                self._set_gripper_pose([0.5, self._ee_position[1], place_z], open_gripper=False)
                 if self._constraint_id is not None and self.config.arm_model not in {"arm6dof", "xarm6"}:
                     self.p.resetBasePositionAndOrientation(
                         self._cube_id,

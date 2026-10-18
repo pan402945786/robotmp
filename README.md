@@ -94,6 +94,16 @@ conda run -n py311 python -m robotmp.sim_cli --mode feedback --failure-mode low_
 
 不需要窗口时去掉 `--gui`；无窗口运行适合批量实验。`--realtime` 按仿真时间推进，`--hold` 在 episode 结束后保留窗口。默认 `--arm xarm6` 使用 PyBullet 数据包中的 UFactory xArm6 URDF，6 个 revolute 关节的上下限、最大力矩和速度从 URDF 的 `getJointInfo` 读取，再通过末端逆运动学和 `POSITION_CONTROL` 移动；`--arm arm6dof` 保留项目自制模型，`--arm none` 可回退到原来的运动学腕部。xArm6 自带 URDF 夹爪传动；回退模式可用 `--gripper urdf` 或 `--gripper procedural`。低力度首次抓取会推动物体，恢复动作会读取新物体位置后重新规划末端。`--trace` 保存与现有 `run_episode(observer=...)` 相同结构的遥测。
 
+对 xArm6 做物理 Skill 验证：
+
+```powershell
+conda run -n py311 python -m robotmp.sim_cli --validate-skill --trials 20 --failure-mode low_grip_force --arm xarm6 --store artifacts/xarm6_skills.json --trace artifacts/xarm6_skill_validation.json
+```
+
+流程会先用一次 `skills` episode 生成候选 Skill，再用 xArm6 物理环境重复验证，最后再次运行 `skills` episode。最后一次运行的遥测中应看到 `applied_skill_ids: ["grasp_without_lift_v1"]`。当前 Skill 学到的是“夹爪闭合不代表抬升成功”和“恢复前重新读取物体位置”；它不会训练神经网络，也不会自动更新电机参数。
+
+仿真还会记录 `object_displaced_before_grasp`：如果闭合动作使物体位移超过 1 cm，会把它作为抓取前碰撞异常保存在事件历史中。xArm6 默认把物体生成在 `x=0.45 m`，避开 URDF 初始姿态，并在放置阶段下降到桌面高度后再释放，因此正常抓取会以 `finished` 结束，低力度场景则先经历推开、检测、重新定位和恢复。
+
 代码位置：`robotmp/sim_environment.py` 是 PyBullet 后端，`robotmp/sim_cli.py` 是入口，`tests/test_simulation.py` 是仿真冒烟测试。xArm6 的关节动力学、限制和夹爪来自 `pybullet_data/xarm/xarm6_with_gripper.urdf`；预测、监控、诊断、Skill 和视频数据格式继续复用。
 
 导出实际仿真画面：

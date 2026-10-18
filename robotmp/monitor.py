@@ -13,6 +13,9 @@ def compare_prediction(prediction: Prediction, observed: SceneState) -> Comparis
         if event not in observed.events:
             errors.append(f"missing_event:{event}")
 
+    if "object_displaced_before_grasp" in observed.events and not observed.object.lifted:
+        errors.append("object_displaced_before_grasp")
+
     if observed.object.confidence < 0.5:
         return ComparisonResult(status="uncertain", errors=errors, severity="low")
     if errors:
