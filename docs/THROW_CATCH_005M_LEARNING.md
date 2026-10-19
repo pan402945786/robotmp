@@ -4230,3 +4230,9 @@
 
 
 [2026-10-20T00:02:57+08:00] 大模型 parsed_output；request_id=12ddbb6d885748199c39bd5ff37f30f3；完整内容已写入 docs\THROW_CATCH_005M_LLM_CALLS.md。
+
+
+[2026-10-20T00:02:58+08:00] 冻结成功参数，开始三次独立完整验证：正常、低夹持力恢复、正常。
+
+
+[2026-10-20T00:02:58+08:00] 开始 validation_01：参数 {"target_x_m": 0.4, "target_z_m": 0.65, "release_min_vz_m_s": 1.06, "max_sweep_steps": 160, "catch_lead_s": 0.04}；故障 none。
