@@ -81,6 +81,26 @@ def acceptance(report):
 
 
 class ThrowEnv(BaseThrowEnv):
+    def _set_xarm_pose(self, position, *, open_gripper):
+        if not hasattr(self, 'placement_orientation'):
+            return super()._set_xarm_pose(position, open_gripper=open_gripper)
+        p = self.p
+        self._ee_position = list(position)
+        solution = p.calculateInverseKinematics(
+            self._gripper_id, self._ee_link_index, position,
+            targetOrientation=self.placement_orientation,
+            lowerLimits=self._arm_lower, upperLimits=self._arm_upper,
+            jointRanges=[b - a for a, b in zip(self._arm_lower, self._arm_upper)],
+            restPoses=[0.] * 6, maxNumIterations=200, residualThreshold=1e-5,
+            physicsClientId=self.client)
+        for i, (joint, target) in enumerate(zip(self._arm_joint_ids, solution[:6])):
+            p.setJointMotorControl2(self._gripper_id, joint, p.POSITION_CONTROL,
+                targetPosition=min(self._arm_upper[i], max(self._arm_lower[i], target)),
+                force=self._arm_effort[i], maxVelocity=self._arm_velocity[i], physicsClientId=self.client)
+        self._gripper_open = open_gripper
+        p.setJointMotorControl2(self._gripper_id, self._finger_joint_ids[0], p.POSITION_CONTROL,
+            targetPosition=0. if open_gripper else 0.85, force=50, maxVelocity=2, physicsClientId=self.client)
+
     def reset(self):
         super().reset()
         # Ground scene is created before any task action, without moving the cube.
@@ -297,6 +317,25 @@ def execute_trial(parameters, old, audit, label, failure=FailureMode.NONE, video
         emit('catch_hold_evaluation', passed=report['catch_hold_passed'])
         audit.checkpoint(f'5cm {label} flight and catch measured')
         env._phase = 'place'
+        # Rotate the held cube upright using wrist IK, never by resetting the cube.
+        p = env.p
+        cube_pos, cube_orn = p.getBasePositionAndOrientation(env._cube_id, physicsClientId=env.client)
+        ee_orn = p.getLinkState(env._gripper_id, env._ee_link_index,
+                              computeForwardKinematics=True, physicsClientId=env.client)[5]
+        _, inv_ee = p.invertTransform([0, 0, 0], ee_orn)
+        _, relative = p.multiplyTransforms([0, 0, 0], inv_ee, [0, 0, 0], cube_orn)
+        _, upright_ee = p.invertTransform([0, 0, 0], relative)
+        if sum(a * b for a, b in zip(ee_orn, upright_ee)) < 0:
+            upright_ee = [-v for v in upright_ee]
+        for index in range(1, 61):
+            alpha = index / 60
+            q = [(1 - alpha) * a + alpha * b for a, b in zip(ee_orn, upright_ee)]
+            norm = math.sqrt(sum(v * v for v in q))
+            env.placement_orientation = [v / norm for v in q]
+            move_object(list(cube_pos), 4)
+            emit('held_cube_uprighting', index=index)
+        move_object(list(cube_pos), 120)
+        emit('held_cube_upright_settled', support_height_m=env.support_height())
         # Feedback lowering uses actual pose and the rotated cube's support extent.
         for step in range(700):
             pos = env._cube_position()
@@ -306,8 +345,8 @@ def execute_trial(parameters, old, audit, label, failure=FailureMode.NONE, video
             if contacts and math.dist(linear, [0, 0, 0]) < 0.015:
                 emit('ground_supported_before_release', support_height_m=support, velocity=list(linear))
                 break
-            drop = min(0.0008, max(0.0001, pos[2] - support + 0.0001))
-            move_object([pos[0], pos[1], max(support - 0.0002, pos[2] - drop)], 4)
+            drop = min(0.002, max(0.0001, pos[2] - support + 0.0001))
+            move_object([pos[0], pos[1], max(support - 0.0002, pos[2] - drop)], 12)
             emit('ground_lowering_step', index=step, support_height_m=support)
         else:
             raise RuntimeError('ground lowering did not reach low-speed support')

@@ -23,6 +23,8 @@
 
 实现事件：本地仿真与视频依赖检查通过（Conda py311）。新入口修正历史最大速度放行问题，按释放当时速度触发；独立实现地面支撑反馈下降与正式验证。首次命令行校准因 Windows 批处理剥离 JSON 引号而在运行物理试验前报 JSONDecodeError，已改为从 JSON 文件读取参数。
 
+校准 01 结果：自由飞行升高 0.054878 m，28 个无抓持约束物理步后下降接住，接球相对速度 0.141446 m/s，持续抓持检查通过。放地失败：反馈下降每 4 步重设过小目标，实际每轮仅下降约 0.00027 m，700 轮预算耗尽时物体仍在 z=0.22786 m；这属于控制进度不足。另观测到接球后立方体倾斜，增加用腕部 IK 缓慢扶正的动作，再以每轮最多 0.002 m、12 步跟踪下降，避免倾斜物体释放后翻倒。全程保持原重力与关节限速。
+
 
 [2026-10-19T23:59:09+08:00] 开始运行 f3f10b4b876a；输出目录 docs\throw_catch_005m_calibration_01。
 
@@ -1644,3 +1646,11 @@
 
 
 [2026-10-19T23:59:29+08:00] calibration 结束：{"label": "calibration", "parameters": {"target_x_m": 0.4, "target_z_m": 0.65, "release_min_vz_m_s": 1.06, "max_sweep_steps": 160, "catch_lead_s": 0.04}, "failure_mode": "none", "applied_skill_ids": ["grasp_without_lift_v1"], "lift_confirmed": true, "caught": true, "free_flight": true, "placement": {"passed": false}, "recovery_used": false, "max_sweep_vz_m_s": 1.0610871628118803, "release_height_m": 0.32622337170717197, "release_vz_m_s": 1.0610871628118803, "release_velocity_m_s": [0.05012743644590001, 0.0001101215396272239, 1.0610871628118803], "release_time_s": 1.9958333333333276, "rise_from_release_m": 0.054878205302841765, "catch_time_s": 2.1125, "catch_vz_m_s": -0.08748958365849183, "catch_distance_m": 0.05370682013285851, "catch_relative_speed_m_s": 0.14144620765016797, "apex_height_m": 0.38110157701001374, "had_apex": true, "flight_ticks": 28, "flight_contact_before_catch": false, "catch_hold_passed": true, "error": "RuntimeError: ground lowering did not reach low-speed support", "physics_samples": 3393, "max_joint_velocity_ratios": [0.016393830544591755, 1.0000091517096734, 1.000060881619031, 0.004212114253843383, 1.008908989008264, 0.020581870534083155], "passed": false}
+
+
+[2026-10-20T00:00:22+08:00] 开始运行 6f73ea1170fc；输出目录 docs\throw_catch_005m_calibration_02。
+
+1. 仿真 0.000s；物体中心 (—) m；{"kind": "source_verified", "source_path": "artifacts\\verification_20261019\\skills.json", "sha256": "1480ab7df263cab82d7df41eb84c92a961c2b70a2d8b7bb2cb8c02f94a1f7383", "target_rise_m": 0.05, "ground_z_m": 0}
+
+
+[2026-10-20T00:00:22+08:00] 开始 calibration：参数 {"target_x_m": 0.4, "target_z_m": 0.65, "release_min_vz_m_s": 1.06, "max_sweep_steps": 160, "catch_lead_s": 0.04}；故障 none。
