@@ -2,6 +2,10 @@
 
 日期：2026-10-19（Asia/Shanghai）。用户目标：复用 `artifacts/verification_20261019/skills.json`，抓起物体，向上抛起至少 0.05 米，接住后平稳放到地面；逐步记录事件，及时提交 Git，保存每次实验大模型调用的完整输入和输出，成功则生成演示视频。
 
+最终结果：三次独立验证全部通过，已保存 verified 新技能并从文件重载成功；实测自由飞行升高 0.054878～0.055100 m。结果摘要见 [THROW_CATCH_005M_RESULT.md](THROW_CATCH_005M_RESULT.md)，演示见 [demo.mp4](throw_catch_005m_20261019/demo.mp4)。实验跨越午夜，于 2026-10-20 完成。
+
+终检事件：逐 CSV 独立审计五条成功轨迹通过，来源技能哈希未变；视频 551 帧已全部成功解码。审阅模型日志发现第三次调用虽收到三次成功验证仍返回 try。请求中的“First response must try”在每个无状态 API 调用中有歧义，现改为“reports 为空时才必须 try”，并明确传入正式验证计数及结果，请求一次补充审阅。技能 verified 由本地实际物理验收决定；模型的文字决策不会覆盖实测结果。
+
 ## 验收约定
 
 - 采用 PyBullet xArm6 仿真，复用 `grasp_without_lift_v1` 的实际抬升检测和重新定位抓取恢复规则。
@@ -7533,3 +7537,11 @@
 
 
 [2026-10-20T00:06:14+08:00] 实验结束：goal_achieved=True；技能 verified；原技能未变；汇总 docs\throw_catch_005m_20261019\summary.json
+
+
+[2026-10-20T00:08:09+08:00] 开始运行 a146341d4669；输出目录 docs\throw_catch_005m_20261019。
+
+1. 仿真 0.000s；物体中心 (—) m；{"kind": "source_verified", "source_path": "artifacts\\verification_20261019\\skills.json", "sha256": "1480ab7df263cab82d7df41eb84c92a961c2b70a2d8b7bb2cb8c02f94a1f7383", "target_rise_m": 0.05, "ground_z_m": 0}
+
+
+[2026-10-20T00:08:09+08:00] 大模型 request；request_id=210c2d3f365141ceb396b95667484920；完整内容已写入 docs\THROW_CATCH_005M_LLM_CALLS.md。

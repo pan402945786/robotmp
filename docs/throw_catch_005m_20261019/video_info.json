@@ -1,0 +1,14 @@
+{
+  "size": [
+    1280,
+    720
+  ],
+  "fps": 30.0,
+  "duration_s": 18.37,
+  "decoded_frames": 551,
+  "expected_frames": 551,
+  "all_frames_decode": true,
+  "flight_slow_motion_factor": 4,
+  "audio": false,
+  "scope": "actual PyBullet camera frames, idealized fixed-constraint grasp and catch"
+}

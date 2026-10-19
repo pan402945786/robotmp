@@ -415,13 +415,18 @@ def propose(client, old, reports, previous=None):
         'Choose parameters exactly: target_x_m [0.25,0.55], target_z_m [0.40,0.85], '
         'release_min_vz_m_s [1.04,1.40], max_sweep_steps integer [20,180], catch_lead_s [0,0.12]. '
         'Return decision try/stop/accept, prerequisite_skill_ids ["grasp_without_lift_v1"], parameters, '
-        'observed_facts array, hypotheses array, rationale string. First response must try. '
+        'observed_facts array, hypotheses array, rationale string. If reports is empty choose try. '
         'After a success propose the SAME parameters for independent validation. Accept only after '
-        'three complete consecutive validation trials. Preserve the exact 0.05m target throughout. '
+        'three complete consecutive validation trials. If validation_status.complete is true, choose accept '
+        'with the same parameters and describe the measured evidence. Earlier calibration failures do not '
+        'invalidate later independent validation successes. Preserve the exact 0.05m target throughout. '
         'No code or low-level joint commands. Use actual measured reports to refine parameters.',
         {'goal': '抓起→自由飞行相对升高至少0.05米→下降接住→平稳放到z=0地面',
          'existing_verified_skill': asdict(old), 'target_rise_m': TARGET_RISE_M,
          'required_vz_m_s': REQUIRED_VZ, 'reports': reports, 'previous': previous,
+         'validation_status': {'reports': [r for r in reports if r['label'].startswith('validation_')],
+             'complete': len([r for r in reports if r['label'].startswith('validation_')]) >= 3
+                 and all(r['passed'] for r in [r for r in reports if r['label'].startswith('validation_')][-3:])},
          'local_calibration_reports': [json.loads(path.read_text(encoding='utf-8')) for path in sorted(
              Path('docs').glob('throw_catch_005m_calibration_*/calibration.json'))]})
 
@@ -433,6 +438,7 @@ def main():
     parser.add_argument('--max-attempts', type=int, default=6)
     parser.add_argument('--probe', type=Path, help='Run a logged local calibration from a JSON parameter file')
     parser.add_argument('--replay-only', action='store_true')
+    parser.add_argument('--review-only', action='store_true', help='Request an audited model review of saved results')
     args = parser.parse_args()
     if args.max_attempts < 1:
         parser.error('--max-attempts must be positive')
@@ -451,10 +457,25 @@ def main():
         skill = next(s for s in default_store(SKILL_PATH).all() if s.status == 'verified')
         report = execute_trial(skill.parameters, old, audit, 'reloaded_replay', video_path=args.output / 'demo.mp4')
         return 0 if report['passed'] else 2
-    if (args.output / 'summary.json').exists():
-        raise ValueError('completed output exists; use a fresh --output')
     config = replace(LLMConfig.from_env(), log_path=str(args.output / 'llm_full.jsonl'), timeout_seconds=180)
     client = OpenAICompatibleDiagnoser(config, log_observer=audit.model_event)
+    if args.review_only:
+        summary_path = args.output / 'summary.json'
+        summary = json.loads(summary_path.read_text(encoding='utf-8'))
+        review = propose(client, old, summary['reports'], summary['proposals'][-1])
+        if review.get('prerequisite_skill_ids') != [PREREQUISITE]:
+            raise ValueError('review omitted prerequisite')
+        validate_parameters(review.get('parameters'))
+        summary['proposals'].append(review)
+        summary['post_audit_model_review'] = review
+        summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding='utf-8')
+        audit.event({'kind': 'post_audit_model_review', 'proposal': review,
+                     'local_physics_result_unchanged': summary['goal_achieved']})
+        audit.note(f'独立证据审计后模型审阅：decision={review.get("decision")}；本地物理验收结果保持。')
+        audit.checkpoint('save post-audit 5cm model review')
+        return 0
+    if (args.output / 'summary.json').exists():
+        raise ValueError('completed output exists; use a fresh --output')
     reports, proposals, validations = [], [], []
     failure = None
     try:

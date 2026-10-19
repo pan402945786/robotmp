@@ -1,0 +1,152 @@
+{
+  "passed": true,
+  "checks": {
+    "all_saved_traces_pass_independent_audit": true,
+    "all_model_inputs_raw_outputs_and_parsed_outputs_present": true,
+    "source_skill_unchanged": true,
+    "low_grip_force_validation_reused_recovery": true,
+    "three_independent_validations": true,
+    "reloaded_replay_passed": true
+  },
+  "traces": [
+    {
+      "label": "attempt_01",
+      "checks": {
+        "reported_complete_success": true,
+        "free_flight_rise_at_least_005m": true,
+        "all_flight_constraints_absent": true,
+        "all_flight_environment_contacts_absent": true,
+        "at_least_10_flight_steps": true,
+        "ascent_and_descent_both_sampled": true,
+        "catch_below_wrist_in_finger_workspace": true,
+        "last_two_seconds_all_released_and_contacting_ground": true,
+        "last_two_seconds_all_speeds_below_001": true,
+        "last_two_seconds_all_angular_speeds_below_005": true,
+        "last_two_seconds_max_drift_below_003": true
+      },
+      "passed": true,
+      "independently_measured_rise_m": 0.054878205302841765,
+      "unconstrained_flight_steps": 49,
+      "final_two_second_max_speed_m_s": 1.2381300999066613e-05,
+      "final_two_second_max_angular_speed_rad_s": 5.9824240472591345e-05,
+      "final_two_second_max_drift_m": 2.467533103587161e-05
+    },
+    {
+      "label": "validation_01",
+      "checks": {
+        "reported_complete_success": true,
+        "free_flight_rise_at_least_005m": true,
+        "all_flight_constraints_absent": true,
+        "all_flight_environment_contacts_absent": true,
+        "at_least_10_flight_steps": true,
+        "ascent_and_descent_both_sampled": true,
+        "catch_below_wrist_in_finger_workspace": true,
+        "last_two_seconds_all_released_and_contacting_ground": true,
+        "last_two_seconds_all_speeds_below_001": true,
+        "last_two_seconds_all_angular_speeds_below_005": true,
+        "last_two_seconds_max_drift_below_003": true
+      },
+      "passed": true,
+      "independently_measured_rise_m": 0.054878205302841765,
+      "unconstrained_flight_steps": 49,
+      "final_two_second_max_speed_m_s": 1.2381300999066613e-05,
+      "final_two_second_max_angular_speed_rad_s": 5.9824240472591345e-05,
+      "final_two_second_max_drift_m": 2.467533103587161e-05
+    },
+    {
+      "label": "validation_02",
+      "checks": {
+        "reported_complete_success": true,
+        "free_flight_rise_at_least_005m": true,
+        "all_flight_constraints_absent": true,
+        "all_flight_environment_contacts_absent": true,
+        "at_least_10_flight_steps": true,
+        "ascent_and_descent_both_sampled": true,
+        "catch_below_wrist_in_finger_workspace": true,
+        "last_two_seconds_all_released_and_contacting_ground": true,
+        "last_two_seconds_all_speeds_below_001": true,
+        "last_two_seconds_all_angular_speeds_below_005": true,
+        "last_two_seconds_max_drift_below_003": true
+      },
+      "passed": true,
+      "independently_measured_rise_m": 0.05510048959520131,
+      "unconstrained_flight_steps": 49,
+      "final_two_second_max_speed_m_s": 1.2380948731657886e-05,
+      "final_two_second_max_angular_speed_rad_s": 5.9811877028123275e-05,
+      "final_two_second_max_drift_m": 2.46752833882571e-05
+    },
+    {
+      "label": "validation_03",
+      "checks": {
+        "reported_complete_success": true,
+        "free_flight_rise_at_least_005m": true,
+        "all_flight_constraints_absent": true,
+        "all_flight_environment_contacts_absent": true,
+        "at_least_10_flight_steps": true,
+        "ascent_and_descent_both_sampled": true,
+        "catch_below_wrist_in_finger_workspace": true,
+        "last_two_seconds_all_released_and_contacting_ground": true,
+        "last_two_seconds_all_speeds_below_001": true,
+        "last_two_seconds_all_angular_speeds_below_005": true,
+        "last_two_seconds_max_drift_below_003": true
+      },
+      "passed": true,
+      "independently_measured_rise_m": 0.054878205302841765,
+      "unconstrained_flight_steps": 49,
+      "final_two_second_max_speed_m_s": 1.2381300999066613e-05,
+      "final_two_second_max_angular_speed_rad_s": 5.9824240472591345e-05,
+      "final_two_second_max_drift_m": 2.467533103587161e-05
+    },
+    {
+      "label": "reloaded_replay",
+      "checks": {
+        "reported_complete_success": true,
+        "free_flight_rise_at_least_005m": true,
+        "all_flight_constraints_absent": true,
+        "all_flight_environment_contacts_absent": true,
+        "at_least_10_flight_steps": true,
+        "ascent_and_descent_both_sampled": true,
+        "catch_below_wrist_in_finger_workspace": true,
+        "last_two_seconds_all_released_and_contacting_ground": true,
+        "last_two_seconds_all_speeds_below_001": true,
+        "last_two_seconds_all_angular_speeds_below_005": true,
+        "last_two_seconds_max_drift_below_003": true
+      },
+      "passed": true,
+      "independently_measured_rise_m": 0.054878205302841765,
+      "unconstrained_flight_steps": 49,
+      "final_two_second_max_speed_m_s": 1.2381300999066613e-05,
+      "final_two_second_max_angular_speed_rad_s": 5.9824240472591345e-05,
+      "final_two_second_max_drift_m": 2.467533103587161e-05
+    }
+  ],
+  "model_calls": [
+    {
+      "request_id": "12ddbb6d885748199c39bd5ff37f30f3",
+      "events": [
+        "request",
+        "response",
+        "parsed_output"
+      ],
+      "complete": true
+    },
+    {
+      "request_id": "5272de8e6001470d91cca14a2a6ab1ae",
+      "events": [
+        "request",
+        "response",
+        "parsed_output"
+      ],
+      "complete": true
+    },
+    {
+      "request_id": "ebb9ef95a4fb4b9f8e10fb5b8e0a33ca",
+      "events": [
+        "request",
+        "response",
+        "parsed_output"
+      ],
+      "complete": true
+    }
+  ]
+}
