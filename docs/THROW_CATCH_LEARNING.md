@@ -1675,3 +1675,6 @@
 
 
 [2026-10-19T23:45:38+08:00] attempt_02 结束：{"label": "attempt_02", "failure_mode": "low_grip_force", "parameters": {"target_x_m": 0.4, "target_z_m": 1.6, "release_after_steps": 120}, "applied_skill_ids": ["grasp_without_lift_v1"], "lift_confirmed": true, "caught": false, "free_flight": false, "placement": {"passed": false, "status": "not_reached"}, "max_measured_vz_m_s": 1.0923311784257084, "release_vz_m_s": 1.0923311784257084, "flight_contact_before_catch": false, "gate_blocked": true, "physics_samples": 528, "max_joint_velocity_ratios": [0.00023204837765660306, 1.0000028946242665, 1.0001727100481232, 0.0013030638137488748, 1.0048781476881663, 0.0020906403557826516], "passed": false}
+
+
+[2026-10-19T23:45:39+08:00] 大模型 request；request_id=a61ede8ee547488c96b49e4309540fc4；完整内容已写入 docs\THROW_CATCH_LLM_CALLS.md。
