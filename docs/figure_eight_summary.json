@@ -475,13 +475,140 @@
   },
   "scope": "fixed-constraint PyBullet xArm6; predefined primitive with model-selected parameters; not hardware or neural training",
   "model_call_audit": {
-    "request_count": 8,
-    "response_count": 8,
-    "events": {
-      "request": 8,
-      "response": 8,
-      "parsed_output": 8
+    "requests": 9,
+    "responses": 9,
+    "parsed_outputs": 9,
+    "errors": 0,
+    "raw_responses_complete": true,
+    "calls": [
+      {
+        "request_id": "fbfe59d56585478696ac19f17150ca58",
+        "model": "gpt-6.1-sol",
+        "duration_ms": 23789.24,
+        "endpoint": "http://127.0.0.1:15723/v1/responses"
+      },
+      {
+        "request_id": "04ead49822d54e2681534b1e22a0ec57",
+        "model": "gpt-6.1-sol",
+        "duration_ms": 11659.72,
+        "endpoint": "http://127.0.0.1:15723/v1/responses"
+      },
+      {
+        "request_id": "6cafdd0414b7488cb0ad231b90421446",
+        "model": "gpt-6.1-sol",
+        "duration_ms": 21359.05,
+        "endpoint": "http://127.0.0.1:15723/v1/responses"
+      },
+      {
+        "request_id": "99124ea8012742e5ab07983a3b264484",
+        "model": "gpt-6.1-sol",
+        "duration_ms": 14466.53,
+        "endpoint": "http://127.0.0.1:15723/v1/responses"
+      },
+      {
+        "request_id": "437fdc3403dd44deaffc62db12e93900",
+        "model": "gpt-6.1-sol",
+        "duration_ms": 14110.63,
+        "endpoint": "http://127.0.0.1:15723/v1/responses"
+      },
+      {
+        "request_id": "9ced34bd8f58459e88880a1be1476bbf",
+        "model": "gpt-6.1-sol",
+        "duration_ms": 11996.34,
+        "endpoint": "http://127.0.0.1:15723/v1/responses"
+      },
+      {
+        "request_id": "6fcd67869a4f4865a8fc9a26a4f03a4b",
+        "model": "gpt-6.1-sol",
+        "duration_ms": 14004.44,
+        "endpoint": "http://127.0.0.1:15723/v1/responses"
+      },
+      {
+        "request_id": "170281bdbf844f49831f1e9bec059a01",
+        "model": "gpt-6.1-sol",
+        "duration_ms": 11412.02,
+        "endpoint": "http://127.0.0.1:15723/v1/responses"
+      },
+      {
+        "request_id": "34dd6e27eb9a4523825eab5a593b48db",
+        "model": "gpt-6.1-sol",
+        "duration_ms": 12463.99,
+        "endpoint": "http://127.0.0.1:15723/v1/responses"
+      }
+    ]
+  },
+  "independent_reload_replay": {
+    "label": "replay",
+    "failure_mode": "low_grip_force",
+    "parameters": {
+      "half_width_m": 0.05,
+      "half_height_m": 0.08,
+      "center_raise_m": 0.1,
+      "samples": 72,
+      "steps_per_waypoint": 80
     },
-    "all_responses_preserved": true
-  }
+    "trajectory": {
+      "waypoints": 73,
+      "max_tracking_error_m": 1.2019591061309376e-05,
+      "rms_tracking_error_m": 1.0116421539797707e-05,
+      "closure_error_m": 4.412914100216481e-06,
+      "midpoint_crossing_error_m": 9.410107499429497e-06,
+      "plane_error_m": 8.59271740649703e-06,
+      "upper_loop_area_m2": 0.005316280373141388,
+      "lower_loop_area_m2": -0.005316268112438575,
+      "vertical_span_m": 0.1599971706759794,
+      "horizontal_span_m": 0.09999990322861345,
+      "passed": true,
+      "samples": 5960,
+      "min_clearance_m": 0.15596467740279674,
+      "grasp_retained": true
+    },
+    "placement": {
+      "drift_m": 3.128409276385285e-05,
+      "speed_m_s": 1.2362729741205837e-05,
+      "target_error_m": 0.0006261867748050345,
+      "released": true,
+      "height_error_m": 1.1393495004896614e-05,
+      "passed": true
+    },
+    "error": null,
+    "applied_skill_ids": [
+      "grasp_without_lift_v1",
+      "held_vertical_figure_eight_v1"
+    ],
+    "diagnosis_fallback": false,
+    "result": {
+      "mode": "skills",
+      "failure_mode": "low_grip_force",
+      "status": "recovered",
+      "false_success": false,
+      "recovered": true,
+      "applied_skill_ids": [
+        "grasp_without_lift_v1"
+      ]
+    },
+    "passed": true
+  },
+  "event_audit": {
+    "total_records": 838,
+    "waypoint_records": 657,
+    "sessions": [
+      "d3f92a3928fd",
+      "3005e8480ee3"
+    ]
+  },
+  "video_checks": [
+    {
+      "file": "artifacts\\figure_eight_20261019\\replay.mp4",
+      "frames": 671,
+      "duration_seconds": 27.95,
+      "full_decode_passed": true
+    },
+    {
+      "file": "artifacts\\figure_eight_replay_20261019\\replay.mp4",
+      "frames": 671,
+      "duration_seconds": 27.95,
+      "full_decode_passed": true
+    }
+  ]
 }

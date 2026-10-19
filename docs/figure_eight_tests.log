@@ -1,0 +1,28 @@
+pybullet build time: Oct 21 2025 11:46:21
+test_incomplete_or_flat_motion_cannot_be_accepted (test_figure_eight.FigureEightGeometryTests.test_incomplete_or_flat_motion_cannot_be_accepted) ... ok
+test_two_vertical_lobes_pass_and_horizontal_eight_is_rejected (test_figure_eight.FigureEightGeometryTests.test_two_vertical_lobes_pass_and_horizontal_eight_is_rejected) ... ok
+test_unsafe_model_parameters_are_rejected (test_figure_eight.FigureEightGeometryTests.test_unsafe_model_parameters_are_rejected) ... ok
+test_grasp_required_before_motion (test_figure_eight.FigureEightPhysicsTests.test_grasp_required_before_motion) ... ok
+test_reuses_grasp_skill_traces_both_lobes_and_places (test_figure_eight.FigureEightPhysicsTests.test_reuses_grasp_skill_traces_both_lobes_and_places) ... 开始运行 f276135e1a5a；输出目录 C:\Users\Highland\AppData\Local\Temp\tmp68oporus。
+开始 test，故障=low_grip_force，参数={"half_width_m": 0.05, "half_height_m": 0.08, "center_raise_m": 0.1, "samples": 64, "steps_per_waypoint": 48}
+test 结束：{"label": "test", "failure_mode": "low_grip_force", "parameters": {"half_width_m": 0.05, "half_height_m": 0.08, "center_raise_m": 0.1, "samples": 64, "steps_per_waypoint": 48}, "trajectory": {"waypoints": 65, "max_tracking_error_m": 9.129747248074049e-05, "rms_tracking_error_m": 6.403231909339338e-05, "closure_error_m": 8.736543522202312e-05, "midpoint_crossing_error_m": 8.590397976519117e-05, "plane_error_m": 1.247620312228026e-05, "upper_loop_area_m2": 0.0053111736829232325, "lower_loop_area_m2": -0.0053107600866514545, "vertical_span_m": 0.159991902477027, "horizontal_span_m": 0.09998766502401227, "passed": true, "samples": 3240, "min_clearance_m": 0.15596467740279674, "grasp_retained": true}, "placement": {"drift_m": 3.128293461650715e-05, "speed_m_s": 1.2362729693309871e-05, "target_error_m": 0.0006261797682741377, "released": true, "height_error_m": 1.1393495005562748e-05, "passed": true}, "error": null, "applied_skill_ids": ["grasp_without_lift_v1"], "diagnosis_fallback": false, "result": {"mode": "skills", "failure_mode": "low_grip_force", "status": "recovered", "false_success": false, "recovered": true, "applied_skill_ids": ["grasp_without_lift_v1"]}, "passed": true}
+ok
+test_low_level_model_output_is_rejected (test_llm.LLMTests.test_low_level_model_output_is_rejected) ... ok
+test_responses_client_builds_structured_skill (test_llm.LLMTests.test_responses_client_builds_structured_skill) ... ok
+test_baseline_can_false_success (test_mvp.MvpTests.test_baseline_can_false_success) ... ok
+test_failure_is_detected_and_recovered (test_mvp.MvpTests.test_failure_is_detected_and_recovered) ... ok
+test_normal_episode_succeeds (test_mvp.MvpTests.test_normal_episode_succeeds) ... ok
+test_occlusion_telemetry_stops_without_recovery (test_mvp.MvpTests.test_occlusion_telemetry_stops_without_recovery) ... ok
+test_skill_is_promoted_and_retrieved (test_mvp.MvpTests.test_skill_is_promoted_and_retrieved) ... ok
+test_telemetry_records_detached_states_and_original_result (test_mvp.MvpTests.test_telemetry_records_detached_states_and_original_result) ... ok
+test_physics_backend_exposes_actual_positions (test_simulation.SimulationTests.test_physics_backend_exposes_actual_positions) ... ok
+test_physics_backend_recovers_low_grip_failure (test_simulation.SimulationTests.test_physics_backend_recovers_low_grip_failure) ... ok
+test_six_dof_arm_moves_end_effector_with_ik (test_simulation.SimulationTests.test_six_dof_arm_moves_end_effector_with_ik) ... ok
+test_xarm6_grasp_is_aligned_before_lift (test_simulation.SimulationTests.test_xarm6_grasp_is_aligned_before_lift) ... ok
+test_xarm6_starts_clear_and_places_normal_pick (test_simulation.SimulationTests.test_xarm6_starts_clear_and_places_normal_pick) ... ok
+test_xarm6_uses_urdf_limits_and_recovers (test_simulation.SimulationTests.test_xarm6_uses_urdf_limits_and_recovers) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 2.725s
+
+OK

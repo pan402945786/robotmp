@@ -4,6 +4,45 @@
 
 完整模型调用记录见 [FIGURE_EIGHT_LLM_CALLS.md](FIGURE_EIGHT_LLM_CALLS.md)。已验证的前置和新 Skill 见 [vertical_figure_eight.json](../assets/skills/vertical_figure_eight.json)。以下按开发、真实调用、试验和验证顺序持续记录；每个路点都包含目标位置、实际位置、跟踪误差和抓持状态。
 
+## 已完成结果
+
+- 实际使用 CC Switch `http://127.0.0.1:15723/v1/responses`；9 次请求的服务响应模型均为 `gpt-6.1-sol`。9 次完整请求、9 次完整原始响应和9 次解析结果均已保存并逐一核对，无错误、无规则回退。
+- 模型第一次提出的参数即通过真实仿真；模型读取反馈后接受同一参数。随后完成6次独立验证（正常、低力度、抓取偏移各2次），全部通过。候选晋级为 `held_vertical_figure_eight_v1`，依赖 `grasp_without_lift_v1`。
+- 完成2次重新加载复用：学习流程末尾1次，独立 CLI 从已提交的 Skill 文件读取1次。独立复用记录同时包含两个 `applied_skill_ids`。
+- 每条8字轨迹有73个路点，实际宽约0.100 m、高约0.160 m；六次验证中最大路点跟踪误差约0.00001202 m，最大放置目标误差约0.003711 m，抓持全部保持。一次画8阶段约24.3仿真秒，含抓取恢复、放回和稳定观察的视频约27.95秒。
+- 两个会话共记录838条步骤/事件，其中657条为逐路点记录；这些包括1次学习、6次验证和2次复用。物理步进检查与事件路点记录是不同粒度：每次画8连续检查5960个物理步，并汇总净空和抓持状态；文档逐项列出动作和路点，JSONL 保存完整事件快照。
+- 19项测试全部通过、无跳过，记录见 [figure_eight_tests.log](figure_eight_tests.log)。两个视频都完成全片解码检查。
+- [实测汇总与调用审计](figure_eight_summary.json)；[最终复用视频](../artifacts/figure_eight_replay_20261019/replay.mp4)。
+
+![实际物体轨迹与仿真画面](figure_eight_preview.png)
+
+新 Skill 的文字表达：**先调用已有经验检查抓取和实际抬升；若未抬升，重新定位并重抓。确认抓牢后，将物体抬到8字交叉点，在Y–Z竖直平面以约10厘米宽、16厘米高的轨迹完成上环和下环，逐路点检查实际位置、净空和抓持。完成闭合后回到已知抬升高度，移动到放置位置、松开夹爪，再观察1秒确认物体放稳。**
+
+本次学习范围为“大模型选择预定义运动原语参数、组合已有 Skill、依据仿真反馈接受候选并重复验证”。xArm6 使用已有固定抓取约束并屏蔽机器人与方块的碰撞对，微小跟踪误差反映这一简化场景，不能当作真实机器人的定位精度。本次未进行神经网络训练，也没有实测过跨物体、随机位置或真实硬件泛化。
+
+## 遇到的事件与处理
+
+1. 项目缺少“持物运动”动作：增加受抓持/抬升门槛约束的物体中心路点控制，复用现有 IK 和位置控制器。
+2. 原先按 Skill 名称识别防护，模型可能改变名称：改为按稳定的 `skill_id` 识别；测试确认原有抓取流程仍然通过。
+3. 每次低力度或抓取偏移场景首次抓取失败：比较器实际报告未抬升，模型诊断生成候选经验，原有本地恢复流程刷新位置并重抓，确认实际抬升后才进入画8阶段。恢复仍按原项目策略清除注入故障。
+4. 模型不能仅凭方案宣称成功：首次输出 `try`，收到真实轨迹与放置反馈后输出 `accept`；模型接受后仍须通过本地6次独立验证。
+5. 验证结果和调用日志已按阶段提交 Git；最终补充完整审计和视频预览。没有出现必须调整参数才能通过的失败候选，不能把本次结果描述为已证明模型具备失败后调参能力。
+
+## 复现命令
+
+```powershell
+# 读取已提交的两个 Skill 并执行完整任务；每次调用仍记录输入输出。
+.\run.cmd -m robotmp.figure_eight --replay-only --output artifacts/figure_eight_replay
+
+# 加 --gui 可实时查看；不加时仍导出相机视频与物体轨迹叠加。
+.\run.cmd -m robotmp.figure_eight --replay-only --gui --output artifacts/figure_eight_gui
+
+# 在新输出目录重新进行模型提议、实际试验和独立验证。
+.\run.cmd -m robotmp.figure_eight --output artifacts/figure_eight_new_run
+```
+
+以下保留完整开发记录与逐步运行记录。
+
 ## 记录 01：检查与开始
 
 - 已检查当前代码：xArm6 已能接近、闭合、检测抬升、失败后重新定位并重抓、放下物体；尚无持物轨迹动作。
@@ -1828,3 +1867,49 @@
 74. 仿真 21.075s；物体中心 (0.45264, -0.02562, 0.92796) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 57, "target": [0.45264591498190104, -0.025627242587920762, 0.9279625370570339], "tracking_error_m": 1.0083201997372576e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
 
 75. 仿真 21.408s；物体中心 (0.45264, -0.03276, 0.93006) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 58, "target": [0.45264591498190104, -0.03276662307224779, 0.9300611934972867], "tracking_error_m": 1.0558042127304782e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+76. 仿真 21.742s；物体中心 (0.45264, -0.03892, 0.93273) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 59, "target": [0.45264591498190104, -0.038929464743869664, 0.9327319801972274], "tracking_error_m": 9.964669037316951e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+77. 仿真 22.075s；物体中心 (0.45264, -0.04392, 0.93595) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 60, "target": [0.45264591498190104, -0.04392851277714269, 0.9359545708574043], "tracking_error_m": 1.0012383667408977e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+78. 仿真 22.408s；物体中心 (0.45264, -0.04761, 0.93970) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 61, "target": [0.45264591498190104, -0.04761187362721623, 0.9397044396170401], "tracking_error_m": 9.98123250903834e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+79. 仿真 22.742s；物体中心 (0.45264, -0.04986, 0.94395) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 62, "target": [0.45264591498190104, -0.049867630238531205, 0.9439530477106411], "tracking_error_m": 1.0051295895945696e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+80. 仿真 23.075s；物体中心 (0.45264, -0.05063, 0.94866) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 63, "target": [0.45264591498190104, -0.050627242587920805, 0.9486680606652356], "tracking_error_m": 1.060270810759323e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+81. 仿真 23.408s；物体中心 (0.45264, -0.04987, 0.95381) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 64, "target": [0.45264591498190104, -0.04986763023853121, 0.9538135943852363], "tracking_error_m": 1.0222677982051398e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+82. 仿真 23.742s；物体中心 (0.45264, -0.04761, 0.95934) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 65, "target": [0.45264591498190104, -0.047611873627216236, 0.9593504882520757], "tracking_error_m": 1.0484390290833198e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+83. 仿真 24.075s；物体中心 (0.45264, -0.04393, 0.96523) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 66, "target": [0.45264591498190104, -0.04392851277714272, 0.9652366031601595], "tracking_error_m": 1.0386497153910475e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+84. 仿真 24.408s；物体中心 (0.45264, -0.03893, 0.97142) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 67, "target": [0.45264591498190104, -0.03892946474386975, 0.9714271422209034], "tracking_error_m": 1.0633010653884269e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+85. 仿真 24.742s；物体中心 (0.45264, -0.03277, 0.97787) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 68, "target": [0.45264591498190104, -0.03276662307224776, 0.9778749916941059], "tracking_error_m": 1.1026288180352668e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+86. 仿真 25.075s；物体中心 (0.45264, -0.02563, 0.98452) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 69, "target": [0.45264591498190104, -0.025627242587920797, 0.9845310795519577], "tracking_error_m": 1.0788283690083127e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+87. 仿真 25.408s；物体中心 (0.45264, -0.01773, 0.99134) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 70, "target": [0.45264591498190104, -0.017728249754204246, 0.9913447489468049], "tracking_error_m": 1.1155896547512084e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+88. 仿真 25.742s；物体中心 (0.45264, -0.00931, 0.99826) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 71, "target": [0.45264591498190104, -0.009309651471267333, 0.9982641437403468], "tracking_error_m": 1.0847454228936114e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+89. 仿真 26.075s；物体中心 (0.45264, -0.00063, 1.00523) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 72, "target": [0.45264591498190104, -0.0006272425879208253, 1.0052366031601594], "tracking_error_m": 1.1075575461633367e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+90. 仿真 26.075s；物体中心 (0.45264, -0.00063, 1.00523) m；{"trial": "replay", "kind": "figure_eight_evaluation", "metrics": {"waypoints": 73, "max_tracking_error_m": 1.2019591061309376e-05, "rms_tracking_error_m": 1.0116421539797707e-05, "closure_error_m": 4.412914100216481e-06, "midpoint_crossing_error_m": 9.410107499429497e-06, "plane_error_m": 8.59271740649703e-06, "upper_loop_area_m2": 0.005316280373141388, "lower_loop_area_m2": -0.005316268112438575, "vertical_span_m": 0.1599971706759794, "horizontal_span_m": 0.09999990322861345, "passed": true, "samples": 5960, "min_clearance_m": 0.15596467740279674, "grasp_retained": true}, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+91. 仿真 26.575s；物体中心 (0.45264, -0.00063, 0.90524) m；{"trial": "replay", "kind": "return_to_lift_height", "target": [0.45264591498190104, -0.0006272425879208008, 0.9052366031601594], "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+92. 仿真 26.775s；物体中心 (0.50177, -0.00063, 0.76742) m；{"trial": "replay", "kind": "action", "prediction": {"prediction_id": "pred-1", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "move_to_target", "物体抓持": true, "实际抬升": false, "事件": ["object_at_target"]}
+
+93. 仿真 26.975s；物体中心 (0.49987, -0.00063, 0.74996) m；{"trial": "replay", "kind": "action", "prediction": {"prediction_id": "pred-1", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "release_object", "物体抓持": false, "实际抬升": false, "事件": ["object_released"]}
+
+94. 仿真 26.975s；物体中心 (0.49987, -0.00063, 0.74996) m；{"trial": "replay", "kind": "result", "prediction": {"prediction_id": "pred-1", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "result": {"mode": "skills", "failure_mode": "low_grip_force", "status": "recovered", "false_success": false, "recovered": true, "applied_skill_ids": ["grasp_without_lift_v1"]}, "物体抓持": false, "实际抬升": false, "事件": ["object_released"]}
+
+95. 仿真 27.975s；物体中心 (0.49987, -0.00061, 0.74999) m；{"trial": "replay", "kind": "placement_evaluation", "metrics": {"drift_m": 3.128409276385285e-05, "speed_m_s": 1.2362729741205837e-05, "target_error_m": 0.0006261867748050345, "released": true, "height_error_m": 1.1393495004896614e-05, "passed": true}, "物体抓持": false, "实际抬升": false, "事件": ["placement_settled"]}
+
+
+[2026-10-19T21:43:52+08:00] replay 结束：{"label": "replay", "failure_mode": "low_grip_force", "parameters": {"half_width_m": 0.05, "half_height_m": 0.08, "center_raise_m": 0.1, "samples": 72, "steps_per_waypoint": 80}, "trajectory": {"waypoints": 73, "max_tracking_error_m": 1.2019591061309376e-05, "rms_tracking_error_m": 1.0116421539797707e-05, "closure_error_m": 4.412914100216481e-06, "midpoint_crossing_error_m": 9.410107499429497e-06, "plane_error_m": 8.59271740649703e-06, "upper_loop_area_m2": 0.005316280373141388, "lower_loop_area_m2": -0.005316268112438575, "vertical_span_m": 0.1599971706759794, "horizontal_span_m": 0.09999990322861345, "passed": true, "samples": 5960, "min_clearance_m": 0.15596467740279674, "grasp_retained": true}, "placement": {"drift_m": 3.128409276385285e-05, "speed_m_s": 1.2362729741205837e-05, "target_error_m": 0.0006261867748050345, "released": true, "height_error_m": 1.1393495004896614e-05, "passed": true}, "error": null, "applied_skill_ids": ["grasp_without_lift_v1", "held_vertical_figure_eight_v1"], "diagnosis_fallback": false, "result": {"mode": "skills", "failure_mode": "low_grip_force", "status": "recovered", "false_success": false, "recovered": true, "applied_skill_ids": ["grasp_without_lift_v1"]}, "passed": true}
+
+
+[2026-10-19T21:43:52+08:00] 已验证 Skill 独立复用完成；applied_skill_ids=['grasp_without_lift_v1', 'held_vertical_figure_eight_v1']。

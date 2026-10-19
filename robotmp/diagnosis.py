@@ -96,10 +96,10 @@ class LLMUnavailable(RuntimeError):
 
 
 class OpenAICompatibleDiagnoser:
-    """Generate a structured Skill through an OpenAI-compatible HTTP endpoint.
+    """Generate diagnoses and expose a logged JSON transport for high-level tasks.
 
-    The client only asks the model for diagnosis data. It never sends joint,
-    motor, trajectory, or other low-level control commands to the endpoint.
+    ``generate`` requests semantic failure diagnoses and rejects low-level output.
+    Other tasks using ``request_json`` must validate their own high-level schema.
     """
 
     def __init__(self, config: LLMConfig | None = None, *, log_observer: Callable[[dict], None] | None = None):

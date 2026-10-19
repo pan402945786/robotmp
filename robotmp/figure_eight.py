@@ -314,7 +314,7 @@ def execute_trial(parameters: dict, store, journal: Journal, label: str, failure
     return report
 
 
-def propose(client, old_skill: Skill, reports: list[dict], previous: dict | None = None) -> dict:
+def propose(client, old_skill: Skill, reports: list[dict], previous: dict | None = None, *, review: bool = False) -> dict:
     instructions = (
         "You propose a reusable high-level robot Skill for a LOCAL PYBULLET SIMULATION. Return JSON only. "
         "Compose the supplied verified grasp skill with a predefined vertical figure-eight primitive and placement. "
@@ -328,10 +328,12 @@ def propose(client, old_skill: Skill, reports: list[dict], previous: dict | None
         "continuous bottom clearance >=0.035m, grasp retained, placement error <=0.025m and drift <=0.003m. "
         "Return keys decision ('try' or 'accept'), name, description, prerequisite_skill_ids, parameters, "
         "observed_facts (array), hypotheses (array), rationale (string), recovery (array). Use Chinese prose. "
-        "Accept only if supplied actual trial passed. Initial request MUST use decision try. "
+        "Accept only if supplied actual trial passed. In proposal phase MUST use decision try; "
+        "in review phase use accept only for the same successfully tested parameters. "
         "On a failed trial, use its measured errors to revise parameters. Do not claim autonomy over controller learning."
     )
     return client.request_json(instructions, {"goal": "抓起方块，在空中竖直画一个8字，然后放下",
+        "phase": "review" if review else "proposal",
         "existing_verified_skill": asdict(old_skill), "previous_proposal": previous, "actual_trial_reports": reports})
 
 
@@ -403,7 +405,7 @@ def main():
             journal.event({"kind": "model_proposal_validated", "attempt": attempt, "proposal": proposal})
             report = execute_trial(proposal["parameters"], store, journal, f"learning_{attempt}", FailureMode.LOW_GRIP_FORCE, client)
             reports.append(report)
-            review = propose(client, old, reports, proposal)
+            review = propose(client, old, reports, proposal, review=True)
             validate_proposal(review, can_accept=report["passed"])
             journal.event({"kind": "model_feedback_review", "proposal": review})
             if report["passed"] and review["decision"] == "accept" and review["parameters"] == proposal["parameters"]:
