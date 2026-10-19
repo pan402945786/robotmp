@@ -1352,3 +1352,39 @@
 
 
 [2026-10-19T23:44:04+08:00] 大模型 parsed_output；request_id=33f73a0d16f94d7d9b12829650fa3ec5；完整内容已写入 docs\THROW_CATCH_LLM_CALLS.md。
+
+2. 仿真 0.000s；物体中心 (—) m；{"kind": "model_proposal_validated", "proposal": {"decision": "try", "prerequisite_skill_ids": ["grasp_without_lift_v1"], "parameters": {"target_x_m": 0.4, "target_z_m": 1.6, "release_after_steps": 4}, "observed_facts": ["尚无实际试验报告", "抓取技能已验证，但夹爪闭合不等于物体抓取成功", "释放前必须测得物体向上速度至少为3.132092米每秒", "成功必须同时满足世界高度z至少0.5米和相对释放点上升至少0.5米", "接取要求物体处于下降阶段、距离不超过0.13米且相对速度不超过1米每秒", "最终必须将物体放置到地面z=0"], "hypotheses": ["较高的IK目标高度可能提供更有利的向上运动空间", "较短的释放步数可能在保持向上速度时释放物体", "当前参数能否达到释放速度阈值尚未验证", "单次试验不能证明或否定该控制器的整体可行性"], "rationale": "首次试验必须执行。选择允许范围内的较高目标高度和较短释放延迟，以优先检验释放时是否能达到规定的最小向上速度，并观察完整的抓取、抛掷、飞行、接取和落地过程。不得预先宣称成功，需依据测得的释放速度、最高高度、上升高度、下降接取条件及最终落地结果判定。", "next_requirements": ["执行一次完整试验并记录抓取是否成功", "记录释放瞬间的实际物体位置和向上速度", "记录飞行最高世界z高度及相对释放点的上升高度", "记录接取时是否满足下降、距离不超过0.13米和相对速度不超过1米每秒", "记录接取后是否成功将物体平稳放置于地面", "若失败，基于具体失败证据调整target_x_m、target_z_m或release_after_steps；若成功，仍需至少再完成两次独立完整成功试验后才能接受"]}}
+
+
+[2026-10-19T23:44:05+08:00] 开始 attempt_01；参数 {"target_x_m": 0.4, "target_z_m": 1.6, "release_after_steps": 4}；故障 none。
+
+3. 仿真 0.042s；物体中心 (0.45000, -0.00000, 0.74991) m；{"trial": "attempt_01", "kind": "scene_ready", "ground_body_id": 3, "physics_trace": "attempt_01_physics.csv", "model": "xarm6", "ground_z_m": 0, "table_z_m": 0.7, "cube_dynamics": [0.1, 0.5, [0.0001666666666666667, 0.0001666666666666667, 0.0001666666666666667], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 1.0], 0.0, 0.0, 0.0, -1.0, -1.0, 2, 0.001], "物体抓持": false, "实际抬升": false, "事件": []}
+
+4. 仿真 0.042s；物体中心 (0.45000, -0.00000, 0.74991) m；{"trial": "attempt_01", "kind": "prerequisite_retrieved", "skill": {"skill_id": "grasp_without_lift_v1", "name": "grasp_without_lift", "status": "verified", "version": 1, "task": "pick_and_place", "object_types": ["cube"], "trigger_conditions": ["gripper_closed == true", "lift_window_elapsed == true", "object_lifted == false"], "facts": ["gripper_closed_does_not_imply_grasp_success", "object_lift_was_not_detected", "object_may_have_been_displaced_before_grasp"], "hypotheses": ["grasp_point_may_be_misaligned", "insufficient_grip_force"], "prediction_correction": ["do_not_enter_transport_phase", "require_lift_evidence_before_transport"], "recovery": ["stop_transport_motion", "refresh_object_pose", "retry_grasp_if_safe"], "validation_trials": 20, "false_success_rate": 0.0, "recovery_success_rate": 1.0, "prerequisite_skill_ids": [], "parameters": {}, "validation_success_rate": null, "validation_metrics": {}}, "物体抓持": false, "实际抬升": false, "事件": []}
+
+5. 仿真 0.242s；物体中心 (0.45000, 0.00000, 0.74999) m；{"trial": "attempt_01", "kind": "action", "action": "approach_object", "物体抓持": false, "实际抬升": false, "事件": ["object_approached"]}
+
+6. 仿真 0.442s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "attempt_01", "kind": "action", "action": "close_gripper", "物体抓持": true, "实际抬升": false, "事件": ["gripper_closed", "gripper_contact", "grasp_constraint_created"]}
+
+7. 仿真 0.642s；物体中心 (0.45290, -0.00063, 0.90520) m；{"trial": "attempt_01", "kind": "action", "action": "lift_object", "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+8. 仿真 0.642s；物体中心 (0.45290, -0.00063, 0.90520) m；{"trial": "attempt_01", "kind": "lift_comparison", "prediction": {"prediction_id": "pred-1", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "match", "errors": [], "severity": "none"}, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+9. 仿真 0.642s；物体中心 (0.45290, -0.00063, 0.90520) m；{"trial": "attempt_01", "kind": "lift_gate_passed", "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+10. 仿真 0.642s；物体中心 (0.45290, -0.00063, 0.90520) m；{"trial": "attempt_01", "kind": "upward_sweep_commanded", "object_target": [0.4, -0.0006344299818815758, 1.6], "steps": 4, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+11. 仿真 0.646s；物体中心 (0.45176, -0.00063, 0.90540) m；{"trial": "attempt_01", "kind": "sweep_step", "index": 1, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+12. 仿真 0.650s；物体中心 (0.45122, -0.00064, 0.90547) m；{"trial": "attempt_01", "kind": "sweep_step", "index": 2, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+13. 仿真 0.654s；物体中心 (0.45127, -0.00064, 0.90540) m；{"trial": "attempt_01", "kind": "sweep_step", "index": 3, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+14. 仿真 0.658s；物体中心 (0.45192, -0.00064, 0.90521) m；{"trial": "attempt_01", "kind": "sweep_step", "index": 4, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+15. 仿真 0.658s；物体中心 (0.45192, -0.00064, 0.90521) m；{"trial": "attempt_01", "kind": "release_gate_blocked", "measured_max_vz_m_s": 0.04812257312860297, "required_vz_m_s": 3.132091952673165, "target_rise_m": 0.5, "reason": "measured upward speed cannot support 0.5m rise", "物体抓持": true, "实际抬升": true, "事件": ["safety_stop"]}
+
+16. 仿真 1.158s；物体中心 (0.41311, -0.00064, 1.26643) m；{"trial": "attempt_01", "kind": "post_gate_safety_observation", "物体抓持": true, "实际抬升": true, "事件": ["safety_stop"]}
+
+
+[2026-10-19T23:44:05+08:00] attempt_01 结束：{"label": "attempt_01", "failure_mode": "none", "parameters": {"target_x_m": 0.4, "target_z_m": 1.6, "release_after_steps": 4}, "applied_skill_ids": ["grasp_without_lift_v1"], "lift_confirmed": true, "caught": false, "free_flight": false, "placement": {"passed": false, "status": "not_reached"}, "max_measured_vz_m_s": 0.04812257312860297, "release_vz_m_s": 0.04812257312860297, "flight_contact_before_catch": false, "gate_blocked": true, "physics_samples": 268, "max_joint_velocity_ratios": [0.00023204837765660306, 1.0000040175524212, 1.0001727100481232, 0.0013030638137488748, 1.0048781476881663, 0.0020906403557826516], "passed": false}
