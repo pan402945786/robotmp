@@ -52,6 +52,7 @@ def main():
     labels = ['attempt_01', 'validation_01', 'validation_02', 'validation_03', 'reloaded_replay']
     traces = [check_trace(label) for label in labels]
     records = [json.loads(line) for line in (OUTPUT / 'model_events.jsonl').read_text(encoding='utf-8').splitlines()]
+    transport_records = [json.loads(line) for line in (OUTPUT / 'llm_full.jsonl').read_text(encoding='utf-8').splitlines()]
     ids = sorted({record['request_id'] for record in records})
     calls = []
     for request_id in ids:
@@ -65,6 +66,8 @@ def main():
     source_hash = hashlib.sha256(source.read_bytes()).hexdigest()
     checks = {'all_saved_traces_pass_independent_audit': all(trace['passed'] for trace in traces),
               'all_model_inputs_raw_outputs_and_parsed_outputs_present': bool(calls) and all(call['complete'] for call in calls),
+              'transport_log_matches_observer_log': transport_records == [
+                  {key: value for key, value in record.items() if key != 'session'} for record in records],
               'source_skill_unchanged': source_hash == summary['source_skill_sha256']
                   == hashlib.sha256((OUTPUT / 'source_skill.json').read_bytes()).hexdigest(),
               'low_grip_force_validation_reused_recovery': summary['validation_reports'][1]['recovery_used'],
