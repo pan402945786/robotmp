@@ -3,7 +3,7 @@
     "skill_id": "throw_10m_catch_ground_v1",
     "name": "throw_10m_catch_ground",
     "status": "candidate",
-    "version": 1,
+    "version": 2,
     "task": "throw_catch_ground",
     "object_types": [
       "cube"
@@ -14,20 +14,30 @@
     ],
     "facts": [
       "require_measured_release_velocity_and_free_flight",
-      "10m_height_is_not_evidence_of_catch_or_ground_placement"
+      "10m_height_is_not_evidence_of_catch_or_ground_placement",
+      "four_prior_trials_max_release_vz_1.094805_m_s_vs_required_14.007141_m_s",
+      "four_prior_trials_max_apex_1.164495_m_and_max_rise_0.058482_m",
+      "xarm6_table_scene_cannot_reach_ground_placement_target_with_current_workspace"
     ],
     "hypotheses": [
-      "current_sweep_primitive_may_lack_sufficient_release_energy"
+      "current_single_target_ik_primitive_cannot supply the measured launch energy",
+      "release timing must be gated by measured upward velocity instead of fixed steps",
+      "10m throwing requires a dedicated high speed trajectory or launch mechanism and a reachable ground placement scene"
     ],
     "prediction_correction": [
-      "require_10m_free_flight_before_success",
+      "require_lift_evidence_before_release",
+      "require_measured_vz_at_least_14.007142_m_s_before_release",
+      "block_release_and_safety_stop_when_height_capability_is_not_observed",
+      "require_reachable_ground_placement_workspace_before_acceptance",
       "require_gated_catch_and_stable_ground_contact"
     ],
     "recovery": [
       "retain_failure_evidence",
+      "do_not_release_when_velocity_gate_is_blocked",
+      "upgrade_throw_trajectory_or_hardware_before_retrying_10m_goal",
       "do_not_promote_incomplete_skill"
     ],
-    "validation_trials": 4,
+    "validation_trials": 3,
     "false_success_rate": null,
     "recovery_success_rate": null,
     "prerequisite_skill_ids": [
@@ -41,7 +51,13 @@
     "validation_success_rate": 0.0,
     "validation_metrics": {
       "complete_three_trial_validation": false,
-      "max_observed_apex_m": 1.1644947330048958
+      "prior_throw_trials": 4,
+      "prior_max_release_vz_m_s": 1.0948054494013788,
+      "prior_max_apex_height_m": 1.1644947330048958,
+      "prior_max_rise_from_release_m": 0.05848159647781692,
+      "improvement_gate_trials": 3,
+      "improvement_gate_blocked_trials": 3,
+      "improvement_gate_safety_stops": 3
     }
   }
 ]
