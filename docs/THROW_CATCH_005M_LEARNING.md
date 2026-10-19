@@ -6961,3 +6961,572 @@
 1756. 仿真 2.200s；物体中心 (0.45153, 0.00011, 0.33361) m；{"trial": "reloaded_replay", "kind": "descending_catch_gate_passed", "distance_m": 0.10065608659330696, "relative_speed_m_s": 0.946320460633238, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
 
 1757. 仿真 2.700s；物体中心 (0.45311, -0.00053, 0.34644) m；{"trial": "reloaded_replay", "kind": "catch_hold_evaluation", "passed": true, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1758. 仿真 2.717s；物体中心 (0.45338, -0.00053, 0.34706) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 1, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1759. 仿真 2.733s；物体中心 (0.45376, -0.00053, 0.34688) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 2, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1760. 仿真 2.750s；物体中心 (0.45412, -0.00053, 0.34677) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 3, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1761. 仿真 2.767s；物体中心 (0.45444, -0.00053, 0.34671) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 4, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1762. 仿真 2.783s；物体中心 (0.45469, -0.00053, 0.34668) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 5, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1763. 仿真 2.800s；物体中心 (0.45489, -0.00052, 0.34667) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 6, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1764. 仿真 2.817s；物体中心 (0.45504, -0.00052, 0.34667) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 7, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1765. 仿真 2.833s；物体中心 (0.45515, -0.00052, 0.34668) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 8, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1766. 仿真 2.850s；物体中心 (0.45524, -0.00052, 0.34669) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 9, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1767. 仿真 2.867s；物体中心 (0.45530, -0.00052, 0.34671) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 10, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1768. 仿真 2.883s；物体中心 (0.45534, -0.00052, 0.34673) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 11, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1769. 仿真 2.900s；物体中心 (0.45537, -0.00052, 0.34675) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 12, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1770. 仿真 2.917s；物体中心 (0.45539, -0.00052, 0.34677) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 13, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1771. 仿真 2.933s；物体中心 (0.45540, -0.00052, 0.34679) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 14, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1772. 仿真 2.950s；物体中心 (0.45541, -0.00052, 0.34681) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 15, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1773. 仿真 2.967s；物体中心 (0.45542, -0.00052, 0.34683) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 16, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1774. 仿真 2.983s；物体中心 (0.45542, -0.00052, 0.34685) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 17, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1775. 仿真 3.000s；物体中心 (0.45542, -0.00052, 0.34687) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 18, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1776. 仿真 3.017s；物体中心 (0.45542, -0.00052, 0.34689) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 19, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1777. 仿真 3.033s；物体中心 (0.45542, -0.00052, 0.34691) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 20, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1778. 仿真 3.050s；物体中心 (0.45542, -0.00052, 0.34693) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 21, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1779. 仿真 3.067s；物体中心 (0.45542, -0.00052, 0.34695) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 22, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1780. 仿真 3.083s；物体中心 (0.45542, -0.00052, 0.34698) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 23, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1781. 仿真 3.100s；物体中心 (0.45541, -0.00052, 0.34700) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 24, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1782. 仿真 3.117s；物体中心 (0.45541, -0.00052, 0.34702) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 25, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1783. 仿真 3.133s；物体中心 (0.45541, -0.00052, 0.34704) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 26, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1784. 仿真 3.150s；物体中心 (0.45540, -0.00052, 0.34706) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 27, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1785. 仿真 3.167s；物体中心 (0.45540, -0.00052, 0.34708) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 28, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1786. 仿真 3.183s；物体中心 (0.45539, -0.00052, 0.34710) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 29, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1787. 仿真 3.200s；物体中心 (0.45539, -0.00052, 0.34712) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 30, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1788. 仿真 3.217s；物体中心 (0.45538, -0.00052, 0.34714) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 31, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1789. 仿真 3.233s；物体中心 (0.45538, -0.00052, 0.34716) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 32, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1790. 仿真 3.250s；物体中心 (0.45537, -0.00052, 0.34718) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 33, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1791. 仿真 3.267s；物体中心 (0.45536, -0.00052, 0.34720) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 34, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1792. 仿真 3.283s；物体中心 (0.45536, -0.00052, 0.34722) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 35, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1793. 仿真 3.300s；物体中心 (0.45535, -0.00052, 0.34723) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 36, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1794. 仿真 3.317s；物体中心 (0.45534, -0.00052, 0.34725) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 37, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1795. 仿真 3.333s；物体中心 (0.45534, -0.00052, 0.34727) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 38, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1796. 仿真 3.350s；物体中心 (0.45533, -0.00052, 0.34729) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 39, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1797. 仿真 3.367s；物体中心 (0.45532, -0.00052, 0.34731) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 40, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1798. 仿真 3.383s；物体中心 (0.45531, -0.00052, 0.34733) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 41, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1799. 仿真 3.400s；物体中心 (0.45530, -0.00052, 0.34735) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 42, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1800. 仿真 3.417s；物体中心 (0.45530, -0.00052, 0.34737) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 43, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1801. 仿真 3.433s；物体中心 (0.45529, -0.00052, 0.34739) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 44, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1802. 仿真 3.450s；物体中心 (0.45528, -0.00052, 0.34741) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 45, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1803. 仿真 3.467s；物体中心 (0.45527, -0.00052, 0.34742) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 46, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1804. 仿真 3.483s；物体中心 (0.45526, -0.00052, 0.34744) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 47, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1805. 仿真 3.500s；物体中心 (0.45525, -0.00052, 0.34746) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 48, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1806. 仿真 3.517s；物体中心 (0.45524, -0.00052, 0.34748) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 49, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1807. 仿真 3.533s；物体中心 (0.45523, -0.00052, 0.34750) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 50, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1808. 仿真 3.550s；物体中心 (0.45522, -0.00052, 0.34751) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 51, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1809. 仿真 3.567s；物体中心 (0.45521, -0.00052, 0.34753) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 52, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1810. 仿真 3.583s；物体中心 (0.45520, -0.00052, 0.34755) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 53, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1811. 仿真 3.600s；物体中心 (0.45519, -0.00052, 0.34757) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 54, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1812. 仿真 3.617s；物体中心 (0.45517, -0.00052, 0.34758) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 55, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1813. 仿真 3.633s；物体中心 (0.45516, -0.00052, 0.34760) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 56, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1814. 仿真 3.650s；物体中心 (0.45515, -0.00052, 0.34762) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 57, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1815. 仿真 3.667s；物体中心 (0.45514, -0.00052, 0.34763) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 58, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1816. 仿真 3.683s；物体中心 (0.45513, -0.00052, 0.34765) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 59, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1817. 仿真 3.700s；物体中心 (0.45511, -0.00052, 0.34767) m；{"trial": "reloaded_replay", "kind": "held_cube_uprighting", "index": 60, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1818. 仿真 4.200s；物体中心 (0.45439, -0.00053, 0.34728) m；{"trial": "reloaded_replay", "kind": "held_cube_upright_settled", "support_height_m": 0.050000295243965376, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1819. 仿真 4.250s；物体中心 (0.45438, -0.00053, 0.34585) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 0, "support_height_m": 0.050000295243965376, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1820. 仿真 4.300s；物体中心 (0.45438, -0.00053, 0.34441) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 1, "support_height_m": 0.05000028160728218, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1821. 仿真 4.350s；物体中心 (0.45437, -0.00053, 0.34298) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 2, "support_height_m": 0.05000035784290942, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1822. 仿真 4.400s；物体中心 (0.45437, -0.00053, 0.34155) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 3, "support_height_m": 0.05000036793372134, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1823. 仿真 4.450s；物体中心 (0.45437, -0.00053, 0.34011) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 4, "support_height_m": 0.05000036612859646, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1824. 仿真 4.500s；物体中心 (0.45436, -0.00053, 0.33868) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 5, "support_height_m": 0.05000036165589903, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1825. 仿真 4.550s；物体中心 (0.45436, -0.00053, 0.33725) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 6, "support_height_m": 0.05000035674550676, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1826. 仿真 4.600s；物体中心 (0.45435, -0.00053, 0.33581) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 7, "support_height_m": 0.050000351948912926, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1827. 仿真 4.650s；物体中心 (0.45435, -0.00053, 0.33438) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 8, "support_height_m": 0.05000034738428255, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1828. 仿真 4.700s；物体中心 (0.45434, -0.00053, 0.33294) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 9, "support_height_m": 0.050000343105038605, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1829. 仿真 4.750s；物体中心 (0.45434, -0.00053, 0.33151) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 10, "support_height_m": 0.05000033904226499, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1830. 仿真 4.800s；物体中心 (0.45433, -0.00053, 0.33008) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 11, "support_height_m": 0.05000033522091412, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1831. 仿真 4.850s；物体中心 (0.45433, -0.00053, 0.32864) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 12, "support_height_m": 0.050000334048188856, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1832. 仿真 4.900s；物体中心 (0.45432, -0.00053, 0.32721) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 13, "support_height_m": 0.0500003312036835, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1833. 仿真 4.950s；物体中心 (0.45432, -0.00053, 0.32578) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 14, "support_height_m": 0.050000328012889984, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1834. 仿真 5.000s；物体中心 (0.45431, -0.00053, 0.32434) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 15, "support_height_m": 0.05000032488032773, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1835. 仿真 5.050s；物体中心 (0.45431, -0.00053, 0.32291) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 16, "support_height_m": 0.05000032188690923, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1836. 仿真 5.100s；物体中心 (0.45430, -0.00053, 0.32148) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 17, "support_height_m": 0.05000031897490716, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1837. 仿真 5.150s；物体中心 (0.45430, -0.00053, 0.32004) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 18, "support_height_m": 0.05000031623037563, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1838. 仿真 5.200s；物体中心 (0.45429, -0.00053, 0.31861) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 19, "support_height_m": 0.050000313604980945, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1839. 仿真 5.250s；物体中心 (0.45429, -0.00053, 0.31717) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 20, "support_height_m": 0.05000031111512487, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1840. 仿真 5.300s；物体中心 (0.45428, -0.00053, 0.31574) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 21, "support_height_m": 0.0500003106478669, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1841. 仿真 5.350s；物体中心 (0.45428, -0.00053, 0.31431) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 22, "support_height_m": 0.05000030880464205, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1842. 仿真 5.400s；物体中心 (0.45427, -0.00053, 0.31287) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 23, "support_height_m": 0.05000030668469588, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1843. 仿真 5.450s；物体中心 (0.45427, -0.00053, 0.31144) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 24, "support_height_m": 0.05000030455298633, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1844. 仿真 5.500s；物体中心 (0.45426, -0.00053, 0.31001) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 25, "support_height_m": 0.050000302552639236, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1845. 仿真 5.550s；物体中心 (0.45426, -0.00053, 0.30857) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 26, "support_height_m": 0.05000031002753581, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1846. 仿真 5.600s；物体中心 (0.45425, -0.00053, 0.30714) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 27, "support_height_m": 0.05000032146814557, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1847. 仿真 5.650s；物体中心 (0.45425, -0.00053, 0.30570) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 28, "support_height_m": 0.05000032781833385, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1848. 仿真 5.700s；物体中心 (0.45425, -0.00053, 0.30427) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 29, "support_height_m": 0.05000034192712536, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1849. 仿真 5.750s；物体中心 (0.45424, -0.00053, 0.30284) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 30, "support_height_m": 0.050000350115117345, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1850. 仿真 5.800s；物体中心 (0.45424, -0.00053, 0.30140) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 31, "support_height_m": 0.050000358728272014, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1851. 仿真 5.850s；物体中心 (0.45423, -0.00053, 0.29997) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 32, "support_height_m": 0.050000362406880154, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1852. 仿真 5.900s；物体中心 (0.45423, -0.00053, 0.29854) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 33, "support_height_m": 0.05000037027172426, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1853. 仿真 5.950s；物体中心 (0.45422, -0.00053, 0.29710) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 34, "support_height_m": 0.05000037325258382, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1854. 仿真 6.000s；物体中心 (0.45422, -0.00053, 0.29567) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 35, "support_height_m": 0.05000038116931041, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1855. 仿真 6.050s；物体中心 (0.45421, -0.00053, 0.29424) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 36, "support_height_m": 0.05000038379058298, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1856. 仿真 6.100s；物体中心 (0.45421, -0.00053, 0.29280) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 37, "support_height_m": 0.05000038330065764, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1857. 仿真 6.150s；物体中心 (0.45420, -0.00053, 0.29137) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 38, "support_height_m": 0.05000039020925978, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1858. 仿真 6.200s；物体中心 (0.45420, -0.00053, 0.28994) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 39, "support_height_m": 0.050000392198672056, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1859. 仿真 6.250s；物体中心 (0.45419, -0.00053, 0.28850) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 40, "support_height_m": 0.050000391579627615, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1860. 仿真 6.300s；物体中心 (0.45419, -0.00053, 0.28707) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 41, "support_height_m": 0.05000039836160533, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1861. 仿真 6.350s；物体中心 (0.45419, -0.00053, 0.28564) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 42, "support_height_m": 0.05000040008627883, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1862. 仿真 6.400s；物体中心 (0.45418, -0.00053, 0.28420) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 43, "support_height_m": 0.05000039940071724, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1863. 仿真 6.450s；物体中心 (0.45418, -0.00053, 0.28277) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 44, "support_height_m": 0.05000040592611102, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1864. 仿真 6.500s；物体中心 (0.45417, -0.00053, 0.28134) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 45, "support_height_m": 0.05000040741235537, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1865. 仿真 6.550s；物体中心 (0.45417, -0.00053, 0.27990) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 46, "support_height_m": 0.05000043463782268, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1866. 仿真 6.600s；物体中心 (0.45416, -0.00053, 0.27847) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 47, "support_height_m": 0.05000043164139352, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1867. 仿真 6.650s；物体中心 (0.45416, -0.00053, 0.27704) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 48, "support_height_m": 0.05000045592863518, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1868. 仿真 6.700s；物体中心 (0.45415, -0.00053, 0.27561) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 49, "support_height_m": 0.050000454563428734, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1869. 仿真 6.750s；物体中心 (0.45415, -0.00053, 0.27417) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 50, "support_height_m": 0.05000045233672164, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1870. 仿真 6.800s；物体中心 (0.45415, -0.00053, 0.27274) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 51, "support_height_m": 0.05000046420918635, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1871. 仿真 6.850s；物体中心 (0.45414, -0.00053, 0.27131) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 52, "support_height_m": 0.050000460104336536, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1872. 仿真 6.900s；物体中心 (0.45414, -0.00053, 0.26987) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 53, "support_height_m": 0.0500004570940349, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1873. 仿真 6.950s；物体中心 (0.45413, -0.00053, 0.26844) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 54, "support_height_m": 0.05000046448464465, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1874. 仿真 7.000s；物体中心 (0.45413, -0.00053, 0.26701) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 55, "support_height_m": 0.050000460256455395, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1875. 仿真 7.050s；物体中心 (0.45412, -0.00053, 0.26558) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 56, "support_height_m": 0.05000045721955977, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1876. 仿真 7.100s；物体中心 (0.45412, -0.00053, 0.26414) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 57, "support_height_m": 0.05000046126394776, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1877. 仿真 7.150s；物体中心 (0.45412, -0.00053, 0.26271) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 58, "support_height_m": 0.05000045698525895, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1878. 仿真 7.200s；物体中心 (0.45411, -0.00053, 0.26128) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 59, "support_height_m": 0.0500004539246455, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1879. 仿真 7.250s；物体中心 (0.45411, -0.00053, 0.25984) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 60, "support_height_m": 0.050000455414127024, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1880. 仿真 7.300s；物体中心 (0.45410, -0.00053, 0.25841) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 61, "support_height_m": 0.05000045105576828, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1881. 仿真 7.350s；物体中心 (0.45410, -0.00053, 0.25698) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 62, "support_height_m": 0.05000044641638605, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1882. 仿真 7.400s；物体中心 (0.45410, -0.00053, 0.25555) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 63, "support_height_m": 0.050000445480610535, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1883. 仿真 7.450s；物体中心 (0.45409, -0.00053, 0.25411) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 64, "support_height_m": 0.0500004410062925, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1884. 仿真 7.500s；物体中心 (0.45409, -0.00053, 0.25268) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 65, "support_height_m": 0.05000043777640996, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1885. 仿真 7.550s；物体中心 (0.45408, -0.00053, 0.25125) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 66, "support_height_m": 0.05000043506373476, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1886. 仿真 7.600s；物体中心 (0.45408, -0.00053, 0.24982) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 67, "support_height_m": 0.05000043312953262, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1887. 仿真 7.650s；物体中心 (0.45408, -0.00053, 0.24838) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 68, "support_height_m": 0.050000428700450544, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1888. 仿真 7.700s；物体中心 (0.45407, -0.00053, 0.24695) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 69, "support_height_m": 0.05000042537036851, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1889. 仿真 7.750s；物体中心 (0.45407, -0.00053, 0.24552) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 70, "support_height_m": 0.05000042210583792, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1890. 仿真 7.800s；物体中心 (0.45406, -0.00053, 0.24409) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 71, "support_height_m": 0.05000041756878583, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1891. 仿真 7.850s；物体中心 (0.45406, -0.00053, 0.24265) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 72, "support_height_m": 0.050000414118048044, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1892. 仿真 7.900s；物体中心 (0.45406, -0.00053, 0.24122) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 73, "support_height_m": 0.05000040993320666, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1893. 仿真 7.950s；物体中心 (0.45405, -0.00053, 0.23979) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 74, "support_height_m": 0.05000040529812445, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1894. 仿真 8.000s；物体中心 (0.45405, -0.00053, 0.23836) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 75, "support_height_m": 0.05000040171126479, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1895. 仿真 8.050s；物体中心 (0.45405, -0.00053, 0.23693) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 76, "support_height_m": 0.05000039683659196, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1896. 仿真 8.100s；物体中心 (0.45404, -0.00053, 0.23549) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 77, "support_height_m": 0.05000039213182379, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1897. 仿真 8.150s；物体中心 (0.45404, -0.00053, 0.23406) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 78, "support_height_m": 0.05000038838507394, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1898. 仿真 8.200s；物体中心 (0.45404, -0.00053, 0.23263) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 79, "support_height_m": 0.050000384960537936, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1899. 仿真 8.250s；物体中心 (0.45403, -0.00053, 0.23120) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 80, "support_height_m": 0.05000038155818997, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1900. 仿真 8.300s；物体中心 (0.45403, -0.00053, 0.22977) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 81, "support_height_m": 0.050000378081042164, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1901. 仿真 8.350s；物体中心 (0.45403, -0.00053, 0.22833) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 82, "support_height_m": 0.05000037457348784, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1902. 仿真 8.400s；物体中心 (0.45402, -0.00053, 0.22690) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 83, "support_height_m": 0.05000037097340824, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1903. 仿真 8.450s；物体中心 (0.45402, -0.00053, 0.22547) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 84, "support_height_m": 0.05000036730600872, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1904. 仿真 8.500s；物体中心 (0.45402, -0.00053, 0.22404) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 85, "support_height_m": 0.0500003635702891, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1905. 仿真 8.550s；物体中心 (0.45401, -0.00053, 0.22261) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 86, "support_height_m": 0.05000035974971684, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1906. 仿真 8.600s；物体中心 (0.45401, -0.00053, 0.22118) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 87, "support_height_m": 0.05000035585544941, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1907. 仿真 8.650s；物体中心 (0.45401, -0.00053, 0.21974) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 88, "support_height_m": 0.05000035188873691, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1908. 仿真 8.700s；物体中心 (0.45400, -0.00053, 0.21831) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 89, "support_height_m": 0.05000034782213441, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1909. 仿真 8.750s；物体中心 (0.45400, -0.00053, 0.21688) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 90, "support_height_m": 0.05000034368609757, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1910. 仿真 8.800s；物体中心 (0.45400, -0.00053, 0.21545) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 91, "support_height_m": 0.05000033947631996, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1911. 仿真 8.850s；物体中心 (0.45399, -0.00053, 0.21402) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 92, "support_height_m": 0.050000335195386596, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1912. 仿真 8.900s；物体中心 (0.45399, -0.00053, 0.21259) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 93, "support_height_m": 0.05000033084119326, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1913. 仿真 8.950s；物体中心 (0.45399, -0.00053, 0.21116) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 94, "support_height_m": 0.050000326241846776, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1914. 仿真 9.000s；物体中心 (0.45398, -0.00053, 0.20972) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 95, "support_height_m": 0.05000033237987456, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1915. 仿真 9.050s；物体中心 (0.45398, -0.00053, 0.20829) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 96, "support_height_m": 0.05000034276239046, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1916. 仿真 9.100s；物体中心 (0.45398, -0.00053, 0.20686) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 97, "support_height_m": 0.05000035450967272, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1917. 仿真 9.150s；物体中心 (0.45397, -0.00053, 0.20543) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 98, "support_height_m": 0.05000036645710583, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1918. 仿真 9.200s；物体中心 (0.45397, -0.00053, 0.20400) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 99, "support_height_m": 0.05000037802329277, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1919. 仿真 9.250s；物体中心 (0.45397, -0.00053, 0.20257) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 100, "support_height_m": 0.05000038886089308, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1920. 仿真 9.300s；物体中心 (0.45397, -0.00053, 0.20114) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 101, "support_height_m": 0.050000389606566345, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1921. 仿真 9.350s；物体中心 (0.45396, -0.00053, 0.19971) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 102, "support_height_m": 0.05000039451825529, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1922. 仿真 9.400s；物体中心 (0.45396, -0.00053, 0.19827) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 103, "support_height_m": 0.05000040165564791, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1923. 仿真 9.450s；物体中心 (0.45396, -0.00053, 0.19684) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 104, "support_height_m": 0.05000040013481936, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1924. 仿真 9.500s；物体中心 (0.45396, -0.00053, 0.19541) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 105, "support_height_m": 0.05000040128140454, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1925. 仿真 9.550s；物体中心 (0.45395, -0.00053, 0.19398) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 106, "support_height_m": 0.050000406171418245, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1926. 仿真 9.600s；物体中心 (0.45395, -0.00053, 0.19255) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 107, "support_height_m": 0.050000403021054, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1927. 仿真 9.650s；物体中心 (0.45395, -0.00053, 0.19112) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 108, "support_height_m": 0.05000042381944833, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1928. 仿真 9.700s；物体中心 (0.45395, -0.00053, 0.18969) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 109, "support_height_m": 0.05000044780635321, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1929. 仿真 9.750s；物体中心 (0.45394, -0.00053, 0.18826) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 110, "support_height_m": 0.050000443325552195, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1930. 仿真 9.800s；物体中心 (0.45394, -0.00053, 0.18683) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 111, "support_height_m": 0.05000043779515489, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1931. 仿真 9.850s；物体中心 (0.45394, -0.00053, 0.18540) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 112, "support_height_m": 0.05000042952836767, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1932. 仿真 9.900s；物体中心 (0.45394, -0.00053, 0.18396) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 113, "support_height_m": 0.050000419550459564, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1933. 仿真 9.950s；物体中心 (0.45393, -0.00053, 0.18253) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 114, "support_height_m": 0.050000408431188505, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1934. 仿真 10.000s；物体中心 (0.45393, -0.00053, 0.18110) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 115, "support_height_m": 0.050000398088131226, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1935. 仿真 10.050s；物体中心 (0.45393, -0.00052, 0.17967) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 116, "support_height_m": 0.050000386210710485, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1936. 仿真 10.100s；物体中心 (0.45393, -0.00052, 0.17824) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 117, "support_height_m": 0.05000037384154746, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1937. 仿真 10.150s；物体中心 (0.45392, -0.00052, 0.17681) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 118, "support_height_m": 0.05000036332247464, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1938. 仿真 10.200s；物体中心 (0.45392, -0.00052, 0.17538) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 119, "support_height_m": 0.05000035596471841, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1939. 仿真 10.250s；物体中心 (0.45392, -0.00052, 0.17395) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 120, "support_height_m": 0.05000034805898405, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1940. 仿真 10.300s；物体中心 (0.45392, -0.00052, 0.17252) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 121, "support_height_m": 0.05000034158447965, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1941. 仿真 10.350s；物体中心 (0.45392, -0.00052, 0.17109) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 122, "support_height_m": 0.05000033401608306, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1942. 仿真 10.400s；物体中心 (0.45391, -0.00052, 0.16966) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 123, "support_height_m": 0.05000032621002193, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1943. 仿真 10.450s；物体中心 (0.45391, -0.00052, 0.16823) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 124, "support_height_m": 0.0500003198905033, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1944. 仿真 10.500s；物体中心 (0.45391, -0.00052, 0.16680) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 125, "support_height_m": 0.050000312523752234, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1945. 仿真 10.550s；物体中心 (0.45391, -0.00052, 0.16537) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 126, "support_height_m": 0.05000030647466705, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1946. 仿真 10.600s；物体中心 (0.45391, -0.00052, 0.16394) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 127, "support_height_m": 0.0500002993130108, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1947. 仿真 10.650s；物体中心 (0.45391, -0.00052, 0.16251) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 128, "support_height_m": 0.05000029339712077, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1948. 仿真 10.700s；物体中心 (0.45390, -0.00052, 0.16108) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 129, "support_height_m": 0.050000301717551245, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1949. 仿真 10.750s；物体中心 (0.45390, -0.00052, 0.15965) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 130, "support_height_m": 0.05000031701520228, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1950. 仿真 10.800s；物体中心 (0.45390, -0.00052, 0.15822) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 131, "support_height_m": 0.05000033703883459, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1951. 仿真 10.850s；物体中心 (0.45390, -0.00052, 0.15679) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 132, "support_height_m": 0.05000035161910563, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1952. 仿真 10.900s；物体中心 (0.45390, -0.00052, 0.15536) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 133, "support_height_m": 0.05000036226371662, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1953. 仿真 10.950s；物体中心 (0.45390, -0.00052, 0.15393) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 134, "support_height_m": 0.05000036819821029, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1954. 仿真 11.000s；物体中心 (0.45390, -0.00052, 0.15250) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 135, "support_height_m": 0.05000042141610744, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1955. 仿真 11.050s；物体中心 (0.45389, -0.00052, 0.15107) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 136, "support_height_m": 0.05000044605253269, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1956. 仿真 11.100s；物体中心 (0.45389, -0.00052, 0.14964) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 137, "support_height_m": 0.050000446283086225, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1957. 仿真 11.150s；物体中心 (0.45389, -0.00052, 0.14821) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 138, "support_height_m": 0.05000043264134379, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1958. 仿真 11.200s；物体中心 (0.45389, -0.00051, 0.14678) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 139, "support_height_m": 0.05000042023197633, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1959. 仿真 11.250s；物体中心 (0.45389, -0.00051, 0.14535) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 140, "support_height_m": 0.05000040731980374, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1960. 仿真 11.300s；物体中心 (0.45389, -0.00051, 0.14392) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 141, "support_height_m": 0.050000392817517364, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1961. 仿真 11.350s；物体中心 (0.45389, -0.00051, 0.14249) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 142, "support_height_m": 0.050000380959061466, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1962. 仿真 11.400s；物体中心 (0.45389, -0.00051, 0.14106) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 143, "support_height_m": 0.05000037097711551, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1963. 仿真 11.450s；物体中心 (0.45388, -0.00051, 0.13963) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 144, "support_height_m": 0.05000035989522497, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1964. 仿真 11.500s；物体中心 (0.45388, -0.00051, 0.13821) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 145, "support_height_m": 0.050000349975481355, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1965. 仿真 11.550s；物体中心 (0.45388, -0.00051, 0.13678) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 146, "support_height_m": 0.050000340280693015, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1966. 仿真 11.600s；物体中心 (0.45388, -0.00051, 0.13535) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 147, "support_height_m": 0.050000330541276776, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1967. 仿真 11.650s；物体中心 (0.45388, -0.00051, 0.13392) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 148, "support_height_m": 0.05000032070114127, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1968. 仿真 11.700s；物体中心 (0.45388, -0.00051, 0.13249) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 149, "support_height_m": 0.05000031078869243, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1969. 仿真 11.750s；物体中心 (0.45388, -0.00051, 0.13106) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 150, "support_height_m": 0.050000299046426624, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1970. 仿真 11.800s；物体中心 (0.45388, -0.00051, 0.12963) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 151, "support_height_m": 0.050000288686695094, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1971. 仿真 11.850s；物体中心 (0.45388, -0.00051, 0.12820) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 152, "support_height_m": 0.05000027888746133, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1972. 仿真 11.900s；物体中心 (0.45388, -0.00051, 0.12677) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 153, "support_height_m": 0.050000269285988955, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1973. 仿真 11.950s；物体中心 (0.45388, -0.00051, 0.12534) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 154, "support_height_m": 0.05000025980826615, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1974. 仿真 12.000s；物体中心 (0.45388, -0.00051, 0.12392) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 155, "support_height_m": 0.05000025047582843, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1975. 仿真 12.050s；物体中心 (0.45388, -0.00050, 0.12249) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 156, "support_height_m": 0.05000024293930821, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1976. 仿真 12.100s；物体中心 (0.45388, -0.00050, 0.12106) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 157, "support_height_m": 0.05000028102459822, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1977. 仿真 12.150s；物体中心 (0.45388, -0.00050, 0.11963) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 158, "support_height_m": 0.05000032913078826, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1978. 仿真 12.200s；物体中心 (0.45388, -0.00050, 0.11820) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 159, "support_height_m": 0.050000351967159844, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1979. 仿真 12.250s；物体中心 (0.45388, -0.00050, 0.11677) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 160, "support_height_m": 0.050000366811217, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1980. 仿真 12.300s；物体中心 (0.45388, -0.00050, 0.11534) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 161, "support_height_m": 0.05000036761691021, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1981. 仿真 12.350s；物体中心 (0.45388, -0.00050, 0.11391) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 162, "support_height_m": 0.050000365428582855, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1982. 仿真 12.400s；物体中心 (0.45388, -0.00050, 0.11249) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 163, "support_height_m": 0.05000036284116477, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1983. 仿真 12.450s；物体中心 (0.45388, -0.00050, 0.11106) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 164, "support_height_m": 0.05000035204796763, "物体抓持": true, "实际抬升": true, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1984. 仿真 12.500s；物体中心 (0.45388, -0.00050, 0.10963) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 165, "support_height_m": 0.05000034089997277, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1985. 仿真 12.550s；物体中心 (0.45388, -0.00050, 0.10820) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 166, "support_height_m": 0.05000033178077384, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1986. 仿真 12.600s；物体中心 (0.45388, -0.00050, 0.10677) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 167, "support_height_m": 0.05000032159392725, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1987. 仿真 12.650s；物体中心 (0.45388, -0.00050, 0.10534) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 168, "support_height_m": 0.050000313110134975, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1988. 仿真 12.700s；物体中心 (0.45388, -0.00050, 0.10391) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 169, "support_height_m": 0.05000030341579695, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1989. 仿真 12.750s；物体中心 (0.45388, -0.00050, 0.10249) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 170, "support_height_m": 0.050000295402863805, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1990. 仿真 12.800s；物体中心 (0.45388, -0.00050, 0.10106) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 171, "support_height_m": 0.050000286109480374, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1991. 仿真 12.850s；物体中心 (0.45388, -0.00050, 0.09963) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 172, "support_height_m": 0.05000027852436504, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1992. 仿真 12.900s；物体中心 (0.45388, -0.00050, 0.09820) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 173, "support_height_m": 0.05000026962144643, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1993. 仿真 12.950s；物体中心 (0.45388, -0.00050, 0.09677) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 174, "support_height_m": 0.05000026239459774, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1994. 仿真 13.000s；物体中心 (0.45388, -0.00050, 0.09534) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 175, "support_height_m": 0.050000253851966006, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1995. 仿真 13.050s；物体中心 (0.45388, -0.00050, 0.09392) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 176, "support_height_m": 0.05000024860030197, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1996. 仿真 13.100s；物体中心 (0.45388, -0.00050, 0.09249) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 177, "support_height_m": 0.05000024267492449, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1997. 仿真 13.150s；物体中心 (0.45388, -0.00050, 0.09106) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 178, "support_height_m": 0.05000023477404472, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1998. 仿真 13.200s；物体中心 (0.45388, -0.00050, 0.08963) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 179, "support_height_m": 0.05000022841370125, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+1999. 仿真 13.250s；物体中心 (0.45388, -0.00050, 0.08820) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 180, "support_height_m": 0.05000022262091858, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2000. 仿真 13.300s；物体中心 (0.45388, -0.00050, 0.08678) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 181, "support_height_m": 0.050000215066205535, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2001. 仿真 13.350s；物体中心 (0.45388, -0.00050, 0.08535) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 182, "support_height_m": 0.05000028762725855, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2002. 仿真 13.400s；物体中心 (0.45389, -0.00050, 0.08392) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 183, "support_height_m": 0.05000032540092262, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2003. 仿真 13.450s；物体中心 (0.45389, -0.00050, 0.08249) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 184, "support_height_m": 0.0500003363349692, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2004. 仿真 13.500s；物体中心 (0.45389, -0.00050, 0.08106) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 185, "support_height_m": 0.0500003520939411, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2005. 仿真 13.550s；物体中心 (0.45389, -0.00050, 0.07964) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 186, "support_height_m": 0.05000035631045936, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2006. 仿真 13.600s；物体中心 (0.45389, -0.00050, 0.07821) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 187, "support_height_m": 0.05000035745444038, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2007. 仿真 13.650s；物体中心 (0.45389, -0.00050, 0.07678) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 188, "support_height_m": 0.05000035493472569, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2008. 仿真 13.700s；物体中心 (0.45389, -0.00050, 0.07535) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 189, "support_height_m": 0.05000034786051876, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2009. 仿真 13.750s；物体中心 (0.45389, -0.00050, 0.07392) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 190, "support_height_m": 0.050000340160211446, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2010. 仿真 13.800s；物体中心 (0.45389, -0.00050, 0.07250) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 191, "support_height_m": 0.05000033247115812, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2011. 仿真 13.850s；物体中心 (0.45390, -0.00050, 0.07107) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 192, "support_height_m": 0.05000032492598824, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2012. 仿真 13.900s；物体中心 (0.45390, -0.00050, 0.06964) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 193, "support_height_m": 0.05000031534844353, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2013. 仿真 13.950s；物体中心 (0.45390, -0.00050, 0.06821) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 194, "support_height_m": 0.05000031010285935, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2014. 仿真 14.000s；物体中心 (0.45390, -0.00050, 0.06678) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 195, "support_height_m": 0.05000030349420607, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2015. 仿真 14.050s；物体中心 (0.45390, -0.00050, 0.06536) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 196, "support_height_m": 0.0500002967631089, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2016. 仿真 14.100s；物体中心 (0.45390, -0.00050, 0.06393) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 197, "support_height_m": 0.05000029013247586, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2017. 仿真 14.150s；物体中心 (0.45390, -0.00050, 0.06250) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 198, "support_height_m": 0.050000283672665846, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2018. 仿真 14.200s；物体中心 (0.45391, -0.00050, 0.06107) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 199, "support_height_m": 0.050000277368984505, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2019. 仿真 14.250s；物体中心 (0.45391, -0.00050, 0.05964) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 200, "support_height_m": 0.05000026889894435, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2020. 仿真 14.300s；物体中心 (0.45391, -0.00050, 0.05822) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 201, "support_height_m": 0.05000026226372409, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2021. 仿真 14.350s；物体中心 (0.45391, -0.00051, 0.05679) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 202, "support_height_m": 0.050000256255484654, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2022. 仿真 14.400s；物体中心 (0.45391, -0.00051, 0.05536) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 203, "support_height_m": 0.050000250533457795, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2023. 仿真 14.450s；物体中心 (0.45392, -0.00051, 0.05393) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 204, "support_height_m": 0.05000024501494237, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2024. 仿真 14.500s；物体中心 (0.45392, -0.00051, 0.05251) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 205, "support_height_m": 0.050000239667896934, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2025. 仿真 14.550s；物体中心 (0.45392, -0.00051, 0.05108) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 206, "support_height_m": 0.05000023448162651, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2026. 仿真 14.600s；物体中心 (0.45392, -0.00051, 0.05024) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 207, "support_height_m": 0.05000022943565598, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2027. 仿真 14.650s；物体中心 (0.45392, -0.00051, 0.05000) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 208, "support_height_m": 0.05000021960295185, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2028. 仿真 14.700s；物体中心 (0.45392, -0.00051, 0.04999) m；{"trial": "reloaded_replay", "kind": "ground_lowering_step", "index": 209, "support_height_m": 0.050000207067339056, "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2029. 仿真 14.700s；物体中心 (0.45392, -0.00051, 0.04999) m；{"trial": "reloaded_replay", "kind": "ground_supported_before_release", "support_height_m": 0.05000236347617061, "velocity": [4.6415794860683345e-05, -4.859144930458413e-05, -4.183084972383261e-05], "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2030. 仿真 14.700s；物体中心 (0.45392, -0.00051, 0.04999) m；{"trial": "reloaded_replay", "kind": "gentle_release_before", "position": [0.4539219157592347, -0.0005080777845744278, 0.049987896872683506], "velocity": [4.6415794860683345e-05, -4.859144930458413e-05, -4.183084972383261e-05], "物体抓持": true, "实际抬升": false, "事件": ["descending_object_caught_with_gated_fixed_constraint"]}
+
+2031. 仿真 14.900s；物体中心 (0.45392, -0.00050, 0.04999) m；{"trial": "reloaded_replay", "kind": "action", "action": "release_object", "物体抓持": false, "实际抬升": false, "事件": ["object_released"]}
+
+2032. 仿真 15.150s；物体中心 (0.45392, -0.00050, 0.04999) m；{"trial": "reloaded_replay", "kind": "ground_settle_observation", "window": 0, "物体抓持": false, "实际抬升": false, "事件": ["placement_settled"]}
+
+2033. 仿真 15.400s；物体中心 (0.45392, -0.00050, 0.04999) m；{"trial": "reloaded_replay", "kind": "ground_settle_observation", "window": 1, "物体抓持": false, "实际抬升": false, "事件": ["placement_settled"]}
+
+2034. 仿真 15.650s；物体中心 (0.45392, -0.00050, 0.04999) m；{"trial": "reloaded_replay", "kind": "ground_settle_observation", "window": 2, "物体抓持": false, "实际抬升": false, "事件": ["placement_settled"]}
+
+2035. 仿真 15.900s；物体中心 (0.45392, -0.00049, 0.04999) m；{"trial": "reloaded_replay", "kind": "ground_settle_observation", "window": 3, "物体抓持": false, "实际抬升": false, "事件": ["placement_settled"]}
+
+2036. 仿真 16.150s；物体中心 (0.45392, -0.00049, 0.04999) m；{"trial": "reloaded_replay", "kind": "ground_settle_observation", "window": 4, "物体抓持": false, "实际抬升": false, "事件": ["placement_settled"]}
+
+2037. 仿真 16.400s；物体中心 (0.45392, -0.00049, 0.04999) m；{"trial": "reloaded_replay", "kind": "ground_settle_observation", "window": 5, "物体抓持": false, "实际抬升": false, "事件": ["placement_settled"]}
+
+2038. 仿真 16.650s；物体中心 (0.45392, -0.00048, 0.04999) m；{"trial": "reloaded_replay", "kind": "ground_settle_observation", "window": 6, "物体抓持": false, "实际抬升": false, "事件": ["placement_settled"]}
+
+2039. 仿真 16.900s；物体中心 (0.45392, -0.00048, 0.04999) m；{"trial": "reloaded_replay", "kind": "ground_settle_observation", "window": 7, "物体抓持": false, "实际抬升": false, "事件": ["placement_settled"]}
+
+2040. 仿真 16.900s；物体中心 (0.45392, -0.00048, 0.04999) m；{"trial": "reloaded_replay", "kind": "placement_evaluation", "metrics": {"drift_m": 2.8062720430870606e-05, "speed_m_s": 1.2362831974259418e-05, "angular_speed_rad_s": 5.919995329156041e-05, "ground_contact": true, "height_error_m": 1.3318940172611649e-05, "released": true, "passed": true}, "物体抓持": false, "实际抬升": false, "事件": ["placement_settled"]}
+
+
+[2026-10-20T00:06:13+08:00] reloaded_replay 结束：{"label": "reloaded_replay", "parameters": {"target_x_m": 0.4, "target_z_m": 0.65, "release_min_vz_m_s": 1.06, "max_sweep_steps": 160, "catch_lead_s": 0.04}, "failure_mode": "none", "applied_skill_ids": ["grasp_without_lift_v1"], "lift_confirmed": true, "caught": true, "free_flight": true, "placement": {"drift_m": 2.8062720430870606e-05, "speed_m_s": 1.2362831974259418e-05, "angular_speed_rad_s": 5.919995329156041e-05, "ground_contact": true, "height_error_m": 1.3318940172611649e-05, "released": true, "passed": true}, "recovery_used": false, "max_sweep_vz_m_s": 1.0610871628118803, "release_height_m": 0.32622337170717197, "release_vz_m_s": 1.0610871628118803, "release_velocity_m_s": [0.05012743644590001, 0.0001101215396272239, 1.0610871628118803], "release_time_s": 1.9958333333333276, "rise_from_release_m": 0.054878205302841765, "catch_time_s": 2.200000000000004, "catch_vz_m_s": -0.9430543268548239, "catch_distance_m": 0.10065608659330696, "catch_relative_speed_m_s": 0.946320460633238, "apex_height_m": 0.38110157701001374, "had_apex": true, "flight_ticks": 49, "flight_contact_before_catch": false, "catch_hold_passed": true, "placement_release_speed_m_s": 7.915412147631274e-05, "placement_release_height_m": 0.049987896872683506, "video_frames": 551, "physics_samples": 4022, "max_joint_velocity_ratios": [0.016393830544591755, 1.0000091517096734, 1.000060881619031, 0.004212114253843383, 1.008908989008264, 0.020581870534083155], "passed": true}
