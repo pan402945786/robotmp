@@ -1,0 +1,33 @@
+{
+  "label": "attempt_04",
+  "failure_mode": "none",
+  "parameters": {
+    "target_x_m": 0.25,
+    "target_z_m": 1.6,
+    "release_after_steps": 120
+  },
+  "applied_skill_ids": [
+    "grasp_without_lift_v1"
+  ],
+  "lift_confirmed": true,
+  "caught": false,
+  "free_flight": false,
+  "placement": {
+    "passed": false,
+    "status": "not_reached"
+  },
+  "max_measured_vz_m_s": 1.0911162624904036,
+  "release_vz_m_s": 1.0911162624904036,
+  "flight_contact_before_catch": false,
+  "gate_blocked": true,
+  "physics_samples": 384,
+  "max_joint_velocity_ratios": [
+    0.0003161818368270766,
+    1.0000027606102555,
+    1.0001727100481232,
+    0.0013030638137488748,
+    1.0048781476881663,
+    0.0020906403557826516
+  ],
+  "passed": false
+}
