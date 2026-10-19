@@ -6712,3 +6712,6 @@
 
 
 [2026-10-20T00:03:59+08:00] 大模型 parsed_output；request_id=5272de8e6001470d91cca14a2a6ab1ae；完整内容已写入 docs\THROW_CATCH_005M_LLM_CALLS.md。
+
+
+[2026-10-20T00:04:00+08:00] 开始 reloaded_replay：参数 {"target_x_m": 0.4, "target_z_m": 0.65, "release_min_vz_m_s": 1.06, "max_sweep_steps": 160, "catch_lead_s": 0.04}；故障 none。

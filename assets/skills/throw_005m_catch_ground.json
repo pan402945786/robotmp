@@ -1,0 +1,55 @@
+[
+  {
+    "skill_id": "throw_005m_catch_ground_v1",
+    "name": "throw_005m_catch_ground",
+    "status": "verified",
+    "version": 1,
+    "task": "throw_catch_ground",
+    "object_types": [
+      "cube"
+    ],
+    "trigger_conditions": [
+      "object_visible == true",
+      "ground_reachable == true"
+    ],
+    "facts": [
+      "0.05m_measured_free_flight_rise_required",
+      "fixed_constraint_simulation_only",
+      "descending_catch_and_low_speed_ground_placement_are_separate_gates"
+    ],
+    "hypotheses": [],
+    "prediction_correction": [
+      "require_lift_evidence_before_release",
+      "gate_release_on_current_measured_velocity",
+      "require_unconstrained_apex_before_catch",
+      "require_ground_support_before_gentle_release"
+    ],
+    "recovery": [
+      "stop_transport_motion",
+      "refresh_object_pose",
+      "retry_grasp_if_safe",
+      "block_release_without_current_velocity",
+      "retain_failed_trial_evidence"
+    ],
+    "validation_trials": 3,
+    "false_success_rate": null,
+    "recovery_success_rate": null,
+    "prerequisite_skill_ids": [
+      "grasp_without_lift_v1"
+    ],
+    "parameters": {
+      "target_x_m": 0.4,
+      "target_z_m": 0.65,
+      "release_min_vz_m_s": 1.06,
+      "max_sweep_steps": 160,
+      "catch_lead_s": 0.04
+    },
+    "validation_success_rate": 1.0,
+    "validation_metrics": {
+      "complete_three_trial_validation": true,
+      "target_rise_m": 0.05,
+      "min_validation_rise_m": 0.054878205302841765,
+      "max_validation_placement_drift_m": 2.8062720430870606e-05
+    }
+  }
+]
