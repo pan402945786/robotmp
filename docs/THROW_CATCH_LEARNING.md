@@ -438,3 +438,105 @@
 
 
 [2026-10-19T22:34:00+08:00] 大模型 parsed_output；request_id=9bb37dc913d74efca083372401fbfda0；完整内容已写入 docs\THROW_CATCH_LLM_CALLS.md。
+
+23. 仿真 0.000s；物体中心 (—) m；{"kind": "model_proposal_validated", "proposal": {"decision": "try", "prerequisite_skill_ids": ["grasp_without_lift_v1"], "parameters": {"target_x_m": 0.4, "target_z_m": 1.35, "release_after_steps": 24}, "observed_facts": ["attempt_01已确认抬升并发生真实自由飞行，但完整试验失败；failure_mode为none不能替代阶段指标判定。", "释放高度为0.905209米，释放竖直速度为-0.046851米每秒，释放时未向上运动。", "最高世界高度为0.905209米，相对释放点上升为0米，两个高度条件均未达标。", "试验未接住方块，放地阶段未到达，接住前已发生接触。", "部分关节的最大速度比接近或略高于URDF速度上限，不能据此假设仍有大幅增加驱动速度的余量。", "重力为9.81米每二次方秒时，自由飞行上升10米所需初始向上速度约为14.007141米每秒。", "目前独立完整成功试验数为0。"], "hypotheses": ["4步约为0.0167秒，可能在初始运动过渡期间就释放；延长至24步约0.1秒可能采样到不同的向上运动阶段。", "保持相同笛卡尔目标、仅修改释放步数，有助于区分释放时机与目标选择的影响。", "当前测量显示该参数组合远未达到目标，但单次失败不足以证明所有允许参数或所有控制器均不可行。"], "rationale": "修正已失败的过早释放时机，保持目标位置不变，将释放等待由4步增加至24步，检验真实释放竖直速度是否改善。这是对局部原语能力的进一步测量，不预期仅凭执行完成即可认定成功。继续遵守URDF限制，不注入物体位置或速度、不施加发射外力、不改变重力。", "next_requirements": ["从独立重置的初始状态执行，复用grasp_without_lift_v1；必须测得实际抬升，不能以夹爪闭合或约束建立替代抬升证据。", "按所选单一笛卡尔IK目标执行局部原语，在24个物理步后释放约束，记录释放位置、速度及关节限制符合情况。", "观测真实飞行，分别记录最高世界z和相对释放点上升高度；只有两者均至少10米才通过高度阶段。", "若高度达标，仅在物体下降、距离不超过0.13米且相对速度不超过1米每秒时建立接球固定约束。", "接住后验证方块平稳放置到z=0地面，而非z=0.70米桌面。", "若再次失败，依据释放速度、飞行高度和关节限幅数据继续调整允许参数，或停止并给出限定于已测原语和参数的能力评估。", "至少3次彼此独立的完整试验通过全部阶段后，才允许accept。"]}}
+
+
+[2026-10-19T22:34:01+08:00] 开始 attempt_02；参数 {"target_x_m": 0.4, "target_z_m": 1.35, "release_after_steps": 24}；故障 low_grip_force。
+
+24. 仿真 0.042s；物体中心 (0.45000, -0.00000, 0.74991) m；{"trial": "attempt_02", "kind": "scene_ready", "ground_body_id": 3, "physics_trace": "attempt_02_physics.csv", "model": "xarm6", "ground_z_m": 0, "table_z_m": 0.7, "cube_dynamics": [0.1, 0.5, [0.0001666666666666667, 0.0001666666666666667, 0.0001666666666666667], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 1.0], 0.0, 0.0, 0.0, -1.0, -1.0, 2, 0.001], "物体抓持": false, "实际抬升": false, "事件": []}
+
+25. 仿真 0.042s；物体中心 (0.45000, -0.00000, 0.74991) m；{"trial": "attempt_02", "kind": "prerequisite_retrieved", "skill": {"skill_id": "grasp_without_lift_v1", "name": "grasp_without_lift", "status": "verified", "version": 1, "task": "pick_and_place", "object_types": ["cube"], "trigger_conditions": ["gripper_closed == true", "lift_window_elapsed == true", "object_lifted == false"], "facts": ["gripper_closed_does_not_imply_grasp_success", "object_lift_was_not_detected", "object_may_have_been_displaced_before_grasp"], "hypotheses": ["grasp_point_may_be_misaligned", "insufficient_grip_force"], "prediction_correction": ["do_not_enter_transport_phase", "require_lift_evidence_before_transport"], "recovery": ["stop_transport_motion", "refresh_object_pose", "retry_grasp_if_safe"], "validation_trials": 20, "false_success_rate": 0.0, "recovery_success_rate": 1.0, "prerequisite_skill_ids": [], "parameters": {}, "validation_success_rate": null, "validation_metrics": {}}, "物体抓持": false, "实际抬升": false, "事件": []}
+
+26. 仿真 0.242s；物体中心 (0.45000, 0.00000, 0.74999) m；{"trial": "attempt_02", "kind": "action", "action": "approach_object", "物体抓持": false, "实际抬升": false, "事件": ["object_approached"]}
+
+27. 仿真 0.442s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "attempt_02", "kind": "action", "action": "close_gripper", "物体抓持": false, "实际抬升": false, "事件": ["gripper_closed", "gripper_contact"]}
+
+28. 仿真 0.642s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "attempt_02", "kind": "action", "action": "lift_object", "物体抓持": false, "实际抬升": false, "事件": []}
+
+29. 仿真 0.642s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "attempt_02", "kind": "lift_comparison", "prediction": {"prediction_id": "pred-2", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "物体抓持": false, "实际抬升": false, "事件": []}
+
+30. 仿真 0.642s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "attempt_02", "kind": "grasp_recovery_from_existing_skill", "recovery": ["stop_transport_motion", "refresh_object_pose", "retry_grasp_if_safe"], "物体抓持": false, "实际抬升": false, "事件": []}
+
+31. 仿真 0.642s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "attempt_02", "kind": "action", "action": "refresh_object_pose", "物体抓持": false, "实际抬升": false, "事件": ["object_pose_refreshed"]}
+
+32. 仿真 0.842s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "attempt_02", "kind": "action", "action": "retry_grasp", "物体抓持": false, "实际抬升": false, "事件": ["grasp_retry_requested"]}
+
+33. 仿真 1.042s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "attempt_02", "kind": "action", "action": "close_gripper", "物体抓持": true, "实际抬升": false, "事件": ["gripper_closed", "gripper_contact", "grasp_constraint_created"]}
+
+34. 仿真 1.242s；物体中心 (0.45265, -0.00063, 0.90524) m；{"trial": "attempt_02", "kind": "action", "action": "lift_object", "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+35. 仿真 1.242s；物体中心 (0.45265, -0.00063, 0.90524) m；{"trial": "attempt_02", "kind": "lift_gate_passed", "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+36. 仿真 1.242s；物体中心 (0.45265, -0.00063, 0.90524) m；{"trial": "attempt_02", "kind": "upward_sweep_commanded", "object_target": [0.4, -0.0006272425879208008, 1.35], "steps": 24, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+37. 仿真 1.246s；物体中心 (0.45150, -0.00063, 0.90547) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 1, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+38. 仿真 1.250s；物体中心 (0.45096, -0.00063, 0.90558) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 2, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+39. 仿真 1.254s；物体中心 (0.45102, -0.00063, 0.90556) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 3, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+40. 仿真 1.258s；物体中心 (0.45168, -0.00063, 0.90541) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 4, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+41. 仿真 1.262s；物体中心 (0.45268, -0.00063, 0.90504) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 5, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+42. 仿真 1.267s；物体中心 (0.45367, -0.00063, 0.90465) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 6, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+43. 仿真 1.271s；物体中心 (0.45466, -0.00063, 0.90425) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 7, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+44. 仿真 1.275s；物体中心 (0.45565, -0.00063, 0.90383) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 8, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+45. 仿真 1.279s；物体中心 (0.45662, -0.00063, 0.90340) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 9, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+46. 仿真 1.283s；物体中心 (0.45759, -0.00063, 0.90295) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 10, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+47. 仿真 1.287s；物体中心 (0.45856, -0.00063, 0.90249) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 11, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+48. 仿真 1.292s；物体中心 (0.45952, -0.00063, 0.90202) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 12, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+49. 仿真 1.296s；物体中心 (0.46047, -0.00063, 0.90154) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 13, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+50. 仿真 1.300s；物体中心 (0.46144, -0.00063, 0.90136) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 14, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+51. 仿真 1.304s；物体中心 (0.46238, -0.00063, 0.90151) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 15, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+52. 仿真 1.308s；物体中心 (0.46330, -0.00063, 0.90196) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 16, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+53. 仿真 1.312s；物体中心 (0.46423, -0.00063, 0.90271) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 17, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+54. 仿真 1.317s；物体中心 (0.46516, -0.00063, 0.90375) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 18, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+55. 仿真 1.321s；物体中心 (0.46612, -0.00063, 0.90505) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 19, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+56. 仿真 1.325s；物体中心 (0.46710, -0.00063, 0.90661) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 20, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+57. 仿真 1.329s；物体中心 (0.46813, -0.00063, 0.90843) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 21, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+58. 仿真 1.333s；物体中心 (0.46919, -0.00063, 0.91049) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 22, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+59. 仿真 1.337s；物体中心 (0.47030, -0.00063, 0.91278) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 23, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+60. 仿真 1.342s；物体中心 (0.47147, -0.00063, 0.91531) m；{"trial": "attempt_02", "kind": "sweep_step", "index": 24, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+61. 仿真 1.342s；物体中心 (0.47147, -0.00063, 0.91531) m；{"trial": "attempt_02", "kind": "release_measured", "release_height_m": 0.9153060201623955, "release_velocity_m_s": [0.27958119678816823, 2.2375635490230166e-06, 0.6059879144477811], "release_vz_m_s": 0.6059879144477811, "ideal_vacuum_rise_m": 0.018716684630824224, "required_vz_for_10m_rise_m_s": 14.007141035914502, "物体抓持": false, "实际抬升": true, "事件": ["object_released_in_motion"]}
+
+62. 仿真 1.346s；物体中心 (0.47263, -0.00063, 0.91766) m；{"trial": "attempt_02", "kind": "flight_observation", "velocity_m_s": [0.279503502423765, 2.2369417401183033e-06, 0.5649445131161109], "ee_velocity_m_s": [0.529940128326416, 3.810971975326538e-05, 0.5329799652099609], "catch_distance_m": 0.11061634157880844, "relative_speed_m_s": 0.25246828950029576, "constraint_active": false, "contact": false, "物体抓持": false, "实际抬升": true, "事件": ["object_released_in_motion"]}
+
+63. 仿真 1.396s；物体中心 (0.48659, -0.00063, 0.93259) m；{"trial": "attempt_02", "kind": "flight_observation", "velocity_m_s": [0.27869430008107143, 2.230465476025454e-06, 0.07343049534590884], "ee_velocity_m_s": [0.07856369018554688, 1.00722536444664e-05, 0.4288673400878906], "catch_distance_m": 0.12635016264141344, "relative_speed_m_s": 0.407906376119305, "constraint_active": false, "contact": false, "物体抓持": false, "实际抬升": true, "事件": ["object_released_in_motion"]}
+
+64. 仿真 1.404s；物体中心 (0.48891, -0.00063, 0.93269) m；{"trial": "attempt_02", "kind": "apex_or_initial_descent", "measured_height_m": 0.9327239691695093, "vz_m_s": -0.008342214924119282, "物体抓持": false, "实际抬升": true, "事件": ["object_released_in_motion"]}
+
+65. 仿真 1.446s；物体中心 (0.50050, -0.00063, 0.92298) m；{"trial": "attempt_02", "kind": "flight_observation", "velocity_m_s": [0.2779477569282885, 2.2244906902901113e-06, -0.41664699696758944], "ee_velocity_m_s": [-0.07880687713623047, -0.0057624466717243195, -0.02826690673828125], "catch_distance_m": 0.13808617681627042, "relative_speed_m_s": 0.5273956720021934, "constraint_active": false, "contact": false, "物体抓持": false, "实际抬升": true, "事件": ["object_released_in_motion"]}
+
+66. 仿真 1.496s；物体中心 (0.51437, -0.00063, 0.88892) m；{"trial": "attempt_02", "kind": "flight_observation", "velocity_m_s": [0.2770038975718547, 2.216936729882107e-06, -0.9049321742844834], "ee_velocity_m_s": [0.1760387420654297, -0.0016021309420466423, -0.0066089630126953125], "catch_distance_m": 0.1715701762865044, "relative_speed_m_s": 0.9039807124425887, "constraint_active": false, "contact": false, "物体抓持": false, "实际抬升": true, "事件": ["object_released_in_motion"]}
+
+67. 仿真 1.546s；物体中心 (0.52819, -0.00063, 0.83050) m；{"trial": "attempt_02", "kind": "flight_observation", "velocity_m_s": [0.27580869684561526, 2.2073712168593382e-06, -1.390518682840148], "ee_velocity_m_s": [0.24805068969726562, -0.00046213623136281967, -0.0006866455078125], "catch_distance_m": 0.22991265832657293, "relative_speed_m_s": 1.3901092815211253, "constraint_active": false, "contact": false, "物体抓持": false, "实际抬升": true, "事件": ["object_released_in_motion"]}
+
+68. 仿真 1.592s；物体中心 (0.53907, -0.00063, 0.76360) m；{"trial": "attempt_02", "kind": "missed_catch_object_contacted_environment", "contact_body_ids": [0, 0], "物体抓持": false, "实际抬升": false, "事件": ["object_released_in_motion"]}
+
+69. 仿真 1.592s；物体中心 (0.53907, -0.00063, 0.76360) m；{"trial": "attempt_02", "kind": "placement_not_reached", "reason": "未通过接球门槛，不能声明已接住后平稳放地", "物体抓持": false, "实际抬升": false, "事件": ["object_released_in_motion"]}
+
+70. 仿真 3.592s；物体中心 (0.50197, -0.00065, 0.74999) m；{"trial": "attempt_02", "kind": "post_failure_settled_observation", "物体抓持": false, "实际抬升": false, "事件": ["object_released_in_motion"]}
+
+
+[2026-10-19T22:34:01+08:00] attempt_02 结束：{"label": "attempt_02", "failure_mode": "low_grip_force", "parameters": {"target_x_m": 0.4, "target_z_m": 1.35, "release_after_steps": 24}, "applied_skill_ids": ["grasp_without_lift_v1"], "lift_confirmed": true, "caught": false, "free_flight": true, "placement": {"passed": false, "status": "not_reached"}, "release_height_m": 0.9153060201623955, "release_velocity_m_s": [0.27958119678816823, 2.2375635490230166e-06, 0.6059879144477811], "release_vz_m_s": 0.6059879144477811, "ideal_vacuum_rise_m": 0.018716684630824224, "required_vz_for_10m_rise_m_s": 14.007141035914502, "apex_height_m": 0.9327239691695093, "rise_from_release_m": 0.017417949007113798, "flight_ticks": 60, "flight_contact_before_catch": true, "physics_samples": 852, "max_joint_velocity_ratios": [0.01249522034475362, 1.0000027788425723, 1.0001727100481232, 0.0013030638137488748, 1.0048781476881663, 0.012535803649798576], "passed": false}
