@@ -3,6 +3,7 @@
   "checks": {
     "all_saved_traces_pass_independent_audit": true,
     "all_model_inputs_raw_outputs_and_parsed_outputs_present": true,
+    "transport_log_matches_observer_log": true,
     "source_skill_unchanged": true,
     "low_grip_force_validation_reused_recovery": true,
     "three_independent_validations": true,
@@ -123,6 +124,15 @@
   "model_calls": [
     {
       "request_id": "12ddbb6d885748199c39bd5ff37f30f3",
+      "events": [
+        "request",
+        "response",
+        "parsed_output"
+      ],
+      "complete": true
+    },
+    {
+      "request_id": "210c2d3f365141ceb396b95667484920",
       "events": [
         "request",
         "response",
