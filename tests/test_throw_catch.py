@@ -22,12 +22,12 @@ class ThrowEvidenceTests(unittest.TestCase):
 
     def test_catch_rejects_fast_upward_distant_or_contacted_object(self):
         args = ([0, 0, 1], [0, 0, -0.5], [0, 0, 1.1], [0, 0, 0])
-        self.assertTrue(catch_gate(*args, had_apex=True, flight_contact=False))
-        self.assertFalse(catch_gate(*args, had_apex=False, flight_contact=False))
-        self.assertFalse(catch_gate(*args, had_apex=True, flight_contact=True))
+        self.assertTrue(catch_gate(*args, had_apex=True, flight_contact=False, flight_ticks=10))
+        self.assertFalse(catch_gate(*args, had_apex=False, flight_contact=False, flight_ticks=10))
+        self.assertFalse(catch_gate(*args, had_apex=True, flight_contact=True, flight_ticks=10))
         for pos, vel in [([1, 0, 1], [0, 0, -0.5]), ([0, 0, 1], [0, 0, -14]),
                          ([0, 0, 1], [0, 0, 0.5])]:
-            self.assertFalse(catch_gate(pos, vel, args[2], args[3], had_apex=True, flight_contact=False))
+            self.assertFalse(catch_gate(pos, vel, args[2], args[3], had_apex=True, flight_contact=False, flight_ticks=10))
 
     def test_model_parameter_validation_rejects_nonfinite_and_extra_controls(self):
         params = {"target_x_m": 0.4, "target_z_m": 1.2, "release_after_steps": 12}

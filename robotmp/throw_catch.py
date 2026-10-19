@@ -59,8 +59,8 @@ def validate_parameters(raw):
     return dict(raw)
 
 
-def catch_gate(position, velocity, ee, ee_velocity, *, had_apex, flight_contact):
-    return (had_apex and not flight_contact and velocity[2] < -0.05
+def catch_gate(position, velocity, ee, ee_velocity, *, had_apex, flight_contact, flight_ticks=0):
+    return (had_apex and flight_ticks >= 10 and not flight_contact and velocity[2] < -0.05
             and math.dist(position, ee) <= 0.13
             and math.dist(velocity, ee_velocity) <= 1.0)
 
@@ -179,6 +179,7 @@ def execute_trial(parameters, old, audit, label, failure=FailureMode.NONE):
         emit("release_measured", **{k: v for k, v in report.items() if k.startswith("release") or k.startswith("ideal") or k.startswith("required")})
         apex = release_pos[2]
         had_apex = False
+        ascent_seen = release_v[2] > 0.05
         flight_contact = False
         ee_previous = env._actual_ee_position()
         flight_ticks = 0
@@ -202,14 +203,17 @@ def execute_trial(parameters, old, audit, label, failure=FailureMode.NONE):
             contacts = env.p.getContactPoints(env._cube_id, physicsClientId=env.client)
             flight_contact |= bool(contacts)
             apex = max(apex, pos[2])
-            if vel[2] <= 0 and not had_apex:
+            if vel[2] > 0.05:
+                ascent_seen = True
+            if ascent_seen and vel[2] <= 0 and not had_apex:
                 had_apex = True
                 emit("apex_or_initial_descent", measured_height_m=apex, vz_m_s=vel[2])
             if tick % 12 == 0:
                 emit("flight_observation", velocity_m_s=list(vel), ee_velocity_m_s=ee_vel,
                      catch_distance_m=math.dist(pos, ee), relative_speed_m_s=math.dist(vel, ee_vel),
                      constraint_active=env._constraint_id is not None, contact=bool(contacts))
-            if catch_gate(pos, vel, ee, ee_vel, had_apex=had_apex, flight_contact=flight_contact):
+            if catch_gate(pos, vel, ee, ee_vel, had_apex=had_apex, flight_contact=flight_contact,
+                          flight_ticks=flight_ticks):
                 env.catch()
                 report["caught"] = True
                 emit("catch_gate_passed", distance_m=math.dist(pos, ee), relative_speed_m_s=math.dist(vel, ee_vel))
