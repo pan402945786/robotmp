@@ -828,3 +828,6 @@
 
 
 [2026-10-19T22:36:18+08:00] attempt_04 结束：{"label": "attempt_04", "failure_mode": "none", "parameters": {"target_x_m": 0.25, "target_z_m": 1.35, "release_after_steps": 48}, "applied_skill_ids": ["grasp_without_lift_v1"], "lift_confirmed": true, "caught": true, "free_flight": true, "placement": {"passed": false, "status": "not_reached"}, "release_height_m": 1.1060131365270789, "release_velocity_m_s": [-0.2178904615844586, 1.0255614984150026e-05, 1.0948054494013788], "release_vz_m_s": 1.0948054494013788, "ideal_vacuum_rise_m": 0.061090671357744895, "required_vz_for_10m_rise_m_s": 14.007141035914502, "apex_height_m": 1.1644947330048958, "rise_from_release_m": 0.05848159647781692, "flight_ticks": 28, "flight_contact_before_catch": false, "error": "RuntimeError: ground placement unreachable outside table; retain grasp", "physics_samples": 460, "max_joint_velocity_ratios": [0.018373981790996214, 1.0004128137152917, 1.0001727100481232, 0.0013030638137488748, 1.0048781476881663, 0.01839738756322752], "passed": false}
+
+
+[2026-10-19T22:36:19+08:00] 大模型 request；request_id=efba0683edfc412284b60cd2524e399c；完整内容已写入 docs\THROW_CATCH_LLM_CALLS.md。
