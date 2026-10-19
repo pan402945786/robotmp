@@ -9,7 +9,7 @@ _ids = count(1)
 
 def make_prediction(state: SceneState, skills: list[Skill]) -> Prediction:
     applied = [skill.skill_id for skill in skills]
-    guarded = any(skill.name == "grasp_without_lift" for skill in skills)
+    guarded = any(skill.skill_id == "grasp_without_lift_v1" for skill in skills)
     return Prediction(
         prediction_id=f"pred-{next(_ids)}",
         action="lift_object",

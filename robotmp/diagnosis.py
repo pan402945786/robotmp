@@ -6,7 +6,7 @@ import time
 import uuid
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 from urllib import error, request
 
 from .models import ComparisonResult, Prediction, SceneState, Skill
@@ -102,8 +102,29 @@ class OpenAICompatibleDiagnoser:
     motor, trajectory, or other low-level control commands to the endpoint.
     """
 
-    def __init__(self, config: LLMConfig | None = None):
+    def __init__(self, config: LLMConfig | None = None, *, log_observer: Callable[[dict], None] | None = None):
         self.config = config or LLMConfig.from_env()
+        self.log_observer = log_observer
+
+    def request_json(self, instructions: str, context: dict[str, Any]) -> dict[str, Any]:
+        """Use the logged JSON transport for a separately validated high-level task."""
+        if self.config.wire_api == "responses":
+            body = {
+                "model": self.config.model, "instructions": instructions,
+                "input": "Return a JSON object only.\n" + json.dumps(context, ensure_ascii=False),
+                "text": {"format": {"type": "json_object"}}, "store": False,
+            }
+        else:
+            body = {
+                "model": self.config.model,
+                "messages": [{"role": "system", "content": instructions},
+                             {"role": "user", "content": json.dumps(context, ensure_ascii=False)}],
+                "response_format": {"type": "json_object"},
+            }
+        request_id = uuid.uuid4().hex
+        parsed = self._request(body, request_id=request_id)
+        self._write_log({"event": "parsed_output", "request_id": request_id, "parsed_output": parsed})
+        return parsed
 
     def generate(
         self,
@@ -203,7 +224,7 @@ class OpenAICompatibleDiagnoser:
         except (error.HTTPError, error.URLError, TimeoutError) as exc:
             detail = ""
             if isinstance(exc, error.HTTPError):
-                detail = exc.read().decode("utf-8", errors="replace")[:1000]
+                detail = exc.read().decode("utf-8", errors="replace")
             self._write_log({
                 "event": "error",
                 "request_id": request_id,
@@ -220,7 +241,7 @@ class OpenAICompatibleDiagnoser:
                 "request_id": request_id,
                 "duration_ms": round((time.perf_counter() - started) * 1000, 2),
                 "error": "LLM returned invalid JSON envelope",
-                "raw_response": raw[:4000],
+                "raw_response": raw,
             })
             raise LLMUnavailable("LLM returned invalid JSON envelope") from exc
         self._write_log({
@@ -228,6 +249,7 @@ class OpenAICompatibleDiagnoser:
             "request_id": request_id,
             "duration_ms": round((time.perf_counter() - started) * 1000, 2),
             "output": result,
+            "raw_response": raw,
         })
         try:
             text = _extract_text(result)
@@ -246,7 +268,7 @@ class OpenAICompatibleDiagnoser:
                 "event": "error",
                 "request_id": request_id,
                 "error": "LLM diagnosis was not valid JSON",
-                "raw_output": text[:4000],
+                "raw_output": text,
             })
             raise LLMUnavailable(f"LLM diagnosis was not valid JSON: {text[:500]}") from exc
         if not isinstance(parsed, dict):
@@ -254,17 +276,19 @@ class OpenAICompatibleDiagnoser:
                 "event": "error",
                 "request_id": request_id,
                 "error": "LLM diagnosis must be a JSON object",
-                "raw_output": text[:4000],
+                "raw_output": text,
             })
             raise LLMUnavailable("LLM diagnosis must be a JSON object")
         return parsed
 
     def _write_log(self, record: dict[str, Any]) -> None:
+        record = {"timestamp": time.time(), "model": self.config.model, **record}
+        if self.log_observer is not None:
+            self.log_observer(record)
         if not self.config.log_path:
             return
         path = Path(self.config.log_path)
         path.parent.mkdir(parents=True, exist_ok=True)
-        record = {"timestamp": time.time(), "model": self.config.model, **record}
         with path.open("a", encoding="utf-8") as stream:
             stream.write(json.dumps(record, ensure_ascii=False, default=str) + "\n")
 

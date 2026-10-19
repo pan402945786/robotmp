@@ -9,6 +9,7 @@ Phase = Literal[
     "grasp",
     "lift",
     "transport",
+    "trace",
     "place",
     "finished",
     "failed",
@@ -79,3 +80,7 @@ class Skill:
     validation_trials: int = 0
     false_success_rate: float | None = None
     recovery_success_rate: float | None = None
+    prerequisite_skill_ids: list[str] = field(default_factory=list)
+    parameters: dict[str, float | int | str] = field(default_factory=dict)
+    validation_success_rate: float | None = None
+    validation_metrics: dict[str, float | int | bool] = field(default_factory=dict)

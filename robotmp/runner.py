@@ -30,6 +30,7 @@ def run_episode(
     observer: Callable[[dict], None] | None = None,
     env_factory: Callable[[FailureMode], object] | None = None,
     close_env: bool = True,
+    after_lift: Callable[[object], None] | None = None,
 ) -> RunResult:
     """Run the existing policy, optionally emitting detached telemetry snapshots."""
     env = (env_factory or PickPlaceEnv)(failure_mode)
@@ -49,6 +50,8 @@ def run_episode(
             })
 
     def execute(action: str) -> None:
+        if action == "move_to_target" and after_lift is not None:
+            after_lift(env)
         env.execute(action)
         emit("action", action=action)
 

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import math
 import time
 from pathlib import Path
 from typing import Any, Callable
@@ -427,6 +428,42 @@ class PyBulletPickPlaceEnv:
         projection = p.computeProjectionMatrixFOV(55, width / height, 0.02, 5)
         _, _, rgba, _, _ = p.getCameraImage(width, height, view, projection, renderer=p.ER_TINY_RENDERER, physicsClientId=self.client)
         return rgba[:, :, :3]
+
+    def move_held_object(self, target: list[float], *, steps: int = 48) -> SceneState:
+        """Track an object-center waypoint using the measured grasp offset and IK."""
+        if self._stopped:
+            raise RuntimeError("environment is stopped; reset before executing more actions")
+        if self.config.arm_model != "xarm6":
+            raise ValueError("held-object trajectories require the xarm6 position controller")
+        if len(target) != 3 or not all(math.isfinite(value) for value in target):
+            raise ValueError("target must contain three finite coordinates")
+        if not isinstance(steps, int) or steps < 1:
+            raise ValueError("steps must be a positive integer")
+        state = self.observe()
+        if not state.object.grasped or self._constraint_id is None or state.robot.gripper_open:
+            raise RuntimeError("held-object motion requires a closed gripper and an active grasp")
+        if not state.object.lifted or state.object.confidence < 0.7:
+            raise RuntimeError("held-object motion requires visible lift evidence")
+        if target[2] < self._object_start[2] + 0.07:
+            raise ValueError("held-object waypoint is too close to the table")
+        self._events = []
+        self._phase = "trace"
+        ee_target = [ee + goal - actual for ee, goal, actual in zip(
+            state.robot.end_effector_position_m, target, state.object.position_m
+        )]
+        self._set_gripper_pose(ee_target, open_gripper=False)
+        self._step(steps)
+        self._events.append("held_object_waypoint_reached")
+        return self.observe()
+
+    def settle_object(self, *, steps: int = 240) -> SceneState:
+        """Observe a released object for one simulated second without resetting it."""
+        if self._stopped or self._grasped or self._constraint_id is not None:
+            raise RuntimeError("settling requires a released object and a running environment")
+        self._events = []
+        self._step(steps)
+        self._events.append("placement_settled")
+        return self.observe()
 
     @property
     def stopped(self) -> bool:
