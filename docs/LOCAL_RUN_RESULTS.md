@@ -5,7 +5,7 @@
 
 ## 运行环境
 
-项目目录内的 `.venv` 已建立，可通过 `run.ps1` 调用，无需系统 PATH 中的 `python`、Conda 激活或本机 C++ 编译器。
+项目目录内的 `.venv` 已建立，可通过 `run.cmd` 调用，无需系统 PATH 中的 `python`、Conda 激活或本机 C++ 编译器。
 
 - Python：3.11.17，64 位 Windows。
 - conda-forge 包：`pybullet=3.25`；对应 Python 包元数据版本：`3.2.5`。
@@ -19,7 +19,7 @@
 
 ## 实测结果
 
-`./run.ps1 -m unittest discover -s tests -v`：11 项全部通过，0 失败、0 跳过。其中 6 项为规则测试，5 项为物理后端测试。
+`./run.cmd -m unittest discover -s tests -v`：11 项全部通过，0 失败、0 跳过。其中 6 项为规则测试，5 项为物理后端测试。
 
 | 物理场景 | 运行结果 | 最终证据 |
 |---|---|---|
@@ -98,16 +98,16 @@ reset → retrieve（skills 模式）
 在仓库根目录执行：
 
 ```powershell
-.\run.ps1 -m unittest discover -s tests -v
-.\run.ps1 -m robotmp.sim_cli --mode feedback --failure-mode low_grip_force --arm xarm6 --trace artifacts/xarm6_recovery.json
-.\run.ps1 -m robotmp.sim_cli --validate-skill --trials 20 --failure-mode low_grip_force --arm xarm6 --store artifacts/xarm6_skills.json --trace artifacts/xarm6_skill_validation.json
-.\run.ps1 -m robotmp.sim_video --failure-mode low_grip_force --output artifacts/simulation_video_xarm6
+.\run.cmd -m unittest discover -s tests -v
+.\run.cmd -m robotmp.sim_cli --mode feedback --failure-mode low_grip_force --arm xarm6 --trace artifacts/xarm6_recovery.json
+.\run.cmd -m robotmp.sim_cli --validate-skill --trials 20 --failure-mode low_grip_force --arm xarm6 --store artifacts/xarm6_skills.json --trace artifacts/xarm6_skill_validation.json
+.\run.cmd -m robotmp.sim_video --failure-mode low_grip_force --output artifacts/simulation_video_xarm6
 ```
 
 打开可交互仿真窗口：
 
 ```powershell
-.\run.ps1 -m robotmp.sim_cli --mode feedback --failure-mode low_grip_force --arm xarm6 --gui --realtime --hold 5
+.\run.cmd -m robotmp.sim_cli --mode feedback --failure-mode low_grip_force --arm xarm6 --gui --realtime --hold 5
 ```
 
 上述 GUI 命令也已实测成功：窗口正常启动，低力度抓取恢复后保留 5 秒，随后正常退出；遥测保存在 `xarm6_gui.json`，启动及 OpenGL 日志保存在 `gui.log`。

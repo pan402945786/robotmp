@@ -27,10 +27,12 @@ http://127.0.0.1:15723
 - `gpt-6.1-sol` 实际调用成功；
 - `gpt-5.4-mini` 由当前 provider 返回模型不可用，因此不能作为默认模型。
 
+如果 PowerShell 禁止运行 `.ps1`，请把下面命令中的 `run.ps1` 换成 `run.cmd`；`run.cmd` 直接调用项目 `.venv`，不需要修改系统执行策略。
+
 实际物理运行命令：
 
 ```powershell
-.\run.ps1 -m robotmp.sim_cli `
+.\run.cmd -m robotmp.sim_cli `
   --mode skills `
   --failure-mode low_grip_force `
   --arm xarm6 `
