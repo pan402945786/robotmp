@@ -2232,3 +2232,6 @@
 
 
 [2026-10-19T23:47:40+08:00] 大模型 request；request_id=51061bd87c45441b8f5154fcaf27e787；完整内容已写入 docs\THROW_CATCH_LLM_CALLS.md。
+
+
+[2026-10-19T23:48:30+08:00] 大模型 response；request_id=51061bd87c45441b8f5154fcaf27e787；完整内容已写入 docs\THROW_CATCH_LLM_CALLS.md。
