@@ -4236,3 +4236,17 @@
 
 
 [2026-10-20T00:02:58+08:00] 开始 validation_01：参数 {"target_x_m": 0.4, "target_z_m": 0.65, "release_min_vz_m_s": 1.06, "max_sweep_steps": 160, "catch_lead_s": 0.04}；故障 none。
+
+409. 仿真 0.142s；物体中心 (0.45000, -0.00000, 0.04998) m；{"trial": "validation_01", "kind": "ground_scene_ready", "ground_z_m": 0, "ideal_grasp_model": "fixed_constraint", "物体抓持": false, "实际抬升": false, "事件": []}
+
+410. 仿真 0.142s；物体中心 (0.45000, -0.00000, 0.04998) m；{"trial": "validation_01", "kind": "prerequisite_retrieved", "skill": {"skill_id": "grasp_without_lift_v1", "name": "grasp_without_lift", "status": "verified", "version": 1, "task": "pick_and_place", "object_types": ["cube"], "trigger_conditions": ["gripper_closed == true", "lift_window_elapsed == true", "object_lifted == false"], "facts": ["gripper_closed_does_not_imply_grasp_success", "object_lift_was_not_detected", "object_may_have_been_displaced_before_grasp"], "hypotheses": ["grasp_point_may_be_misaligned", "insufficient_grip_force"], "prediction_correction": ["do_not_enter_transport_phase", "require_lift_evidence_before_transport"], "recovery": ["stop_transport_motion", "refresh_object_pose", "retry_grasp_if_safe"], "validation_trials": 20, "false_success_rate": 0.0, "recovery_success_rate": 1.0, "prerequisite_skill_ids": [], "parameters": {}, "validation_success_rate": null, "validation_metrics": {}}, "物体抓持": false, "实际抬升": false, "事件": []}
+
+411. 仿真 0.342s；物体中心 (0.45000, 0.00000, 0.04999) m；{"trial": "validation_01", "kind": "action", "action": "approach_object", "物体抓持": false, "实际抬升": false, "事件": ["object_approached"]}
+
+412. 仿真 0.542s；物体中心 (0.45000, 0.00001, 0.04999) m；{"trial": "validation_01", "kind": "action", "action": "close_gripper", "物体抓持": true, "实际抬升": false, "事件": ["gripper_closed", "gripper_contact", "grasp_constraint_created"]}
+
+413. 仿真 0.742s；物体中心 (0.45297, -0.00063, 0.20518) m；{"trial": "validation_01", "kind": "action", "action": "lift_object", "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+414. 仿真 0.742s；物体中心 (0.45297, -0.00063, 0.20518) m；{"trial": "validation_01", "kind": "lift_comparison", "prediction": {"prediction_id": "pred-2", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "match", "errors": [], "severity": "none"}, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+415. 仿真 0.742s；物体中心 (0.45297, -0.00063, 0.20518) m；{"trial": "validation_01", "kind": "lift_gate_passed", "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
