@@ -1,0 +1,47 @@
+[
+  {
+    "skill_id": "throw_10m_catch_ground_v1",
+    "name": "throw_10m_catch_ground",
+    "status": "candidate",
+    "version": 1,
+    "task": "throw_catch_ground",
+    "object_types": [
+      "cube"
+    ],
+    "trigger_conditions": [
+      "object_grasped == true",
+      "measured_lift == true"
+    ],
+    "facts": [
+      "require_measured_release_velocity_and_free_flight",
+      "10m_height_is_not_evidence_of_catch_or_ground_placement"
+    ],
+    "hypotheses": [
+      "current_sweep_primitive_may_lack_sufficient_release_energy"
+    ],
+    "prediction_correction": [
+      "require_10m_free_flight_before_success",
+      "require_gated_catch_and_stable_ground_contact"
+    ],
+    "recovery": [
+      "retain_failure_evidence",
+      "do_not_promote_incomplete_skill"
+    ],
+    "validation_trials": 4,
+    "false_success_rate": null,
+    "recovery_success_rate": null,
+    "prerequisite_skill_ids": [
+      "grasp_without_lift_v1"
+    ],
+    "parameters": {
+      "target_x_m": 0.25,
+      "target_z_m": 1.35,
+      "release_after_steps": 48
+    },
+    "validation_success_rate": 0.0,
+    "validation_metrics": {
+      "complete_three_trial_validation": false,
+      "max_observed_apex_m": 1.1644947330048958
+    }
+  }
+]
