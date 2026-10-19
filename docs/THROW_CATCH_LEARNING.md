@@ -1338,3 +1338,11 @@
 ## 2026-10-19 两米目标继续实验
 
 用户将目标从 10 m 改为释放后相对上升至少 2 m。两米目标要求的最低竖直释放速度为 `6.264184 m/s`。参数探测得到较好组合 `(target_x=0.35 m, target_z=1.10 m, release_after_steps=72)`，最大实测速度 `2.027 m/s`，仍低于门槛。大模型建议停止解除抓持；遵照用户继续指令，完成了 3 次非释放安全门控验证，均保留抓持并安全停止。新增 `throw_2m_catch_ground_v1` Skill，状态为 `candidate`。详见 `docs/THROW_CATCH_2M_ANALYSIS.md`。
+
+
+[2026-10-19T23:43:34+08:00] 开始运行 67586c959c16；输出目录 docs\throw_catch_05m_20261019。
+
+1. 仿真 0.000s；物体中心 (—) m；{"kind": "capability_inspection", "source_sha256": "1480ab7df263cab82d7df41eb84c92a961c2b70a2d8b7bb2cb8c02f94a1f7383", "time_step_s": 0.004166666666666667, "gravity_m_s2": 9.81, "joint_velocity_limits_rad_s": [3.14, 3.14, 3.14, 3.14, 3.14, 3.14], "joint_effort_limits_Nm": [50.0, 50.0, 32.0, 32.0, 32.0, 20.0], "joint_lower_rad": [-6.28318530718, -2.059, -3.927, -6.28318530718, -1.69297, -6.28318530718], "joint_upper_rad": [6.28318530718, 2.0944, 0.19198, 6.28318530718, 3.14159265359, 6.28318530718], "cube_mass_kg": 0.1, "target_rise_m": 0.5, "required_vz_for_target_rise_m_s": 3.132091952673165, "grasp_model": "fixed constraint; robot-cube collision disabled; idealized acquisition", "ground_z_m": 0, "table_z_m": 0.7}
+
+
+[2026-10-19T23:43:34+08:00] 大模型 request；request_id=33f73a0d16f94d7d9b12829650fa3ec5；完整内容已写入 docs\THROW_CATCH_LLM_CALLS.md。
