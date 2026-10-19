@@ -1,0 +1,61 @@
+[
+  {
+    "skill_id": "throw_2m_catch_ground_v1",
+    "name": "throw_2m_catch_ground",
+    "status": "candidate",
+    "version": 1,
+    "task": "throw_catch_ground",
+    "object_types": [
+      "cube"
+    ],
+    "trigger_conditions": [
+      "object_grasped == true",
+      "measured_lift == true"
+    ],
+    "facts": [
+      "target_rise_is_2m",
+      "required_release_vz_6.264184_m_s",
+      "prior_10m_search_max_release_vz_1.094805_m_s",
+      "new_2m_probe_max_release_vz_2.027000_m_s",
+      "ground_placement_workspace_remains_unverified"
+    ],
+    "hypotheses": [
+      "current_position_ik_primitive_still_lacks_2m_throw_energy",
+      "measured_velocity_gate_prevents_false_success",
+      "dedicated_throw_trajectory_or_launcher_is_required"
+    ],
+    "prediction_correction": [
+      "require_lift_evidence_before_release",
+      "require_measured_vz_at_least_6.264184_m_s_before_release",
+      "block_release_and_safety_stop_when_gate_fails",
+      "require_2m_world_and_relative_height",
+      "require_gated_catch_and_stable_ground_contact"
+    ],
+    "recovery": [
+      "retain_failure_evidence",
+      "do_not_release_when_velocity_gate_is_blocked",
+      "upgrade_throw_trajectory_before_retry",
+      "do_not_promote_incomplete_skill"
+    ],
+    "validation_trials": 3,
+    "false_success_rate": null,
+    "recovery_success_rate": null,
+    "prerequisite_skill_ids": [
+      "grasp_without_lift_v1"
+    ],
+    "parameters": {
+      "target_x_m": 0.35,
+      "target_z_m": 1.1,
+      "release_after_steps": 72
+    },
+    "validation_success_rate": 0.0,
+    "validation_metrics": {
+      "target_rise_m": 2.0,
+      "required_vz_m_s": 6.26418390534633,
+      "gate_trials": 3,
+      "gate_blocked_trials": 3,
+      "safety_stop_trials": 3,
+      "complete_success": false
+    }
+  }
+]
