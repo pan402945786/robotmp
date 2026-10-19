@@ -67,6 +67,7 @@ def validate_parameters(raw):
 def catch_gate(position, velocity, ee, ee_velocity, *, had_apex, rise, ticks, contact):
     return bool(had_apex and rise >= TARGET_RISE_M and ticks >= 10 and not contact
                 and velocity[2] < -0.05 and math.dist(position, ee) <= 0.13
+                and ee[2] - position[2] >= 0.10
                 and math.dist(velocity, ee_velocity) <= 1.0)
 
 
@@ -407,7 +408,8 @@ def propose(client, old, reports, previous=None):
         'Idealized fixed-constraint grasp/catch; robot-cube collision disabled, so results are simulation scoped. '
         'Predefined local primitive settles held cube near [0.40,0,0.22], sweeps toward target, releases at FIRST '
         'step when CURRENT vz >= release_min_vz_m_s, then follows horizontal flight with catch_lead_s. '
-        'Catch requires real apex, rise>=0.05m, descending vz<-0.05m/s, wrist distance<=0.13m, relative '
+        'Catch requires real apex, rise>=0.05m, descending vz<-0.05m/s, wrist distance<=0.13m, '
+        'cube at least 0.10m below wrist (finger workspace, needed for ground clearance), relative '
         'speed<=1m/s, >=10 unconstrained ticks, no flight contact. Then hold 0.5s, lower slowly to actual '
         'ground support, release at speed<=0.015m/s, observe 2s, drift<=0.003m, speed<=0.01m/s. '
         'Choose parameters exactly: target_x_m [0.25,0.55], target_z_m [0.40,0.85], '
@@ -419,7 +421,9 @@ def propose(client, old, reports, previous=None):
         'No code or low-level joint commands. Use actual measured reports to refine parameters.',
         {'goal': '抓起→自由飞行相对升高至少0.05米→下降接住→平稳放到z=0地面',
          'existing_verified_skill': asdict(old), 'target_rise_m': TARGET_RISE_M,
-         'required_vz_m_s': REQUIRED_VZ, 'reports': reports, 'previous': previous})
+         'required_vz_m_s': REQUIRED_VZ, 'reports': reports, 'previous': previous,
+         'local_calibration_reports': [json.loads(path.read_text(encoding='utf-8')) for path in sorted(
+             Path('docs').glob('throw_catch_005m_calibration_*/calibration.json'))]})
 
 
 def main():

@@ -25,6 +25,8 @@
 
 校准 01 结果：自由飞行升高 0.054878 m，28 个无抓持约束物理步后下降接住，接球相对速度 0.141446 m/s，持续抓持检查通过。放地失败：反馈下降每 4 步重设过小目标，实际每轮仅下降约 0.00027 m，700 轮预算耗尽时物体仍在 z=0.22786 m；这属于控制进度不足。另观测到接球后立方体倾斜，增加用腕部 IK 缓慢扶正的动作，再以每轮最多 0.002 m、12 步跟踪下降，避免倾斜物体释放后翻倒。全程保持原重力与关节限速。
 
+校准 02 结果：抛高和接住再次通过，扶正后支撑高度恢复 0.0500004 m；下降到中心约 0.07853 m 时受阻，腕部约 0.11433 m，物体在手掌附近而非指尖，夹爪先接地。因此收紧接球几何：物体中心必须至少位于腕部下方 0.10 m，再允许固定约束接球，以留下放地净空。两次人工实现校准均完整保留，接下来将这些失败测量反馈给实验大模型进行参数选择。运行跨越午夜，后续日志时间为 2026-10-20（Asia/Shanghai），本次实验目录保留开始日标识 20261019。
+
 
 [2026-10-19T23:59:09+08:00] 开始运行 f3f10b4b876a；输出目录 docs\throw_catch_005m_calibration_01。
 
@@ -3385,3 +3387,11 @@
 
 
 [2026-10-20T00:00:29+08:00] calibration 结束：{"label": "calibration", "parameters": {"target_x_m": 0.4, "target_z_m": 0.65, "release_min_vz_m_s": 1.06, "max_sweep_steps": 160, "catch_lead_s": 0.04}, "failure_mode": "none", "applied_skill_ids": ["grasp_without_lift_v1"], "lift_confirmed": true, "caught": true, "free_flight": true, "placement": {"passed": false}, "recovery_used": false, "max_sweep_vz_m_s": 1.0610871628118803, "release_height_m": 0.32622337170717197, "release_vz_m_s": 1.0610871628118803, "release_velocity_m_s": [0.05012743644590001, 0.0001101215396272239, 1.0610871628118803], "release_time_s": 1.9958333333333276, "rise_from_release_m": 0.054878205302841765, "catch_time_s": 2.1125, "catch_vz_m_s": -0.08748958365849183, "catch_distance_m": 0.05370682013285851, "catch_relative_speed_m_s": 0.14144620765016797, "apex_height_m": 0.38110157701001374, "had_apex": true, "flight_ticks": 28, "flight_contact_before_catch": false, "catch_hold_passed": true, "error": "RuntimeError: ground lowering did not reach low-speed support", "physics_samples": 9353, "max_joint_velocity_ratios": [0.016393830544591755, 1.0000091517096734, 1.000060881619031, 0.01549009223382722, 1.008908989008264, 0.02688126212635831], "passed": false}
+
+
+[2026-10-20T00:01:25+08:00] 开始运行 5337292dd15d；输出目录 docs\throw_catch_005m_20261019。
+
+1. 仿真 0.000s；物体中心 (—) m；{"kind": "source_verified", "source_path": "artifacts\\verification_20261019\\skills.json", "sha256": "1480ab7df263cab82d7df41eb84c92a961c2b70a2d8b7bb2cb8c02f94a1f7383", "target_rise_m": 0.05, "ground_z_m": 0}
+
+
+[2026-10-20T00:01:25+08:00] 大模型 request；request_id=ebb9ef95a4fb4b9f8e10fb5b8e0a33ca；完整内容已写入 docs\THROW_CATCH_005M_LLM_CALLS.md。
