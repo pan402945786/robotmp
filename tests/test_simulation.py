@@ -59,6 +59,25 @@ class SimulationTests(unittest.TestCase):
         self.assertTrue(all(lower < upper and effort > 0 and velocity > 0 for lower, upper, effort, velocity in limits))
         self.assertFalse(lifted)
 
+    def test_xarm6_grasp_is_aligned_before_lift(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            events = []
+            result = run_episode(
+                "feedback",
+                FailureMode.NONE,
+                default_store(Path(tmp) / "skills.json"),
+                observer=events.append,
+                env_factory=lambda failure: PyBulletPickPlaceEnv(failure, gui=False, config=SimConfig(arm_model="xarm6")),
+            )
+        close = next(event for event in events if event.get("action") == "close_gripper")["state"]
+        lift = next(event for event in events if event.get("action") == "lift_object")["state"]
+        x_delta = abs(close["object"]["position_m"][0] - close["robot"]["end_effector_position_m"][0])
+        self.assertEqual(result.status, "success")
+        self.assertLess(x_delta, 0.02)
+        self.assertTrue(close["object"]["grasped"])
+        self.assertTrue(lift["object"]["lifted"])
+        self.assertIn("grasp_constraint_created", close["events"])
+
     def test_xarm6_starts_clear_and_places_normal_pick(self):
         with tempfile.TemporaryDirectory() as tmp:
             events = []

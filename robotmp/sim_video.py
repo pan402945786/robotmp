@@ -155,6 +155,7 @@ def main() -> None:
     parser.add_argument("--llm-model")
     parser.add_argument("--llm-wire-api", choices=["responses", "chat"])
     parser.add_argument("--llm-timeout", type=float)
+    parser.add_argument("--llm-log", help="JSONL log for model requests and responses")
     args = parser.parse_args()
     if not 1 <= args.fps <= 60:
         parser.error("--fps must be between 1 and 60")
@@ -165,13 +166,15 @@ def main() -> None:
         parser.exit(1, "Run this command with the project's py311 simulation environment.\n")
     config = LLMConfig.from_env()
     if args.llm_base_url:
-        config = LLMConfig(args.llm_base_url, config.model, config.wire_api, config.api_key, config.timeout_seconds)
+        config = LLMConfig(args.llm_base_url, config.model, config.wire_api, config.api_key, config.timeout_seconds, config.log_path)
     if args.llm_model:
-        config = LLMConfig(config.base_url, args.llm_model, config.wire_api, config.api_key, config.timeout_seconds)
+        config = LLMConfig(config.base_url, args.llm_model, config.wire_api, config.api_key, config.timeout_seconds, config.log_path)
     if args.llm_wire_api:
-        config = LLMConfig(config.base_url, config.model, args.llm_wire_api, config.api_key, config.timeout_seconds)
+        config = LLMConfig(config.base_url, config.model, args.llm_wire_api, config.api_key, config.timeout_seconds, config.log_path)
     if args.llm_timeout is not None:
-        config = LLMConfig(config.base_url, config.model, config.wire_api, config.api_key, args.llm_timeout)
+        config = LLMConfig(config.base_url, config.model, config.wire_api, config.api_key, args.llm_timeout, config.log_path)
+    if args.llm_log is not None:
+        config = LLMConfig(config.base_url, config.model, config.wire_api, config.api_key, config.timeout_seconds, args.llm_log)
     diagnoser = make_diagnoser(args.diagnoser, config)
     print(json.dumps(render(args.output, FailureMode(args.failure_mode), args.fps, args.font, args.ffmpeg, diagnoser, config.model), ensure_ascii=False, indent=2))
 

@@ -137,3 +137,12 @@ reset → retrieve（skills 模式）
 本次还验证了两个边界：当前 provider 对 `gpt-5.4-mini` 返回模型不可用；服务端要求 JSON 输出请求的输入中明确出现 `JSON`，因此 Responses 请求会在输入前加入 JSON 输出约束。模型请求失败时，runner 会回退到规则诊断并记录 `diagnosis_fallback`。
 
 真实调用产物位于 `artifacts/llm_verification/`：`run2.log`、`skills.json`、`xarm6_llm_trace.json`、`validated.log`、`validated_skills.json` 和 `validated_trace.json`。5 次模型诊断验证中，模型调用 5 次、回退 0 次，最终 Skill 验证成功率 100%、误判率 0%。这些文件被 Git 忽略，不包含在提交中。
+
+
+## 夹取稳定性修复复测
+
+2026 年 10 月 19 日修复了 xArm6 的三个问题：接近动作未充分步进、xArm6 基座与目标横向错位、抓取约束使用固定偏移。当前使用 `SimConfig.arm_base_x` 对齐基座，xArm6 接近阶段使用位置控制并等待 48 个仿真步，抓取约束使用实际末端和立方体的相对位姿。为避免夹爪刚体碰撞造成不可控推挤，xArm6 高层 MVP 关闭机器人与立方体的碰撞对，抓取成功由故障策略和局部距离条件决定。
+
+复测 20 次：正常抓取 `success=20/20`，低力度 `recovered=20/20`，抓取点偏移 `recovered=20/20`；正常抓取闭合时物体中心与末端 x 方向误差约 0.004 m，抬升后物体高度约 0.905 m，波动为 0。新增测试 `test_xarm6_grasp_is_aligned_before_lift` 固定检查闭合时对齐、约束创建和抬升证据。
+
+本次修复后重新生成模型视频：`artifacts/llm_video_fixed_20261019/robotmp_simulation.mp4`，时长约 16.46 秒。大模型日志：`artifacts/llm_video_fixed_20261019/llm_diagnosis.jsonl`，包含 `request`、`response` 和 `parsed_output`；本次请求没有发生规则回退，响应耗时约 40.68 秒。

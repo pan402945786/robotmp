@@ -61,6 +61,19 @@ require_lift_evidence_before_transport
 
 然后继续使用项目现有的 `refresh_object_pose → retry_grasp → lift → move_to_target → release` 恢复流程。
 
+## 日志格式
+
+日志采用 JSONL，每次调用使用同一个 `request_id` 关联：
+
+```text
+request          输入请求、endpoint、模型和协议
+response         原始 JSON 响应和耗时
+parsed_output    通过安全校验后保存的 Skill
+error            HTTP、超时、JSON 或安全校验错误
+```
+
+日志不写入 API key；请求体中的模型输入和服务返回内容会原样保留，便于排查模型为何生成某个 Skill。
+
 ## 模型诊断视频
 
 物理视频入口也支持模型参数。它会实际调用模型生成诊断，再录制同一 episode 的 PyBullet 相机画面，并在右侧显示 `LLM / OpenAI` 诊断器标签：

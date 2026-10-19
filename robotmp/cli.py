@@ -15,6 +15,7 @@ def add_diagnoser_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--llm-model", help="Model id accepted by the configured provider")
     parser.add_argument("--llm-wire-api", choices=["responses", "chat"], help="HTTP API shape")
     parser.add_argument("--llm-timeout", type=float, help="LLM request timeout in seconds")
+    parser.add_argument("--llm-log", help="JSONL log for model requests, responses, parsed output, and errors")
 
 
 def build_diagnoser(args: argparse.Namespace):
@@ -23,6 +24,7 @@ def build_diagnoser(args: argparse.Namespace):
         "model": args.llm_model,
         "wire_api": args.llm_wire_api,
         "timeout_seconds": args.llm_timeout,
+        "log_path": args.llm_log,
     }.items() if value is not None}
     config = replace(LLMConfig.from_env(), **values) if values else None
     return make_diagnoser(args.diagnoser, config)

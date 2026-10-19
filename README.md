@@ -96,6 +96,7 @@ $env:ROBOTMP_LLM_TIMEOUT = "90"
 | `ROBOTMP_LLM_WIRE_API` | `responses` | `responses` 或 `chat` |
 | `ROBOTMP_LLM_API_KEY` | 空 | 远程服务需要认证时设置；本机 CC Switch 通常不需要传入 |
 | `ROBOTMP_LLM_TIMEOUT` | `90` | 单次诊断调用超时，单位秒 |
+| `ROBOTMP_LLM_LOG` | `artifacts/llm_diagnosis.jsonl` | 请求、响应、解析结果和错误的 JSONL 日志路径 |
 | `ROBOTMP_LLM_ENABLED` | `0` | `--diagnoser auto` 时设为 `1/true/yes/on` 才启用模型 |
 
 模型只负责生成结构化失败诊断。客户端会：
@@ -131,6 +132,12 @@ Start-Process artifacts/visualization/index.html
 可用 `--output 路径` 指定输出位置，用 `--font 字体路径` 指定中文字体。默认寻找 Windows 微软雅黑或 Linux Noto Sans CJK。生成过程使用临时独立经验库，不改变现有 `artifacts/skills.json`。
 
 视频是当前确定性规则环境的状态示意，不是硬件录像或物理仿真。夹爪力度没有标定物理单位；运动插值只用于播放。`retry_grasp` 通过清除故障注入完成恢复，释放后模型仍保留物体高度和抬升标记。已验证 Skill 会改变预测置信度和预期阶段，当前尚未减少此场景中的重试次数。比较面板保留首次抬升比较结果，恢复后原流程不会再次调用比较器。实验比例仅描述固定故障下的闭环行为。
+
+## 夹取稳定性修复
+
+PyBullet xArm6 环境已加入接近步进、可配置机械臂基座位置和基于实际接触位姿的抓取约束。xArm6 的高层 MVP 抓取会屏蔽不可控的刚体推挤，由本地策略判断抓取成功后建立固定约束，避免夹爪闭合瞬间把物体推离；20 次重复运行的正常抓取、低力度恢复和抓取点偏移恢复均保持稳定。
+
+模型调用默认写入 `artifacts/llm_diagnosis.jsonl`，每次调用包含 `request`、`response`、`parsed_output` 或 `error` 记录；可用 `--llm-log` 或 `ROBOTMP_LLM_LOG` 指定路径。
 
 ## 当前模块
 

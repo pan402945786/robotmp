@@ -35,9 +35,9 @@ robotmp 用“预测未来 → 执行动作 → 观察实际 → 比较偏差 �
 
 ### 失败处理
 
-- xArm6 的物体默认生成在 `x=0.45 m`，避开 URDF 默认姿态，避免任务开始前发生碰撞。
-- 夹爪闭合前后会比较物体位移。
-- 位移超过 1 cm 会记录 `object_displaced_before_grasp`，用于识别“接触并推开，但没有抓住”。
+- xArm6 的物体默认生成在 `x=0.45 m`，机械臂基座位置由 `SimConfig.arm_base_x` 配置，默认与抓取目标对齐。
+- xArm6 接近动作会等待位置控制器完成仿真步进，避免接近、闭合和抬升之间发生关节瞬移。
+- 抓取约束按实际末端和物体相对位姿创建；高层 MVP 会屏蔽不可控的刚体推挤，由抓取策略显式决定失败注入或建立约束。
 - 低力度场景中，物体可能被推开而不产生抬升；反馈模式会停止继续搬运，刷新物体位置，重新用 IK 规划并重试。
 - 搬运到目标时会下降到桌面高度，再移除抓取约束并释放，正常任务以 `finished` 结束。
 
@@ -124,7 +124,7 @@ Python 3.14 主环境可以运行规则测试；由于 PyBullet 安装在 `py311
 - xArm6 使用 PyBullet 数据包中的 URDF，不是厂商控制器或真实机器人连接。
 - 控制器是 PyBullet 位置控制器，尚未接入 `ros2_control`、速度控制或力矩控制。
 - 夹爪力度仍是模型标量，尚未对应真实电机电流或接触力传感器。
-- 物体被推开后会重新定位并重试，但 Skill 尚未主动改变第一次抓取姿态来消除推开。
+- 低力度和抓取点偏移仍是确定性失败注入；当前恢复会刷新物体位姿并重新执行抓取，Skill 尚未主动学习新的抓取姿态。
 - 视觉观测目前使用仿真状态和 PyBullet 相机画面，没有视觉检测模型、深度估计或遮挡推理。
 - 释放成功目前表示物体回到桌面附近并完成流程，不包含精确放置误差、姿态误差或稳定性评估。
 
@@ -139,4 +139,4 @@ Python 3.14 主环境可以运行规则测试；由于 PyBullet 安装在 `py311
 
 ## 大模型诊断接入
 
-`robotmp.diagnosis.OpenAICompatibleDiagnoser` 支持通过环境变量或 CLI 参数接入不同主机上的 OpenAI-compatible 服务。默认仍使用规则诊断；使用 `--diagnoser llm` 才会调用模型。当前本机 CC Switch 使用 `http://127.0.0.1:15723/v1`、`responses` 协议和 `gpt-6.1-sol` 已实际返回结构化候选 Skill。模型不可用或输出不安全时，runner 会记录 `diagnosis_fallback` 并回退规则诊断。详细配置和边界见 [`docs/LLM_INTEGRATION.md`](LLM_INTEGRATION.md)。
+`robotmp.diagnosis.OpenAICompatibleDiagnoser` 支持通过环境变量或 CLI 参数接入不同主机上的 OpenAI-compatible 服务。默认仍使用规则诊断；使用 `--diagnoser llm` 才会调用模型。当前本机 CC Switch 使用 `http://127.0.0.1:15723/v1`、`responses` 协议和 `gpt-6.1-sol` 已实际返回结构化候选 Skill。模型不可用或输出不安全时，runner 会记录 `diagnosis_fallback` 并回退规则诊断。详细配置和边界见 [`docs/LLM_INTEGRATION.md`](LLM_INTEGRATION.md)。模型请求和响应默认写入 `artifacts/llm_diagnosis.jsonl`，用于复现诊断问题。

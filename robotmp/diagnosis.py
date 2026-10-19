@@ -2,7 +2,10 @@ from __future__ import annotations
 
 import json
 import os
+import time
+import uuid
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 from urllib import error, request
 
@@ -63,6 +66,7 @@ class LLMConfig:
     wire_api: str = "responses"
     api_key: str | None = None
     timeout_seconds: float = 90.0
+    log_path: str | None = "artifacts/llm_diagnosis.jsonl"
 
     def __post_init__(self) -> None:
         if self.wire_api not in {"responses", "chat"}:
@@ -78,6 +82,7 @@ class LLMConfig:
             wire_api=os.getenv("ROBOTMP_LLM_WIRE_API", cls.wire_api).lower(),
             api_key=os.getenv("ROBOTMP_LLM_API_KEY") or None,
             timeout_seconds=float(os.getenv("ROBOTMP_LLM_TIMEOUT", str(cls.timeout_seconds))),
+            log_path=os.getenv("ROBOTMP_LLM_LOG", cls.log_path or "") or None,
         )
 
     @property
@@ -109,8 +114,25 @@ class OpenAICompatibleDiagnoser:
     ) -> Skill:
         if "expected_lift_but_not_detected" not in comparison.errors:
             raise ValueError("no grasp-without-lift diagnosis applies")
-        payload = self._request(self._build_request(prediction, observation, comparison, skill_context))
-        return self._skill_from_payload(payload, observation)
+        request_payload = self._build_request(prediction, observation, comparison, skill_context)
+        request_id = uuid.uuid4().hex
+        payload = self._request(request_payload, request_id=request_id)
+        try:
+            skill = self._skill_from_payload(payload, observation)
+        except LLMUnavailable as exc:
+            self._write_log({
+                "event": "parsed_output_rejected",
+                "request_id": request_id,
+                "error": str(exc),
+                "parsed_output": payload,
+            })
+            raise
+        self._write_log({
+            "event": "parsed_output",
+            "request_id": request_id,
+            "skill": skill.__dict__,
+        })
+        return skill
 
     def _build_request(
         self,
@@ -160,7 +182,16 @@ class OpenAICompatibleDiagnoser:
             "response_format": {"type": "json_object"},
         }
 
-    def _request(self, body: dict[str, Any]) -> dict[str, Any]:
+    def _request(self, body: dict[str, Any], *, request_id: str) -> dict[str, Any]:
+        started = time.perf_counter()
+        self._write_log({
+            "event": "request",
+            "request_id": request_id,
+            "endpoint": self.config.endpoint,
+            "model": self.config.model,
+            "wire_api": self.config.wire_api,
+            "input": body,
+        })
         encoded = json.dumps(body, ensure_ascii=False).encode("utf-8")
         headers = {"Content-Type": "application/json", "Accept": "application/json"}
         if self.config.api_key:
@@ -173,19 +204,69 @@ class OpenAICompatibleDiagnoser:
             detail = ""
             if isinstance(exc, error.HTTPError):
                 detail = exc.read().decode("utf-8", errors="replace")[:1000]
+            self._write_log({
+                "event": "error",
+                "request_id": request_id,
+                "duration_ms": round((time.perf_counter() - started) * 1000, 2),
+                "error": str(exc),
+                "detail": detail,
+            })
             raise LLMUnavailable(f"LLM request failed at {self.config.endpoint}: {exc} {detail}") from exc
         try:
             result = json.loads(raw)
         except json.JSONDecodeError as exc:
+            self._write_log({
+                "event": "error",
+                "request_id": request_id,
+                "duration_ms": round((time.perf_counter() - started) * 1000, 2),
+                "error": "LLM returned invalid JSON envelope",
+                "raw_response": raw[:4000],
+            })
             raise LLMUnavailable("LLM returned invalid JSON envelope") from exc
-        text = _extract_text(result)
+        self._write_log({
+            "event": "response",
+            "request_id": request_id,
+            "duration_ms": round((time.perf_counter() - started) * 1000, 2),
+            "output": result,
+        })
+        try:
+            text = _extract_text(result)
+        except LLMUnavailable as exc:
+            self._write_log({
+                "event": "error",
+                "request_id": request_id,
+                "error": str(exc),
+                "output": result,
+            })
+            raise
         try:
             parsed = json.loads(text)
         except json.JSONDecodeError as exc:
+            self._write_log({
+                "event": "error",
+                "request_id": request_id,
+                "error": "LLM diagnosis was not valid JSON",
+                "raw_output": text[:4000],
+            })
             raise LLMUnavailable(f"LLM diagnosis was not valid JSON: {text[:500]}") from exc
         if not isinstance(parsed, dict):
+            self._write_log({
+                "event": "error",
+                "request_id": request_id,
+                "error": "LLM diagnosis must be a JSON object",
+                "raw_output": text[:4000],
+            })
             raise LLMUnavailable("LLM diagnosis must be a JSON object")
         return parsed
+
+    def _write_log(self, record: dict[str, Any]) -> None:
+        if not self.config.log_path:
+            return
+        path = Path(self.config.log_path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        record = {"timestamp": time.time(), "model": self.config.model, **record}
+        with path.open("a", encoding="utf-8") as stream:
+            stream.write(json.dumps(record, ensure_ascii=False, default=str) + "\n")
 
     @staticmethod
     def _skill_from_payload(payload: dict[str, Any], observation: SceneState) -> Skill:

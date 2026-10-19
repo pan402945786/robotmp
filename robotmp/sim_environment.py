@@ -29,6 +29,7 @@ def _require_pybullet():
 @dataclass
 class SimConfig:
     steps_per_action: int = 24
+    xarm_steps_per_action: int = 48
     time_step_s: float = 1.0 / 240.0
     table_z: float = 0.70
     cube_half_extent: float = 0.05
@@ -36,6 +37,7 @@ class SimConfig:
     realtime: bool = False
     gripper_model: str = "urdf"
     arm_model: str = "none"
+    arm_base_x: float = 0.10
     frame_callback: Callable[[SceneState], None] | None = None
 
 
@@ -104,7 +106,12 @@ class PyBulletPickPlaceEnv:
             return self.observe()
 
         if c.arm_model == "xarm6":
-            self._gripper_id = p.loadURDF("xarm/xarm6_with_gripper.urdf", [0, 0, c.table_z], useFixedBase=True, physicsClientId=self.client)
+            self._gripper_id = p.loadURDF("xarm/xarm6_with_gripper.urdf", [c.arm_base_x, 0, c.table_z], useFixedBase=True, physicsClientId=self.client)
+            # The high-level MVP owns grasp success; disabling uncontrolled
+            # robot-cube contact keeps the visual grasp stable while the
+            # explicit fixed constraint models the acquired object.
+            for link_index in [-1, *range(p.getNumJoints(self._gripper_id, physicsClientId=self.client))]:
+                p.setCollisionFilterPair(self._gripper_id, self._cube_id, link_index, -1, 0, physicsClientId=self.client)
             self._wrist_id = self._gripper_id
             self._arm_joint_ids = list(range(1, 7))
             self._finger_joint_ids = [8]
@@ -227,7 +234,6 @@ class PyBulletPickPlaceEnv:
         )
         for index, (joint_id, target) in enumerate(zip(self._arm_joint_ids, solution[:len(self._arm_joint_ids)])):
             target = min(self._arm_upper[index], max(self._arm_lower[index], target))
-            p.resetJointState(self._gripper_id, joint_id, target, physicsClientId=self.client)
             p.setJointMotorControl2(
                 self._gripper_id,
                 joint_id,
@@ -239,11 +245,11 @@ class PyBulletPickPlaceEnv:
             )
         target = 0.0 if open_gripper else 0.85
         self._gripper_open = open_gripper
-        p.resetJointState(self._gripper_id, self._finger_joint_ids[0], target, physicsClientId=self.client)
         p.setJointMotorControl2(self._gripper_id, self._finger_joint_ids[0], p.POSITION_CONTROL, targetPosition=target, force=50, maxVelocity=2, physicsClientId=self.client)
 
     def _step(self, count: int | None = None) -> None:
-        for _ in range(count or self.config.steps_per_action):
+        default_steps = self.config.xarm_steps_per_action if self.config.arm_model == "xarm6" else self.config.steps_per_action
+        for _ in range(count or default_steps):
             self.p.stepSimulation(physicsClientId=self.client)
             self._time += self.config.time_step_s
             if self.config.frame_callback is not None:
@@ -257,6 +263,46 @@ class PyBulletPickPlaceEnv:
 
     def _contact_detected(self) -> bool:
         return bool(self.p.getClosestPoints(self._cube_id, self._gripper_id, distance=0.01, physicsClientId=self.client))
+
+    def _create_grasp_constraint(self) -> None:
+        """Attach the cube using the measured contact pose, not a fixed offset."""
+        p = self.p
+        cube_position, cube_orientation = p.getBasePositionAndOrientation(self._cube_id, physicsClientId=self.client)
+        if self.config.arm_model in {"arm6dof", "xarm6"}:
+            link_state = p.getLinkState(self._gripper_id, self._ee_link_index, computeForwardKinematics=True, physicsClientId=self.client)
+            parent_position, parent_orientation = link_state[4], link_state[5]
+            inverse_position, inverse_orientation = p.invertTransform(parent_position, parent_orientation)
+            parent_frame_position, parent_frame_orientation = p.multiplyTransforms(
+                inverse_position,
+                inverse_orientation,
+                cube_position,
+                cube_orientation,
+            )
+            self._constraint_id = p.createConstraint(
+                self._gripper_id,
+                self._ee_link_index,
+                self._cube_id,
+                -1,
+                p.JOINT_FIXED,
+                [0, 0, 0],
+                parent_frame_position,
+                [0, 0, 0],
+                parent_frame_orientation,
+                [0, 0, 0, 1],
+                physicsClientId=self.client,
+            )
+            return
+        self._constraint_id = p.createConstraint(
+            self._wrist_id,
+            -1,
+            self._cube_id,
+            -1,
+            p.JOINT_FIXED,
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0],
+            physicsClientId=self.client,
+        )
 
     def observe(self) -> SceneState:
         position = self._cube_position()
@@ -280,7 +326,7 @@ class PyBulletPickPlaceEnv:
         if action == "approach_object":
             self._phase = "approach"
             self._set_gripper_pose([self._object_start[0], self._object_start[1], self.config.table_z + 0.17], open_gripper=True)
-            if self.config.arm_model == "arm6dof":
+            if self.config.arm_model in {"arm6dof", "xarm6"}:
                 self._step()
             self._events.append("object_approached")
         elif action == "close_gripper":
@@ -298,9 +344,14 @@ class PyBulletPickPlaceEnv:
                     self._anomalies.append("object_displaced_before_grasp")
                 self._events.append("object_displaced_before_grasp")
             self._grasped = self.failure_mode not in {FailureMode.MISALIGNED_GRASP, FailureMode.LOW_GRIP_FORCE}
-            if self._grasped and (contact_before_step or self._contact_detected()):
-                parent_link = self._ee_link_index if self.config.arm_model in {"arm6dof", "xarm6"} else -1
-                self._constraint_id = self.p.createConstraint(self._wrist_id, parent_link, self._cube_id, -1, self.p.JOINT_FIXED, [0, 0, 0], [0, 0, -0.12], [0, 0, 0], physicsClientId=self.client)
+            cube_position = self._cube_position()
+            ee_position = self._actual_ee_position() if self.config.arm_model in {"arm6dof", "xarm6"} else self._ee_position
+            grasp_distance = sum((a - b) ** 2 for a, b in zip(cube_position, ee_position)) ** 0.5
+            contact_or_aligned = contact_before_step or self._contact_detected() or (
+                self.config.arm_model == "xarm6" and grasp_distance <= 0.16
+            )
+            if self._grasped and contact_or_aligned:
+                self._create_grasp_constraint()
                 self._events.extend(["gripper_closed", "gripper_contact", "grasp_constraint_created"])
             else:
                 self._grasped = False

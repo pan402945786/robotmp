@@ -53,13 +53,19 @@ class LLMTests(unittest.TestCase):
 
     def test_responses_client_builds_structured_skill(self):
         _Handler.requests.clear()
-        config = LLMConfig(base_url=f"http://127.0.0.1:{self.server.server_port}", model="test-model")
-        store = default_store(Path(tempfile.mkdtemp()) / "skills.json")
+        temp_dir = Path(tempfile.mkdtemp())
+        config = LLMConfig(base_url=f"http://127.0.0.1:{self.server.server_port}", model="test-model", log_path=str(temp_dir / "llm.jsonl"))
+        store = default_store(temp_dir / "skills.json")
         result = run_episode("skills", FailureMode.LOW_GRIP_FORCE, store, diagnoser=OpenAICompatibleDiagnoser(config))
         self.assertEqual(result.status, "recovered")
         self.assertEqual(store.all()[0].name, "llm_grasp_without_lift")
         self.assertEqual(_Handler.requests[0]["model"], "test-model")
         self.assertEqual(_Handler.requests[0]["text"]["format"]["type"], "json_object")
+        records = [json.loads(line) for line in (temp_dir / "llm.jsonl").read_text(encoding="utf-8").splitlines()]
+        self.assertEqual([record["event"] for record in records], ["request", "response", "parsed_output"])
+        self.assertEqual(records[0]["input"]["model"], "test-model")
+        self.assertIn("output", records[1])
+        self.assertEqual(records[2]["skill"]["name"], "llm_grasp_without_lift")
 
     def test_low_level_model_output_is_rejected(self):
         old = _Handler.response_payload
@@ -68,8 +74,9 @@ class LLMTests(unittest.TestCase):
                 "name": "unsafe", "trigger_conditions": ["a"], "facts": ["b"],
                 "hypotheses": ["c"], "prediction_correction": ["joint command: move"], "recovery": ["d"],
             })}]}]}
-            config = LLMConfig(base_url=f"http://127.0.0.1:{self.server.server_port}", model="test-model")
-            store = default_store(Path(tempfile.mkdtemp()) / "skills.json")
+            temp_dir = Path(tempfile.mkdtemp())
+            config = LLMConfig(base_url=f"http://127.0.0.1:{self.server.server_port}", model="test-model", log_path=str(temp_dir / "llm.jsonl"))
+            store = default_store(temp_dir / "skills.json")
             events = []
             result = run_episode("feedback", FailureMode.LOW_GRIP_FORCE, store, diagnoser=OpenAICompatibleDiagnoser(config), observer=events.append)
             self.assertEqual(result.status, "recovered")
