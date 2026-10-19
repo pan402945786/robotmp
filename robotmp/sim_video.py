@@ -8,6 +8,7 @@ import subprocess
 from dataclasses import asdict
 from pathlib import Path
 
+from .diagnosis import LLMConfig, make_diagnoser
 from .environment import FailureMode
 from .runner import default_store, run_episode
 from .sim_environment import PyBulletPickPlaceEnv, SimConfig
@@ -37,7 +38,7 @@ def _ffmpeg_path(explicit: str | None) -> str:
     raise RuntimeError("ffmpeg unavailable; install imageio-ffmpeg or pass --ffmpeg")
 
 
-def render(output: Path, failure_mode: FailureMode, fps: int, font: str | None, ffmpeg: str | None) -> dict:
+def render(output: Path, failure_mode: FailureMode, fps: int, font: str | None, ffmpeg: str | None, diagnoser, llm_model: str) -> dict:
     from PIL import Image, ImageDraw, ImageFont
 
     output.mkdir(parents=True, exist_ok=True)
@@ -62,7 +63,7 @@ def render(output: Path, failure_mode: FailureMode, fps: int, font: str | None, 
 
     events: list[dict] = []
     try:
-        result = run_episode("feedback", failure_mode, default_store(output / "sim_video_skills.json"), observer=events.append, env_factory=factory, close_env=False)
+        result = run_episode("feedback", failure_mode, default_store(output / "sim_video_skills.json"), diagnoser=diagnoser, observer=events.append, env_factory=factory, close_env=False)
         # Capture a final frame after the result event, then close the physics client.
         env = envs[0]
         frames.append((env.capture_rgb(640, 480), asdict(env.observe())))
@@ -72,6 +73,10 @@ def render(output: Path, failure_mode: FailureMode, fps: int, font: str | None, 
 
     if not frames:
         raise RuntimeError("PyBullet produced no camera frames")
+    diagnosis_event = next((event for event in events if event["kind"] == "diagnosis"), None)
+    diagnosis_source = diagnosis_event.get("source", type(diagnoser).__name__) if diagnosis_event else type(diagnoser).__name__
+    diagnosis_label = "LLM / OpenAI" if "OpenAICompatible" in diagnosis_source else "规则诊断"
+    diagnosis_name = diagnosis_event.get("skill", {}).get("name", "—") if diagnosis_event else "—"
 
     width, height = 1280, 720
     ffmpeg_exe = _ffmpeg_path(ffmpeg)
@@ -86,6 +91,7 @@ def render(output: Path, failure_mode: FailureMode, fps: int, font: str | None, 
             draw = ImageDraw.Draw(canvas)
             draw.rectangle((960, 0, width, height), fill="#111e30")
             draw.text((986, 32), "PyBullet 实际仿真", font=font_title, fill="#50d8ee")
+            draw.text((986, 73), f"诊断器: {diagnosis_label}", font=font_small, fill="#bda8ff")
             rows = [
                 ("仿真时间", f"{state['timestamp']:.2f} s", "#50d8ee"),
                 ("物体高度", f"{state['object']['position_m'][2]:.3f} m", "#68e6b2"),
@@ -126,6 +132,10 @@ def render(output: Path, failure_mode: FailureMode, fps: int, font: str | None, 
         "arm_joints": 6,
         "control": "inverse kinematics + POSITION_CONTROL",
         "result": asdict(result),
+        "diagnosis_source": diagnosis_source,
+        "diagnosis_label": diagnosis_label,
+        "diagnosis_skill_name": diagnosis_name,
+        "llm_model": llm_model,
         "trace": str((output / "trace.json").resolve()),
     }
     (output / "trace.json").write_text(json.dumps(events, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -140,6 +150,11 @@ def main() -> None:
     parser.add_argument("--fps", type=int, default=24)
     parser.add_argument("--font")
     parser.add_argument("--ffmpeg")
+    parser.add_argument("--diagnoser", choices=["auto", "rules", "llm"], default="auto")
+    parser.add_argument("--llm-base-url")
+    parser.add_argument("--llm-model")
+    parser.add_argument("--llm-wire-api", choices=["responses", "chat"])
+    parser.add_argument("--llm-timeout", type=float)
     args = parser.parse_args()
     if not 1 <= args.fps <= 60:
         parser.error("--fps must be between 1 and 60")
@@ -148,7 +163,17 @@ def main() -> None:
         import pybullet  # noqa: F401
     except ImportError:
         parser.exit(1, "Run this command with the project's py311 simulation environment.\n")
-    print(json.dumps(render(args.output, FailureMode(args.failure_mode), args.fps, args.font, args.ffmpeg), ensure_ascii=False, indent=2))
+    config = LLMConfig.from_env()
+    if args.llm_base_url:
+        config = LLMConfig(args.llm_base_url, config.model, config.wire_api, config.api_key, config.timeout_seconds)
+    if args.llm_model:
+        config = LLMConfig(config.base_url, args.llm_model, config.wire_api, config.api_key, config.timeout_seconds)
+    if args.llm_wire_api:
+        config = LLMConfig(config.base_url, config.model, args.llm_wire_api, config.api_key, config.timeout_seconds)
+    if args.llm_timeout is not None:
+        config = LLMConfig(config.base_url, config.model, config.wire_api, config.api_key, args.llm_timeout)
+    diagnoser = make_diagnoser(args.diagnoser, config)
+    print(json.dumps(render(args.output, FailureMode(args.failure_mode), args.fps, args.font, args.ffmpeg, diagnoser, config.model), ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

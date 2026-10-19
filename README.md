@@ -75,6 +75,18 @@ $env:ROBOTMP_LLM_TIMEOUT = "90"
   --llm-wire-api responses
 ```
 
+视频入口也支持同样的模型参数：
+
+```powershell
+.\run.cmd -m robotmp.sim_video `
+  --failure-mode low_grip_force `
+  --output artifacts/llm_video `
+  --diagnoser llm `
+  --llm-base-url http://127.0.0.1:15723/v1 `
+  --llm-model gpt-6.1-sol `
+  --llm-wire-api responses
+```
+
 支持的配置变量：
 
 | 变量 | 默认值 | 说明 |
