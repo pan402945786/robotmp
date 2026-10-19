@@ -2,6 +2,8 @@
 
 日期：2026-10-19（Asia/Shanghai）。任务：复用已验证的抓取失败恢复 Skill，抓起方块，在空中竖直画一个完整的 8 字，随后放回桌面。
 
+完整模型调用记录见 [FIGURE_EIGHT_LLM_CALLS.md](FIGURE_EIGHT_LLM_CALLS.md)。已验证的前置和新 Skill 见 [vertical_figure_eight.json](../assets/skills/vertical_figure_eight.json)。以下按开发、真实调用、试验和验证顺序持续记录；每个路点都包含目标位置、实际位置、跟踪误差和抓持状态。
+
 ## 记录 01：检查与开始
 
 - 已检查当前代码：xArm6 已能接近、闭合、检测抬升、失败后重新定位并重抓、放下物体；尚无持物轨迹动作。
@@ -1061,3 +1063,584 @@
 
 
 [2026-10-19T21:38:27+08:00] 大模型 request；request_id=9ced34bd8f58459e88880a1be1476bbf；完整内容已写入 docs\FIGURE_EIGHT_LLM_CALLS.md。
+
+
+[2026-10-19T21:38:39+08:00] 大模型 response；request_id=9ced34bd8f58459e88880a1be1476bbf；完整内容已写入 docs\FIGURE_EIGHT_LLM_CALLS.md。
+
+
+[2026-10-19T21:38:39+08:00] 大模型 parsed_output；request_id=9ced34bd8f58459e88880a1be1476bbf；完整内容已写入 docs\FIGURE_EIGHT_LLM_CALLS.md。
+
+468. 仿真 0.642s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "validation_5", "kind": "diagnosis", "prediction": {"prediction_id": "pred-6", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "skill": {"skill_id": "grasp_without_lift_v1", "name": "grasp_without_lift_candidate_v2", "status": "candidate", "version": 1, "task": "pick_and_place", "object_types": ["cube"], "trigger_conditions": ["Lift is expected during the lift phase.", "The gripper is closed, but the object is reported as not grasped and not lifted.", "The expected object_lift_detected event is absent."], "facts": ["Prediction pred-6 expected a successful lift with confidence 0.9.", "Skill grasp_without_lift_v1 was already applied.", "The cube is visible and reported as not grasped and not lifted, with confidence 0.95.", "The gripper is closed and reports force 0.4; units and adequacy are unspecified.", "The end effector is approximately 0.118 m above the reported cube position.", "No events were reported.", "The comparison reports a medium-severity lift deviation.", "The supplied observation does not establish that the lift window elapsed."], "hypotheses": ["The grasp may have missed or been misaligned.", "The object may have slipped or never been securely retained.", "Grasp contact may have been insufficient; the force reading alone cannot establish this.", "The object may have been displaced before closure, but prior pose evidence is unavailable."], "prediction_correction": ["Treat the predicted lift as unconfirmed, not successful.", "A closed gripper does not establish successful grasp or lift.", "Do not enter transport without positive object-lift evidence.", "Reassess recovery effectiveness because the deviation occurred despite the previously applied skill.", "Keep this candidate unverified until evaluated.", "do_not_enter_transport_phase", "require_lift_evidence_before_transport"], "recovery": ["Withhold transport and place the task in a safe recovery state.", "Refresh object localization and assess nearby obstacles and contact hazards.", "Assess whether the object is free, retained, or entangled before attempting release or regrasp.", "Retry grasp only after safe object access and grasp suitability are established.", "Confirm secure retention and positive lift evidence before permitting transport.", "Request assistance if safe recovery cannot be established or the failure recurs."], "validation_trials": 0, "false_success_rate": null, "recovery_success_rate": null, "prerequisite_skill_ids": [], "parameters": {}, "validation_success_rate": null, "validation_metrics": {}}, "source": "OpenAICompatibleDiagnoser", "物体抓持": false, "实际抬升": false, "事件": []}
+
+469. 仿真 0.642s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "validation_5", "kind": "candidate", "prediction": {"prediction_id": "pred-6", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "skill": {"skill_id": "grasp_without_lift_v1", "name": "grasp_without_lift_candidate_v2", "status": "candidate", "version": 1, "task": "pick_and_place", "object_types": ["cube"], "trigger_conditions": ["Lift is expected during the lift phase.", "The gripper is closed, but the object is reported as not grasped and not lifted.", "The expected object_lift_detected event is absent."], "facts": ["Prediction pred-6 expected a successful lift with confidence 0.9.", "Skill grasp_without_lift_v1 was already applied.", "The cube is visible and reported as not grasped and not lifted, with confidence 0.95.", "The gripper is closed and reports force 0.4; units and adequacy are unspecified.", "The end effector is approximately 0.118 m above the reported cube position.", "No events were reported.", "The comparison reports a medium-severity lift deviation.", "The supplied observation does not establish that the lift window elapsed."], "hypotheses": ["The grasp may have missed or been misaligned.", "The object may have slipped or never been securely retained.", "Grasp contact may have been insufficient; the force reading alone cannot establish this.", "The object may have been displaced before closure, but prior pose evidence is unavailable."], "prediction_correction": ["Treat the predicted lift as unconfirmed, not successful.", "A closed gripper does not establish successful grasp or lift.", "Do not enter transport without positive object-lift evidence.", "Reassess recovery effectiveness because the deviation occurred despite the previously applied skill.", "Keep this candidate unverified until evaluated.", "do_not_enter_transport_phase", "require_lift_evidence_before_transport"], "recovery": ["Withhold transport and place the task in a safe recovery state.", "Refresh object localization and assess nearby obstacles and contact hazards.", "Assess whether the object is free, retained, or entangled before attempting release or regrasp.", "Retry grasp only after safe object access and grasp suitability are established.", "Confirm secure retention and positive lift evidence before permitting transport.", "Request assistance if safe recovery cannot be established or the failure recurs."], "validation_trials": 0, "false_success_rate": null, "recovery_success_rate": null, "prerequisite_skill_ids": [], "parameters": {}, "validation_success_rate": null, "validation_metrics": {}}, "物体抓持": false, "实际抬升": false, "事件": []}
+
+470. 仿真 0.642s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "validation_5", "kind": "action", "prediction": {"prediction_id": "pred-6", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "refresh_object_pose", "物体抓持": false, "实际抬升": false, "事件": ["object_pose_refreshed"]}
+
+471. 仿真 0.842s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "validation_5", "kind": "action", "prediction": {"prediction_id": "pred-6", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "retry_grasp", "物体抓持": false, "实际抬升": false, "事件": ["grasp_retry_requested"]}
+
+472. 仿真 1.042s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "validation_5", "kind": "action", "prediction": {"prediction_id": "pred-6", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "close_gripper", "物体抓持": true, "实际抬升": false, "事件": ["gripper_closed", "gripper_contact", "grasp_constraint_created"]}
+
+473. 仿真 1.242s；物体中心 (0.45265, -0.00063, 0.90524) m；{"trial": "validation_5", "kind": "action", "prediction": {"prediction_id": "pred-6", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "lift_object", "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+474. 仿真 1.242s；物体中心 (0.45265, -0.00063, 0.90524) m；{"trial": "validation_5", "kind": "lift_gate_passed", "prerequisite_skill_id": "grasp_without_lift_v1", "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+475. 仿真 1.742s；物体中心 (0.45201, -0.00063, 1.00523) m；{"trial": "validation_5", "kind": "move_to_crossing", "target": [0.45264591498190104, -0.0006272425879208008, 1.0052366031601594], "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+476. 仿真 2.075s；物体中心 (0.45264, -0.00063, 1.00523) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 0, "target": [0.45264591498190104, -0.0006272425879208008, 1.0052366031601594], "tracking_error_m": 9.825228975071803e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+477. 仿真 2.408s；物体中心 (0.45264, 0.00805, 1.01220) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 1, "target": [0.45264591498190104, 0.008055166295425716, 1.012209062579972], "tracking_error_m": 1.1722698804804077e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+478. 仿真 2.742s；物体中心 (0.45264, 0.01647, 1.01912) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 2, "target": [0.45264591498190104, 0.016473764578362634, 1.0191284573735138], "tracking_error_m": 1.14159202509719e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+479. 仿真 3.075s；物体中心 (0.45264, 0.02437, 1.02593) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 3, "target": [0.45264591498190104, 0.024372757412079196, 1.025942126768361], "tracking_error_m": 1.1833336309672512e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+480. 仿真 3.408s；物体中心 (0.45264, 0.03151, 1.03259) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 4, "target": [0.45264591498190104, 0.03151213789640616, 1.032598214626213], "tracking_error_m": 1.1983316368247924e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+481. 仿真 3.742s；物体中心 (0.45264, 0.03767, 1.03904) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 5, "target": [0.45264591498190104, 0.0376749795680281, 1.0390460640994152], "tracking_error_m": 1.2019591061309376e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+482. 仿真 4.075s；物体中心 (0.45264, 0.04267, 1.04523) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 6, "target": [0.45264591498190104, 0.04267402760130113, 1.0452366031601594], "tracking_error_m": 1.1825229503351622e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+483. 仿真 4.408s；物体中心 (0.45264, 0.04636, 1.05111) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 7, "target": [0.45264591498190104, 0.04635738845137462, 1.051122718068243], "tracking_error_m": 1.1955388824130604e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+484. 仿真 4.742s；物体中心 (0.45264, 0.04861, 1.05665) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 8, "target": [0.45264591498190104, 0.0486131450626896, 1.0566596119350826], "tracking_error_m": 1.1957418835597624e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+485. 仿真 5.075s；物体中心 (0.45264, 0.04937, 1.06180) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 9, "target": [0.45264591498190104, 0.0493727574120792, 1.0618051456550832], "tracking_error_m": 1.1550893406183224e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+486. 仿真 5.408s；物体中心 (0.45264, 0.04861, 1.06651) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 10, "target": [0.45264591498190104, 0.0486131450626896, 1.0665201586096775], "tracking_error_m": 1.1597359135804862e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+487. 仿真 5.742s；物体中心 (0.45264, 0.04636, 1.07076) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 11, "target": [0.45264591498190104, 0.046357388451374625, 1.0707687667032788], "tracking_error_m": 1.1958353455549596e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+488. 仿真 6.075s；物体中心 (0.45264, 0.04267, 1.07451) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 12, "target": [0.45264591498190104, 0.04267402760130114, 1.0745186354629146], "tracking_error_m": 1.1412571619188529e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+489. 仿真 6.408s；物体中心 (0.45264, 0.03768, 1.07773) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 13, "target": [0.45264591498190104, 0.0376749795680281, 1.0777412261230914], "tracking_error_m": 1.0821092255073984e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+490. 仿真 6.742s；物体中心 (0.45264, 0.03151, 1.08040) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 14, "target": [0.45264591498190104, 0.031512137896406174, 1.0804120128230321], "tracking_error_m": 1.1188722986544236e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+491. 仿真 7.075s；物体中心 (0.45264, 0.02438, 1.08250) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 15, "target": [0.45264591498190104, 0.024372757412079216, 1.0825106692632849], "tracking_error_m": 1.0981201972020882e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+492. 仿真 7.408s；物体中心 (0.45264, 0.01648, 1.08401) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 16, "target": [0.45264591498190104, 0.01647376457836264, 1.084021223401136], "tracking_error_m": 1.1311737799280377e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+493. 仿真 7.742s；物体中心 (0.45264, 0.00806, 1.08493) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 17, "target": [0.45264591498190104, 0.008055166295425714, 1.084932179007499], "tracking_error_m": 1.1318139864966431e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+494. 仿真 8.075s；物体中心 (0.45264, -0.00062, 1.08523) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 18, "target": [0.45264591498190104, -0.0006272425879207947, 1.0852366031601595], "tracking_error_m": 1.0413441285878392e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+495. 仿真 8.408s；物体中心 (0.45265, -0.00930, 1.08493) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 19, "target": [0.45264591498190104, -0.009309651471267302, 1.084932179007499], "tracking_error_m": 1.0559154254763748e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+496. 仿真 8.742s；物体中心 (0.45265, -0.01772, 1.08402) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 20, "target": [0.45264591498190104, -0.017728249754204235, 1.084021223401136], "tracking_error_m": 9.336175789837343e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+497. 仿真 9.075s；物体中心 (0.45265, -0.02562, 1.08252) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 21, "target": [0.45264591498190104, -0.02562724258792081, 1.0825106692632849], "tracking_error_m": 9.446146197652011e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+498. 仿真 9.408s；物体中心 (0.45265, -0.03276, 1.08042) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 22, "target": [0.45264591498190104, -0.03276662307224775, 1.0804120128230321], "tracking_error_m": 8.8119922385219e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+499. 仿真 9.742s；物体中心 (0.45265, -0.03893, 1.07775) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 23, "target": [0.45264591498190104, -0.0389294647438697, 1.0777412261230914], "tracking_error_m": 8.3751925769035e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+500. 仿真 10.075s；物体中心 (0.45265, -0.04393, 1.07452) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 24, "target": [0.45264591498190104, -0.04392851277714273, 1.0745186354629146], "tracking_error_m": 8.296758761531722e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+501. 仿真 10.408s；物体中心 (0.45265, -0.04761, 1.07077) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 25, "target": [0.45264591498190104, -0.04761187362721623, 1.0707687667032788], "tracking_error_m": 8.58921841059014e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+502. 仿真 10.742s；物体中心 (0.45265, -0.04987, 1.06653) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 26, "target": [0.45264591498190104, -0.049867630238531205, 1.0665201586096775], "tracking_error_m": 8.552919869286601e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+503. 仿真 11.075s；物体中心 (0.45265, -0.05063, 1.06181) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 27, "target": [0.45264591498190104, -0.050627242587920805, 1.0618051456550832], "tracking_error_m": 8.886087807579407e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+504. 仿真 11.408s；物体中心 (0.45265, -0.04987, 1.05667) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 28, "target": [0.45264591498190104, -0.04986763023853121, 1.0566596119350826], "tracking_error_m": 8.903830642524458e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+505. 仿真 11.742s；物体中心 (0.45265, -0.04761, 1.05113) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 29, "target": [0.45264591498190104, -0.04761187362721622, 1.051122718068243], "tracking_error_m": 9.33375511517905e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+506. 仿真 12.075s；物体中心 (0.45265, -0.04393, 1.04524) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 30, "target": [0.45264591498190104, -0.043928512777142756, 1.0452366031601594], "tracking_error_m": 9.491967114500645e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+507. 仿真 12.408s；物体中心 (0.45265, -0.03893, 1.03905) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 31, "target": [0.45264591498190104, -0.03892946474386971, 1.0390460640994152], "tracking_error_m": 9.43167635753271e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+508. 仿真 12.742s；物体中心 (0.45265, -0.03277, 1.03260) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 32, "target": [0.45264591498190104, -0.032766623072247786, 1.032598214626213], "tracking_error_m": 9.19036646058306e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+509. 仿真 13.075s；物体中心 (0.45265, -0.02563, 1.02595) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 33, "target": [0.45264591498190104, -0.025627242587920786, 1.025942126768361], "tracking_error_m": 9.609982218292752e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+510. 仿真 13.408s；物体中心 (0.45265, -0.01773, 1.01913) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 34, "target": [0.45264591498190104, -0.017728249754204232, 1.0191284573735138], "tracking_error_m": 9.529714812389023e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+511. 仿真 13.742s；物体中心 (0.45265, -0.00931, 1.01221) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 35, "target": [0.45264591498190104, -0.00930965147126732, 1.012209062579972], "tracking_error_m": 9.24346807634351e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+512. 仿真 14.075s；物体中心 (0.45265, -0.00063, 1.00524) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 36, "target": [0.45264591498190104, -0.000627242587920813, 1.0052366031601594], "tracking_error_m": 9.410107499424716e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+513. 仿真 14.408s；物体中心 (0.45265, 0.00805, 0.99827) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 37, "target": [0.45264591498190104, 0.008055166295425695, 0.9982641437403468], "tracking_error_m": 8.865652875235118e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+514. 仿真 14.742s；物体中心 (0.45265, 0.01647, 0.99135) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 38, "target": [0.45264591498190104, 0.016473764578362603, 0.991344748946805], "tracking_error_m": 9.656633475830879e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+515. 仿真 15.075s；物体中心 (0.45265, 0.02437, 0.98454) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 39, "target": [0.45264591498190104, 0.024372757412079164, 0.9845310795519577], "tracking_error_m": 9.33024930354992e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+516. 仿真 15.408s；物体中心 (0.45265, 0.03151, 0.97788) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 40, "target": [0.45264591498190104, 0.03151213789640616, 0.9778749916941059], "tracking_error_m": 9.699572427609614e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+517. 仿真 15.742s；物体中心 (0.45265, 0.03767, 0.97143) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 41, "target": [0.45264591498190104, 0.03767497956802806, 0.9714271422209035], "tracking_error_m": 9.24214939319394e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+518. 仿真 16.075s；物体中心 (0.45265, 0.04267, 0.96524) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 42, "target": [0.45264591498190104, 0.042674027601301144, 0.9652366031601594], "tracking_error_m": 8.895601798084327e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+519. 仿真 16.408s；物体中心 (0.45265, 0.04635, 0.95936) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 43, "target": [0.45264591498190104, 0.046357388451374604, 0.9593504882520757], "tracking_error_m": 8.020568334976511e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+520. 仿真 16.742s；物体中心 (0.45265, 0.04861, 0.95382) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 44, "target": [0.45264591498190104, 0.04861314506268959, 0.9538135943852363], "tracking_error_m": 8.210137813706943e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+521. 仿真 17.075s；物体中心 (0.45265, 0.04937, 0.94867) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 45, "target": [0.45264591498190104, 0.0493727574120792, 0.9486680606652356], "tracking_error_m": 7.93281425994093e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+522. 仿真 17.408s；物体中心 (0.45265, 0.04861, 0.94396) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 46, "target": [0.45264591498190104, 0.04861314506268961, 0.9439530477106411], "tracking_error_m": 7.611136645372591e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+523. 仿真 17.742s；物体中心 (0.45265, 0.04636, 0.93971) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 47, "target": [0.45264591498190104, 0.0463573884513746, 0.93970443961704], "tracking_error_m": 8.108692544251485e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+524. 仿真 18.075s；物体中心 (0.45265, 0.04268, 0.93596) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 48, "target": [0.45264591498190104, 0.04267402760130116, 0.9359545708574043], "tracking_error_m": 8.498180689987163e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+525. 仿真 18.408s；物体中心 (0.45265, 0.03768, 0.93274) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 49, "target": [0.45264591498190104, 0.03767497956802814, 0.9327319801972274], "tracking_error_m": 9.51483503174602e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+526. 仿真 18.742s；物体中心 (0.45265, 0.03152, 0.93006) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 50, "target": [0.45264591498190104, 0.03151213789640615, 0.9300611934972867], "tracking_error_m": 9.574993091253927e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+527. 仿真 19.075s；物体中心 (0.45265, 0.02438, 0.92796) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 51, "target": [0.45264591498190104, 0.02437275741207919, 0.9279625370570339], "tracking_error_m": 9.657086129582539e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+528. 仿真 19.408s；物体中心 (0.45265, 0.01648, 0.92645) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 52, "target": [0.45264591498190104, 0.016473764578362634, 0.9264519829191827], "tracking_error_m": 9.499928885995933e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+529. 仿真 19.742s；物体中心 (0.45265, 0.00807, 0.92554) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 53, "target": [0.45264591498190104, 0.008055166295425725, 0.9255410273128197], "tracking_error_m": 1.0016639000704845e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+530. 仿真 20.075s；物体中心 (0.45265, -0.00062, 0.92524) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 54, "target": [0.45264591498190104, -0.0006272425879207824, 0.9252366031601594], "tracking_error_m": 1.0365636031915278e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+531. 仿真 20.408s；物体中心 (0.45264, -0.00930, 0.92554) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 55, "target": [0.45264591498190104, -0.00930965147126729, 0.9255410273128197], "tracking_error_m": 1.0533410525326592e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+532. 仿真 20.742s；物体中心 (0.45264, -0.01772, 0.92645) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 56, "target": [0.45264591498190104, -0.017728249754204204, 0.9264519829191827], "tracking_error_m": 1.0506599315497056e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+533. 仿真 21.075s；物体中心 (0.45264, -0.02562, 0.92796) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 57, "target": [0.45264591498190104, -0.025627242587920762, 0.9279625370570339], "tracking_error_m": 1.0083201997372576e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+534. 仿真 21.408s；物体中心 (0.45264, -0.03276, 0.93006) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 58, "target": [0.45264591498190104, -0.03276662307224779, 0.9300611934972867], "tracking_error_m": 1.0558042127304782e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+535. 仿真 21.742s；物体中心 (0.45264, -0.03892, 0.93273) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 59, "target": [0.45264591498190104, -0.038929464743869664, 0.9327319801972274], "tracking_error_m": 9.964669037316951e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+536. 仿真 22.075s；物体中心 (0.45264, -0.04392, 0.93595) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 60, "target": [0.45264591498190104, -0.04392851277714269, 0.9359545708574043], "tracking_error_m": 1.0012383667408977e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+537. 仿真 22.408s；物体中心 (0.45264, -0.04761, 0.93970) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 61, "target": [0.45264591498190104, -0.04761187362721623, 0.9397044396170401], "tracking_error_m": 9.98123250903834e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+538. 仿真 22.742s；物体中心 (0.45264, -0.04986, 0.94395) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 62, "target": [0.45264591498190104, -0.049867630238531205, 0.9439530477106411], "tracking_error_m": 1.0051295895945696e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+539. 仿真 23.075s；物体中心 (0.45264, -0.05063, 0.94866) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 63, "target": [0.45264591498190104, -0.050627242587920805, 0.9486680606652356], "tracking_error_m": 1.060270810759323e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+540. 仿真 23.408s；物体中心 (0.45264, -0.04987, 0.95381) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 64, "target": [0.45264591498190104, -0.04986763023853121, 0.9538135943852363], "tracking_error_m": 1.0222677982051398e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+541. 仿真 23.742s；物体中心 (0.45264, -0.04761, 0.95934) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 65, "target": [0.45264591498190104, -0.047611873627216236, 0.9593504882520757], "tracking_error_m": 1.0484390290833198e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+542. 仿真 24.075s；物体中心 (0.45264, -0.04393, 0.96523) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 66, "target": [0.45264591498190104, -0.04392851277714272, 0.9652366031601595], "tracking_error_m": 1.0386497153910475e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+543. 仿真 24.408s；物体中心 (0.45264, -0.03893, 0.97142) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 67, "target": [0.45264591498190104, -0.03892946474386975, 0.9714271422209034], "tracking_error_m": 1.0633010653884269e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+544. 仿真 24.742s；物体中心 (0.45264, -0.03277, 0.97787) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 68, "target": [0.45264591498190104, -0.03276662307224776, 0.9778749916941059], "tracking_error_m": 1.1026288180352668e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+545. 仿真 25.075s；物体中心 (0.45264, -0.02563, 0.98452) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 69, "target": [0.45264591498190104, -0.025627242587920797, 0.9845310795519577], "tracking_error_m": 1.0788283690083127e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+546. 仿真 25.408s；物体中心 (0.45264, -0.01773, 0.99134) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 70, "target": [0.45264591498190104, -0.017728249754204246, 0.9913447489468049], "tracking_error_m": 1.1155896547512084e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+547. 仿真 25.742s；物体中心 (0.45264, -0.00931, 0.99826) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 71, "target": [0.45264591498190104, -0.009309651471267333, 0.9982641437403468], "tracking_error_m": 1.0847454228936114e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+548. 仿真 26.075s；物体中心 (0.45264, -0.00063, 1.00523) m；{"trial": "validation_5", "kind": "figure_eight_waypoint", "index": 72, "target": [0.45264591498190104, -0.0006272425879208253, 1.0052366031601594], "tracking_error_m": 1.1075575461633367e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+549. 仿真 26.075s；物体中心 (0.45264, -0.00063, 1.00523) m；{"trial": "validation_5", "kind": "figure_eight_evaluation", "metrics": {"waypoints": 73, "max_tracking_error_m": 1.2019591061309376e-05, "rms_tracking_error_m": 1.0116421539797707e-05, "closure_error_m": 4.412914100216481e-06, "midpoint_crossing_error_m": 9.410107499429497e-06, "plane_error_m": 8.59271740649703e-06, "upper_loop_area_m2": 0.005316280373141388, "lower_loop_area_m2": -0.005316268112438575, "vertical_span_m": 0.1599971706759794, "horizontal_span_m": 0.09999990322861345, "passed": true, "samples": 5960, "min_clearance_m": 0.15596467740279674, "grasp_retained": true}, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+550. 仿真 26.575s；物体中心 (0.45264, -0.00063, 0.90524) m；{"trial": "validation_5", "kind": "return_to_lift_height", "target": [0.45264591498190104, -0.0006272425879208008, 0.9052366031601594], "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+551. 仿真 26.775s；物体中心 (0.50177, -0.00063, 0.76742) m；{"trial": "validation_5", "kind": "action", "prediction": {"prediction_id": "pred-6", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "move_to_target", "物体抓持": true, "实际抬升": false, "事件": ["object_at_target"]}
+
+552. 仿真 26.975s；物体中心 (0.49987, -0.00063, 0.74996) m；{"trial": "validation_5", "kind": "action", "prediction": {"prediction_id": "pred-6", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "release_object", "物体抓持": false, "实际抬升": false, "事件": ["object_released"]}
+
+553. 仿真 26.975s；物体中心 (0.49987, -0.00063, 0.74996) m；{"trial": "validation_5", "kind": "result", "prediction": {"prediction_id": "pred-6", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "result": {"mode": "skills", "failure_mode": "low_grip_force", "status": "recovered", "false_success": false, "recovered": true, "applied_skill_ids": ["grasp_without_lift_v1"]}, "物体抓持": false, "实际抬升": false, "事件": ["object_released"]}
+
+554. 仿真 27.975s；物体中心 (0.49987, -0.00061, 0.74999) m；{"trial": "validation_5", "kind": "placement_evaluation", "metrics": {"drift_m": 3.128409276385285e-05, "speed_m_s": 1.2362729741205837e-05, "target_error_m": 0.0006261867748050345, "released": true, "height_error_m": 1.1393495004896614e-05, "passed": true}, "物体抓持": false, "实际抬升": false, "事件": ["placement_settled"]}
+
+
+[2026-10-19T21:38:40+08:00] validation_5 结束：{"label": "validation_5", "failure_mode": "low_grip_force", "parameters": {"half_width_m": 0.05, "half_height_m": 0.08, "center_raise_m": 0.1, "samples": 72, "steps_per_waypoint": 80}, "trajectory": {"waypoints": 73, "max_tracking_error_m": 1.2019591061309376e-05, "rms_tracking_error_m": 1.0116421539797707e-05, "closure_error_m": 4.412914100216481e-06, "midpoint_crossing_error_m": 9.410107499429497e-06, "plane_error_m": 8.59271740649703e-06, "upper_loop_area_m2": 0.005316280373141388, "lower_loop_area_m2": -0.005316268112438575, "vertical_span_m": 0.1599971706759794, "horizontal_span_m": 0.09999990322861345, "passed": true, "samples": 5960, "min_clearance_m": 0.15596467740279674, "grasp_retained": true}, "placement": {"drift_m": 3.128409276385285e-05, "speed_m_s": 1.2362729741205837e-05, "target_error_m": 0.0006261867748050345, "released": true, "height_error_m": 1.1393495004896614e-05, "passed": true}, "error": null, "applied_skill_ids": ["grasp_without_lift_v1"], "diagnosis_fallback": false, "result": {"mode": "skills", "failure_mode": "low_grip_force", "status": "recovered", "false_success": false, "recovered": true, "applied_skill_ids": ["grasp_without_lift_v1"]}, "passed": true}
+
+
+[2026-10-19T21:38:40+08:00] 开始 validation_6，故障=misaligned_grasp，参数={"half_width_m": 0.05, "half_height_m": 0.08, "center_raise_m": 0.1, "samples": 72, "steps_per_waypoint": 80}
+
+555. 仿真 0.042s；物体中心 (0.45000, -0.00000, 0.74991) m；{"trial": "validation_6", "kind": "reset", "prediction": null, "comparison": null, "物体抓持": false, "实际抬升": false, "事件": []}
+
+556. 仿真 0.042s；物体中心 (0.45000, -0.00000, 0.74991) m；{"trial": "validation_6", "kind": "retrieve", "prediction": null, "comparison": null, "skills": [{"skill_id": "grasp_without_lift_v1", "name": "grasp_without_lift", "status": "verified", "version": 1, "task": "pick_and_place", "object_types": ["cube"], "trigger_conditions": ["gripper_closed == true", "lift_window_elapsed == true", "object_lifted == false"], "facts": ["gripper_closed_does_not_imply_grasp_success", "object_lift_was_not_detected", "object_may_have_been_displaced_before_grasp"], "hypotheses": ["grasp_point_may_be_misaligned", "insufficient_grip_force"], "prediction_correction": ["do_not_enter_transport_phase", "require_lift_evidence_before_transport"], "recovery": ["stop_transport_motion", "refresh_object_pose", "retry_grasp_if_safe"], "validation_trials": 20, "false_success_rate": 0.0, "recovery_success_rate": 1.0, "prerequisite_skill_ids": [], "parameters": {}, "validation_success_rate": null, "validation_metrics": {}}], "物体抓持": false, "实际抬升": false, "事件": []}
+
+557. 仿真 0.242s；物体中心 (0.45000, 0.00000, 0.74999) m；{"trial": "validation_6", "kind": "action", "prediction": null, "comparison": null, "action": "approach_object", "物体抓持": false, "实际抬升": false, "事件": ["object_approached"]}
+
+558. 仿真 0.442s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "validation_6", "kind": "action", "prediction": null, "comparison": null, "action": "close_gripper", "物体抓持": false, "实际抬升": false, "事件": ["gripper_closed", "gripper_contact"]}
+
+559. 仿真 0.442s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "validation_6", "kind": "prediction", "prediction": {"prediction_id": "pred-7", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": null, "物体抓持": false, "实际抬升": false, "事件": ["gripper_closed", "gripper_contact"]}
+
+560. 仿真 0.642s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "validation_6", "kind": "action", "prediction": {"prediction_id": "pred-7", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": null, "action": "lift_object", "物体抓持": false, "实际抬升": false, "事件": []}
+
+561. 仿真 0.642s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "validation_6", "kind": "comparison", "prediction": {"prediction_id": "pred-7", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "物体抓持": false, "实际抬升": false, "事件": []}
+
+
+[2026-10-19T21:38:40+08:00] 大模型 request；request_id=6fcd67869a4f4865a8fc9a26a4f03a4b；完整内容已写入 docs\FIGURE_EIGHT_LLM_CALLS.md。
+
+
+[2026-10-19T21:38:54+08:00] 大模型 response；request_id=6fcd67869a4f4865a8fc9a26a4f03a4b；完整内容已写入 docs\FIGURE_EIGHT_LLM_CALLS.md。
+
+
+[2026-10-19T21:38:54+08:00] 大模型 parsed_output；request_id=6fcd67869a4f4865a8fc9a26a4f03a4b；完整内容已写入 docs\FIGURE_EIGHT_LLM_CALLS.md。
+
+562. 仿真 0.642s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "validation_6", "kind": "diagnosis", "prediction": {"prediction_id": "pred-7", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "skill": {"skill_id": "grasp_without_lift_v1", "name": "grasp_without_lift_candidate_v2", "status": "candidate", "version": 1, "task": "pick_and_place", "object_types": ["cube"], "trigger_conditions": ["A lift action predicts positive object lift evidence.", "The gripper is closed.", "The object is reported not grasped and not lifted.", "The expected object_lift_detected event is absent."], "facts": ["The observed phase is lift.", "The cube is visible with observation confidence 0.95.", "The cube is reported grasped=false and lifted=false.", "The gripper is closed with reported force 1.0.", "The end effector is approximately 0.118 m above the cube's reported position.", "No events were reported.", "The comparison reports a medium-severity lift deviation.", "Skill grasp_without_lift_v1 was applied, but lift evidence remains absent."], "hypotheses": ["The grasp may have missed the cube because of misalignment.", "The cube may have slipped or failed to become secured.", "Object pose uncertainty or displacement may have affected the grasp.", "Lift detection may be delayed or incorrect."], "prediction_correction": ["Treat this attempt as an unconfirmed grasp with no confirmed lift.", "Do not infer grasp success from gripper closure or reported force alone.", "Do not infer object lift from end-effector height alone.", "Do not enter transport without positive object lift evidence.", "Do not assume that a previously verified skill succeeded in this attempt.", "do_not_enter_transport_phase", "require_lift_evidence_before_transport"], "recovery": ["Withhold transport until positive lift evidence is available.", "Reassess scene safety and object support before further interaction.", "Refresh the cube pose and verify its grasp state.", "Assess grasp alignment and object accessibility.", "Consider another grasp attempt only if the scene and object state are safe.", "Require confirmed grasp and positive lift evidence before transport.", "Request assistance if safe recovery cannot be established."], "validation_trials": 0, "false_success_rate": null, "recovery_success_rate": null, "prerequisite_skill_ids": [], "parameters": {}, "validation_success_rate": null, "validation_metrics": {}}, "source": "OpenAICompatibleDiagnoser", "物体抓持": false, "实际抬升": false, "事件": []}
+
+563. 仿真 0.642s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "validation_6", "kind": "candidate", "prediction": {"prediction_id": "pred-7", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "skill": {"skill_id": "grasp_without_lift_v1", "name": "grasp_without_lift_candidate_v2", "status": "candidate", "version": 1, "task": "pick_and_place", "object_types": ["cube"], "trigger_conditions": ["A lift action predicts positive object lift evidence.", "The gripper is closed.", "The object is reported not grasped and not lifted.", "The expected object_lift_detected event is absent."], "facts": ["The observed phase is lift.", "The cube is visible with observation confidence 0.95.", "The cube is reported grasped=false and lifted=false.", "The gripper is closed with reported force 1.0.", "The end effector is approximately 0.118 m above the cube's reported position.", "No events were reported.", "The comparison reports a medium-severity lift deviation.", "Skill grasp_without_lift_v1 was applied, but lift evidence remains absent."], "hypotheses": ["The grasp may have missed the cube because of misalignment.", "The cube may have slipped or failed to become secured.", "Object pose uncertainty or displacement may have affected the grasp.", "Lift detection may be delayed or incorrect."], "prediction_correction": ["Treat this attempt as an unconfirmed grasp with no confirmed lift.", "Do not infer grasp success from gripper closure or reported force alone.", "Do not infer object lift from end-effector height alone.", "Do not enter transport without positive object lift evidence.", "Do not assume that a previously verified skill succeeded in this attempt.", "do_not_enter_transport_phase", "require_lift_evidence_before_transport"], "recovery": ["Withhold transport until positive lift evidence is available.", "Reassess scene safety and object support before further interaction.", "Refresh the cube pose and verify its grasp state.", "Assess grasp alignment and object accessibility.", "Consider another grasp attempt only if the scene and object state are safe.", "Require confirmed grasp and positive lift evidence before transport.", "Request assistance if safe recovery cannot be established."], "validation_trials": 0, "false_success_rate": null, "recovery_success_rate": null, "prerequisite_skill_ids": [], "parameters": {}, "validation_success_rate": null, "validation_metrics": {}}, "物体抓持": false, "实际抬升": false, "事件": []}
+
+564. 仿真 0.642s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "validation_6", "kind": "action", "prediction": {"prediction_id": "pred-7", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "refresh_object_pose", "物体抓持": false, "实际抬升": false, "事件": ["object_pose_refreshed"]}
+
+565. 仿真 0.842s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "validation_6", "kind": "action", "prediction": {"prediction_id": "pred-7", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "retry_grasp", "物体抓持": false, "实际抬升": false, "事件": ["grasp_retry_requested"]}
+
+566. 仿真 1.042s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "validation_6", "kind": "action", "prediction": {"prediction_id": "pred-7", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "close_gripper", "物体抓持": true, "实际抬升": false, "事件": ["gripper_closed", "gripper_contact", "grasp_constraint_created"]}
+
+567. 仿真 1.242s；物体中心 (0.45265, -0.00063, 0.90524) m；{"trial": "validation_6", "kind": "action", "prediction": {"prediction_id": "pred-7", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "lift_object", "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+568. 仿真 1.242s；物体中心 (0.45265, -0.00063, 0.90524) m；{"trial": "validation_6", "kind": "lift_gate_passed", "prerequisite_skill_id": "grasp_without_lift_v1", "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+569. 仿真 1.742s；物体中心 (0.45201, -0.00063, 1.00523) m；{"trial": "validation_6", "kind": "move_to_crossing", "target": [0.45264591498190104, -0.0006272425879208008, 1.0052366031601594], "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+570. 仿真 2.075s；物体中心 (0.45264, -0.00063, 1.00523) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 0, "target": [0.45264591498190104, -0.0006272425879208008, 1.0052366031601594], "tracking_error_m": 9.825228975071803e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+571. 仿真 2.408s；物体中心 (0.45264, 0.00805, 1.01220) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 1, "target": [0.45264591498190104, 0.008055166295425716, 1.012209062579972], "tracking_error_m": 1.1722698804804077e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+572. 仿真 2.742s；物体中心 (0.45264, 0.01647, 1.01912) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 2, "target": [0.45264591498190104, 0.016473764578362634, 1.0191284573735138], "tracking_error_m": 1.14159202509719e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+573. 仿真 3.075s；物体中心 (0.45264, 0.02437, 1.02593) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 3, "target": [0.45264591498190104, 0.024372757412079196, 1.025942126768361], "tracking_error_m": 1.1833336309672512e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+574. 仿真 3.408s；物体中心 (0.45264, 0.03151, 1.03259) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 4, "target": [0.45264591498190104, 0.03151213789640616, 1.032598214626213], "tracking_error_m": 1.1983316368247924e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+575. 仿真 3.742s；物体中心 (0.45264, 0.03767, 1.03904) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 5, "target": [0.45264591498190104, 0.0376749795680281, 1.0390460640994152], "tracking_error_m": 1.2019591061309376e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+576. 仿真 4.075s；物体中心 (0.45264, 0.04267, 1.04523) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 6, "target": [0.45264591498190104, 0.04267402760130113, 1.0452366031601594], "tracking_error_m": 1.1825229503351622e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+577. 仿真 4.408s；物体中心 (0.45264, 0.04636, 1.05111) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 7, "target": [0.45264591498190104, 0.04635738845137462, 1.051122718068243], "tracking_error_m": 1.1955388824130604e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+578. 仿真 4.742s；物体中心 (0.45264, 0.04861, 1.05665) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 8, "target": [0.45264591498190104, 0.0486131450626896, 1.0566596119350826], "tracking_error_m": 1.1957418835597624e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+579. 仿真 5.075s；物体中心 (0.45264, 0.04937, 1.06180) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 9, "target": [0.45264591498190104, 0.0493727574120792, 1.0618051456550832], "tracking_error_m": 1.1550893406183224e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+580. 仿真 5.408s；物体中心 (0.45264, 0.04861, 1.06651) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 10, "target": [0.45264591498190104, 0.0486131450626896, 1.0665201586096775], "tracking_error_m": 1.1597359135804862e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+581. 仿真 5.742s；物体中心 (0.45264, 0.04636, 1.07076) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 11, "target": [0.45264591498190104, 0.046357388451374625, 1.0707687667032788], "tracking_error_m": 1.1958353455549596e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+582. 仿真 6.075s；物体中心 (0.45264, 0.04267, 1.07451) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 12, "target": [0.45264591498190104, 0.04267402760130114, 1.0745186354629146], "tracking_error_m": 1.1412571619188529e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+583. 仿真 6.408s；物体中心 (0.45264, 0.03768, 1.07773) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 13, "target": [0.45264591498190104, 0.0376749795680281, 1.0777412261230914], "tracking_error_m": 1.0821092255073984e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+584. 仿真 6.742s；物体中心 (0.45264, 0.03151, 1.08040) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 14, "target": [0.45264591498190104, 0.031512137896406174, 1.0804120128230321], "tracking_error_m": 1.1188722986544236e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+585. 仿真 7.075s；物体中心 (0.45264, 0.02438, 1.08250) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 15, "target": [0.45264591498190104, 0.024372757412079216, 1.0825106692632849], "tracking_error_m": 1.0981201972020882e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+586. 仿真 7.408s；物体中心 (0.45264, 0.01648, 1.08401) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 16, "target": [0.45264591498190104, 0.01647376457836264, 1.084021223401136], "tracking_error_m": 1.1311737799280377e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+587. 仿真 7.742s；物体中心 (0.45264, 0.00806, 1.08493) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 17, "target": [0.45264591498190104, 0.008055166295425714, 1.084932179007499], "tracking_error_m": 1.1318139864966431e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+588. 仿真 8.075s；物体中心 (0.45264, -0.00062, 1.08523) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 18, "target": [0.45264591498190104, -0.0006272425879207947, 1.0852366031601595], "tracking_error_m": 1.0413441285878392e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+589. 仿真 8.408s；物体中心 (0.45265, -0.00930, 1.08493) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 19, "target": [0.45264591498190104, -0.009309651471267302, 1.084932179007499], "tracking_error_m": 1.0559154254763748e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+590. 仿真 8.742s；物体中心 (0.45265, -0.01772, 1.08402) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 20, "target": [0.45264591498190104, -0.017728249754204235, 1.084021223401136], "tracking_error_m": 9.336175789837343e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+591. 仿真 9.075s；物体中心 (0.45265, -0.02562, 1.08252) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 21, "target": [0.45264591498190104, -0.02562724258792081, 1.0825106692632849], "tracking_error_m": 9.446146197652011e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+592. 仿真 9.408s；物体中心 (0.45265, -0.03276, 1.08042) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 22, "target": [0.45264591498190104, -0.03276662307224775, 1.0804120128230321], "tracking_error_m": 8.8119922385219e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+593. 仿真 9.742s；物体中心 (0.45265, -0.03893, 1.07775) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 23, "target": [0.45264591498190104, -0.0389294647438697, 1.0777412261230914], "tracking_error_m": 8.3751925769035e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+594. 仿真 10.075s；物体中心 (0.45265, -0.04393, 1.07452) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 24, "target": [0.45264591498190104, -0.04392851277714273, 1.0745186354629146], "tracking_error_m": 8.296758761531722e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+595. 仿真 10.408s；物体中心 (0.45265, -0.04761, 1.07077) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 25, "target": [0.45264591498190104, -0.04761187362721623, 1.0707687667032788], "tracking_error_m": 8.58921841059014e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+596. 仿真 10.742s；物体中心 (0.45265, -0.04987, 1.06653) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 26, "target": [0.45264591498190104, -0.049867630238531205, 1.0665201586096775], "tracking_error_m": 8.552919869286601e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+597. 仿真 11.075s；物体中心 (0.45265, -0.05063, 1.06181) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 27, "target": [0.45264591498190104, -0.050627242587920805, 1.0618051456550832], "tracking_error_m": 8.886087807579407e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+598. 仿真 11.408s；物体中心 (0.45265, -0.04987, 1.05667) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 28, "target": [0.45264591498190104, -0.04986763023853121, 1.0566596119350826], "tracking_error_m": 8.903830642524458e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+599. 仿真 11.742s；物体中心 (0.45265, -0.04761, 1.05113) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 29, "target": [0.45264591498190104, -0.04761187362721622, 1.051122718068243], "tracking_error_m": 9.33375511517905e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+600. 仿真 12.075s；物体中心 (0.45265, -0.04393, 1.04524) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 30, "target": [0.45264591498190104, -0.043928512777142756, 1.0452366031601594], "tracking_error_m": 9.491967114500645e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+601. 仿真 12.408s；物体中心 (0.45265, -0.03893, 1.03905) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 31, "target": [0.45264591498190104, -0.03892946474386971, 1.0390460640994152], "tracking_error_m": 9.43167635753271e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+602. 仿真 12.742s；物体中心 (0.45265, -0.03277, 1.03260) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 32, "target": [0.45264591498190104, -0.032766623072247786, 1.032598214626213], "tracking_error_m": 9.19036646058306e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+603. 仿真 13.075s；物体中心 (0.45265, -0.02563, 1.02595) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 33, "target": [0.45264591498190104, -0.025627242587920786, 1.025942126768361], "tracking_error_m": 9.609982218292752e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+604. 仿真 13.408s；物体中心 (0.45265, -0.01773, 1.01913) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 34, "target": [0.45264591498190104, -0.017728249754204232, 1.0191284573735138], "tracking_error_m": 9.529714812389023e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+605. 仿真 13.742s；物体中心 (0.45265, -0.00931, 1.01221) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 35, "target": [0.45264591498190104, -0.00930965147126732, 1.012209062579972], "tracking_error_m": 9.24346807634351e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+606. 仿真 14.075s；物体中心 (0.45265, -0.00063, 1.00524) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 36, "target": [0.45264591498190104, -0.000627242587920813, 1.0052366031601594], "tracking_error_m": 9.410107499424716e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+607. 仿真 14.408s；物体中心 (0.45265, 0.00805, 0.99827) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 37, "target": [0.45264591498190104, 0.008055166295425695, 0.9982641437403468], "tracking_error_m": 8.865652875235118e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+608. 仿真 14.742s；物体中心 (0.45265, 0.01647, 0.99135) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 38, "target": [0.45264591498190104, 0.016473764578362603, 0.991344748946805], "tracking_error_m": 9.656633475830879e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+609. 仿真 15.075s；物体中心 (0.45265, 0.02437, 0.98454) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 39, "target": [0.45264591498190104, 0.024372757412079164, 0.9845310795519577], "tracking_error_m": 9.33024930354992e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+610. 仿真 15.408s；物体中心 (0.45265, 0.03151, 0.97788) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 40, "target": [0.45264591498190104, 0.03151213789640616, 0.9778749916941059], "tracking_error_m": 9.699572427609614e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+611. 仿真 15.742s；物体中心 (0.45265, 0.03767, 0.97143) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 41, "target": [0.45264591498190104, 0.03767497956802806, 0.9714271422209035], "tracking_error_m": 9.24214939319394e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+612. 仿真 16.075s；物体中心 (0.45265, 0.04267, 0.96524) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 42, "target": [0.45264591498190104, 0.042674027601301144, 0.9652366031601594], "tracking_error_m": 8.895601798084327e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+613. 仿真 16.408s；物体中心 (0.45265, 0.04635, 0.95936) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 43, "target": [0.45264591498190104, 0.046357388451374604, 0.9593504882520757], "tracking_error_m": 8.020568334976511e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+614. 仿真 16.742s；物体中心 (0.45265, 0.04861, 0.95382) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 44, "target": [0.45264591498190104, 0.04861314506268959, 0.9538135943852363], "tracking_error_m": 8.210137813706943e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+615. 仿真 17.075s；物体中心 (0.45265, 0.04937, 0.94867) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 45, "target": [0.45264591498190104, 0.0493727574120792, 0.9486680606652356], "tracking_error_m": 7.93281425994093e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+616. 仿真 17.408s；物体中心 (0.45265, 0.04861, 0.94396) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 46, "target": [0.45264591498190104, 0.04861314506268961, 0.9439530477106411], "tracking_error_m": 7.611136645372591e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+617. 仿真 17.742s；物体中心 (0.45265, 0.04636, 0.93971) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 47, "target": [0.45264591498190104, 0.0463573884513746, 0.93970443961704], "tracking_error_m": 8.108692544251485e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+618. 仿真 18.075s；物体中心 (0.45265, 0.04268, 0.93596) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 48, "target": [0.45264591498190104, 0.04267402760130116, 0.9359545708574043], "tracking_error_m": 8.498180689987163e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+619. 仿真 18.408s；物体中心 (0.45265, 0.03768, 0.93274) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 49, "target": [0.45264591498190104, 0.03767497956802814, 0.9327319801972274], "tracking_error_m": 9.51483503174602e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+620. 仿真 18.742s；物体中心 (0.45265, 0.03152, 0.93006) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 50, "target": [0.45264591498190104, 0.03151213789640615, 0.9300611934972867], "tracking_error_m": 9.574993091253927e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+621. 仿真 19.075s；物体中心 (0.45265, 0.02438, 0.92796) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 51, "target": [0.45264591498190104, 0.02437275741207919, 0.9279625370570339], "tracking_error_m": 9.657086129582539e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+622. 仿真 19.408s；物体中心 (0.45265, 0.01648, 0.92645) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 52, "target": [0.45264591498190104, 0.016473764578362634, 0.9264519829191827], "tracking_error_m": 9.499928885995933e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+623. 仿真 19.742s；物体中心 (0.45265, 0.00807, 0.92554) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 53, "target": [0.45264591498190104, 0.008055166295425725, 0.9255410273128197], "tracking_error_m": 1.0016639000704845e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+624. 仿真 20.075s；物体中心 (0.45265, -0.00062, 0.92524) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 54, "target": [0.45264591498190104, -0.0006272425879207824, 0.9252366031601594], "tracking_error_m": 1.0365636031915278e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+625. 仿真 20.408s；物体中心 (0.45264, -0.00930, 0.92554) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 55, "target": [0.45264591498190104, -0.00930965147126729, 0.9255410273128197], "tracking_error_m": 1.0533410525326592e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+626. 仿真 20.742s；物体中心 (0.45264, -0.01772, 0.92645) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 56, "target": [0.45264591498190104, -0.017728249754204204, 0.9264519829191827], "tracking_error_m": 1.0506599315497056e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+627. 仿真 21.075s；物体中心 (0.45264, -0.02562, 0.92796) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 57, "target": [0.45264591498190104, -0.025627242587920762, 0.9279625370570339], "tracking_error_m": 1.0083201997372576e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+628. 仿真 21.408s；物体中心 (0.45264, -0.03276, 0.93006) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 58, "target": [0.45264591498190104, -0.03276662307224779, 0.9300611934972867], "tracking_error_m": 1.0558042127304782e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+629. 仿真 21.742s；物体中心 (0.45264, -0.03892, 0.93273) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 59, "target": [0.45264591498190104, -0.038929464743869664, 0.9327319801972274], "tracking_error_m": 9.964669037316951e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+630. 仿真 22.075s；物体中心 (0.45264, -0.04392, 0.93595) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 60, "target": [0.45264591498190104, -0.04392851277714269, 0.9359545708574043], "tracking_error_m": 1.0012383667408977e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+631. 仿真 22.408s；物体中心 (0.45264, -0.04761, 0.93970) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 61, "target": [0.45264591498190104, -0.04761187362721623, 0.9397044396170401], "tracking_error_m": 9.98123250903834e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+632. 仿真 22.742s；物体中心 (0.45264, -0.04986, 0.94395) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 62, "target": [0.45264591498190104, -0.049867630238531205, 0.9439530477106411], "tracking_error_m": 1.0051295895945696e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+633. 仿真 23.075s；物体中心 (0.45264, -0.05063, 0.94866) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 63, "target": [0.45264591498190104, -0.050627242587920805, 0.9486680606652356], "tracking_error_m": 1.060270810759323e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+634. 仿真 23.408s；物体中心 (0.45264, -0.04987, 0.95381) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 64, "target": [0.45264591498190104, -0.04986763023853121, 0.9538135943852363], "tracking_error_m": 1.0222677982051398e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+635. 仿真 23.742s；物体中心 (0.45264, -0.04761, 0.95934) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 65, "target": [0.45264591498190104, -0.047611873627216236, 0.9593504882520757], "tracking_error_m": 1.0484390290833198e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+636. 仿真 24.075s；物体中心 (0.45264, -0.04393, 0.96523) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 66, "target": [0.45264591498190104, -0.04392851277714272, 0.9652366031601595], "tracking_error_m": 1.0386497153910475e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+637. 仿真 24.408s；物体中心 (0.45264, -0.03893, 0.97142) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 67, "target": [0.45264591498190104, -0.03892946474386975, 0.9714271422209034], "tracking_error_m": 1.0633010653884269e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+638. 仿真 24.742s；物体中心 (0.45264, -0.03277, 0.97787) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 68, "target": [0.45264591498190104, -0.03276662307224776, 0.9778749916941059], "tracking_error_m": 1.1026288180352668e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+639. 仿真 25.075s；物体中心 (0.45264, -0.02563, 0.98452) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 69, "target": [0.45264591498190104, -0.025627242587920797, 0.9845310795519577], "tracking_error_m": 1.0788283690083127e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+640. 仿真 25.408s；物体中心 (0.45264, -0.01773, 0.99134) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 70, "target": [0.45264591498190104, -0.017728249754204246, 0.9913447489468049], "tracking_error_m": 1.1155896547512084e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+641. 仿真 25.742s；物体中心 (0.45264, -0.00931, 0.99826) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 71, "target": [0.45264591498190104, -0.009309651471267333, 0.9982641437403468], "tracking_error_m": 1.0847454228936114e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+642. 仿真 26.075s；物体中心 (0.45264, -0.00063, 1.00523) m；{"trial": "validation_6", "kind": "figure_eight_waypoint", "index": 72, "target": [0.45264591498190104, -0.0006272425879208253, 1.0052366031601594], "tracking_error_m": 1.1075575461633367e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+643. 仿真 26.075s；物体中心 (0.45264, -0.00063, 1.00523) m；{"trial": "validation_6", "kind": "figure_eight_evaluation", "metrics": {"waypoints": 73, "max_tracking_error_m": 1.2019591061309376e-05, "rms_tracking_error_m": 1.0116421539797707e-05, "closure_error_m": 4.412914100216481e-06, "midpoint_crossing_error_m": 9.410107499429497e-06, "plane_error_m": 8.59271740649703e-06, "upper_loop_area_m2": 0.005316280373141388, "lower_loop_area_m2": -0.005316268112438575, "vertical_span_m": 0.1599971706759794, "horizontal_span_m": 0.09999990322861345, "passed": true, "samples": 5960, "min_clearance_m": 0.15596467740279674, "grasp_retained": true}, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+644. 仿真 26.575s；物体中心 (0.45264, -0.00063, 0.90524) m；{"trial": "validation_6", "kind": "return_to_lift_height", "target": [0.45264591498190104, -0.0006272425879208008, 0.9052366031601594], "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+645. 仿真 26.775s；物体中心 (0.50177, -0.00063, 0.76742) m；{"trial": "validation_6", "kind": "action", "prediction": {"prediction_id": "pred-7", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "move_to_target", "物体抓持": true, "实际抬升": false, "事件": ["object_at_target"]}
+
+646. 仿真 26.975s；物体中心 (0.49987, -0.00063, 0.74996) m；{"trial": "validation_6", "kind": "action", "prediction": {"prediction_id": "pred-7", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "release_object", "物体抓持": false, "实际抬升": false, "事件": ["object_released"]}
+
+647. 仿真 26.975s；物体中心 (0.49987, -0.00063, 0.74996) m；{"trial": "validation_6", "kind": "result", "prediction": {"prediction_id": "pred-7", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "result": {"mode": "skills", "failure_mode": "misaligned_grasp", "status": "recovered", "false_success": false, "recovered": true, "applied_skill_ids": ["grasp_without_lift_v1"]}, "物体抓持": false, "实际抬升": false, "事件": ["object_released"]}
+
+648. 仿真 27.975s；物体中心 (0.49987, -0.00061, 0.74999) m；{"trial": "validation_6", "kind": "placement_evaluation", "metrics": {"drift_m": 3.128409276385285e-05, "speed_m_s": 1.2362729741205837e-05, "target_error_m": 0.0006261867748050345, "released": true, "height_error_m": 1.1393495004896614e-05, "passed": true}, "物体抓持": false, "实际抬升": false, "事件": ["placement_settled"]}
+
+
+[2026-10-19T21:38:55+08:00] validation_6 结束：{"label": "validation_6", "failure_mode": "misaligned_grasp", "parameters": {"half_width_m": 0.05, "half_height_m": 0.08, "center_raise_m": 0.1, "samples": 72, "steps_per_waypoint": 80}, "trajectory": {"waypoints": 73, "max_tracking_error_m": 1.2019591061309376e-05, "rms_tracking_error_m": 1.0116421539797707e-05, "closure_error_m": 4.412914100216481e-06, "midpoint_crossing_error_m": 9.410107499429497e-06, "plane_error_m": 8.59271740649703e-06, "upper_loop_area_m2": 0.005316280373141388, "lower_loop_area_m2": -0.005316268112438575, "vertical_span_m": 0.1599971706759794, "horizontal_span_m": 0.09999990322861345, "passed": true, "samples": 5960, "min_clearance_m": 0.15596467740279674, "grasp_retained": true}, "placement": {"drift_m": 3.128409276385285e-05, "speed_m_s": 1.2362729741205837e-05, "target_error_m": 0.0006261867748050345, "released": true, "height_error_m": 1.1393495004896614e-05, "passed": true}, "error": null, "applied_skill_ids": ["grasp_without_lift_v1"], "diagnosis_fallback": false, "result": {"mode": "skills", "failure_mode": "misaligned_grasp", "status": "recovered", "false_success": false, "recovered": true, "applied_skill_ids": ["grasp_without_lift_v1"]}, "passed": true}
+
+
+[2026-10-19T21:38:55+08:00] 新 Skill 已 verified：{"skill_id": "held_vertical_figure_eight_v1", "name": "方块竖直八字搬运与放置", "status": "verified", "version": 1, "task": "held_vertical_figure_eight", "object_types": ["cube"], "trigger_conditions": ["object_grasped == true", "object_lifted == true", "lift_evidence_confirmed == true"], "facts": ["实际试验 learning_1 的总体 passed 为 true，且调用了 grasp_without_lift_v1；低抓力故障场景的结果为 recovered，false_success 为 false。", "最大跟踪误差为0.0000120196米，小于0.02米。", "闭合误差为0.0000044129米，中点交叉误差为0.0000094101米，平面误差为0.0000085927米，均小于0.015米。", "两个叶瓣的有向面积分别约为0.00531628平方米和-0.00531627平方米，符号相反。", "实测竖直跨度约0.159997米，水平跨度约0.100000米。", "报告中的最小底部净空约为0.155965米，大于0.035米，且 grasp_retained 为 true。", "放置目标误差约为0.000626187米，小于0.025米；释放后漂移约为0.0000312841米，小于0.003米，且已释放，放置判定通过。", "当前参数均在允许范围内，采样数和每航点步数均为偶数；0.08米不小于1.3乘以0.05米，0.10米不小于0.08米。"], "hypotheses": ["这些参数可作为相同仿真条件下重复执行的候选配置；单次实际通过尚不能证明在不同物体、摩擦条件或初始位姿下同样可靠。", "保留运输前的实际抬起证据检查和既有恢复流程，有望减少将夹爪闭合误判为成功抓取的风险；每次执行仍须监测。"], "prediction_correction": ["require_lift_evidence_before_transport", "require_both_vertical_lobes_and_closed_path", "verify_release_and_stability"], "recovery": ["若未检测到可靠抬起证据，禁止进入八字或运输阶段；调用 grasp_without_lift_v1 的恢复流程，停止运输、刷新物体位姿，并在安全条件下重试抓取。", "若跟踪误差超过0.02米，或交叉、闭合、平面误差任一超过0.015米，中止试验并安全处理物体；依据实测误差，仅在允许范围内修订五个原语参数，再进行完整验证。", "若底部净空低于0.035米或抓持丢失，立即中止并检查物体状态；根据实测净空和姿态评估中心抬升量、竖直半高的调整，保持全部参数约束。", "若两个叶瓣面积符号不相反、放置误差超过0.025米或漂移超过0.003米，不将该次执行判为成功；记录测量结果，检查原语执行与放置状态，修订后重新试验。"], "validation_trials": 6, "false_success_rate": null, "recovery_success_rate": null, "prerequisite_skill_ids": ["grasp_without_lift_v1"], "parameters": {"half_width_m": 0.05, "half_height_m": 0.08, "center_raise_m": 0.1, "samples": 72, "steps_per_waypoint": 80}, "validation_success_rate": 1.0, "validation_metrics": {"max_tracking_error_m": 1.2019591061309376e-05, "max_placement_error_m": 0.0037105272944116525, "all_grasps_retained": true}}
+
+649. 仿真 0.000s；物体中心 (—) m；{"kind": "new_skill_retrieved_from_disk", "skill": {"skill_id": "held_vertical_figure_eight_v1", "name": "方块竖直八字搬运与放置", "status": "verified", "version": 1, "task": "held_vertical_figure_eight", "object_types": ["cube"], "trigger_conditions": ["object_grasped == true", "object_lifted == true", "lift_evidence_confirmed == true"], "facts": ["实际试验 learning_1 的总体 passed 为 true，且调用了 grasp_without_lift_v1；低抓力故障场景的结果为 recovered，false_success 为 false。", "最大跟踪误差为0.0000120196米，小于0.02米。", "闭合误差为0.0000044129米，中点交叉误差为0.0000094101米，平面误差为0.0000085927米，均小于0.015米。", "两个叶瓣的有向面积分别约为0.00531628平方米和-0.00531627平方米，符号相反。", "实测竖直跨度约0.159997米，水平跨度约0.100000米。", "报告中的最小底部净空约为0.155965米，大于0.035米，且 grasp_retained 为 true。", "放置目标误差约为0.000626187米，小于0.025米；释放后漂移约为0.0000312841米，小于0.003米，且已释放，放置判定通过。", "当前参数均在允许范围内，采样数和每航点步数均为偶数；0.08米不小于1.3乘以0.05米，0.10米不小于0.08米。"], "hypotheses": ["这些参数可作为相同仿真条件下重复执行的候选配置；单次实际通过尚不能证明在不同物体、摩擦条件或初始位姿下同样可靠。", "保留运输前的实际抬起证据检查和既有恢复流程，有望减少将夹爪闭合误判为成功抓取的风险；每次执行仍须监测。"], "prediction_correction": ["require_lift_evidence_before_transport", "require_both_vertical_lobes_and_closed_path", "verify_release_and_stability"], "recovery": ["若未检测到可靠抬起证据，禁止进入八字或运输阶段；调用 grasp_without_lift_v1 的恢复流程，停止运输、刷新物体位姿，并在安全条件下重试抓取。", "若跟踪误差超过0.02米，或交叉、闭合、平面误差任一超过0.015米，中止试验并安全处理物体；依据实测误差，仅在允许范围内修订五个原语参数，再进行完整验证。", "若底部净空低于0.035米或抓持丢失，立即中止并检查物体状态；根据实测净空和姿态评估中心抬升量、竖直半高的调整，保持全部参数约束。", "若两个叶瓣面积符号不相反、放置误差超过0.025米或漂移超过0.003米，不将该次执行判为成功；记录测量结果，检查原语执行与放置状态，修订后重新试验。"], "validation_trials": 6, "false_success_rate": null, "recovery_success_rate": null, "prerequisite_skill_ids": ["grasp_without_lift_v1"], "parameters": {"half_width_m": 0.05, "half_height_m": 0.08, "center_raise_m": 0.1, "samples": 72, "steps_per_waypoint": 80}, "validation_success_rate": 1.0, "validation_metrics": {"max_tracking_error_m": 1.2019591061309376e-05, "max_placement_error_m": 0.0037105272944116525, "all_grasps_retained": true}}}
+
+
+[2026-10-19T21:38:55+08:00] 开始 replay，故障=low_grip_force，参数={"half_width_m": 0.05, "half_height_m": 0.08, "center_raise_m": 0.1, "samples": 72, "steps_per_waypoint": 80}
+
+650. 仿真 0.042s；物体中心 (0.45000, -0.00000, 0.74991) m；{"trial": "replay", "kind": "reset", "prediction": null, "comparison": null, "物体抓持": false, "实际抬升": false, "事件": []}
+
+651. 仿真 0.042s；物体中心 (0.45000, -0.00000, 0.74991) m；{"trial": "replay", "kind": "retrieve", "prediction": null, "comparison": null, "skills": [{"skill_id": "grasp_without_lift_v1", "name": "grasp_without_lift", "status": "verified", "version": 1, "task": "pick_and_place", "object_types": ["cube"], "trigger_conditions": ["gripper_closed == true", "lift_window_elapsed == true", "object_lifted == false"], "facts": ["gripper_closed_does_not_imply_grasp_success", "object_lift_was_not_detected", "object_may_have_been_displaced_before_grasp"], "hypotheses": ["grasp_point_may_be_misaligned", "insufficient_grip_force"], "prediction_correction": ["do_not_enter_transport_phase", "require_lift_evidence_before_transport"], "recovery": ["stop_transport_motion", "refresh_object_pose", "retry_grasp_if_safe"], "validation_trials": 20, "false_success_rate": 0.0, "recovery_success_rate": 1.0, "prerequisite_skill_ids": [], "parameters": {}, "validation_success_rate": null, "validation_metrics": {}}], "物体抓持": false, "实际抬升": false, "事件": []}
+
+652. 仿真 0.242s；物体中心 (0.45000, 0.00000, 0.74999) m；{"trial": "replay", "kind": "action", "prediction": null, "comparison": null, "action": "approach_object", "物体抓持": false, "实际抬升": false, "事件": ["object_approached"]}
+
+653. 仿真 0.442s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "replay", "kind": "action", "prediction": null, "comparison": null, "action": "close_gripper", "物体抓持": false, "实际抬升": false, "事件": ["gripper_closed", "gripper_contact"]}
+
+654. 仿真 0.442s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "replay", "kind": "prediction", "prediction": {"prediction_id": "pred-8", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": null, "物体抓持": false, "实际抬升": false, "事件": ["gripper_closed", "gripper_contact"]}
+
+655. 仿真 0.642s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "replay", "kind": "action", "prediction": {"prediction_id": "pred-8", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": null, "action": "lift_object", "物体抓持": false, "实际抬升": false, "事件": []}
+
+656. 仿真 0.642s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "replay", "kind": "comparison", "prediction": {"prediction_id": "pred-8", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "物体抓持": false, "实际抬升": false, "事件": []}
+
+
+[2026-10-19T21:39:01+08:00] 大模型 request；request_id=170281bdbf844f49831f1e9bec059a01；完整内容已写入 docs\FIGURE_EIGHT_LLM_CALLS.md。
+
+
+[2026-10-19T21:39:12+08:00] 大模型 response；request_id=170281bdbf844f49831f1e9bec059a01；完整内容已写入 docs\FIGURE_EIGHT_LLM_CALLS.md。
+
+
+[2026-10-19T21:39:12+08:00] 大模型 parsed_output；request_id=170281bdbf844f49831f1e9bec059a01；完整内容已写入 docs\FIGURE_EIGHT_LLM_CALLS.md。
+
+657. 仿真 0.642s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "replay", "kind": "diagnosis", "prediction": {"prediction_id": "pred-8", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "skill": {"skill_id": "grasp_without_lift_v1", "name": "grasp_without_lift_candidate_v2", "status": "candidate", "version": 1, "task": "pick_and_place", "object_types": ["cube"], "trigger_conditions": ["Lift is expected and observation reports the lift phase.", "Gripper is closed while the object is reported not grasped and not lifted.", "Expected object_lift_detected event is absent."], "facts": ["Prediction pred-8 expected successful object lift with confidence 0.9.", "Skill grasp_without_lift_v1 was already applied.", "The visible cube is reported not grasped and not lifted with observation confidence 0.95.", "The gripper is closed; reported gripper force is 0.4.", "The end effector is approximately 0.118 m above the reported object position.", "No events were reported.", "The comparison reports a medium-severity lift deviation.", "Elapsed lift-window duration is not established by this observation."], "hypotheses": ["The gripper may have closed without securing the cube.", "Grasp alignment may have been unsuitable.", "The cube may have slipped or been displaced during the grasp attempt.", "Grip may have been insufficient; the force reading alone does not establish this."], "prediction_correction": ["Treat the expected lift as unconfirmed rather than successful.", "Do not infer grasp success from gripper closure or end-effector height.", "Require positive object-lift evidence before entering transport.", "Prior skill application does not establish recovery success.", "Keep this revised skill a candidate pending validation.", "do_not_enter_transport_phase", "require_lift_evidence_before_transport"], "recovery": ["Withhold transport until positive object-lift evidence is available.", "Reassess object pose, support state, and grasp status.", "Assess workspace safety and collision risk before any retry.", "Consider a renewed grasp attempt only if reassessment establishes safe conditions.", "Verify secure grasp and positive object lift before permitting transport.", "Request assistance if safe recovery cannot be established or failure recurs."], "validation_trials": 0, "false_success_rate": null, "recovery_success_rate": null, "prerequisite_skill_ids": [], "parameters": {}, "validation_success_rate": null, "validation_metrics": {}}, "source": "OpenAICompatibleDiagnoser", "物体抓持": false, "实际抬升": false, "事件": []}
+
+658. 仿真 0.642s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "replay", "kind": "candidate", "prediction": {"prediction_id": "pred-8", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "skill": {"skill_id": "grasp_without_lift_v1", "name": "grasp_without_lift_candidate_v2", "status": "candidate", "version": 1, "task": "pick_and_place", "object_types": ["cube"], "trigger_conditions": ["Lift is expected and observation reports the lift phase.", "Gripper is closed while the object is reported not grasped and not lifted.", "Expected object_lift_detected event is absent."], "facts": ["Prediction pred-8 expected successful object lift with confidence 0.9.", "Skill grasp_without_lift_v1 was already applied.", "The visible cube is reported not grasped and not lifted with observation confidence 0.95.", "The gripper is closed; reported gripper force is 0.4.", "The end effector is approximately 0.118 m above the reported object position.", "No events were reported.", "The comparison reports a medium-severity lift deviation.", "Elapsed lift-window duration is not established by this observation."], "hypotheses": ["The gripper may have closed without securing the cube.", "Grasp alignment may have been unsuitable.", "The cube may have slipped or been displaced during the grasp attempt.", "Grip may have been insufficient; the force reading alone does not establish this."], "prediction_correction": ["Treat the expected lift as unconfirmed rather than successful.", "Do not infer grasp success from gripper closure or end-effector height.", "Require positive object-lift evidence before entering transport.", "Prior skill application does not establish recovery success.", "Keep this revised skill a candidate pending validation.", "do_not_enter_transport_phase", "require_lift_evidence_before_transport"], "recovery": ["Withhold transport until positive object-lift evidence is available.", "Reassess object pose, support state, and grasp status.", "Assess workspace safety and collision risk before any retry.", "Consider a renewed grasp attempt only if reassessment establishes safe conditions.", "Verify secure grasp and positive object lift before permitting transport.", "Request assistance if safe recovery cannot be established or failure recurs."], "validation_trials": 0, "false_success_rate": null, "recovery_success_rate": null, "prerequisite_skill_ids": [], "parameters": {}, "validation_success_rate": null, "validation_metrics": {}}, "物体抓持": false, "实际抬升": false, "事件": []}
+
+659. 仿真 0.642s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "replay", "kind": "action", "prediction": {"prediction_id": "pred-8", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "refresh_object_pose", "物体抓持": false, "实际抬升": false, "事件": ["object_pose_refreshed"]}
+
+660. 仿真 0.842s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "replay", "kind": "action", "prediction": {"prediction_id": "pred-8", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "retry_grasp", "物体抓持": false, "实际抬升": false, "事件": ["grasp_retry_requested"]}
+
+661. 仿真 1.042s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "replay", "kind": "action", "prediction": {"prediction_id": "pred-8", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "close_gripper", "物体抓持": true, "实际抬升": false, "事件": ["gripper_closed", "gripper_contact", "grasp_constraint_created"]}
+
+662. 仿真 1.242s；物体中心 (0.45265, -0.00063, 0.90524) m；{"trial": "replay", "kind": "action", "prediction": {"prediction_id": "pred-8", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "deviation", "errors": ["expected_lift_but_not_detected", "missing_event:object_lift_detected"], "severity": "medium"}, "action": "lift_object", "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+663. 仿真 1.242s；物体中心 (0.45265, -0.00063, 0.90524) m；{"trial": "replay", "kind": "lift_gate_passed", "prerequisite_skill_id": "grasp_without_lift_v1", "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+664. 仿真 1.742s；物体中心 (0.45201, -0.00063, 1.00523) m；{"trial": "replay", "kind": "move_to_crossing", "target": [0.45264591498190104, -0.0006272425879208008, 1.0052366031601594], "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+665. 仿真 2.075s；物体中心 (0.45264, -0.00063, 1.00523) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 0, "target": [0.45264591498190104, -0.0006272425879208008, 1.0052366031601594], "tracking_error_m": 9.825228975071803e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+666. 仿真 2.408s；物体中心 (0.45264, 0.00805, 1.01220) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 1, "target": [0.45264591498190104, 0.008055166295425716, 1.012209062579972], "tracking_error_m": 1.1722698804804077e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+667. 仿真 2.742s；物体中心 (0.45264, 0.01647, 1.01912) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 2, "target": [0.45264591498190104, 0.016473764578362634, 1.0191284573735138], "tracking_error_m": 1.14159202509719e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+668. 仿真 3.075s；物体中心 (0.45264, 0.02437, 1.02593) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 3, "target": [0.45264591498190104, 0.024372757412079196, 1.025942126768361], "tracking_error_m": 1.1833336309672512e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+669. 仿真 3.408s；物体中心 (0.45264, 0.03151, 1.03259) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 4, "target": [0.45264591498190104, 0.03151213789640616, 1.032598214626213], "tracking_error_m": 1.1983316368247924e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+670. 仿真 3.742s；物体中心 (0.45264, 0.03767, 1.03904) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 5, "target": [0.45264591498190104, 0.0376749795680281, 1.0390460640994152], "tracking_error_m": 1.2019591061309376e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+671. 仿真 4.075s；物体中心 (0.45264, 0.04267, 1.04523) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 6, "target": [0.45264591498190104, 0.04267402760130113, 1.0452366031601594], "tracking_error_m": 1.1825229503351622e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+672. 仿真 4.408s；物体中心 (0.45264, 0.04636, 1.05111) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 7, "target": [0.45264591498190104, 0.04635738845137462, 1.051122718068243], "tracking_error_m": 1.1955388824130604e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+673. 仿真 4.742s；物体中心 (0.45264, 0.04861, 1.05665) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 8, "target": [0.45264591498190104, 0.0486131450626896, 1.0566596119350826], "tracking_error_m": 1.1957418835597624e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+674. 仿真 5.075s；物体中心 (0.45264, 0.04937, 1.06180) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 9, "target": [0.45264591498190104, 0.0493727574120792, 1.0618051456550832], "tracking_error_m": 1.1550893406183224e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+675. 仿真 5.408s；物体中心 (0.45264, 0.04861, 1.06651) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 10, "target": [0.45264591498190104, 0.0486131450626896, 1.0665201586096775], "tracking_error_m": 1.1597359135804862e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+676. 仿真 5.742s；物体中心 (0.45264, 0.04636, 1.07076) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 11, "target": [0.45264591498190104, 0.046357388451374625, 1.0707687667032788], "tracking_error_m": 1.1958353455549596e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+677. 仿真 6.075s；物体中心 (0.45264, 0.04267, 1.07451) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 12, "target": [0.45264591498190104, 0.04267402760130114, 1.0745186354629146], "tracking_error_m": 1.1412571619188529e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+678. 仿真 6.408s；物体中心 (0.45264, 0.03768, 1.07773) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 13, "target": [0.45264591498190104, 0.0376749795680281, 1.0777412261230914], "tracking_error_m": 1.0821092255073984e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+679. 仿真 6.742s；物体中心 (0.45264, 0.03151, 1.08040) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 14, "target": [0.45264591498190104, 0.031512137896406174, 1.0804120128230321], "tracking_error_m": 1.1188722986544236e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+680. 仿真 7.075s；物体中心 (0.45264, 0.02438, 1.08250) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 15, "target": [0.45264591498190104, 0.024372757412079216, 1.0825106692632849], "tracking_error_m": 1.0981201972020882e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+681. 仿真 7.408s；物体中心 (0.45264, 0.01648, 1.08401) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 16, "target": [0.45264591498190104, 0.01647376457836264, 1.084021223401136], "tracking_error_m": 1.1311737799280377e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+682. 仿真 7.742s；物体中心 (0.45264, 0.00806, 1.08493) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 17, "target": [0.45264591498190104, 0.008055166295425714, 1.084932179007499], "tracking_error_m": 1.1318139864966431e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+683. 仿真 8.075s；物体中心 (0.45264, -0.00062, 1.08523) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 18, "target": [0.45264591498190104, -0.0006272425879207947, 1.0852366031601595], "tracking_error_m": 1.0413441285878392e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+684. 仿真 8.408s；物体中心 (0.45265, -0.00930, 1.08493) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 19, "target": [0.45264591498190104, -0.009309651471267302, 1.084932179007499], "tracking_error_m": 1.0559154254763748e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+685. 仿真 8.742s；物体中心 (0.45265, -0.01772, 1.08402) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 20, "target": [0.45264591498190104, -0.017728249754204235, 1.084021223401136], "tracking_error_m": 9.336175789837343e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+686. 仿真 9.075s；物体中心 (0.45265, -0.02562, 1.08252) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 21, "target": [0.45264591498190104, -0.02562724258792081, 1.0825106692632849], "tracking_error_m": 9.446146197652011e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+687. 仿真 9.408s；物体中心 (0.45265, -0.03276, 1.08042) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 22, "target": [0.45264591498190104, -0.03276662307224775, 1.0804120128230321], "tracking_error_m": 8.8119922385219e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+688. 仿真 9.742s；物体中心 (0.45265, -0.03893, 1.07775) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 23, "target": [0.45264591498190104, -0.0389294647438697, 1.0777412261230914], "tracking_error_m": 8.3751925769035e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+689. 仿真 10.075s；物体中心 (0.45265, -0.04393, 1.07452) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 24, "target": [0.45264591498190104, -0.04392851277714273, 1.0745186354629146], "tracking_error_m": 8.296758761531722e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+690. 仿真 10.408s；物体中心 (0.45265, -0.04761, 1.07077) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 25, "target": [0.45264591498190104, -0.04761187362721623, 1.0707687667032788], "tracking_error_m": 8.58921841059014e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+691. 仿真 10.742s；物体中心 (0.45265, -0.04987, 1.06653) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 26, "target": [0.45264591498190104, -0.049867630238531205, 1.0665201586096775], "tracking_error_m": 8.552919869286601e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+692. 仿真 11.075s；物体中心 (0.45265, -0.05063, 1.06181) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 27, "target": [0.45264591498190104, -0.050627242587920805, 1.0618051456550832], "tracking_error_m": 8.886087807579407e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+693. 仿真 11.408s；物体中心 (0.45265, -0.04987, 1.05667) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 28, "target": [0.45264591498190104, -0.04986763023853121, 1.0566596119350826], "tracking_error_m": 8.903830642524458e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+694. 仿真 11.742s；物体中心 (0.45265, -0.04761, 1.05113) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 29, "target": [0.45264591498190104, -0.04761187362721622, 1.051122718068243], "tracking_error_m": 9.33375511517905e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+695. 仿真 12.075s；物体中心 (0.45265, -0.04393, 1.04524) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 30, "target": [0.45264591498190104, -0.043928512777142756, 1.0452366031601594], "tracking_error_m": 9.491967114500645e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+696. 仿真 12.408s；物体中心 (0.45265, -0.03893, 1.03905) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 31, "target": [0.45264591498190104, -0.03892946474386971, 1.0390460640994152], "tracking_error_m": 9.43167635753271e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+697. 仿真 12.742s；物体中心 (0.45265, -0.03277, 1.03260) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 32, "target": [0.45264591498190104, -0.032766623072247786, 1.032598214626213], "tracking_error_m": 9.19036646058306e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+698. 仿真 13.075s；物体中心 (0.45265, -0.02563, 1.02595) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 33, "target": [0.45264591498190104, -0.025627242587920786, 1.025942126768361], "tracking_error_m": 9.609982218292752e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+699. 仿真 13.408s；物体中心 (0.45265, -0.01773, 1.01913) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 34, "target": [0.45264591498190104, -0.017728249754204232, 1.0191284573735138], "tracking_error_m": 9.529714812389023e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+700. 仿真 13.742s；物体中心 (0.45265, -0.00931, 1.01221) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 35, "target": [0.45264591498190104, -0.00930965147126732, 1.012209062579972], "tracking_error_m": 9.24346807634351e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+701. 仿真 14.075s；物体中心 (0.45265, -0.00063, 1.00524) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 36, "target": [0.45264591498190104, -0.000627242587920813, 1.0052366031601594], "tracking_error_m": 9.410107499424716e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+702. 仿真 14.408s；物体中心 (0.45265, 0.00805, 0.99827) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 37, "target": [0.45264591498190104, 0.008055166295425695, 0.9982641437403468], "tracking_error_m": 8.865652875235118e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+703. 仿真 14.742s；物体中心 (0.45265, 0.01647, 0.99135) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 38, "target": [0.45264591498190104, 0.016473764578362603, 0.991344748946805], "tracking_error_m": 9.656633475830879e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+704. 仿真 15.075s；物体中心 (0.45265, 0.02437, 0.98454) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 39, "target": [0.45264591498190104, 0.024372757412079164, 0.9845310795519577], "tracking_error_m": 9.33024930354992e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+705. 仿真 15.408s；物体中心 (0.45265, 0.03151, 0.97788) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 40, "target": [0.45264591498190104, 0.03151213789640616, 0.9778749916941059], "tracking_error_m": 9.699572427609614e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+706. 仿真 15.742s；物体中心 (0.45265, 0.03767, 0.97143) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 41, "target": [0.45264591498190104, 0.03767497956802806, 0.9714271422209035], "tracking_error_m": 9.24214939319394e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+707. 仿真 16.075s；物体中心 (0.45265, 0.04267, 0.96524) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 42, "target": [0.45264591498190104, 0.042674027601301144, 0.9652366031601594], "tracking_error_m": 8.895601798084327e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+708. 仿真 16.408s；物体中心 (0.45265, 0.04635, 0.95936) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 43, "target": [0.45264591498190104, 0.046357388451374604, 0.9593504882520757], "tracking_error_m": 8.020568334976511e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+709. 仿真 16.742s；物体中心 (0.45265, 0.04861, 0.95382) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 44, "target": [0.45264591498190104, 0.04861314506268959, 0.9538135943852363], "tracking_error_m": 8.210137813706943e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+710. 仿真 17.075s；物体中心 (0.45265, 0.04937, 0.94867) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 45, "target": [0.45264591498190104, 0.0493727574120792, 0.9486680606652356], "tracking_error_m": 7.93281425994093e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+711. 仿真 17.408s；物体中心 (0.45265, 0.04861, 0.94396) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 46, "target": [0.45264591498190104, 0.04861314506268961, 0.9439530477106411], "tracking_error_m": 7.611136645372591e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+712. 仿真 17.742s；物体中心 (0.45265, 0.04636, 0.93971) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 47, "target": [0.45264591498190104, 0.0463573884513746, 0.93970443961704], "tracking_error_m": 8.108692544251485e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+713. 仿真 18.075s；物体中心 (0.45265, 0.04268, 0.93596) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 48, "target": [0.45264591498190104, 0.04267402760130116, 0.9359545708574043], "tracking_error_m": 8.498180689987163e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+714. 仿真 18.408s；物体中心 (0.45265, 0.03768, 0.93274) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 49, "target": [0.45264591498190104, 0.03767497956802814, 0.9327319801972274], "tracking_error_m": 9.51483503174602e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+715. 仿真 18.742s；物体中心 (0.45265, 0.03152, 0.93006) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 50, "target": [0.45264591498190104, 0.03151213789640615, 0.9300611934972867], "tracking_error_m": 9.574993091253927e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+716. 仿真 19.075s；物体中心 (0.45265, 0.02438, 0.92796) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 51, "target": [0.45264591498190104, 0.02437275741207919, 0.9279625370570339], "tracking_error_m": 9.657086129582539e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+717. 仿真 19.408s；物体中心 (0.45265, 0.01648, 0.92645) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 52, "target": [0.45264591498190104, 0.016473764578362634, 0.9264519829191827], "tracking_error_m": 9.499928885995933e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+718. 仿真 19.742s；物体中心 (0.45265, 0.00807, 0.92554) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 53, "target": [0.45264591498190104, 0.008055166295425725, 0.9255410273128197], "tracking_error_m": 1.0016639000704845e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+719. 仿真 20.075s；物体中心 (0.45265, -0.00062, 0.92524) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 54, "target": [0.45264591498190104, -0.0006272425879207824, 0.9252366031601594], "tracking_error_m": 1.0365636031915278e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+720. 仿真 20.408s；物体中心 (0.45264, -0.00930, 0.92554) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 55, "target": [0.45264591498190104, -0.00930965147126729, 0.9255410273128197], "tracking_error_m": 1.0533410525326592e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+721. 仿真 20.742s；物体中心 (0.45264, -0.01772, 0.92645) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 56, "target": [0.45264591498190104, -0.017728249754204204, 0.9264519829191827], "tracking_error_m": 1.0506599315497056e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+722. 仿真 21.075s；物体中心 (0.45264, -0.02562, 0.92796) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 57, "target": [0.45264591498190104, -0.025627242587920762, 0.9279625370570339], "tracking_error_m": 1.0083201997372576e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+723. 仿真 21.408s；物体中心 (0.45264, -0.03276, 0.93006) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 58, "target": [0.45264591498190104, -0.03276662307224779, 0.9300611934972867], "tracking_error_m": 1.0558042127304782e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+724. 仿真 21.742s；物体中心 (0.45264, -0.03892, 0.93273) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 59, "target": [0.45264591498190104, -0.038929464743869664, 0.9327319801972274], "tracking_error_m": 9.964669037316951e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+725. 仿真 22.075s；物体中心 (0.45264, -0.04392, 0.93595) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 60, "target": [0.45264591498190104, -0.04392851277714269, 0.9359545708574043], "tracking_error_m": 1.0012383667408977e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+726. 仿真 22.408s；物体中心 (0.45264, -0.04761, 0.93970) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 61, "target": [0.45264591498190104, -0.04761187362721623, 0.9397044396170401], "tracking_error_m": 9.98123250903834e-06, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+727. 仿真 22.742s；物体中心 (0.45264, -0.04986, 0.94395) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 62, "target": [0.45264591498190104, -0.049867630238531205, 0.9439530477106411], "tracking_error_m": 1.0051295895945696e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+728. 仿真 23.075s；物体中心 (0.45264, -0.05063, 0.94866) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 63, "target": [0.45264591498190104, -0.050627242587920805, 0.9486680606652356], "tracking_error_m": 1.060270810759323e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+729. 仿真 23.408s；物体中心 (0.45264, -0.04987, 0.95381) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 64, "target": [0.45264591498190104, -0.04986763023853121, 0.9538135943852363], "tracking_error_m": 1.0222677982051398e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+730. 仿真 23.742s；物体中心 (0.45264, -0.04761, 0.95934) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 65, "target": [0.45264591498190104, -0.047611873627216236, 0.9593504882520757], "tracking_error_m": 1.0484390290833198e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+731. 仿真 24.075s；物体中心 (0.45264, -0.04393, 0.96523) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 66, "target": [0.45264591498190104, -0.04392851277714272, 0.9652366031601595], "tracking_error_m": 1.0386497153910475e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+732. 仿真 24.408s；物体中心 (0.45264, -0.03893, 0.97142) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 67, "target": [0.45264591498190104, -0.03892946474386975, 0.9714271422209034], "tracking_error_m": 1.0633010653884269e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+733. 仿真 24.742s；物体中心 (0.45264, -0.03277, 0.97787) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 68, "target": [0.45264591498190104, -0.03276662307224776, 0.9778749916941059], "tracking_error_m": 1.1026288180352668e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+734. 仿真 25.075s；物体中心 (0.45264, -0.02563, 0.98452) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 69, "target": [0.45264591498190104, -0.025627242587920797, 0.9845310795519577], "tracking_error_m": 1.0788283690083127e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+735. 仿真 25.408s；物体中心 (0.45264, -0.01773, 0.99134) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 70, "target": [0.45264591498190104, -0.017728249754204246, 0.9913447489468049], "tracking_error_m": 1.1155896547512084e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+736. 仿真 25.742s；物体中心 (0.45264, -0.00931, 0.99826) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 71, "target": [0.45264591498190104, -0.009309651471267333, 0.9982641437403468], "tracking_error_m": 1.0847454228936114e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+737. 仿真 26.075s；物体中心 (0.45264, -0.00063, 1.00523) m；{"trial": "replay", "kind": "figure_eight_waypoint", "index": 72, "target": [0.45264591498190104, -0.0006272425879208253, 1.0052366031601594], "tracking_error_m": 1.1075575461633367e-05, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}
+
+738. 仿真 26.075s；物体中心 (0.45264, -0.00063, 1.00523) m；{"trial": "replay", "kind": "figure_eight_evaluation", "metrics": {"waypoints": 73, "max_tracking_error_m": 1.2019591061309376e-05, "rms_tracking_error_m": 1.0116421539797707e-05, "closure_error_m": 4.412914100216481e-06, "midpoint_crossing_error_m": 9.410107499429497e-06, "plane_error_m": 8.59271740649703e-06, "upper_loop_area_m2": 0.005316280373141388, "lower_loop_area_m2": -0.005316268112438575, "vertical_span_m": 0.1599971706759794, "horizontal_span_m": 0.09999990322861345, "passed": true, "samples": 5960, "min_clearance_m": 0.15596467740279674, "grasp_retained": true}, "物体抓持": true, "实际抬升": true, "事件": ["held_object_waypoint_reached"]}

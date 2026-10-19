@@ -154,6 +154,9 @@ class ReplayVideo:
             stderr=self.error_stream)
         self.tick = 0
         self.frames = 0
+        self.center = None
+        self.tracing = False
+        self.trace_points = []
 
     def capture(self, env, state):
         self.tick += 1
@@ -166,6 +169,19 @@ class ReplayVideo:
         draw.rectangle((0, 0, 960, 75), fill="#111e30")
         draw.text((15, 5), "已验证抓取 Skill → 持物竖直画 8 → 放回桌面", font=font, fill="#50d8ee")
         draw.text((15, 39), f"仿真 {state.timestamp:.2f}s  阶段 {state.phase}  物体高度 {state.object.position_m[2]:.3f}m", font=font, fill="white")
+        if self.tracing:
+            self.trace_points.append(list(state.object.position_m))
+        if self.center is not None:
+            draw.rectangle((650, 420, 950, 710), fill="#111e30")
+            draw.text((665, 430), "物体实际轨迹（Y–Z）", font=font, fill="#50d8ee")
+            draw.line((670, 580, 930, 580), fill="#405065")
+            draw.line((800, 465, 800, 700), fill="#405065")
+            points = [(800 + (p[1] - self.center[1]) * 1000,
+                       580 - (p[2] - self.center[2]) * 1000) for p in self.trace_points]
+            if len(points) > 1:
+                draw.line(points, fill="#50d8ee", width=3)
+                x, y = points[-1]
+                draw.ellipse((x - 4, y - 4, x + 4, y + 4), fill="white")
         self.process.stdin.write(frame.tobytes())
         self.frames += 1
         if self.frames == 1:
@@ -180,8 +196,11 @@ class ReplayVideo:
 
 
 def execute_trial(parameters: dict, store, journal: Journal, label: str, failure: FailureMode,
-                  diagnoser, *, video: bool = False, gui: bool = False) -> dict:
+                  diagnoser, *, video: bool = False, gui: bool = False, motion_skill: Skill | None = None) -> dict:
     parameters = validate_parameters(parameters)
+    if motion_skill is not None and (motion_skill.status != "verified" or motion_skill.parameters != parameters
+                                     or motion_skill.prerequisite_skill_ids != [PREREQUISITE]):
+        raise ValueError("replay must use the verified motion Skill and its stored parameters")
     journal.note(f"开始 {label}，故障={failure.value}，参数={json.dumps(parameters)}")
     envs = []
     events = []
@@ -222,6 +241,9 @@ def execute_trial(parameters: dict, store, journal: Journal, label: str, failure
         center[2] += parameters["center_raise_m"]
         state = env.move_held_object(center, steps=120)
         emit({"kind": "move_to_crossing", "state": asdict(state), "target": center})
+        if recorder:
+            recorder.center = center
+            recorder.tracing = True
         targets = waypoints(center, parameters)
         previous = None
         for index, target in enumerate(targets):
@@ -241,6 +263,8 @@ def execute_trial(parameters: dict, store, journal: Journal, label: str, failure
         metrics["passed"] &= continuous["grasp_retained"] and continuous["min_clearance_m"] >= 0.035
         emit({"kind": "figure_eight_evaluation", "state": asdict(state), "metrics": metrics})
         tracing = False
+        if recorder:
+            recorder.tracing = False
         # Return to the known lifted height even for a completed but rejected candidate,
         # so the existing place action starts from its validated operating region.
         return_target = [center[0], center[1], center[2] - parameters["center_raise_m"]]
@@ -277,6 +301,8 @@ def execute_trial(parameters: dict, store, journal: Journal, label: str, failure
         if recorder:
             recorder.close()
     applied = result.applied_skill_ids if result else []
+    if motion_skill is not None and metrics["passed"]:
+        applied = [*applied, motion_skill.skill_id]
     fallback = any(e["kind"] == "diagnosis_fallback" for e in events)
     report = {"label": label, "failure_mode": failure.value, "parameters": parameters,
               "trajectory": metrics, "placement": placement, "error": error,
@@ -328,7 +354,9 @@ def main():
     parser.add_argument("--output", type=Path, default=Path("artifacts/figure_eight_20261019"))
     parser.add_argument("--journal", type=Path, default=Path("docs/FIGURE_EIGHT_LEARNING.md"))
     parser.add_argument("--model-document", type=Path, default=Path("docs/FIGURE_EIGHT_LLM_CALLS.md"))
-    parser.add_argument("--seed-store", type=Path, default=Path("artifacts/verification_20261019/skills.json"))
+    parser.add_argument("--seed-store", type=Path, default=Path("assets/skills/grasp_without_lift.json"))
+    parser.add_argument("--skill-store", type=Path, default=Path("assets/skills/vertical_figure_eight.json"))
+    parser.add_argument("--replay-only", action="store_true", help="reload the verified Skill instead of learning again")
     parser.add_argument("--trials", type=int, default=6)
     parser.add_argument("--max-attempts", type=int, default=3)
     parser.add_argument("--llm-model")
@@ -340,17 +368,32 @@ def main():
     journal = Journal(args.output, args.journal, args.model_document)
     try:
         store = default_store(args.output / "skills.json")
-        source = default_store(args.seed_store)
+        source_path = args.skill_store if args.replay_only else args.seed_store
+        if not source_path.is_file():
+            raise ValueError(f"Skill source does not exist: {source_path}")
+        source = default_store(source_path)
         old = next(s for s in source.all() if s.skill_id == PREREQUISITE and s.status == "verified")
         if "require_lift_evidence_before_transport" not in old.prediction_correction:
             raise ValueError("existing grasp skill lacks the lift-evidence invariant")
         store.save_candidate(old)
-        journal.note(f"载入已验证前置 Skill {PREREQUISITE}，来源 {args.seed_store}，验证次数 {old.validation_trials}。")
+        journal.note(f"载入已验证前置 Skill {PREREQUISITE}，来源 {source_path}，验证次数 {old.validation_trials}。")
         config = replace(LLMConfig.from_env(), base_url=args.llm_base_url.rstrip("/"),
                          log_path=str(args.output / "llm_full.jsonl"), timeout_seconds=180)
         if args.llm_model:
             config = replace(config, model=args.llm_model)
         client = OpenAICompatibleDiagnoser(config, log_observer=journal.model_event)
+        if args.replay_only:
+            learned = next(s for s in source.retrieve("held_vertical_figure_eight", "cube", "observe") if s.skill_id == NEW_SKILL)
+            journal.event({"kind": "new_skill_retrieved_from_disk", "skill": asdict(learned)})
+            report = execute_trial(learned.parameters, store, journal, "replay", FailureMode.LOW_GRIP_FORCE,
+                                   client, video=True, gui=args.gui, motion_skill=learned)
+            (args.output / "summary.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+            if not report["passed"]:
+                raise RuntimeError("verified Skill replay failed")
+            journal.note(f"已验证 Skill 独立复用完成；applied_skill_ids={report['applied_skill_ids']}。")
+            return
+        if any(s.skill_id == NEW_SKILL and s.status == "verified" for s in store.all()):
+            raise ValueError("output already contains a verified Skill; use --replay-only or a new --output directory")
         reports = []
         proposal = None
         accepted = None
@@ -396,7 +439,7 @@ def main():
         reloaded = default_store(store.path).retrieve("held_vertical_figure_eight", "cube", "observe")
         learned = next(s for s in reloaded if s.skill_id == NEW_SKILL and s.prerequisite_skill_ids == [PREREQUISITE])
         journal.event({"kind": "new_skill_retrieved_from_disk", "skill": asdict(learned)})
-        replay = execute_trial(learned.parameters, default_store(store.path), journal, "replay", FailureMode.LOW_GRIP_FORCE, client, video=True, gui=args.gui)
+        replay = execute_trial(learned.parameters, default_store(store.path), journal, "replay", FailureMode.LOW_GRIP_FORCE, client, video=True, gui=args.gui, motion_skill=learned)
         if not replay["passed"]:
             raise RuntimeError("verified Skill replay failed")
         summary = {"session": journal.session, "model": config.model, "endpoint": config.endpoint,
@@ -404,6 +447,8 @@ def main():
                    "replay": replay, "learned_skill": asdict(learned),
                    "scope": "fixed-constraint PyBullet xArm6; predefined primitive with model-selected parameters; not hardware or neural training"}
         (args.output / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+        args.skill_store.parent.mkdir(parents=True, exist_ok=True)
+        args.skill_store.write_text(json.dumps([asdict(old), asdict(learned)], ensure_ascii=False, indent=2), encoding="utf-8")
         journal.note("学习、独立验证、重新载入复用、放下及稳定性检查全部完成。汇总：" + str(args.output / "summary.json"))
     except Exception as exc:
         journal.note(f"运行未完成：{type(exc).__name__}: {exc}。保留全部已写入的步骤和模型调用，禁止宣称验证成功。")

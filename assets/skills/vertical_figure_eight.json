@@ -1,0 +1,101 @@
+[
+  {
+    "skill_id": "grasp_without_lift_v1",
+    "name": "grasp_without_lift",
+    "status": "verified",
+    "version": 1,
+    "task": "pick_and_place",
+    "object_types": [
+      "cube"
+    ],
+    "trigger_conditions": [
+      "gripper_closed == true",
+      "lift_window_elapsed == true",
+      "object_lifted == false"
+    ],
+    "facts": [
+      "gripper_closed_does_not_imply_grasp_success",
+      "object_lift_was_not_detected",
+      "object_may_have_been_displaced_before_grasp"
+    ],
+    "hypotheses": [
+      "grasp_point_may_be_misaligned",
+      "insufficient_grip_force"
+    ],
+    "prediction_correction": [
+      "do_not_enter_transport_phase",
+      "require_lift_evidence_before_transport"
+    ],
+    "recovery": [
+      "stop_transport_motion",
+      "refresh_object_pose",
+      "retry_grasp_if_safe"
+    ],
+    "validation_trials": 20,
+    "false_success_rate": 0.0,
+    "recovery_success_rate": 1.0,
+    "prerequisite_skill_ids": [],
+    "parameters": {},
+    "validation_success_rate": null,
+    "validation_metrics": {}
+  },
+  {
+    "skill_id": "held_vertical_figure_eight_v1",
+    "name": "方块竖直八字搬运与放置",
+    "status": "verified",
+    "version": 1,
+    "task": "held_vertical_figure_eight",
+    "object_types": [
+      "cube"
+    ],
+    "trigger_conditions": [
+      "object_grasped == true",
+      "object_lifted == true",
+      "lift_evidence_confirmed == true"
+    ],
+    "facts": [
+      "实际试验 learning_1 的总体 passed 为 true，且调用了 grasp_without_lift_v1；低抓力故障场景的结果为 recovered，false_success 为 false。",
+      "最大跟踪误差为0.0000120196米，小于0.02米。",
+      "闭合误差为0.0000044129米，中点交叉误差为0.0000094101米，平面误差为0.0000085927米，均小于0.015米。",
+      "两个叶瓣的有向面积分别约为0.00531628平方米和-0.00531627平方米，符号相反。",
+      "实测竖直跨度约0.159997米，水平跨度约0.100000米。",
+      "报告中的最小底部净空约为0.155965米，大于0.035米，且 grasp_retained 为 true。",
+      "放置目标误差约为0.000626187米，小于0.025米；释放后漂移约为0.0000312841米，小于0.003米，且已释放，放置判定通过。",
+      "当前参数均在允许范围内，采样数和每航点步数均为偶数；0.08米不小于1.3乘以0.05米，0.10米不小于0.08米。"
+    ],
+    "hypotheses": [
+      "这些参数可作为相同仿真条件下重复执行的候选配置；单次实际通过尚不能证明在不同物体、摩擦条件或初始位姿下同样可靠。",
+      "保留运输前的实际抬起证据检查和既有恢复流程，有望减少将夹爪闭合误判为成功抓取的风险；每次执行仍须监测。"
+    ],
+    "prediction_correction": [
+      "require_lift_evidence_before_transport",
+      "require_both_vertical_lobes_and_closed_path",
+      "verify_release_and_stability"
+    ],
+    "recovery": [
+      "若未检测到可靠抬起证据，禁止进入八字或运输阶段；调用 grasp_without_lift_v1 的恢复流程，停止运输、刷新物体位姿，并在安全条件下重试抓取。",
+      "若跟踪误差超过0.02米，或交叉、闭合、平面误差任一超过0.015米，中止试验并安全处理物体；依据实测误差，仅在允许范围内修订五个原语参数，再进行完整验证。",
+      "若底部净空低于0.035米或抓持丢失，立即中止并检查物体状态；根据实测净空和姿态评估中心抬升量、竖直半高的调整，保持全部参数约束。",
+      "若两个叶瓣面积符号不相反、放置误差超过0.025米或漂移超过0.003米，不将该次执行判为成功；记录测量结果，检查原语执行与放置状态，修订后重新试验。"
+    ],
+    "validation_trials": 6,
+    "false_success_rate": null,
+    "recovery_success_rate": null,
+    "prerequisite_skill_ids": [
+      "grasp_without_lift_v1"
+    ],
+    "parameters": {
+      "half_width_m": 0.05,
+      "half_height_m": 0.08,
+      "center_raise_m": 0.1,
+      "samples": 72,
+      "steps_per_waypoint": 80
+    },
+    "validation_success_rate": 1.0,
+    "validation_metrics": {
+      "max_tracking_error_m": 1.2019591061309376e-05,
+      "max_placement_error_m": 0.0037105272944116525,
+      "all_grasps_retained": true
+    }
+  }
+]

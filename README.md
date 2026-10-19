@@ -45,6 +45,22 @@ conda env create --prefix .venv --file environment.yml
 
 ## 可配置的大模型诊断
 
+### 复用抓取 Skill，学习持物竖直画 8 字
+
+通过本机 CC Switch（`127.0.0.1:15723`）调用大模型，提出高层运动参数，执行仿真、反馈实际结果并验证新 Skill：
+
+```powershell
+.\run.cmd -m robotmp.figure_eight --output artifacts/figure_eight_new_run
+```
+
+已验证的新 Skill 保存在 `assets/skills/vertical_figure_eight.json`。直接从文件加载并执行“抓起 → 在 Y–Z 竖直平面画完整 8 字 → 放下 → 稳定性检查”：
+
+```powershell
+.\run.cmd -m robotmp.figure_eight --replay-only --output artifacts/figure_eight_replay
+```
+
+加 `--gui` 可查看实时窗口；输出目录包含 `replay.mp4`、逐路点轨迹、JSONL 事件和完整模型日志。每一步同时追加到 [过程记录](docs/FIGURE_EIGHT_LEARNING.md)，每次模型调用的完整输入、原始输出和解析结果写入 [模型调用记录](docs/FIGURE_EIGHT_LLM_CALLS.md)。当前是预定义轨迹原语上的模型参数选择与 Skill 组合，使用固定抓取约束的 PyBullet 仿真。
+
 偏差诊断支持规则实现和 OpenAI-compatible HTTP 大模型实现。默认使用规则诊断，不会自动访问网络或本机服务；需要接入模型时显式指定 `--diagnoser llm`。环境变量可以在不同主机上复用：
 
 ```powershell
