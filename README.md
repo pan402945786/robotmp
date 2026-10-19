@@ -37,7 +37,7 @@ conda env create --prefix .venv --file environment.yml
 .\run.cmd -m robotmp.sim_video --failure-mode low_grip_force --output artifacts/simulation_video_xarm6
 ```
 
-也可用 `micromamba create --prefix .venv --file environment.yml` 创建同一环境。当前机器已建立 `.venv`，可直接使用 `run.cmd`（也可使用 `run.ps1`）；脚本会切换到仓库根目录，使用 `.venv/python.exe` 运行传入的 Python 参数，并返回执行退出码。需要实时窗口时，在 `sim_cli` 命令后加上 `--gui --realtime --hold 5`。
+也可用 `micromamba create --prefix .venv --file environment.yml` 创建同一环境。`run.cmd`（也可使用 `run.ps1`）会切换到仓库根目录，优先使用 `.venv/python.exe`，不存在时通过 `conda run -n py311` 使用已有仿真环境，并返回执行退出码。需要实时窗口时，在 `sim_cli` 命令后加上 `--gui --realtime --hold 5`。
 
 `environment.yml` 使用 conda-forge 的 `pybullet=3.25` 包，其 Python 包元数据版本为 `3.2.5`；这与下文 PyPI 的 `pybullet==3.2.7` 是不同的发行版本。本机使用前者完成全部 11 项测试、20 次 xArm6 Skill 物理验证以及仿真视频生成。该环境的依赖由 conda-forge 管理，请按此节的环境文件创建。
 
