@@ -381,3 +381,51 @@
 
 
 [2026-10-19T22:33:38+08:00] 大模型 parsed_output；request_id=b0cbff6a3a554c26806a6736b0e82bcc；完整内容已写入 docs\THROW_CATCH_LLM_CALLS.md。
+
+2. 仿真 0.000s；物体中心 (—) m；{"kind": "model_proposal_validated", "proposal": {"decision": "try", "prerequisite_skill_ids": ["grasp_without_lift_v1"], "parameters": {"target_x_m": 0.4, "target_z_m": 1.35, "release_after_steps": 4}, "observed_facts": ["当前尚无实际试验报告", "目标要求物体释放后世界坐标z达到至少10米，且相对释放点上升至少10米", "达到10米上升在无额外注入条件下需要释放竖直速度至少14.0071410359米每秒", "释放后必须观测真实飞行、下降、接近距离不超过0.13米且相对速度不超过1米每秒后才能固定约束接住", "接住后还必须将方块平稳放置到z=0地面"], "hypotheses": ["较高的笛卡尔目标高度和较短的保持步数可能保留较大的释放竖直速度", "现有抓取技能已验证，但其事实明确表明闭合夹爪不等于抓取成功，因此必须先确认物体确实被抬起", "单次试验无法证明控制器对10米抛掷目标不可行或可行"], "rationale": "首次试验必须执行。选择允许范围内的最高目标高度1.35米和最短释放等待4步，以优先测试是否能产生足够的真实释放速度；不注入物体状态、外力或重力变化。试验必须依次验证抓取、抬升、释放、世界z至少10米、相对释放点上升至少10米、下降阶段满足接球条件、接住以及最终放地。", "next_requirements": ["执行抓取并记录物体是否实际抬离桌面", "记录释放时物体位置和速度", "记录飞行最高世界z以及相对释放点的上升高度", "若未达到任一10米条件，基于测得结果调整target_x_m、target_z_m或release_after_steps，或在证据充分时停止", "若达到高度，必须继续验证下降、距离不超过0.13米、相对速度不超过1米每秒、成功接住和放置到地面", "至少完成3次彼此独立且所有阶段均成功的完整试验后，才允许将decision设为accept"]}}
+
+
+[2026-10-19T22:33:39+08:00] 开始 attempt_01；参数 {"target_x_m": 0.4, "target_z_m": 1.35, "release_after_steps": 4}；故障 none。
+
+3. 仿真 0.042s；物体中心 (0.45000, -0.00000, 0.74991) m；{"trial": "attempt_01", "kind": "scene_ready", "ground_body_id": 3, "physics_trace": "attempt_01_physics.csv", "model": "xarm6", "ground_z_m": 0, "table_z_m": 0.7, "cube_dynamics": [0.1, 0.5, [0.0001666666666666667, 0.0001666666666666667, 0.0001666666666666667], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 1.0], 0.0, 0.0, 0.0, -1.0, -1.0, 2, 0.001], "物体抓持": false, "实际抬升": false, "事件": []}
+
+4. 仿真 0.042s；物体中心 (0.45000, -0.00000, 0.74991) m；{"trial": "attempt_01", "kind": "prerequisite_retrieved", "skill": {"skill_id": "grasp_without_lift_v1", "name": "grasp_without_lift", "status": "verified", "version": 1, "task": "pick_and_place", "object_types": ["cube"], "trigger_conditions": ["gripper_closed == true", "lift_window_elapsed == true", "object_lifted == false"], "facts": ["gripper_closed_does_not_imply_grasp_success", "object_lift_was_not_detected", "object_may_have_been_displaced_before_grasp"], "hypotheses": ["grasp_point_may_be_misaligned", "insufficient_grip_force"], "prediction_correction": ["do_not_enter_transport_phase", "require_lift_evidence_before_transport"], "recovery": ["stop_transport_motion", "refresh_object_pose", "retry_grasp_if_safe"], "validation_trials": 20, "false_success_rate": 0.0, "recovery_success_rate": 1.0, "prerequisite_skill_ids": [], "parameters": {}, "validation_success_rate": null, "validation_metrics": {}}, "物体抓持": false, "实际抬升": false, "事件": []}
+
+5. 仿真 0.242s；物体中心 (0.45000, 0.00000, 0.74999) m；{"trial": "attempt_01", "kind": "action", "action": "approach_object", "物体抓持": false, "实际抬升": false, "事件": ["object_approached"]}
+
+6. 仿真 0.442s；物体中心 (0.45000, 0.00001, 0.74999) m；{"trial": "attempt_01", "kind": "action", "action": "close_gripper", "物体抓持": true, "实际抬升": false, "事件": ["gripper_closed", "gripper_contact", "grasp_constraint_created"]}
+
+7. 仿真 0.642s；物体中心 (0.45290, -0.00063, 0.90520) m；{"trial": "attempt_01", "kind": "action", "action": "lift_object", "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+8. 仿真 0.642s；物体中心 (0.45290, -0.00063, 0.90520) m；{"trial": "attempt_01", "kind": "lift_comparison", "prediction": {"prediction_id": "pred-1", "action": "lift_object", "expected_phase": "lift", "expected_events": ["object_lift_detected"], "expected_object_lifted": true, "position_tolerance_m": 0.03, "confidence": 0.9, "applied_skill_ids": ["grasp_without_lift_v1"], "requires_lift_evidence": true}, "comparison": {"status": "match", "errors": [], "severity": "none"}, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+9. 仿真 0.642s；物体中心 (0.45290, -0.00063, 0.90520) m；{"trial": "attempt_01", "kind": "lift_gate_passed", "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+10. 仿真 0.642s；物体中心 (0.45290, -0.00063, 0.90520) m；{"trial": "attempt_01", "kind": "upward_sweep_commanded", "object_target": [0.4, -0.0006344299818815758, 1.35], "steps": 4, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+11. 仿真 0.646s；物体中心 (0.45176, -0.00063, 0.90540) m；{"trial": "attempt_01", "kind": "sweep_step", "index": 1, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+12. 仿真 0.650s；物体中心 (0.45122, -0.00064, 0.90547) m；{"trial": "attempt_01", "kind": "sweep_step", "index": 2, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+13. 仿真 0.654s；物体中心 (0.45127, -0.00064, 0.90540) m；{"trial": "attempt_01", "kind": "sweep_step", "index": 3, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+14. 仿真 0.658s；物体中心 (0.45192, -0.00064, 0.90521) m；{"trial": "attempt_01", "kind": "sweep_step", "index": 4, "物体抓持": true, "实际抬升": true, "事件": ["object_lift_detected"]}
+
+15. 仿真 0.658s；物体中心 (0.45192, -0.00064, 0.90521) m；{"trial": "attempt_01", "kind": "release_measured", "release_height_m": 0.9052091631266603, "release_velocity_m_s": [0.15504038585519203, -5.918020048293559e-05, -0.04685120369801475], "release_vz_m_s": -0.04685120369801475, "ideal_vacuum_rise_m": 0.0, "required_vz_for_10m_rise_m_s": 14.007141035914502, "物体抓持": false, "实际抬升": true, "事件": ["object_released_in_motion"]}
+
+16. 仿真 0.662s；物体中心 (0.45256, -0.00064, 0.90484) m；{"trial": "attempt_01", "kind": "flight_observation", "velocity_m_s": [0.15501036061360998, -5.91687395993305e-05, -0.08771713045750594], "ee_velocity_m_s": [0.2922677993774414, -0.015239166095852852, -0.08677482604980469], "catch_distance_m": 0.10866512316912393, "relative_speed_m_s": 0.13809751899777045, "constraint_active": false, "contact": false, "物体抓持": false, "实际抬升": true, "事件": ["object_released_in_motion"]}
+
+17. 仿真 0.712s；物体中心 (0.46030, -0.00064, 0.88719) m；{"trial": "attempt_01", "kind": "flight_observation", "velocity_m_s": [0.15459060244105163, -5.900851442529387e-05, -0.577336248979839], "ee_velocity_m_s": [0.04502534866333008, -0.004272465594112873, 0.6937694549560547], "catch_distance_m": 0.14661120775232472, "relative_speed_m_s": 1.275826010329897, "constraint_active": false, "contact": false, "物体抓持": false, "实际抬升": true, "事件": ["object_released_in_motion"]}
+
+18. 仿真 0.762s；物体中心 (0.46802, -0.00064, 0.84511) m；{"trial": "attempt_01", "kind": "flight_observation", "velocity_m_s": [0.1540300001234902, -5.8794527873586815e-05, -1.064888061499136], "ee_velocity_m_s": [0.11230230331420898, -0.0012345006689429283, 0.19806861877441406], "catch_distance_m": 0.2074885468526167, "relative_speed_m_s": 1.263646374273089, "constraint_active": false, "contact": false, "物体抓持": false, "实际抬升": true, "事件": ["object_released_in_motion"]}
+
+19. 仿真 0.812s；物体中心 (0.47570, -0.00064, 0.77873) m；{"trial": "attempt_01", "kind": "flight_observation", "velocity_m_s": [0.1533240224457422, -5.852505034181243e-05, -1.5494370391104157], "ee_velocity_m_s": [0.14113426208496094, -0.00039496924728155136, 0.05679130554199219], "catch_distance_m": 0.2792422765697944, "relative_speed_m_s": 1.606274633621899, "constraint_active": false, "contact": false, "物体抓持": false, "实际抬升": false, "事件": ["object_released_in_motion"]}
+
+20. 仿真 0.825s；物体中心 (0.47624, -0.00064, 0.76533) m；{"trial": "attempt_01", "kind": "missed_catch_object_contacted_environment", "contact_body_ids": [0, 0], "物体抓持": false, "实际抬升": false, "事件": ["object_released_in_motion"]}
+
+21. 仿真 0.825s；物体中心 (0.47624, -0.00064, 0.76533) m；{"trial": "attempt_01", "kind": "placement_not_reached", "reason": "未通过接球门槛，不能声明已接住后平稳放地", "物体抓持": false, "实际抬升": false, "事件": ["object_released_in_motion"]}
+
+22. 仿真 2.825s；物体中心 (0.43845, -0.00067, 0.74999) m；{"trial": "attempt_01", "kind": "post_failure_settled_observation", "物体抓持": false, "实际抬升": false, "事件": ["object_released_in_motion"]}
+
+
+[2026-10-19T22:33:39+08:00] attempt_01 结束：{"label": "attempt_01", "failure_mode": "none", "parameters": {"target_x_m": 0.4, "target_z_m": 1.35, "release_after_steps": 4}, "applied_skill_ids": ["grasp_without_lift_v1"], "lift_confirmed": true, "caught": false, "free_flight": true, "placement": {"passed": false, "status": "not_reached"}, "release_height_m": 0.9052091631266603, "release_velocity_m_s": [0.15504038585519203, -5.918020048293559e-05, -0.04685120369801475], "release_vz_m_s": -0.04685120369801475, "ideal_vacuum_rise_m": 0.0, "required_vz_for_10m_rise_m_s": 14.007141035914502, "apex_height_m": 0.9052091631266603, "rise_from_release_m": 0.0, "flight_ticks": 40, "flight_contact_before_catch": true, "physics_samples": 668, "max_joint_velocity_ratios": [0.013735447109538, 1.000000300449022, 1.0001727100481232, 0.0013030638137488748, 1.0048781476881663, 0.013755876736676552], "passed": false}
