@@ -1,0 +1,574 @@
+{
+  "goal_achieved": true,
+  "new_skill_status": "verified",
+  "error": null,
+  "source_skill_sha256": "1480ab7df263cab82d7df41eb84c92a961c2b70a2d8b7bb2cb8c02f94a1f7383",
+  "source_unchanged": true,
+  "reports": [
+    {
+      "label": "attempt_01",
+      "parameters": {
+        "target_x_m": 0.4,
+        "target_z_m": 0.65,
+        "release_min_vz_m_s": 1.06,
+        "max_sweep_steps": 160,
+        "catch_lead_s": 0.04
+      },
+      "failure_mode": "none",
+      "applied_skill_ids": [
+        "grasp_without_lift_v1"
+      ],
+      "lift_confirmed": true,
+      "caught": true,
+      "free_flight": true,
+      "placement": {
+        "drift_m": 2.8062720430870606e-05,
+        "speed_m_s": 1.2362831974259418e-05,
+        "angular_speed_rad_s": 5.919995329156041e-05,
+        "ground_contact": true,
+        "height_error_m": 1.3318940172611649e-05,
+        "released": true,
+        "passed": true
+      },
+      "recovery_used": false,
+      "max_sweep_vz_m_s": 1.0610871628118803,
+      "release_height_m": 0.32622337170717197,
+      "release_vz_m_s": 1.0610871628118803,
+      "release_velocity_m_s": [
+        0.05012743644590001,
+        0.0001101215396272239,
+        1.0610871628118803
+      ],
+      "release_time_s": 1.9958333333333276,
+      "rise_from_release_m": 0.054878205302841765,
+      "catch_time_s": 2.200000000000004,
+      "catch_vz_m_s": -0.9430543268548239,
+      "catch_distance_m": 0.10065608659330696,
+      "catch_relative_speed_m_s": 0.946320460633238,
+      "apex_height_m": 0.38110157701001374,
+      "had_apex": true,
+      "flight_ticks": 49,
+      "flight_contact_before_catch": false,
+      "catch_hold_passed": true,
+      "placement_release_speed_m_s": 7.915412147631274e-05,
+      "placement_release_height_m": 0.049987896872683506,
+      "physics_samples": 4022,
+      "max_joint_velocity_ratios": [
+        0.016393830544591755,
+        1.0000091517096734,
+        1.000060881619031,
+        0.004212114253843383,
+        1.008908989008264,
+        0.020581870534083155
+      ],
+      "passed": true
+    },
+    {
+      "label": "validation_01",
+      "parameters": {
+        "target_x_m": 0.4,
+        "target_z_m": 0.65,
+        "release_min_vz_m_s": 1.06,
+        "max_sweep_steps": 160,
+        "catch_lead_s": 0.04
+      },
+      "failure_mode": "none",
+      "applied_skill_ids": [
+        "grasp_without_lift_v1"
+      ],
+      "lift_confirmed": true,
+      "caught": true,
+      "free_flight": true,
+      "placement": {
+        "drift_m": 2.8062720430870606e-05,
+        "speed_m_s": 1.2362831974259418e-05,
+        "angular_speed_rad_s": 5.919995329156041e-05,
+        "ground_contact": true,
+        "height_error_m": 1.3318940172611649e-05,
+        "released": true,
+        "passed": true
+      },
+      "recovery_used": false,
+      "max_sweep_vz_m_s": 1.0610871628118803,
+      "release_height_m": 0.32622337170717197,
+      "release_vz_m_s": 1.0610871628118803,
+      "release_velocity_m_s": [
+        0.05012743644590001,
+        0.0001101215396272239,
+        1.0610871628118803
+      ],
+      "release_time_s": 1.9958333333333276,
+      "rise_from_release_m": 0.054878205302841765,
+      "catch_time_s": 2.200000000000004,
+      "catch_vz_m_s": -0.9430543268548239,
+      "catch_distance_m": 0.10065608659330696,
+      "catch_relative_speed_m_s": 0.946320460633238,
+      "apex_height_m": 0.38110157701001374,
+      "had_apex": true,
+      "flight_ticks": 49,
+      "flight_contact_before_catch": false,
+      "catch_hold_passed": true,
+      "placement_release_speed_m_s": 7.915412147631274e-05,
+      "placement_release_height_m": 0.049987896872683506,
+      "physics_samples": 4022,
+      "max_joint_velocity_ratios": [
+        0.016393830544591755,
+        1.0000091517096734,
+        1.000060881619031,
+        0.004212114253843383,
+        1.008908989008264,
+        0.020581870534083155
+      ],
+      "passed": true
+    },
+    {
+      "label": "validation_02",
+      "parameters": {
+        "target_x_m": 0.4,
+        "target_z_m": 0.65,
+        "release_min_vz_m_s": 1.06,
+        "max_sweep_steps": 160,
+        "catch_lead_s": 0.04
+      },
+      "failure_mode": "low_grip_force",
+      "applied_skill_ids": [
+        "grasp_without_lift_v1"
+      ],
+      "lift_confirmed": true,
+      "caught": true,
+      "free_flight": true,
+      "placement": {
+        "drift_m": 2.8021513765075342e-05,
+        "speed_m_s": 1.2362808522870336e-05,
+        "angular_speed_rad_s": 5.920050858504219e-05,
+        "ground_contact": true,
+        "height_error_m": 1.3318941288614772e-05,
+        "released": true,
+        "passed": true
+      },
+      "recovery_used": true,
+      "max_sweep_vz_m_s": 1.0632316157999628,
+      "release_height_m": 0.3289309458831226,
+      "release_vz_m_s": 1.0632316157999628,
+      "release_velocity_m_s": [
+        0.040890561632981055,
+        8.942939151419807e-05,
+        1.0632316157999628
+      ],
+      "release_time_s": 2.600000000000024,
+      "rise_from_release_m": 0.05510048959520131,
+      "catch_time_s": 2.804166666666701,
+      "catch_vz_m_s": -0.9409445101012585,
+      "catch_distance_m": 0.10245707633255136,
+      "catch_relative_speed_m_s": 0.946158343599041,
+      "apex_height_m": 0.3840314354783239,
+      "had_apex": true,
+      "flight_ticks": 49,
+      "flight_contact_before_catch": false,
+      "catch_hold_passed": true,
+      "placement_release_speed_m_s": 8.482448793722602e-05,
+      "placement_release_height_m": 0.04998830345322017,
+      "physics_samples": 4191,
+      "max_joint_velocity_ratios": [
+        0.016012318913973773,
+        1.0000091212695883,
+        1.0000686224746682,
+        0.004212114253843383,
+        1.008908989008264,
+        0.020581870534083155
+      ],
+      "passed": true
+    },
+    {
+      "label": "validation_03",
+      "parameters": {
+        "target_x_m": 0.4,
+        "target_z_m": 0.65,
+        "release_min_vz_m_s": 1.06,
+        "max_sweep_steps": 160,
+        "catch_lead_s": 0.04
+      },
+      "failure_mode": "none",
+      "applied_skill_ids": [
+        "grasp_without_lift_v1"
+      ],
+      "lift_confirmed": true,
+      "caught": true,
+      "free_flight": true,
+      "placement": {
+        "drift_m": 2.8062720430870606e-05,
+        "speed_m_s": 1.2362831974259418e-05,
+        "angular_speed_rad_s": 5.919995329156041e-05,
+        "ground_contact": true,
+        "height_error_m": 1.3318940172611649e-05,
+        "released": true,
+        "passed": true
+      },
+      "recovery_used": false,
+      "max_sweep_vz_m_s": 1.0610871628118803,
+      "release_height_m": 0.32622337170717197,
+      "release_vz_m_s": 1.0610871628118803,
+      "release_velocity_m_s": [
+        0.05012743644590001,
+        0.0001101215396272239,
+        1.0610871628118803
+      ],
+      "release_time_s": 1.9958333333333276,
+      "rise_from_release_m": 0.054878205302841765,
+      "catch_time_s": 2.200000000000004,
+      "catch_vz_m_s": -0.9430543268548239,
+      "catch_distance_m": 0.10065608659330696,
+      "catch_relative_speed_m_s": 0.946320460633238,
+      "apex_height_m": 0.38110157701001374,
+      "had_apex": true,
+      "flight_ticks": 49,
+      "flight_contact_before_catch": false,
+      "catch_hold_passed": true,
+      "placement_release_speed_m_s": 7.915412147631274e-05,
+      "placement_release_height_m": 0.049987896872683506,
+      "physics_samples": 4022,
+      "max_joint_velocity_ratios": [
+        0.016393830544591755,
+        1.0000091517096734,
+        1.000060881619031,
+        0.004212114253843383,
+        1.008908989008264,
+        0.020581870534083155
+      ],
+      "passed": true
+    }
+  ],
+  "proposals": [
+    {
+      "decision": "try",
+      "prerequisite_skill_ids": [
+        "grasp_without_lift_v1"
+      ],
+      "parameters": {
+        "target_x_m": 0.4,
+        "target_z_m": 0.65,
+        "release_min_vz_m_s": 1.06,
+        "max_sweep_steps": 160,
+        "catch_lead_s": 0.04
+      },
+      "observed_facts": [
+        "两次校准均确认抓取、自由飞行、真实最高点和接住条件。",
+        "两次释放速度均为1.0610871628米每秒，超过释放阈值1.06米每秒。",
+        "两次实测释放后上升高度均为0.0548782053米，达到并超过0.05米目标。",
+        "两次均在下降阶段接住，接住时立方体竖直速度为-0.0874895837米每秒，腕部距离为0.0537068201米，相对速度为0.1414462077米每秒。",
+        "两次均无接住前飞行接触，并通过了接住后的0.5秒保持。",
+        "两次放置均失败，原因是降低到地面支撑时未达到低速支撑条件。",
+        "尚无完整成功试验，因此验证连续成功次数为0。"
+      ],
+      "hypotheses": [
+        "抓取、投掷、接住阶段已具备可重复性。",
+        "放置失败更可能来自地面支撑阶段的下降轨迹或末端接近速度控制，而非投掷参数。",
+        "保持相同投掷参数有利于隔离并修正地面支撑和低速释放问题。",
+        "当前结果属于仿真范围内的固定约束抓取与接住，机器人与立方体碰撞已禁用。"
+      ],
+      "rationale": "先以当前已测得能够满足真实自由飞行上升至少0.05米并成功接住的同一组参数重试，不改变目标上升高度、重力、物体状态注入、发射力或关节限制。执行时复用grasp_without_lift_v1；使用预定义局部动作将被抓立方体稳定到约[0.40,0,0.22]，向目标区域扫掠，并在当前竖直速度首次达到至少1.06米每秒的步进释放。接住必须满足真实最高点、上升至少0.05米、下降速度小于-0.05米每秒、腕部距离不超过0.13米、立方体至少低于腕部0.10米、相对速度不超过1米每秒、至少10个无约束步且飞行期间无接触。接住后保持0.5秒，缓慢降至实际z=0地面支撑，以不超过0.015米每秒的速度释放，观察2秒并要求漂移不超过0.003米且速度不超过0.01米每秒。只有完成三次连续完整验证试验后才接受；成功后仍建议使用完全相同的参数进行独立验证。"
+    },
+    {
+      "decision": "try",
+      "prerequisite_skill_ids": [
+        "grasp_without_lift_v1"
+      ],
+      "parameters": {
+        "target_x_m": 0.4,
+        "target_z_m": 0.65,
+        "release_min_vz_m_s": 1.06,
+        "max_sweep_steps": 160,
+        "catch_lead_s": 0.04
+      },
+      "observed_facts": [
+        "已复用并确认grasp_without_lift_v1可完成抓取，且本次抓取已确认物体被抬起。",
+        "当前参数下释放时竖直速度为1.0610871628米每秒，首次达到并超过1.06米每秒释放阈值。",
+        "释放后实测自由飞行上升高度为0.0548782053米，达到并超过固定的0.05米目标。",
+        "已观测到真实最高点，最高高度为0.3811015770米。",
+        "本次成功接住发生在下降阶段，接住时竖直速度为-0.9430543269米每秒，腕部距离为0.1006560866米，相对速度为0.9463204606米每秒。",
+        "接住前无飞行接触，且接住后保持阶段通过。",
+        "本次完整放置成功：地面接触成立，漂移为0.0000280627米，速度为0.0000123628米每秒，放置释放速度为0.0000791541米每秒。",
+        "前两次校准在地面支撑低速条件处失败，说明放置阶段存在不稳定性；当前最新尝试已完成一次完整成功。",
+        "当前连续完整验证成功次数为1，尚未达到接受所需的三次连续成功。",
+        "结果仅适用于本地PyBullet仿真；机器人与立方体碰撞已禁用，抓取和接住采用理想化固定约束。"
+      ],
+      "hypotheses": [
+        "当前投掷参数已能重复满足真实最高点、至少0.05米上升和下降接住条件。",
+        "保持完全相同的投掷参数有助于隔离地面缓降与低速释放阶段的影响。",
+        "此前放置失败主要与地面支撑阶段的下降轨迹或末端接近速度有关，而非抓取、投掷或接住阶段。",
+        "最新一次成功表明预定义的缓慢降至实际z=0地面支撑策略可以满足低速释放和稳定放置要求，但仍需独立连续验证。"
+      ],
+      "rationale": "继续使用与已测得成功试验完全相同的参数，不改变固定的0.05米上升目标、重力、物体初始状态、发射力或关节限制。执行时复用grasp_without_lift_v1，将被抓立方体稳定到约[0.40,0,0.22]，向目标区域扫掠，并在当前竖直速度首次达到至少1.06米每秒时释放。必须确认真实最高点、释放后上升至少0.05米、下降速度小于-0.05米每秒、腕部距离不超过0.13米、立方体至少低于腕部0.10米、相对速度不超过1米每秒、至少10个无约束步且接住前无飞行接触。接住后保持0.5秒，缓慢降低至实际z=0地面支撑，在释放速度不超过0.015米每秒时释放，观察2秒并要求漂移不超过0.003米且速度不超过0.01米每秒。当前仅有一次完整成功，因此决策为try；若本次成功，继续使用完全相同的参数进行验证，只有连续三次完整成功后才accept。"
+    },
+    {
+      "decision": "try",
+      "prerequisite_skill_ids": [
+        "grasp_without_lift_v1"
+      ],
+      "parameters": {
+        "target_x_m": 0.4,
+        "target_z_m": 0.65,
+        "release_min_vz_m_s": 1.06,
+        "max_sweep_steps": 160,
+        "catch_lead_s": 0.04
+      },
+      "observed_facts": [
+        "已复用grasp_without_lift_v1，并确认立方体成功抓取和抬起。",
+        "当前参数属于允许范围：target_x_m在[0.25,0.55]内，target_z_m在[0.40,0.85]内，release_min_vz_m_s在[1.04,1.40]内，max_sweep_steps在[20,180]内，catch_lead_s在[0,0.12]内。",
+        "最近完整成功试验的释放竖直速度为1.0610871628米每秒，首次达到释放阈值1.06米每秒即释放。",
+        "最近完整成功试验的释放后实测上升高度为0.0548782053米，达到固定的0.05米目标。",
+        "最近完整成功试验观测到真实最高点，最高高度为0.3811015770米。",
+        "最近完整成功试验在下降阶段接住，接住时竖直速度为-0.9430543269米每秒，腕部距离为0.1006560866米，相对速度为0.9463204606米每秒。",
+        "接住前无飞行接触，且满足接住保持阶段要求。",
+        "最近完整成功试验完成地面放置，地面接触成立，漂移为0.0000280627米，速度为0.0000123628米每秒，放置释放速度为0.0000791541米每秒。",
+        "此前存在地面低速支撑阶段未成功到达低速支撑的校准失败，因此仍需按相同参数进行独立连续验证。",
+        "当前尚未达到三次完整且连续的独立验证成功，不能接受。",
+        "结果仅适用于本地PyBullet仿真；机器人与立方体碰撞已禁用，抓取和接住使用理想化固定约束。"
+      ],
+      "hypotheses": [
+        "保持完全相同的参数可继续满足真实最高点、固定至少0.05米上升和下降接住条件。",
+        "释放阈值1.06米每秒与当前扫掠步数能够提供足够的飞行上升余量。",
+        "catch_lead_s为0.04秒可使末端在下降阶段进入接住窗口，同时满足距离、相对速度和立方体低于腕部的要求。",
+        "最近一次成功表明缓慢降低至实际z=0地面支撑并低速释放是可行的，但低速支撑阶段仍需独立重复确认。",
+        "不改变参数有助于隔离放置阶段稳定性，不应修改固定的0.05米上升目标、重力、物体状态、发射力或关节限制。"
+      ],
+      "rationale": "继续使用最近完整成功试验的完全相同参数进行下一次独立验证。复用grasp_without_lift_v1，将抓住的立方体稳定到约[0.40,0,0.22]，向目标区域扫掠，并在当前竖直速度首次达到至少1.06米每秒时释放。必须保持固定的0.05米上升目标，并实测确认真实最高点、释放后上升至少0.05米、下降速度小于-0.05米每秒、腕部距离不超过0.13米、立方体至少低于腕部0.10米、相对速度不超过1米每秒、至少10个无约束步且接住前无飞行接触。接住后保持0.5秒，缓慢降低至实际z=0地面支撑，在释放速度不超过0.015米每秒时释放，观察2秒并要求漂移不超过0.003米且速度不超过0.01米每秒。若本次完整成功，继续以同一组参数进行独立验证；仅在三次完整连续验证均成功后将决策改为accept，否则保持try并依据实际测量报告改进。"
+    }
+  ],
+  "validation_reports": [
+    {
+      "label": "validation_01",
+      "parameters": {
+        "target_x_m": 0.4,
+        "target_z_m": 0.65,
+        "release_min_vz_m_s": 1.06,
+        "max_sweep_steps": 160,
+        "catch_lead_s": 0.04
+      },
+      "failure_mode": "none",
+      "applied_skill_ids": [
+        "grasp_without_lift_v1"
+      ],
+      "lift_confirmed": true,
+      "caught": true,
+      "free_flight": true,
+      "placement": {
+        "drift_m": 2.8062720430870606e-05,
+        "speed_m_s": 1.2362831974259418e-05,
+        "angular_speed_rad_s": 5.919995329156041e-05,
+        "ground_contact": true,
+        "height_error_m": 1.3318940172611649e-05,
+        "released": true,
+        "passed": true
+      },
+      "recovery_used": false,
+      "max_sweep_vz_m_s": 1.0610871628118803,
+      "release_height_m": 0.32622337170717197,
+      "release_vz_m_s": 1.0610871628118803,
+      "release_velocity_m_s": [
+        0.05012743644590001,
+        0.0001101215396272239,
+        1.0610871628118803
+      ],
+      "release_time_s": 1.9958333333333276,
+      "rise_from_release_m": 0.054878205302841765,
+      "catch_time_s": 2.200000000000004,
+      "catch_vz_m_s": -0.9430543268548239,
+      "catch_distance_m": 0.10065608659330696,
+      "catch_relative_speed_m_s": 0.946320460633238,
+      "apex_height_m": 0.38110157701001374,
+      "had_apex": true,
+      "flight_ticks": 49,
+      "flight_contact_before_catch": false,
+      "catch_hold_passed": true,
+      "placement_release_speed_m_s": 7.915412147631274e-05,
+      "placement_release_height_m": 0.049987896872683506,
+      "physics_samples": 4022,
+      "max_joint_velocity_ratios": [
+        0.016393830544591755,
+        1.0000091517096734,
+        1.000060881619031,
+        0.004212114253843383,
+        1.008908989008264,
+        0.020581870534083155
+      ],
+      "passed": true
+    },
+    {
+      "label": "validation_02",
+      "parameters": {
+        "target_x_m": 0.4,
+        "target_z_m": 0.65,
+        "release_min_vz_m_s": 1.06,
+        "max_sweep_steps": 160,
+        "catch_lead_s": 0.04
+      },
+      "failure_mode": "low_grip_force",
+      "applied_skill_ids": [
+        "grasp_without_lift_v1"
+      ],
+      "lift_confirmed": true,
+      "caught": true,
+      "free_flight": true,
+      "placement": {
+        "drift_m": 2.8021513765075342e-05,
+        "speed_m_s": 1.2362808522870336e-05,
+        "angular_speed_rad_s": 5.920050858504219e-05,
+        "ground_contact": true,
+        "height_error_m": 1.3318941288614772e-05,
+        "released": true,
+        "passed": true
+      },
+      "recovery_used": true,
+      "max_sweep_vz_m_s": 1.0632316157999628,
+      "release_height_m": 0.3289309458831226,
+      "release_vz_m_s": 1.0632316157999628,
+      "release_velocity_m_s": [
+        0.040890561632981055,
+        8.942939151419807e-05,
+        1.0632316157999628
+      ],
+      "release_time_s": 2.600000000000024,
+      "rise_from_release_m": 0.05510048959520131,
+      "catch_time_s": 2.804166666666701,
+      "catch_vz_m_s": -0.9409445101012585,
+      "catch_distance_m": 0.10245707633255136,
+      "catch_relative_speed_m_s": 0.946158343599041,
+      "apex_height_m": 0.3840314354783239,
+      "had_apex": true,
+      "flight_ticks": 49,
+      "flight_contact_before_catch": false,
+      "catch_hold_passed": true,
+      "placement_release_speed_m_s": 8.482448793722602e-05,
+      "placement_release_height_m": 0.04998830345322017,
+      "physics_samples": 4191,
+      "max_joint_velocity_ratios": [
+        0.016012318913973773,
+        1.0000091212695883,
+        1.0000686224746682,
+        0.004212114253843383,
+        1.008908989008264,
+        0.020581870534083155
+      ],
+      "passed": true
+    },
+    {
+      "label": "validation_03",
+      "parameters": {
+        "target_x_m": 0.4,
+        "target_z_m": 0.65,
+        "release_min_vz_m_s": 1.06,
+        "max_sweep_steps": 160,
+        "catch_lead_s": 0.04
+      },
+      "failure_mode": "none",
+      "applied_skill_ids": [
+        "grasp_without_lift_v1"
+      ],
+      "lift_confirmed": true,
+      "caught": true,
+      "free_flight": true,
+      "placement": {
+        "drift_m": 2.8062720430870606e-05,
+        "speed_m_s": 1.2362831974259418e-05,
+        "angular_speed_rad_s": 5.919995329156041e-05,
+        "ground_contact": true,
+        "height_error_m": 1.3318940172611649e-05,
+        "released": true,
+        "passed": true
+      },
+      "recovery_used": false,
+      "max_sweep_vz_m_s": 1.0610871628118803,
+      "release_height_m": 0.32622337170717197,
+      "release_vz_m_s": 1.0610871628118803,
+      "release_velocity_m_s": [
+        0.05012743644590001,
+        0.0001101215396272239,
+        1.0610871628118803
+      ],
+      "release_time_s": 1.9958333333333276,
+      "rise_from_release_m": 0.054878205302841765,
+      "catch_time_s": 2.200000000000004,
+      "catch_vz_m_s": -0.9430543268548239,
+      "catch_distance_m": 0.10065608659330696,
+      "catch_relative_speed_m_s": 0.946320460633238,
+      "apex_height_m": 0.38110157701001374,
+      "had_apex": true,
+      "flight_ticks": 49,
+      "flight_contact_before_catch": false,
+      "catch_hold_passed": true,
+      "placement_release_speed_m_s": 7.915412147631274e-05,
+      "placement_release_height_m": 0.049987896872683506,
+      "physics_samples": 4022,
+      "max_joint_velocity_ratios": [
+        0.016393830544591755,
+        1.0000091517096734,
+        1.000060881619031,
+        0.004212114253843383,
+        1.008908989008264,
+        0.020581870534083155
+      ],
+      "passed": true
+    }
+  ],
+  "replay": {
+    "label": "reloaded_replay",
+    "parameters": {
+      "target_x_m": 0.4,
+      "target_z_m": 0.65,
+      "release_min_vz_m_s": 1.06,
+      "max_sweep_steps": 160,
+      "catch_lead_s": 0.04
+    },
+    "failure_mode": "none",
+    "applied_skill_ids": [
+      "grasp_without_lift_v1"
+    ],
+    "lift_confirmed": true,
+    "caught": true,
+    "free_flight": true,
+    "placement": {
+      "drift_m": 2.8062720430870606e-05,
+      "speed_m_s": 1.2362831974259418e-05,
+      "angular_speed_rad_s": 5.919995329156041e-05,
+      "ground_contact": true,
+      "height_error_m": 1.3318940172611649e-05,
+      "released": true,
+      "passed": true
+    },
+    "recovery_used": false,
+    "max_sweep_vz_m_s": 1.0610871628118803,
+    "release_height_m": 0.32622337170717197,
+    "release_vz_m_s": 1.0610871628118803,
+    "release_velocity_m_s": [
+      0.05012743644590001,
+      0.0001101215396272239,
+      1.0610871628118803
+    ],
+    "release_time_s": 1.9958333333333276,
+    "rise_from_release_m": 0.054878205302841765,
+    "catch_time_s": 2.200000000000004,
+    "catch_vz_m_s": -0.9430543268548239,
+    "catch_distance_m": 0.10065608659330696,
+    "catch_relative_speed_m_s": 0.946320460633238,
+    "apex_height_m": 0.38110157701001374,
+    "had_apex": true,
+    "flight_ticks": 49,
+    "flight_contact_before_catch": false,
+    "catch_hold_passed": true,
+    "placement_release_speed_m_s": 7.915412147631274e-05,
+    "placement_release_height_m": 0.049987896872683506,
+    "video_frames": 551,
+    "physics_samples": 4022,
+    "max_joint_velocity_ratios": [
+      0.016393830544591755,
+      1.0000091517096734,
+      1.000060881619031,
+      0.004212114253843383,
+      1.008908989008264,
+      0.020581870534083155
+    ],
+    "passed": true
+  },
+  "scope": "PyBullet xArm6, ground scene, idealized fixed-constraint grasp/catch; parameter search and skill composition"
+}
