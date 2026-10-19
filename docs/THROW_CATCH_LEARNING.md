@@ -16,3 +16,11 @@
 日志范围：实验程序发出的模型 HTTP 请求、原始响应、解析结果和错误全部落盘；本次 Codex 会话内部的隐藏推理及平台未提供的底层请求不在程序可访问范围内，不冒称已导出。
 
 每个控制步骤写事件文档；每个物理时间步写 CSV；每个模型请求发出前、响应落盘后及每次试验结束后创建本地 Git 检查点。原始已有技能只读使用。
+
+
+[2026-10-19T22:28:25+08:00] 开始运行 9a838c5b6239；输出目录 docs\throw_catch_evidence。
+
+1. 仿真 0.000s；物体中心 (—) m；{"kind": "capability_inspection", "source_sha256": "1480ab7df263cab82d7df41eb84c92a961c2b70a2d8b7bb2cb8c02f94a1f7383", "time_step_s": 0.004166666666666667, "gravity_m_s2": 9.81, "joint_velocity_limits_rad_s": [3.14, 3.14, 3.14, 3.14, 3.14, 3.14], "joint_effort_limits_Nm": [50.0, 50.0, 32.0, 32.0, 32.0, 20.0], "joint_lower_rad": [-6.28318530718, -2.059, -3.927, -6.28318530718, -1.69297, -6.28318530718], "joint_upper_rad": [6.28318530718, 2.0944, 0.19198, 6.28318530718, 3.14159265359, 6.28318530718], "cube_mass_kg": 0.1, "required_vz_for_10m_rise_m_s": 14.007141035914502, "grasp_model": "fixed constraint; robot-cube collision disabled; idealized acquisition", "ground_z_m": 0, "table_z_m": 0.7}
+
+
+[2026-10-19T22:28:25+08:00] 大模型 request；request_id=72ff113db1d143d09be1e7c0eba9c666；完整内容已写入 docs\THROW_CATCH_LLM_CALLS.md。
