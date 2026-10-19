@@ -4,7 +4,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Callable
 
-from .diagnosis import RuleBasedDiagnoser
+from .diagnosis import LLMUnavailable, RuleBasedDiagnoser
 from .environment import FailureMode, PickPlaceEnv
 from .models import Skill
 from .monitor import compare_prediction
@@ -26,7 +26,7 @@ def run_episode(
     mode: str,
     failure_mode: FailureMode,
     skill_store: SkillStore,
-    diagnoser: RuleBasedDiagnoser | None = None,
+    diagnoser: object | None = None,
     observer: Callable[[dict], None] | None = None,
     env_factory: Callable[[FailureMode], object] | None = None,
     close_env: bool = True,
@@ -90,8 +90,13 @@ def run_episode(
         execute("stop")
         return finish(RunResult(mode, failure_mode.value, "uncertain", False, False, prediction.applied_skill_ids))
 
-    candidate = diagnoser.generate(prediction, observed, comparison, skills)
-    emit("diagnosis", skill=asdict(candidate))
+    try:
+        candidate = diagnoser.generate(prediction, observed, comparison, skills)
+        emit("diagnosis", skill=asdict(candidate), source=type(diagnoser).__name__)
+    except LLMUnavailable as exc:
+        fallback = RuleBasedDiagnoser()
+        candidate = fallback.generate(prediction, observed, comparison, skills)
+        emit("diagnosis_fallback", error=str(exc), skill=asdict(candidate), source=type(fallback).__name__)
     if mode == "skills":
         skill_store.save_candidate(candidate)
         emit("candidate", skill=asdict(candidate))
@@ -120,11 +125,12 @@ def validate_skill(
     failure_mode: FailureMode = FailureMode.LOW_GRIP_FORCE,
     trials: int = 20,
     env_factory: Callable[[FailureMode], object] | None = None,
+    diagnoser: object | None = None,
 ) -> Skill:
     false_successes = 0
     recoveries = 0
     for _ in range(trials):
-        result = run_episode("feedback", failure_mode, skill_store, env_factory=env_factory)
+        result = run_episode("feedback", failure_mode, skill_store, diagnoser=diagnoser, env_factory=env_factory)
         false_successes += int(result.false_success)
         recoveries += int(result.recovered)
     return skill_store.promote_verified(
@@ -163,19 +169,19 @@ def run_ab_experiment(
     trials: int,
     root: str | Path = "artifacts/experiment",
     env_factory: Callable[[FailureMode], object] | None = None,
+    diagnoser: object | None = None,
 ) -> dict[str, dict[str, float | int]]:
     root = Path(root)
     summaries: dict[str, dict[str, float | int]] = {}
 
     for mode in ("baseline", "feedback"):
         store = default_store(root / f"{mode}.json")
-        results = [run_episode(mode, failure_mode, store, env_factory=env_factory) for _ in range(trials)]
+        results = [run_episode(mode, failure_mode, store, diagnoser=diagnoser, env_factory=env_factory) for _ in range(trials)]
         summaries[mode] = summarize_results(results)
 
     skill_store = default_store(root / "skills.json")
-    run_episode("skills", failure_mode, skill_store, env_factory=env_factory)
-    validate_skill(skill_store, failure_mode=failure_mode, trials=max(5, min(trials, 20)), env_factory=env_factory)
-    results = [run_episode("skills", failure_mode, skill_store, env_factory=env_factory) for _ in range(trials)]
+    run_episode("skills", failure_mode, skill_store, diagnoser=diagnoser, env_factory=env_factory)
+    validate_skill(skill_store, failure_mode=failure_mode, trials=max(5, min(trials, 20)), env_factory=env_factory, diagnoser=diagnoser)
+    results = [run_episode("skills", failure_mode, skill_store, diagnoser=diagnoser, env_factory=env_factory) for _ in range(trials)]
     summaries["skills"] = summarize_results(results)
     return summaries
-

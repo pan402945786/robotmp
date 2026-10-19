@@ -7,7 +7,7 @@
 → 生成候选 Skill → 验证 Skill → 检索并修正下一次预测
 ```
 
-当前 MVP 只实现“夹爪闭合但物体没有抬升”这一失败模式。运行时不需要机器人硬件、仿真器或模型 API；规则诊断器作为大模型诊断接口的本地替身，便于先验证系统闭环。
+当前 MVP 只实现“夹爪闭合但物体没有抬升”这一失败模式。项目既可以不依赖模型 API 运行规则闭环，也可以通过可配置的 OpenAI-compatible 接口调用大模型生成结构化诊断。
 
 ## 快速开始
 
@@ -23,6 +23,79 @@ python -m robotmp.cli experiment --trials 20 --failure-mode low_grip_force
 ```
 
 运行后，Skill 会保存到 `artifacts/skills.json`。验证后的 Skill 状态为 `verified`，之后 `--mode skills` 会在任务开始时检索它。
+
+## Windows 项目独立仿真环境
+
+Windows 可以使用 conda-forge 的预编译包创建项目内 `.venv`，无需本机 C++ 编译器：
+
+```powershell
+conda env create --prefix .venv --file environment.yml
+.\run.ps1 -m unittest discover -s tests -v
+.\run.ps1 -m robotmp.sim_cli --mode feedback --failure-mode low_grip_force --arm xarm6 --trace artifacts/xarm6_recovery.json
+.\run.ps1 -m robotmp.sim_cli --validate-skill --trials 20 --failure-mode low_grip_force --arm xarm6 --store artifacts/xarm6_skills.json --trace artifacts/xarm6_skill_validation.json
+.\run.ps1 -m robotmp.sim_video --failure-mode low_grip_force --output artifacts/simulation_video_xarm6
+```
+
+也可用 `micromamba create --prefix .venv --file environment.yml` 创建同一环境。当前机器已建立 `.venv`，可直接使用 `run.ps1`；脚本会切换到仓库根目录，使用 `.venv/python.exe` 运行传入的 Python 参数，并返回执行退出码。需要实时窗口时，在 `sim_cli` 命令后加上 `--gui --realtime --hold 5`。
+
+`environment.yml` 使用 conda-forge 的 `pybullet=3.25` 包，其 Python 包元数据版本为 `3.2.5`；这与下文 PyPI 的 `pybullet==3.2.7` 是不同的发行版本。本机使用前者完成全部 11 项测试、20 次 xArm6 Skill 物理验证以及仿真视频生成。该环境的依赖由 conda-forge 管理，请按此节的环境文件创建。
+
+本次物理运行结果和架构对应分析见 [`docs/LOCAL_RUN_RESULTS.md`](docs/LOCAL_RUN_RESULTS.md)。
+
+## 可配置的大模型诊断
+
+偏差诊断支持规则实现和 OpenAI-compatible HTTP 大模型实现。默认使用规则诊断，不会自动访问网络或本机服务；需要接入模型时显式指定 `--diagnoser llm`。环境变量可以在不同主机上复用：
+
+```powershell
+$env:ROBOTMP_LLM_BASE_URL = "http://127.0.0.1:15723/v1"
+$env:ROBOTMP_LLM_MODEL = "gpt-6.1-sol"
+$env:ROBOTMP_LLM_WIRE_API = "responses"
+$env:ROBOTMP_LLM_TIMEOUT = "90"
+
+.\run.ps1 -m robotmp.sim_cli `
+  --mode skills `
+  --failure-mode low_grip_force `
+  --arm xarm6 `
+  --diagnoser llm `
+  --store artifacts/llm_skills.json `
+  --trace artifacts/llm_trace.json
+```
+
+也可以不设置环境变量，直接传参数：
+
+```powershell
+.\run.ps1 -m robotmp.sim_cli `
+  --mode skills `
+  --failure-mode low_grip_force `
+  --arm xarm6 `
+  --diagnoser llm `
+  --llm-base-url http://127.0.0.1:15723/v1 `
+  --llm-model gpt-6.1-sol `
+  --llm-wire-api responses
+```
+
+支持的配置变量：
+
+| 变量 | 默认值 | 说明 |
+|---|---|---|
+| `ROBOTMP_LLM_BASE_URL` | `http://127.0.0.1:15723/v1` | OpenAI-compatible API 的 base URL |
+| `ROBOTMP_LLM_MODEL` | `gpt-6.1-sol` | 当前 provider 接受的模型 ID，应按主机配置修改 |
+| `ROBOTMP_LLM_WIRE_API` | `responses` | `responses` 或 `chat` |
+| `ROBOTMP_LLM_API_KEY` | 空 | 远程服务需要认证时设置；本机 CC Switch 通常不需要传入 |
+| `ROBOTMP_LLM_TIMEOUT` | `90` | 单次诊断调用超时，单位秒 |
+| `ROBOTMP_LLM_ENABLED` | `0` | `--diagnoser auto` 时设为 `1/true/yes/on` 才启用模型 |
+
+模型只负责生成结构化失败诊断。客户端会：
+
+- 只发送任务、预测、观测、比较结果和相关 Skill 上下文；
+- 要求 JSON 输出，并把结果转换成项目的 `Skill` 数据结构；
+- 强制保留“没有抬升证据就不能进入搬运阶段”的安全规则；
+- 拒绝包含关节、马达、力矩、轨迹或底层控制器指令的模型输出；
+- 模型服务不可用、输出格式错误或触发安全校验时回退到 `RuleBasedDiagnoser`；
+- 在遥测中记录 `diagnosis` 的来源，回退时记录 `diagnosis_fallback`。
+
+当前本机实测：CC Switch 的 `15723` 端口返回 OpenAI-compatible Responses API；`gpt-6.1-sol` 调用成功，`gpt-5.4-mini` 在当前 FennoAI 账号组返回模型不可用。因此模型 ID 必须配置，不能假设不同主机或 provider 使用同一名称。
+
 
 ## 运行可视化视频
 
@@ -78,8 +151,8 @@ Start-Process artifacts/visualization/index.html
 
 ## 后续迭代
 
-1. 将轻量环境替换为 PyBullet 或 MuJoCo 适配器。
-2. 把规则诊断器替换为结构化输出的大模型适配器。
+1. 扩展 PyBullet 或 MuJoCo 中的随机场景和故障强度。
+2. 让大模型诊断参与多个失败类型、Skill 版本决策和动作模板选择。
 3. 将 JSON Skill 库迁移为 SQLite，并保存预测、观测和执行证据。
 4. 增加物体位置过时、视觉遮挡和物体滑落等失败模式。
 5. 实现 A/B/C 批量实验和指标报表。
@@ -116,4 +189,3 @@ conda run -n py311 python -m robotmp.sim_video --failure-mode low_grip_force
 ```
 
 视频默认输出到 `artifacts/simulation_video/robotmp_simulation.mp4`，右侧参数栏来自 PyBullet 的实际状态和相机帧，原始事件保存在同目录 `trace.json`。
-

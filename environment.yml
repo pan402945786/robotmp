@@ -1,0 +1,10 @@
+name: robotmp-sim
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  # conda-forge uses the Bullet release number for its Python bindings.
+  - pybullet=3.25
+  - pillow>=11
+  - imageio-ffmpeg>=0.6
+  - pip

@@ -135,3 +135,8 @@ Python 3.14 主环境可以运行规则测试；由于 PyBullet 安装在 `py311
 3. 使用这些证据选择下一次抓取偏移、夹爪闭合速度和抬升高度。
 4. 加入物体滑落、目标位置误差和释放后稳定性检查。
 5. 接入真实相机观测和 `ros2_control` 前，继续在多个随机物体位置和随机故障强度下验证。
+
+
+## 大模型诊断接入
+
+`robotmp.diagnosis.OpenAICompatibleDiagnoser` 支持通过环境变量或 CLI 参数接入不同主机上的 OpenAI-compatible 服务。默认仍使用规则诊断；使用 `--diagnoser llm` 才会调用模型。当前本机 CC Switch 使用 `http://127.0.0.1:15723/v1`、`responses` 协议和 `gpt-6.1-sol` 已实际返回结构化候选 Skill。模型不可用或输出不安全时，runner 会记录 `diagnosis_fallback` 并回退规则诊断。详细配置和边界见 [`docs/LLM_INTEGRATION.md`](LLM_INTEGRATION.md)。
