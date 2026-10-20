@@ -4,7 +4,6 @@ from __future__ import annotations
 import argparse
 from collections import deque
 from dataclasses import asdict
-import hashlib
 import json
 import math
 from pathlib import Path
@@ -53,6 +52,7 @@ def save_json(path,value):
 
 def checkpoint(output,reason):
     paths=[Path("robotmp/catch_observation.py"),Path("robotmp/catch_online_control.py"),Path("robotmp/catch_gripper_geometry.py"),
+           Path("robotmp/catch_online_audit.py"),
            Path("robotmp/throw_catch_493_video.py"),
            Path("robotmp/throw_catch_online.py"),Path("tests/test_catch_observation.py"),
            Path("tests/test_catch_online_control.py"),Path("assets/skills/causal_throw_catch_candidate.json"),
@@ -221,7 +221,7 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
         causal=all(o["captured_at"]<=o["delivered_at"]+1e-8
                    and o["delivered_at"]<=o["received_at"]+1e-8 for o in observations)
         causal &= all(e["latest_observation_at"]<=e["issued_at"]+1e-8 for e in controller.events)
-        report.update(caught=hold,catch_hold_passed=hold,complete_success=False,physical_capture=hold and checks,
+        report.update(caught=hold,catch_hold_passed=hold,complete_success=bool(hold and checks and causal),physical_capture=hold and checks,
             capture_contact_time_s=capture_at,observed_capture_gate=capture_gate,collision_enabled=enabled,
             no_catch_constraint=env._constraint_id is None,causality_contract_passed=bool(causal),
             causality_passed=bool(causal and len(observations)>=4 and controller.plan_count>0),uses_offline_flight=False,
@@ -247,6 +247,10 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
             release_handler=handler,output=output,label=label,observer=observer)
     finally:
         model.close()
+    if not report.get("released"):
+        report.update(caught=False,physical_capture=False,complete_success=False,position_observations=0,
+                      planner_calls=0,failure_reason=report.get("error","measured_release_gate_not_reached"))
+        save_json(output/f"{label}.json",report)
     return report
 
 
@@ -297,6 +301,7 @@ def main():
     parser.add_argument("--git",action="store_true",help="commit each completed experiment and skill update")
     parser.add_argument("--video",action="store_true",help="record the first fresh causal experiment")
     parser.add_argument("--close-lead",type=float,help="test an alternative finger closing lead, in seconds")
+    parser.add_argument("--diagnostic",action="store_true",help="explicitly test a flight despite incompatible centered-grasp geometry")
     args=parser.parse_args()
     if not 1<=args.trials<=12:
         parser.error("trials must be between 1 and 12")
@@ -328,6 +333,9 @@ def main():
         parameters=dict(skill.parameters)
         if args.close_lead is not None:
             parameters["close_lead_s"]=args.close_lead
+        if args.diagnostic:
+            parameters["require_centered_grasp_fit"]=False
+            parameters["geometry_diagnostic"]=True
         snapshot["parameters"]=parameters
         save_json(output/f"{label}_skill_before.json",snapshot)
         recorder=None

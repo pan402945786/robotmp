@@ -138,7 +138,6 @@ class OnlineCatchController:
         self.plan_count=0
         self.deadline_misses=0
         self.max_plan_wall_s=0.
-        self.clock_valid=True
         self.late_plan_rejections=0
         self.fallback=None
 

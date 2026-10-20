@@ -1,0 +1,440 @@
+{
+  "scope": "posthoc evidence audit only; no trajectory is fed back as an intercept target",
+  "attempts": 14,
+  "released_attempts": 13,
+  "active_causal_trials": 11,
+  "motion_valid_causal_trials": 9,
+  "physical_capture_trials": 0,
+  "zero_observation_attempts": 3,
+  "geometry": {
+    "method": "opposed rays from the gripper center to the inner finger collision surfaces at local x=0",
+    "finger_joints_rad": 0.0,
+    "capture_offset_m": [
+      0.0,
+      -1.7830643628258258e-09,
+      0.13013696670532227
+    ],
+    "samples": [
+      {
+        "local_z_m": 0.117,
+        "gap_m": 0.08874881557113969,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.11900000000000001,
+        "gap_m": 0.08778896130958756,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.12100000000000001,
+        "gap_m": 0.0871849732745919,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.12300000000000001,
+        "gap_m": 0.08693678518948382,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.125,
+        "gap_m": 0.08692984254482063,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.127,
+        "gap_m": 0.08692984254469376,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.129,
+        "gap_m": 0.08692984254469376,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.131,
+        "gap_m": 0.08692984254469376,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.133,
+        "gap_m": 0.08692984254469376,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.135,
+        "gap_m": 0.08692984254469376,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.137,
+        "gap_m": 0.08692984254469378,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.139,
+        "gap_m": 0.08692984254456688,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.14100000000000001,
+        "gap_m": 0.08692984254469377,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.14300000000000002,
+        "gap_m": 0.08692984254482068,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.14500000000000002,
+        "gap_m": 0.08692984254469414,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.14700000000000002,
+        "gap_m": 0.08692984254469409,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.14900000000000002,
+        "gap_m": 0.08692984254469409,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.15100000000000002,
+        "gap_m": 0.08692984254469409,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.15300000000000002,
+        "gap_m": 0.08692984254482096,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.15500000000000003,
+        "gap_m": 0.08692984254469406,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.15700000000000003,
+        "gap_m": 0.08692984254456712,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.15900000000000003,
+        "gap_m": 0.08692984254469399,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.16100000000000003,
+        "gap_m": 0.0869303913923541,
+        "left_link": 9,
+        "right_link": 12
+      },
+      {
+        "local_z_m": 0.16300000000000003,
+        "gap_m": 0.0922716477535475,
+        "left_link": 9,
+        "right_link": 12
+      }
+    ],
+    "max_measured_gap_m": 0.0922716477535475,
+    "min_measured_gap_m": 0.08692984254456688,
+    "object_min_width_m": 0.1,
+    "centered_box_clearance": [
+      {
+        "box_width_m": 0.08,
+        "finger_signed_distances_m": [
+          0.0034649247428812854,
+          0.0034649212584428957
+        ],
+        "centered_fit": true
+      },
+      {
+        "box_width_m": 0.1,
+        "finger_signed_distances_m": [
+          -0.006535075257113554,
+          -0.00653507874155182
+        ],
+        "centered_fit": false
+      }
+    ],
+    "limitation": "Measured cross-sections of this model, not a global proof over all grasp poses"
+  },
+  "trials": [
+    {
+      "label": "online_001",
+      "report": "docs\\throw_catch_online_20261020\\online_001.json",
+      "report_sha256": "0acac93892ca2056a94bea2615e882b17b81dbc1b246bba295c60f717efb5973",
+      "released": true,
+      "observations": 77,
+      "causal_contract": true,
+      "active_causal": true,
+      "motion_checks": false,
+      "captured": false,
+      "geometry_gate_blocked": false,
+      "forecast_100ms_free_rmse_m": null,
+      "max_planner_wall_s": 0.2291817999794148,
+      "planner_deadline_misses": 5,
+      "latency_s": 0.0,
+      "noise_m": 0.0,
+      "source_causality_field": true
+    },
+    {
+      "label": "online_002",
+      "report": "docs\\throw_catch_online_round2_20261020\\online_002.json",
+      "report_sha256": "c77e30738fc42b406cd1d324c29b5d990054b836a7599aaf33c0ff591a595e26",
+      "released": true,
+      "observations": 83,
+      "causal_contract": true,
+      "active_causal": true,
+      "motion_checks": false,
+      "captured": false,
+      "geometry_gate_blocked": false,
+      "forecast_100ms_free_rmse_m": null,
+      "max_planner_wall_s": 0.07545769997523166,
+      "planner_deadline_misses": 0,
+      "latency_s": 0.0,
+      "noise_m": 0.0,
+      "source_causality_field": true
+    },
+    {
+      "label": "online_003",
+      "report": "docs\\throw_catch_online_round2_20261020\\online_003.json",
+      "report_sha256": "0a9b09987bb935f924f3e9e560248dc012c0ad2d7479fa6448c251fdc0282e75",
+      "released": true,
+      "observations": 0,
+      "causal_contract": true,
+      "active_causal": false,
+      "motion_checks": false,
+      "captured": false,
+      "geometry_gate_blocked": false,
+      "forecast_100ms_free_rmse_m": null,
+      "max_planner_wall_s": 0.0,
+      "planner_deadline_misses": 0,
+      "latency_s": 0.016666666666666666,
+      "noise_m": 0.001,
+      "source_causality_field": true
+    },
+    {
+      "label": "online_004",
+      "report": "docs\\throw_catch_online_round2_20261020\\online_004.json",
+      "report_sha256": "c5ebb28546045663fbaba1230a723b968d9cdf1aa90598c0c8b4f67e0b6f54bd",
+      "released": true,
+      "observations": 0,
+      "causal_contract": true,
+      "active_causal": false,
+      "motion_checks": false,
+      "captured": false,
+      "geometry_gate_blocked": false,
+      "forecast_100ms_free_rmse_m": null,
+      "max_planner_wall_s": 0.0,
+      "planner_deadline_misses": 0,
+      "latency_s": 0.03333333333333333,
+      "noise_m": 0.002,
+      "source_causality_field": true
+    },
+    {
+      "label": "online_005",
+      "report": "docs\\throw_catch_online_round3_20261020\\online_005.json",
+      "report_sha256": "87bb9bdb3fabd21c2c16b357c68fb8bf906efbb3a96a3bd7907c45d97796336c",
+      "released": true,
+      "observations": 79,
+      "causal_contract": true,
+      "active_causal": true,
+      "motion_checks": true,
+      "captured": false,
+      "geometry_gate_blocked": false,
+      "forecast_100ms_free_rmse_m": 0.0013672880032640478,
+      "max_planner_wall_s": 0.052914600004442036,
+      "planner_deadline_misses": 0,
+      "latency_s": 0.0,
+      "noise_m": 0.0,
+      "source_causality_field": true
+    },
+    {
+      "label": "online_006",
+      "report": "docs\\throw_catch_online_round3_20261020\\online_006.json",
+      "report_sha256": "3e4fd935cca1c6af1e951fbfec847668f69159aa1dce018148f2410f433b2852",
+      "released": true,
+      "observations": 112,
+      "causal_contract": true,
+      "active_causal": true,
+      "motion_checks": true,
+      "captured": false,
+      "geometry_gate_blocked": false,
+      "forecast_100ms_free_rmse_m": 0.00885575926810654,
+      "max_planner_wall_s": 0.05609250001725741,
+      "planner_deadline_misses": 0,
+      "latency_s": 0.016666666666666666,
+      "noise_m": 0.001,
+      "source_causality_field": false
+    },
+    {
+      "label": "online_007",
+      "report": "docs\\throw_catch_online_round3_20261020\\online_007.json",
+      "report_sha256": "bdc5b1658851a187ddb057834aafc89e879c5a20b07946e96557be31d12e4f30",
+      "released": true,
+      "observations": 70,
+      "causal_contract": true,
+      "active_causal": true,
+      "motion_checks": true,
+      "captured": false,
+      "geometry_gate_blocked": false,
+      "forecast_100ms_free_rmse_m": 0.01780981326031085,
+      "max_planner_wall_s": 0.05005849999724887,
+      "planner_deadline_misses": 0,
+      "latency_s": 0.03333333333333333,
+      "noise_m": 0.002,
+      "source_causality_field": false
+    },
+    {
+      "label": "online_008",
+      "report": "docs\\throw_catch_online_round3_20261020\\online_008.json",
+      "report_sha256": "9916adab0135e668260c8d3d08f9d9637b7cbe747fafa47ea1aac621874fec2d",
+      "released": false,
+      "observations": 0,
+      "causal_contract": true,
+      "active_causal": false,
+      "motion_checks": null,
+      "captured": false,
+      "geometry_gate_blocked": false,
+      "forecast_100ms_free_rmse_m": null,
+      "max_planner_wall_s": null,
+      "planner_deadline_misses": null,
+      "latency_s": null,
+      "noise_m": null,
+      "source_causality_field": null
+    },
+    {
+      "label": "online_009",
+      "report": "docs\\throw_catch_online_round4_20261020\\online_009.json",
+      "report_sha256": "b0ed33a83c5cc3c545a2ec241868dc91e0cd06b708f7d4318ec27e1de438276c",
+      "released": true,
+      "observations": 79,
+      "causal_contract": true,
+      "active_causal": true,
+      "motion_checks": true,
+      "captured": false,
+      "geometry_gate_blocked": false,
+      "forecast_100ms_free_rmse_m": 0.0013672880032640478,
+      "max_planner_wall_s": 0.05266409998876043,
+      "planner_deadline_misses": 0,
+      "latency_s": 0.0,
+      "noise_m": 0.0,
+      "source_causality_field": true
+    },
+    {
+      "label": "online_010",
+      "report": "docs\\throw_catch_online_round4_20261020\\online_010.json",
+      "report_sha256": "83c032cc3eb3dfd7319eabbcfc9ff7ef057b732f3bbf21900419909604388868",
+      "released": true,
+      "observations": 78,
+      "causal_contract": true,
+      "active_causal": true,
+      "motion_checks": true,
+      "captured": false,
+      "geometry_gate_blocked": false,
+      "forecast_100ms_free_rmse_m": 0.00885575926810654,
+      "max_planner_wall_s": 0.04335329998866655,
+      "planner_deadline_misses": 0,
+      "latency_s": 0.016666666666666666,
+      "noise_m": 0.001,
+      "source_causality_field": true
+    },
+    {
+      "label": "online_011",
+      "report": "docs\\throw_catch_online_round4_20261020\\online_011.json",
+      "report_sha256": "360873e6bcc2e97ffe54954878e27be5015d8477a329a9b5d029da07cb221568",
+      "released": true,
+      "observations": 69,
+      "causal_contract": true,
+      "active_causal": true,
+      "motion_checks": true,
+      "captured": false,
+      "geometry_gate_blocked": false,
+      "forecast_100ms_free_rmse_m": 0.01780981326031085,
+      "max_planner_wall_s": 0.04397880000760779,
+      "planner_deadline_misses": 0,
+      "latency_s": 0.03333333333333333,
+      "noise_m": 0.002,
+      "source_causality_field": true
+    },
+    {
+      "label": "online_012",
+      "report": "docs\\throw_catch_online_round5_20261020\\online_012.json",
+      "report_sha256": "2ed9c99a1065e7b06a74013f59200d45932f68772e2396f7acaac36f1c2b965e",
+      "released": true,
+      "observations": 79,
+      "causal_contract": true,
+      "active_causal": true,
+      "motion_checks": true,
+      "captured": false,
+      "geometry_gate_blocked": false,
+      "forecast_100ms_free_rmse_m": 0.0010479917667906556,
+      "max_planner_wall_s": 0.043074099987279624,
+      "planner_deadline_misses": 0,
+      "latency_s": 0.0,
+      "noise_m": 0.0,
+      "source_causality_field": true
+    },
+    {
+      "label": "online_013",
+      "report": "docs\\throw_catch_online_round5_20261020\\online_013.json",
+      "report_sha256": "f353a63d610d05e216648e84a4ec85b217266a14e3df67ec675b2fff26e7a233",
+      "released": true,
+      "observations": 76,
+      "causal_contract": true,
+      "active_causal": true,
+      "motion_checks": true,
+      "captured": false,
+      "geometry_gate_blocked": false,
+      "forecast_100ms_free_rmse_m": 0.007585594794265931,
+      "max_planner_wall_s": 0.047864099993603304,
+      "planner_deadline_misses": 0,
+      "latency_s": 0.016666666666666666,
+      "noise_m": 0.001,
+      "source_causality_field": true
+    },
+    {
+      "label": "online_014",
+      "report": "docs\\throw_catch_online_round5_20261020\\online_014.json",
+      "report_sha256": "6663f37f8c505fd04e893c9ad3065e8417faf6ab21cc5827271fd71a980fae76",
+      "released": true,
+      "observations": 105,
+      "causal_contract": true,
+      "active_causal": true,
+      "motion_checks": true,
+      "captured": false,
+      "geometry_gate_blocked": false,
+      "forecast_100ms_free_rmse_m": 0.013079467824346524,
+      "max_planner_wall_s": 0.04125670000212267,
+      "planner_deadline_misses": 0,
+      "latency_s": 0.03333333333333333,
+      "noise_m": 0.002,
+      "source_causality_field": true
+    }
+  ]
+}

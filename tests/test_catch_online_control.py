@@ -1,11 +1,14 @@
 import unittest
 from unittest.mock import patch
+from pathlib import Path
+import tempfile
 
 import numpy as np
 
 from robotmp.catch_observation import PositionObservation
 from robotmp.catch_online_control import InterceptPlan, OnlineCatchController, RobotModel
 from robotmp.catch_gripper_geometry import measure_opening
+from robotmp.throw_catch_online import initial_skill,run_trial
 
 
 class OnlineControllerTests(unittest.TestCase):
@@ -107,6 +110,30 @@ class OnlineControllerTests(unittest.TestCase):
         self.assertTrue(boxes[.08]["centered_fit"])
         self.assertFalse(boxes[.10]["centered_fit"])
         self.assertLess(geometry["max_measured_gap_m"],.10)
+
+    def test_learned_geometry_gate_prevents_an_incompatible_launch(self):
+        parameters=initial_skill().parameters
+        parameters["require_centered_grasp_fit"]=True
+        with tempfile.TemporaryDirectory() as folder:
+            report=run_trial(parameters,dict(seed=991),Path(folder),"blocked")
+        self.assertTrue(report["geometry_gate_blocked"])
+        self.assertFalse(report["released"])
+        self.assertEqual(report["position_observations"],0)
+
+    def test_fresh_dynamic_trial_uses_delayed_position_frames_without_attaching_object(self):
+        parameters=initial_skill().parameters
+        parameters.update(strict_trajectory=True,abort_on_motion_violation=True,ik_seeds=0,
+                          ik_iterations=25,horizon_step_s=.1,estimate_drag=True)
+        with tempfile.TemporaryDirectory() as folder:
+            report=run_trial(parameters,dict(seed=992,latency_s=1/60,noise_m=.001,
+                sensor_hz=60,drop_rate=.05,release_gate=4.9),Path(folder),"fresh")
+        self.assertTrue(report["released"],report.get("error"))
+        self.assertGreater(report["position_observations"],4)
+        self.assertTrue(report["causality_passed"])
+        self.assertFalse(report["truth_velocity_used_by_controller"])
+        self.assertFalse(report["uses_offline_flight"])
+        self.assertTrue(report["no_catch_constraint"])
+        self.assertTrue(report["motion_checks_passed"])
 
 
 if __name__=="__main__":
