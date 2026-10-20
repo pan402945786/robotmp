@@ -28,7 +28,7 @@ DEFAULT_OUTPUT=ROOT/"docs/throw_catch_online_20261020"
 
 def initial_skill():
     return Skill(skill_id="causal_observation_catch_v1",name="causal_observation_catch",status="candidate",version=1,
-        task="throw_catch_ground",object_types=["cube"],
+        task="online_throw_catch",object_types=["cube"],
         trigger_conditions=["measured_lift", "fresh_timestamped_object_observations", "joint_encoder_observations"],
         facts=["offline_complete_flight_intercepts_are_not_realtime_catch_evidence",
                "current_sensor_is_simulated_position_observation_not_camera_perception",
@@ -52,7 +52,8 @@ def save_json(path,value):
 
 
 def checkpoint(output,reason):
-    paths=[Path("robotmp/catch_observation.py"),Path("robotmp/catch_online_control.py"),
+    paths=[Path("robotmp/catch_observation.py"),Path("robotmp/catch_online_control.py"),Path("robotmp/catch_gripper_geometry.py"),
+           Path("robotmp/throw_catch_493_video.py"),
            Path("robotmp/throw_catch_online.py"),Path("tests/test_catch_observation.py"),
            Path("tests/test_catch_online_control.py"),Path("assets/skills/causal_throw_catch_candidate.json"),
            Path("docs/THROW_CATCH_ONLINE_LEARNING.md"),Path("pyproject.toml"),output.relative_to(ROOT)]
@@ -200,7 +201,8 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
                   and env._cube_position()[2]>.2 and not report["ground_contact"])
         checks=bool(not report["joint_position_violation"] and not report["self_penetration_detected"]
             and max(report["max_joint_velocity_ratios"])<=1.05 and max(report["max_motor_torque_ratios"])<=1.001)
-        causal=all(o["captured_at"]<=o["delivered_at"]+1e-8<=o["received_at"]+1e-8 for o in observations)
+        causal=all(o["captured_at"]<=o["delivered_at"]+1e-8
+                   and o["delivered_at"]<=o["received_at"]+1e-8 for o in observations)
         causal &= all(e["latest_observation_at"]<=e["issued_at"]+1e-8 for e in controller.events)
         report.update(caught=hold,catch_hold_passed=hold,complete_success=False,physical_capture=hold and checks,
             capture_contact_time_s=capture_at,observed_capture_gate=capture_gate,collision_enabled=enabled,
@@ -245,6 +247,9 @@ def reflect(skill,report,label):
     if not report.get("caught"):
         lessons.append("position_velocity_approach_is_not_bilateral_contact_capture")
         skill.parameters["time_hysteresis"]=2.
+    if report.get("first_robot_contact_time_s") is not None and not report.get("caught"):
+        lessons.append("one_sided_finger_impact_does_not_establish_capture")
+        lessons.append("ballistic_prediction_error_after_contact_is_not_free_flight_model_error")
     if not report.get("motion_checks_passed",True):
         skill.parameters.update(strict_trajectory=True,abort_on_motion_violation=True,ik_iterations=35)
         lessons.append("reject_infeasible_complete_paths_and_recheck_after_planning_delay")
@@ -271,9 +276,13 @@ def main():
     parser.add_argument("--output",type=Path,default=DEFAULT_OUTPUT)
     parser.add_argument("--trials",type=int,default=3)
     parser.add_argument("--git",action="store_true",help="commit each completed experiment and skill update")
+    parser.add_argument("--video",action="store_true",help="record the first fresh causal experiment")
+    parser.add_argument("--close-lead",type=float,help="test an alternative finger closing lead, in seconds")
     args=parser.parse_args()
     if not 1<=args.trials<=12:
         parser.error("trials must be between 1 and 12")
+    if args.close_lead is not None and not 0<=args.close_lead<=.5:
+        parser.error("close lead must be between 0 and 0.5 seconds")
     output=args.output.resolve()
     output.relative_to(ROOT)
     if (output/"summary.json").exists():
@@ -297,8 +306,30 @@ def main():
         label=f"online_{skill.validation_trials+1:03d}"
         version_used=skill.version
         snapshot=json.loads(json.dumps(asdict(skill)))
+        parameters=dict(skill.parameters)
+        if args.close_lead is not None:
+            parameters["close_lead_s"]=args.close_lead
+        snapshot["parameters"]=parameters
         save_json(output/f"{label}_skill_before.json",snapshot)
-        report=run_trial(dict(skill.parameters),scenario,output,label)
+        recorder=None
+        observer=None
+        if args.video and index==0:
+            from .throw_catch_493_video import Recorder
+            recorder=Recorder(output/f"{label}.mp4",fps=30,title="xArm6 在线观测接回实验",
+                subtitle="位置观测 → 在线预测 → 重规划 | 100 g",release_gate=scenario["release_gate"])
+            class VideoObserver:
+                latest={}
+                def __call__(self,env,phase,tick):
+                    recorder.capture(env,self.latest,phase)
+            observer=VideoObserver()
+        try:
+            report=run_trial(parameters,scenario,output,label,observer=observer)
+        finally:
+            if recorder is not None:
+                recorder.close()
+        if recorder is not None:
+            report.update(video=str(output/f"{label}.mp4"),video_frames=recorder.frames)
+            save_json(output/f"{label}.json",report)
         reports.append(report)
         lessons=reflect(skill,report,label)
         store.save_candidate(skill)

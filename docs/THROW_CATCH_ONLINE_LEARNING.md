@@ -187,3 +187,26 @@
 ```
 
 本次反思：position_velocity_approach_is_not_bilateral_contact_capture。完整接稳未通过时保持 candidate，不记成功。
+
+## online_009：skill v9 → v10
+
+```json
+{
+  "label": "online_009",
+  "released": true,
+  "caught": false,
+  "physical_capture": false,
+  "causality_passed": true,
+  "position_observations": 79,
+  "planner_calls": 13,
+  "planner_deadline_misses": 0,
+  "max_planner_wall_s": 0.05266409998876043,
+  "forecast_100ms_rmse_m": 0.05918408016588154,
+  "estimated_drag": 0.032307620335623316,
+  "motion_checks_passed": true,
+  "error": null,
+  "closest_distance_m": 0.08131230683100125
+}
+```
+
+本次反思：position_history_requires_online_drag_estimation；position_velocity_approach_is_not_bilateral_contact_capture；one_sided_finger_impact_does_not_establish_capture；ballistic_prediction_error_after_contact_is_not_free_flight_model_error。完整接稳未通过时保持 candidate，不记成功。

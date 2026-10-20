@@ -20,14 +20,25 @@ DELAYS_493 = DELAYS["best_coordination"]
 SPIN_493 = {"turns": 1.5, "joints": [0], "directions": [1]}
 
 
+def camera_matrices(p):
+    """Keep the arm and the complete measured flight inside the scene panel."""
+    view = p.computeViewMatrixFromYawPitchRoll([0.05, 0.12, 1.25], 3.5, 48, -15, 0, 2)
+    projection = p.computeProjectionMatrixFOV(48, 960 / 720, 0.02, 10)
+    return view, projection
+
+
 class Recorder:
-    def __init__(self, output: Path, fps: int = 30):
+    def __init__(self, output: Path, fps: int = 30, *, title="xArm6 4.93 m/s 完整抛接实验",
+                 subtitle=None, release_gate=RELEASE_GATE):
         self.output = output
         self.fps = fps
         self.next_frame_time = -1e-9
         self.frames = 0
         self.process = None
         self.error = None
+        self.title = title
+        self.subtitle = subtitle
+        self.release_gate = release_gate
         self._start_video()
 
     def _start_video(self):
@@ -46,8 +57,9 @@ class Recorder:
             return
         from PIL import Image, ImageDraw, ImageFont
         p = env.p
-        view = p.computeViewMatrixFromYawPitchRoll([0.18, 0.08, 0.95], 1.35, 48, -24, 0, 2)
-        projection = p.computeProjectionMatrixFOV(48, 960 / 720, 0.02, 5)
+        # Frame the entire measured 0--2.33 m flight, with room above the apex.
+        # The previous close-up clipped the cube immediately after release.
+        view, projection = camera_matrices(p)
         _, _, rgba, _, _ = p.getCameraImage(960, 720, view, projection,
             renderer=p.ER_TINY_RENDERER, physicsClientId=env.client)
         frame = Image.new("RGB", (1280, 720), "#0b1524")
@@ -56,8 +68,8 @@ class Recorder:
         font = ImageFont.truetype("C:/Windows/Fonts/msyh.ttc", 19)
         title = ImageFont.truetype("C:/Windows/Fonts/msyh.ttc", 26)
         draw.rectangle((0, 0, 960, 72), fill="#0b1524")
-        draw.text((18, 10), "xArm6 4.93 m/s 完整抛接实验", font=title, fill="#68e6ff")
-        draw.text((18, 45), f"PyBullet | t={env._time:.2f}s | 100 g | 1.5圈底座预转 + 肩肘腕上挥", font=font, fill="white")
+        draw.text((18, 10), self.title, font=title, fill="#68e6ff")
+        draw.text((18, 45), self.subtitle or f"PyBullet | t={env._time:.2f}s | 100 g | 1.5圈底座预转 + 肩肘腕上挥", font=font, fill="white")
         pos, _ = p.getBasePositionAndOrientation(env._cube_id, physicsClientId=env.client)
         vel, _ = p.getBaseVelocity(env._cube_id, physicsClientId=env.client)
         rows = [
@@ -66,7 +78,7 @@ class Recorder:
             ("竖直速度", f"{vel[2]:+.3f} m/s", "#ffc478"),
             ("总速度", f"{math.dist(vel, [0,0,0]):.3f} m/s", "#ffc478"),
             ("抓持约束", "有" if env._constraint_id is not None else "无", "#68e6b2" if env._constraint_id is not None else "#ff8490"),
-            ("释放门槛", f"{RELEASE_GATE:.2f} m/s", "#bda8ff"),
+            ("释放门槛", f"{self.release_gate:.2f} m/s", "#bda8ff"),
             ("峰值记录", f"{report.get('peak_vz_m_s', 0):.3f} m/s", "#68e6b2"),
             ("飞行升高", f"{report.get('measured_rise_m', 0):.3f} m", "#68e6b2"),
             ("已接回", "是" if report.get("caught") else "等待", "#68e6b2" if report.get("caught") else "#ffc478"),
