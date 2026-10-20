@@ -1,0 +1,70 @@
+{
+  "skill_id": "causal_observation_catch_v1",
+  "name": "causal_observation_catch",
+  "status": "candidate",
+  "version": 5,
+  "task": "throw_catch_ground",
+  "object_types": [
+    "cube"
+  ],
+  "trigger_conditions": [
+    "measured_lift",
+    "fresh_timestamped_object_observations",
+    "joint_encoder_observations"
+  ],
+  "facts": [
+    "offline_complete_flight_intercepts_are_not_realtime_catch_evidence",
+    "current_sensor_is_simulated_position_observation_not_camera_perception",
+    "intercept_uses_only_already_delivered_observations_and_robot_model",
+    "finger_geometry_and_contact_are_required_for_capture_claims",
+    "position_history_requires_online_drag_estimation",
+    "slow_kinematic_search_must_not_be_treated_as_instantaneous",
+    "position_velocity_approach_is_not_bilateral_contact_capture",
+    "reject_infeasible_complete_paths_and_recheck_after_planning_delay",
+    "reserve_joint_travel_for_followthrough_and_braking"
+  ],
+  "hypotheses": [
+    "receding_horizon_prediction_can_adapt_to_changed_flights"
+  ],
+  "prediction_correction": [
+    "estimate_velocity_from_timestamped_position_history",
+    "extrapolate_from_capture_time_to_account_for_latency",
+    "model_planning_wall_time_as_command_delay",
+    "do_not_read_previous_flight_csv_or_intercept_endpoints"
+  ],
+  "recovery": [
+    "stop_tracking_if_observations_are_stale",
+    "record_failed_attempt_before_retry",
+    "retain_candidate_status_until_contact_and_hold_validation"
+  ],
+  "validation_trials": 4,
+  "false_success_rate": null,
+  "recovery_success_rate": null,
+  "prerequisite_skill_ids": [
+    "grasp_without_lift_v1"
+  ],
+  "parameters": {
+    "window_frames": 10,
+    "estimate_drag": true,
+    "stale_s": 0.075,
+    "replan_s": 0.1,
+    "ik_seeds": 1,
+    "horizon_step_s": 0.1,
+    "tilt_weight": 0.0,
+    "time_hysteresis": 2.0,
+    "coast_s": 0.04,
+    "close_lead_s": 0.22,
+    "strict_trajectory": true,
+    "abort_on_motion_violation": true,
+    "ik_iterations": 35
+  },
+  "validation_success_rate": 0.0,
+  "validation_metrics": {
+    "complete_success": false,
+    "uses_offline_flight": false,
+    "causal_trials": 4,
+    "physical_capture_trials": 0,
+    "last_trial": "online_004",
+    "last_observation_count": 0
+  }
+}

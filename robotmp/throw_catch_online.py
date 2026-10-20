@@ -75,6 +75,7 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
     trace=[]
     predictions=[]
     forecast_errors=[]
+    free_flight_errors=[]
     release_gate=scenario.get("release_gate",4.90)
     launch={"q":list(POSES["best_coordination"]["q"]),"velocity":list(POSES["best_coordination"]["velocity"])}
     launch["velocity"]=[v*scenario.get("swing_scale",1.) for v in launch["velocity"]]
@@ -96,6 +97,7 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
         best_row=None
         capture_gate=None
         first_violation=None
+        first_robot_contact=None
         apex=env._cube_position()[2]
         report["launch_checks_at_release"]={key:report[key] for key in
             ("max_joint_velocity_ratios","max_motor_torque_ratios","joint_position_violation","self_penetration_detected","ground_contact")}
@@ -108,6 +110,9 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
         for tick in range(480):
             now=env._time-start
             true_pos,orientation=p.getBasePositionAndOrientation(env._cube_id,physicsClientId=env.client)
+            current_contacts=p.getContactPoints(env._cube_id,env._gripper_id,physicsClientId=env.client)
+            if current_contacts and first_robot_contact is None:
+                first_robot_contact=now
             if now+1e-9>=next_capture:
                 if rng.random()>=scenario.get("drop_rate",0.):
                     measured=tuple(float(v+rng.gauss(0,scenario.get("noise_m",0.))) for v in true_pos)
@@ -124,6 +129,8 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
             for at,prediction in list(predictions):
                 if now+1e-9>=at:
                     forecast_errors.append(float(np.linalg.norm(np.array(true_pos)-prediction)))
+                    if first_robot_contact is None:
+                        free_flight_errors.append(forecast_errors[-1])
                     predictions.remove((at,prediction))
             states=[p.getJointState(env._gripper_id,j,physicsClientId=env.client) for j in env._arm_joint_ids]
             q=np.array([s[0] for s in states])
@@ -197,12 +204,15 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
         causal &= all(e["latest_observation_at"]<=e["issued_at"]+1e-8 for e in controller.events)
         report.update(caught=hold,catch_hold_passed=hold,complete_success=False,physical_capture=hold and checks,
             capture_contact_time_s=capture_at,observed_capture_gate=capture_gate,collision_enabled=enabled,
-            no_catch_constraint=env._constraint_id is None,causality_passed=bool(causal),uses_offline_flight=False,
+            no_catch_constraint=env._constraint_id is None,causality_contract_passed=bool(causal),
+            causality_passed=bool(causal and len(observations)>=4 and controller.plan_count>0),uses_offline_flight=False,
             position_observations=len(observations),position_sensor_source="simulated noisy delayed position measurements",
             truth_velocity_used_by_controller=False,stale_control_ticks=stale_ticks,planner_calls=controller.plan_count,
             planner_deadline_misses=controller.deadline_misses,max_planner_wall_s=controller.max_plan_wall_s,
             late_plan_rejections=controller.late_plan_rejections,first_motion_violation=first_violation,
             estimated_drag=controller.estimator.drag,forecast_100ms_rmse_m=float(np.sqrt(np.mean(np.square(forecast_errors)))) if forecast_errors else None,
+            free_flight_forecast_100ms_rmse_m=float(np.sqrt(np.mean(np.square(free_flight_errors)))) if free_flight_errors else None,
+            first_robot_contact_time_s=first_robot_contact,
             closest_descending=best_row,best_relative_within_4cm_m_s=best_relative if math.isfinite(best_relative) else None,
             apex_height_m=apex,free_flight=True,flight_contact=report["ground_contact"],motion_checks_passed=checks,
             capture_offset_m=model.capture_offset.tolist(),controller_parameters=parameters,scenario=scenario)
@@ -239,6 +249,10 @@ def reflect(skill,report,label):
         skill.parameters.update(strict_trajectory=True,abort_on_motion_violation=True,ik_iterations=35)
         lessons.append("reject_infeasible_complete_paths_and_recheck_after_planning_delay")
         lessons.append("reserve_joint_travel_for_followthrough_and_braking")
+        first=report.get("first_motion_violation")
+        if first and first["time_s"]<.02:
+            lessons.append("release_handoff_must_preserve_joint_velocity_before_braking")
+            skill.parameters["handoff_brake_s"]=.35
     for lesson in lessons:
         if lesson not in skill.facts:
             skill.facts.append(lesson)

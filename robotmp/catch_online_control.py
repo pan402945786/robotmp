@@ -140,6 +140,17 @@ class OnlineCatchController:
         self.max_plan_wall_s=0.
         self.clock_valid=True
         self.late_plan_rejections=0
+        self.fallback=None
+
+    def brake(self,now,q,qd,dt):
+        if self.fallback is None:
+            duration=float(self.parameters.get("handoff_brake_s",.35))
+            start=np.array(q)
+            speed=np.array(qd)
+            stop=np.clip(start+.5*duration*speed,self.model.lower,self.model.upper)
+            self.fallback=InterceptPlan(now,now+duration,now,[],[],start,speed,stop,np.zeros(6),0.,0.,0.)
+        position,speed=self.fallback.evaluate(now+dt,coast=0.)
+        return position,np.clip(speed,-self.model.vmax,self.model.vmax),False
 
     def executable(self,plan):
         for fraction in np.linspace(0,1,21):
@@ -223,7 +234,9 @@ class OnlineCatchController:
     def control(self,now,q,qd,dt):
         if not self.estimator.ready(now):
             # Stop extrapolating indefinitely through missing observations.
-            return np.array(q),np.zeros(6),False
+            self.plan=None
+            self.pending_plan=None
+            return self.brake(now,q,qd,dt)
         if self.pending_plan is not None and now+1e-9>=self.pending_ready_at:
             if self.pending_plan.intercept_at>now+.03:
                 if self.parameters.get("strict_trajectory",False):
@@ -235,16 +248,18 @@ class OnlineCatchController:
                     candidate.v0=np.array(qd)
                     if self.executable(candidate):
                         self.plan=candidate
+                        self.fallback=None
                     else:
                         self.late_plan_rejections+=1
                 else:
                     self.plan=self.pending_plan
+                    self.fallback=None
             self.pending_plan=None
         if (self.pending_plan is None
                 and now-self.last_replan>=float(self.parameters.get("replan_s",.1))-1e-9):
             self.replan(now,q,qd)
         if self.plan is None:
-            return np.array(q),np.zeros(6),False
+            return self.brake(now,q,qd,dt)
         target,speed=self.plan.evaluate(now+dt,coast=float(self.parameters.get("coast_s",.04)))
         # Every issued command respects the model limits even if a candidate path was too fast.
         speed=np.clip(speed,-self.model.vmax*.98,self.model.vmax*.98)
