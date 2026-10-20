@@ -164,3 +164,26 @@
 ```
 
 本次反思：position_history_requires_online_drag_estimation；position_velocity_approach_is_not_bilateral_contact_capture。完整接稳未通过时保持 candidate，不记成功。
+
+## online_008：skill v8 → v9
+
+```json
+{
+  "label": "online_008",
+  "released": false,
+  "caught": null,
+  "physical_capture": null,
+  "causality_passed": null,
+  "position_observations": null,
+  "planner_calls": null,
+  "planner_deadline_misses": null,
+  "max_planner_wall_s": null,
+  "forecast_100ms_rmse_m": null,
+  "estimated_drag": null,
+  "motion_checks_passed": null,
+  "error": null,
+  "closest_distance_m": null
+}
+```
+
+本次反思：position_velocity_approach_is_not_bilateral_contact_capture。完整接稳未通过时保持 candidate，不记成功。
