@@ -84,10 +84,10 @@ class RobotModel:
         rotation=np.array(p.getMatrixFromQuaternion(link[5])).reshape(3,3)
         return point,np.array(linear)[:,:6],np.array(angular)[:,:6],rotation
 
-    def fit_position(self,target,seed,*,tilt_weight=0.):
+    def fit_position(self,target,seed,*,tilt_weight=0.,iterations=65):
         q=np.clip(seed,self.lower,self.upper)
         target=np.array(target)
-        for _ in range(65):
+        for _ in range(iterations):
             point,jac,angular,rotation=self.state(q)
             error=target-point
             if np.linalg.norm(error)<.002:
@@ -104,13 +104,19 @@ class RobotModel:
         point,jac,angular,rotation=self.state(q)
         return q,point,jac,rotation
 
-    def fit_velocity(self,jac,velocity):
+    def fit_velocity(self,jac,velocity,q=None):
         qd=np.zeros(6)
         limit=self.vmax*.98
+        lower=-limit
+        upper=limit
+        if q is not None:
+            # Reserve joint travel for 40 ms of following and 250 ms of braking.
+            lower=np.maximum(lower,(self.lower-q)/.165)
+            upper=np.minimum(upper,(self.upper-q)/.165)
         for _ in range(35):
             for i in range(6):
                 axis=jac[:,i]
-                qd[i]=np.clip(qd[i]+axis@(velocity-jac@qd)/(axis@axis+1e-10),-limit[i],limit[i])
+                qd[i]=np.clip(qd[i]+axis@(velocity-jac@qd)/(axis@axis+1e-10),lower[i],upper[i])
         return qd,float(np.linalg.norm(velocity-jac@qd))
 
     def close(self):
@@ -133,6 +139,16 @@ class OnlineCatchController:
         self.deadline_misses=0
         self.max_plan_wall_s=0.
         self.clock_valid=True
+        self.late_plan_rejections=0
+
+    def executable(self,plan):
+        for fraction in np.linspace(0,1,21):
+            q,qd=plan.evaluate(plan.issued_at+(plan.intercept_at-plan.issued_at)*fraction)
+            if (np.max(np.abs(qd)/self.model.vmax)>1.02
+                    or np.any(q<self.model.lower) or np.any(q>self.model.upper)):
+                return False
+        q,_=plan.evaluate(plan.intercept_at+.30,coast=float(self.parameters.get("coast_s",.04)))
+        return bool(np.all(q>=self.model.lower) and np.all(q<=self.model.upper))
 
     def observe(self,observation,now):
         return self.estimator.observe(observation,now)
@@ -159,7 +175,8 @@ class OnlineCatchController:
             seeds.append(np.clip(current+self.rng.normal(0,1.1,6),self.model.lower,self.model.upper))
         for horizon,cube,cube_v in predictions:
             for seed in seeds:
-                goal,point,jac,rotation=self.model.fit_position(cube,seed,tilt_weight=float(self.parameters.get("tilt_weight",0.)))
+                goal,point,jac,rotation=self.model.fit_position(cube,seed,
+                    tilt_weight=float(self.parameters.get("tilt_weight",0.)),iterations=int(self.parameters.get("ik_iterations",65)))
                 residual=float(np.linalg.norm(point-cube))
                 if residual>.012:
                     continue
@@ -167,7 +184,7 @@ class OnlineCatchController:
                     equivalent=current[i]+(goal[i]-current[i]+math.pi)%(2*math.pi)-math.pi
                     if self.model.lower[i]<=equivalent<=self.model.upper[i]:
                         goal[i]=equivalent
-                terminal,relative=self.model.fit_velocity(jac,cube_v)
+                terminal,relative=self.model.fit_velocity(jac,cube_v,goal if self.parameters.get("strict_trajectory",False) else None)
                 plan=InterceptPlan(now,now+horizon,self.estimator.history[-1].captured_at,
                     cube.tolist(),cube_v.tolist(),current.copy(),velocity.copy(),goal,terminal,relative,0.,0.)
                 peak=0.
@@ -179,6 +196,8 @@ class OnlineCatchController:
                 if not position_ok:
                     continue
                 plan.peak_speed_ratio=peak
+                if self.parameters.get("strict_trajectory",False) and not self.executable(plan):
+                    continue
                 tilt=math.acos(float(np.clip(rotation[:,2]@[0,0,-1],-1,1)))
                 plan.score=relative+8*max(0.,peak-1.)+.10*np.linalg.norm(goal-current)+.15*tilt+20*residual
                 if previous is not None:
@@ -207,7 +226,19 @@ class OnlineCatchController:
             return np.array(q),np.zeros(6),False
         if self.pending_plan is not None and now+1e-9>=self.pending_ready_at:
             if self.pending_plan.intercept_at>now+.03:
-                self.plan=self.pending_plan
+                if self.parameters.get("strict_trajectory",False):
+                    # Rebase onto measured encoders when the computation actually
+                    # becomes available, then check the remaining path again.
+                    candidate=self.pending_plan
+                    candidate.issued_at=now
+                    candidate.q0=np.array(q)
+                    candidate.v0=np.array(qd)
+                    if self.executable(candidate):
+                        self.plan=candidate
+                    else:
+                        self.late_plan_rejections+=1
+                else:
+                    self.plan=self.pending_plan
             self.pending_plan=None
         if (self.pending_plan is None
                 and now-self.last_replan>=float(self.parameters.get("replan_s",.1))-1e-9):

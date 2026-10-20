@@ -3,7 +3,7 @@
     "skill_id": "causal_observation_catch_v1",
     "name": "causal_observation_catch",
     "status": "candidate",
-    "version": 2,
+    "version": 3,
     "task": "throw_catch_ground",
     "object_types": [
       "cube"
@@ -20,7 +20,9 @@
       "finger_geometry_and_contact_are_required_for_capture_claims",
       "position_history_requires_online_drag_estimation",
       "slow_kinematic_search_must_not_be_treated_as_instantaneous",
-      "position_velocity_approach_is_not_bilateral_contact_capture"
+      "position_velocity_approach_is_not_bilateral_contact_capture",
+      "reject_infeasible_complete_paths_and_recheck_after_planning_delay",
+      "reserve_joint_travel_for_followthrough_and_braking"
     ],
     "hypotheses": [
       "receding_horizon_prediction_can_adapt_to_changed_flights"
@@ -36,7 +38,7 @@
       "record_failed_attempt_before_retry",
       "retain_candidate_status_until_contact_and_hold_validation"
     ],
-    "validation_trials": 1,
+    "validation_trials": 2,
     "false_success_rate": null,
     "recovery_success_rate": null,
     "prerequisite_skill_ids": [
@@ -52,16 +54,19 @@
       "tilt_weight": 0.0,
       "time_hysteresis": 2.0,
       "coast_s": 0.04,
-      "close_lead_s": 0.22
+      "close_lead_s": 0.22,
+      "strict_trajectory": true,
+      "abort_on_motion_violation": true,
+      "ik_iterations": 35
     },
     "validation_success_rate": 0.0,
     "validation_metrics": {
       "complete_success": false,
       "uses_offline_flight": false,
-      "causal_trials": 1,
+      "causal_trials": 2,
       "physical_capture_trials": 0,
-      "last_trial": "online_001",
-      "last_observation_count": 77
+      "last_trial": "online_002",
+      "last_observation_count": 83
     }
   }
 ]

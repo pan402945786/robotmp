@@ -95,6 +95,7 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
         best_relative=math.inf
         best_row=None
         capture_gate=None
+        first_violation=None
         apex=env._cube_position()[2]
         report["launch_checks_at_release"]={key:report[key] for key in
             ("max_joint_velocity_ratios","max_motor_torque_ratios","joint_position_violation","self_penetration_detected","ground_contact")}
@@ -135,7 +136,8 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
                 p.setJointMotorControl2(env._gripper_id,joint,p.POSITION_CONTROL,targetPosition=.85 if closing else 0.,
                     force=50,maxVelocity=2,physicsClientId=env.client)
             capture_point,jac,_,rotation=model.state(q)
-            if not enabled and np.linalg.norm(np.array(true_pos)-capture_point)>.20:
+            clear=not p.getClosestPoints(env._cube_id,env._gripper_id,.015,physicsClientId=env.client)
+            if not enabled and clear and np.linalg.norm(np.array(true_pos)-capture_point)>.20:
                 for link in range(-1,p.getNumJoints(env._gripper_id,physicsClientId=env.client)):
                     p.setCollisionFilterPair(env._gripper_id,env._cube_id,link,-1,1,physicsClientId=env.client)
                 enabled=True
@@ -157,6 +159,11 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
                 observation_at=controller.estimator.history[-1].captured_at if controller.estimator.history else None,
                 commanded_q=target.tolist(),commanded_qd=speed.tolist(),q=[s[0] for s in states],qd=[s[1] for s in states])
             trace.append(row)
+            violation=(max(report["max_joint_velocity_ratios"])>1.05 or report["joint_position_violation"]
+                       or report["self_penetration_detected"])
+            if violation and first_violation is None:
+                first_violation=dict(time_s=now+dt,speed_ratios=list(report["max_joint_velocity_ratios"]),
+                    joint_position_violation=report["joint_position_violation"],self_penetration=report["self_penetration_detected"])
             if vel[2]<-.05 and distance<best_distance:
                 best_distance,best_row=distance,row
             if vel[2]<-.05 and distance<.04:
@@ -179,6 +186,9 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
                     break
             if ground:
                 break
+            if violation and parameters.get("abort_on_motion_violation",False):
+                command(env,[s[0] for s in states])
+                break
         hold=bool(capture_at is not None and env._time-start-capture_at>=.5 and hold_contacts>=96
                   and env._cube_position()[2]>.2 and not report["ground_contact"])
         checks=bool(not report["joint_position_violation"] and not report["self_penetration_detected"]
@@ -191,6 +201,7 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
             position_observations=len(observations),position_sensor_source="simulated noisy delayed position measurements",
             truth_velocity_used_by_controller=False,stale_control_ticks=stale_ticks,planner_calls=controller.plan_count,
             planner_deadline_misses=controller.deadline_misses,max_planner_wall_s=controller.max_plan_wall_s,
+            late_plan_rejections=controller.late_plan_rejections,first_motion_violation=first_violation,
             estimated_drag=controller.estimator.drag,forecast_100ms_rmse_m=float(np.sqrt(np.mean(np.square(forecast_errors)))) if forecast_errors else None,
             closest_descending=best_row,best_relative_within_4cm_m_s=best_relative if math.isfinite(best_relative) else None,
             apex_height_m=apex,free_flight=True,flight_contact=report["ground_contact"],motion_checks_passed=checks,
@@ -224,6 +235,10 @@ def reflect(skill,report,label):
     if not report.get("caught"):
         lessons.append("position_velocity_approach_is_not_bilateral_contact_capture")
         skill.parameters["time_hysteresis"]=2.
+    if not report.get("motion_checks_passed",True):
+        skill.parameters.update(strict_trajectory=True,abort_on_motion_violation=True,ik_iterations=35)
+        lessons.append("reject_infeasible_complete_paths_and_recheck_after_planning_delay")
+        lessons.append("reserve_joint_travel_for_followthrough_and_braking")
     for lesson in lessons:
         if lesson not in skill.facts:
             skill.facts.append(lesson)

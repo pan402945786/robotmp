@@ -26,3 +26,26 @@
 ```
 
 本次反思：position_history_requires_online_drag_estimation；slow_kinematic_search_must_not_be_treated_as_instantaneous；position_velocity_approach_is_not_bilateral_contact_capture。完整接稳未通过时保持 candidate，不记成功。
+
+## online_002：skill v2 → v3
+
+```json
+{
+  "label": "online_002",
+  "released": true,
+  "caught": false,
+  "physical_capture": false,
+  "causality_passed": true,
+  "position_observations": 83,
+  "planner_calls": 14,
+  "planner_deadline_misses": 0,
+  "max_planner_wall_s": 0.07545769997523166,
+  "forecast_100ms_rmse_m": 0.06241967901651536,
+  "estimated_drag": 0.03121578708113678,
+  "motion_checks_passed": false,
+  "error": null,
+  "closest_distance_m": 0.08032649267565876
+}
+```
+
+本次反思：position_history_requires_online_drag_estimation；position_velocity_approach_is_not_bilateral_contact_capture；reject_infeasible_complete_paths_and_recheck_after_planning_delay；reserve_joint_travel_for_followthrough_and_braking。完整接稳未通过时保持 candidate，不记成功。
