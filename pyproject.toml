@@ -13,7 +13,7 @@ dependencies = []
 
 [project.optional-dependencies]
 video = ["Pillow>=11", "imageio-ffmpeg>=0.6"]
-simulation = ["pybullet>=3.2.7", "Pillow>=11", "imageio-ffmpeg>=0.6"]
+simulation = ["pybullet>=3.2.7", "numpy>=1.24", "Pillow>=11", "imageio-ffmpeg>=0.6"]
 
 [project.scripts]
 robotmp = "robotmp.cli:main"

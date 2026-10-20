@@ -1,0 +1,28 @@
+# 基于在线观测的接回实验
+
+旧的完整飞行离线选点只保留为历史诊断，不能作为本轮控制输入或成功证据。
+
+传感输入为仿真器采样的位置观测，可带噪声、延迟和漏帧；不是摄像头检测。控制器没有动态世界句柄，只接收已送达的位置观测和关节编码器状态。独立运动学模型允许求解未来动作，不读取未来物体状态。
+
+## online_001：skill v1 → v2
+
+```json
+{
+  "label": "online_001",
+  "released": true,
+  "caught": false,
+  "physical_capture": false,
+  "causality_passed": true,
+  "position_observations": 77,
+  "planner_calls": 10,
+  "planner_deadline_misses": 5,
+  "max_planner_wall_s": 0.2291817999794148,
+  "forecast_100ms_rmse_m": 0.06046805568000734,
+  "estimated_drag": 0.0,
+  "motion_checks_passed": false,
+  "error": null,
+  "closest_distance_m": 0.1475220045155627
+}
+```
+
+本次反思：position_history_requires_online_drag_estimation；slow_kinematic_search_must_not_be_treated_as_instantaneous；position_velocity_approach_is_not_bilateral_contact_capture。完整接稳未通过时保持 candidate，不记成功。
