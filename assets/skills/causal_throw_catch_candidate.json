@@ -3,7 +3,7 @@
     "skill_id": "causal_observation_catch_v1",
     "name": "causal_observation_catch",
     "status": "candidate",
-    "version": 7,
+    "version": 8,
     "task": "throw_catch_ground",
     "object_types": [
       "cube"
@@ -38,7 +38,7 @@
       "record_failed_attempt_before_retry",
       "retain_candidate_status_until_contact_and_hold_validation"
     ],
-    "validation_trials": 6,
+    "validation_trials": 7,
     "false_success_rate": null,
     "recovery_success_rate": null,
     "prerequisite_skill_ids": [
@@ -65,8 +65,8 @@
       "uses_offline_flight": false,
       "causal_trials": 5,
       "physical_capture_trials": 0,
-      "last_trial": "online_006",
-      "last_observation_count": 112
+      "last_trial": "online_007",
+      "last_observation_count": 70
     }
   }
 ]
