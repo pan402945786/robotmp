@@ -1,0 +1,5220 @@
+{
+  "local_time": "2026-10-20T15:59:57.046448+08:00",
+  "target_rise_m": 2.0,
+  "required_vz_m_s": 6.26418390534633,
+  "baseline_mass_kg": 0.1,
+  "mass_comparison_parameters": {
+    "target_x_m": 0.35,
+    "target_z_m": 1.1,
+    "release_after_steps": 72
+  },
+  "mass_comparison": [
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0272624143442903,
+      "final_measured_vz_m_s": 0.0033338824519965407,
+      "max_joint_velocity_ratios": [
+        5.9668307381412395e-05,
+        0.9999999576170162,
+        0.9697188432767394,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.2094695665959756,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 2,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0272624143442903,
+      "final_measured_vz_m_s": 0.0033338824519965407,
+      "max_joint_velocity_ratios": [
+        5.9668307381412395e-05,
+        0.9999999576170162,
+        0.9697188432767394,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.2094695665959756,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 3,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0272624143442903,
+      "final_measured_vz_m_s": 0.0033338824519965407,
+      "max_joint_velocity_ratios": [
+        5.9668307381412395e-05,
+        0.9999999576170162,
+        0.9697188432767394,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.2094695665959756,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0137808520066396,
+      "final_measured_vz_m_s": 0.0026272961706916426,
+      "max_joint_velocity_ratios": [
+        5.977240074862223e-05,
+        1.000000005126235,
+        0.9574368082286062,
+        0.00037239445383060885,
+        1.0000004929964512,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.2066928297608862,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 2,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0137808520066396,
+      "final_measured_vz_m_s": 0.0026272961706916426,
+      "max_joint_velocity_ratios": [
+        5.977240074862223e-05,
+        1.000000005126235,
+        0.9574368082286062,
+        0.00037239445383060885,
+        1.0000004929964512,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.2066928297608862,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 3,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0137808520066396,
+      "final_measured_vz_m_s": 0.0026272961706916426,
+      "max_joint_velocity_ratios": [
+        5.977240074862223e-05,
+        1.000000005126235,
+        0.9574368082286062,
+        0.00037239445383060885,
+        1.0000004929964512,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.2066928297608862,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0410232594021576,
+      "final_measured_vz_m_s": 0.002920672869701005,
+      "max_joint_velocity_ratios": [
+        5.987716528846331e-05,
+        0.9999999743503435,
+        0.9610034270042648,
+        0.00037239445383060885,
+        1.0000004219799907,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21232293299799218,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 2,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0410232594021576,
+      "final_measured_vz_m_s": 0.002920672869701005,
+      "max_joint_velocity_ratios": [
+        5.987716528846331e-05,
+        0.9999999743503435,
+        0.9610034270042648,
+        0.00037239445383060885,
+        1.0000004219799907,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21232293299799218,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 3,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0410232594021576,
+      "final_measured_vz_m_s": 0.002920672869701005,
+      "max_joint_velocity_ratios": [
+        5.987716528846331e-05,
+        0.9999999743503435,
+        0.9610034270042648,
+        0.00037239445383060885,
+        1.0000004219799907,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21232293299799218,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0502588663407053,
+      "final_measured_vz_m_s": 0.0029726340177171837,
+      "max_joint_velocity_ratios": [
+        5.988916144116511e-05,
+        1.0000000642416191,
+        0.967185429723378,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21424879811461134,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 2,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0502588663407053,
+      "final_measured_vz_m_s": 0.0029726340177171837,
+      "max_joint_velocity_ratios": [
+        5.988916144116511e-05,
+        1.0000000642416191,
+        0.967185429723378,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21424879811461134,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 3,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0502588663407053,
+      "final_measured_vz_m_s": 0.0029726340177171837,
+      "max_joint_velocity_ratios": [
+        5.988916144116511e-05,
+        1.0000000642416191,
+        0.967185429723378,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21424879811461134,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.054906659342541,
+      "final_measured_vz_m_s": 0.0029996161668469426,
+      "max_joint_velocity_ratios": [
+        5.986370280071469e-05,
+        1.0000000683702426,
+        0.9702949788581458,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.2152212731197921,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 2,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.054906659342541,
+      "final_measured_vz_m_s": 0.0029996161668469426,
+      "max_joint_velocity_ratios": [
+        5.986370280071469e-05,
+        1.0000000683702426,
+        0.9702949788581458,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.2152212731197921,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 3,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.054906659342541,
+      "final_measured_vz_m_s": 0.0029996161668469426,
+      "max_joint_velocity_ratios": [
+        5.986370280071469e-05,
+        1.0000000683702426,
+        0.9702949788581458,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.2152212731197921,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0586395689406425,
+      "final_measured_vz_m_s": 0.0030215628990106005,
+      "max_joint_velocity_ratios": [
+        5.986318843202244e-05,
+        1.0000000783406282,
+        0.9727917144330627,
+        0.00037239445383060885,
+        1.0000005013869606,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21600391818593856,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 2,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0586395689406425,
+      "final_measured_vz_m_s": 0.0030215628990106005,
+      "max_joint_velocity_ratios": [
+        5.986318843202244e-05,
+        1.0000000783406282,
+        0.9727917144330627,
+        0.00037239445383060885,
+        1.0000005013869606,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21600391818593856,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 3,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0586395689406425,
+      "final_measured_vz_m_s": 0.0030215628990106005,
+      "max_joint_velocity_ratios": [
+        5.986318843202244e-05,
+        1.0000000783406282,
+        0.9727917144330627,
+        0.00037239445383060885,
+        1.0000005013869606,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21600391818593856,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0594813089289756,
+      "final_measured_vz_m_s": 0.0030261783461880895,
+      "max_joint_velocity_ratios": [
+        5.9866421813411036e-05,
+        1.0000000838715184,
+        0.9733545905692818,
+        0.00037239445383060885,
+        1.000000504253763,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21618059438469964,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 2,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0594813089289756,
+      "final_measured_vz_m_s": 0.0030261783461880895,
+      "max_joint_velocity_ratios": [
+        5.9866421813411036e-05,
+        1.0000000838715184,
+        0.9733545905692818,
+        0.00037239445383060885,
+        1.000000504253763,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21618059438469964,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 3,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0594813089289756,
+      "final_measured_vz_m_s": 0.0030261783461880895,
+      "max_joint_velocity_ratios": [
+        5.9866421813411036e-05,
+        1.0000000838715184,
+        0.9733545905692818,
+        0.00037239445383060885,
+        1.000000504253763,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21618059438469964,
+      "joint_speed_limits_passed": true
+    }
+  ],
+  "bounded_search": [
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 0.6542238811129786,
+      "final_measured_vz_m_s": 0.001434395366789555,
+      "max_joint_velocity_ratios": [
+        0.00018895711369661615,
+        1.000002397298035,
+        0.4692195307258027,
+        0.00037239445383060885,
+        1.00000080611697,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.021814927962208394,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.436094973563686,
+      "final_measured_vz_m_s": -0.0005103376510159699,
+      "max_joint_velocity_ratios": [
+        0.000180913261326118,
+        1.0000000475224111,
+        0.5025605624905886,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.10511563573368421,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.4900705697207755,
+      "final_measured_vz_m_s": 0.08121026026539259,
+      "max_joint_velocity_ratios": [
+        0.0003187907033425621,
+        0.9999999575602113,
+        1.0001086438787712,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.11316566272925567,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0912157684579622,
+      "final_measured_vz_m_s": 0.6613724099269492,
+      "max_joint_velocity_ratios": [
+        0.00044560599251873084,
+        1.0000021649700628,
+        1.000020845495479,
+        0.00037239445383060885,
+        1.000001556153448,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06069071627580535,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0911274936408812,
+      "final_measured_vz_m_s": 0.6538094829170795,
+      "max_joint_velocity_ratios": [
+        0.0004673301484701582,
+        1.000002164966223,
+        1.0000208454615456,
+        0.00037239445383060885,
+        1.0000014019414392,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06068089741993024,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 0.8963301772424095,
+      "final_measured_vz_m_s": 0.0001913121716392574,
+      "max_joint_velocity_ratios": [
+        8.134758711896657e-05,
+        1.0000027637323878,
+        0.143843779643895,
+        0.00037239445383060885,
+        1.000000890181043,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.04094840910476092,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.7601700760467598,
+      "final_measured_vz_m_s": -8.476829597814373e-06,
+      "max_joint_velocity_ratios": [
+        8.817856310955467e-05,
+        1.0000026295016058,
+        0.7543357079858136,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.15791022918503853,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.1092304458119793,
+      "final_measured_vz_m_s": 0.20921729149973597,
+      "max_joint_velocity_ratios": [
+        0.00014722464742962082,
+        0.45642358318796655,
+        1.000021826219243,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06271112038309083,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0913508786184196,
+      "final_measured_vz_m_s": 0.7637245262969605,
+      "max_joint_velocity_ratios": [
+        0.0002183547659103615,
+        1.0000032072054004,
+        1.0000246293504453,
+        0.00037239445383060885,
+        1.0000023908235467,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06070574619068279,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0912952516651382,
+      "final_measured_vz_m_s": 0.7319601000715218,
+      "max_joint_velocity_ratios": [
+        0.00026385723076298526,
+        1.0000028754744807,
+        1.00002360020506,
+        0.00037239445383060885,
+        1.0000032803791314,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060699557915742976,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.377533796462038,
+      "final_measured_vz_m_s": 5.103545090245215e-05,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000000613827456,
+        0.4561337288311647,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.09671760246662159,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 2.0272624143442903,
+      "final_measured_vz_m_s": 2.1889301802649475e-05,
+      "max_joint_velocity_ratios": [
+        5.9668307381412395e-05,
+        0.9999999576170162,
+        0.9697188432767394,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.2094695665959756,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0933855839518911,
+      "final_measured_vz_m_s": 0.3136977574732914,
+      "max_joint_velocity_ratios": [
+        0.00010463477024661485,
+        0.6858905435595124,
+        0.9999809847862209,
+        0.00037239445383060885,
+        1.0000040009441886,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06093231575911406,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0914040830019063,
+      "final_measured_vz_m_s": 0.8087859765706459,
+      "max_joint_velocity_ratios": [
+        0.00015747709887899518,
+        1.0000037001817603,
+        1.0000265624830822,
+        0.00037239445383060885,
+        1.0000040429959733,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06071166525959388,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0912724518097183,
+      "final_measured_vz_m_s": 0.7669979079200887,
+      "max_joint_velocity_ratios": [
+        0.00019832315706477298,
+        1.0000033125912149,
+        1.000025035550936,
+        0.00037239445383060885,
+        1.0000002848460767,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06069702161461743,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2206765517305365,
+      "final_measured_vz_m_s": 7.168611605929548e-05,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        0.6422120869757346,
+        1.0000209505916773,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07594552721430953,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.192344047666331,
+      "final_measured_vz_m_s": 0.00022773938694974072,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        0.5540046255809,
+        1.0000258819466687,
+        0.00037239445383060885,
+        1.0000015167388732,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07246097492381905,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.092003933451991,
+      "final_measured_vz_m_s": 0.9033123158874085,
+      "max_joint_velocity_ratios": [
+        5.788858600886624e-05,
+        1.0000039460284305,
+        1.0000275553024676,
+        0.00037239445383060885,
+        1.0000001500585047,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06077841950431297,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0939363990881608,
+      "final_measured_vz_m_s": 0.8695178254706194,
+      "max_joint_velocity_ratios": [
+        9.021903124796721e-05,
+        1.0000042417220774,
+        1.0000287577149662,
+        0.00037239445383060885,
+        1.0000107160779488,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060993722999488874,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0918013231061559,
+      "final_measured_vz_m_s": 0.8329335485061973,
+      "max_joint_velocity_ratios": [
+        0.00012168291506243283,
+        1.000003869034678,
+        1.0000272426404717,
+        0.00037239445383060885,
+        1.000000169812926,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060755867947826316,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2220826449128641,
+      "final_measured_vz_m_s": 0.002254854873668166,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.000003946036714,
+        1.000027555356982,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07612059077457806,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.255773218623036,
+      "final_measured_vz_m_s": 0.007547164962615725,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000040175712073,
+        1.000027846864349,
+        0.00037239445383060885,
+        1.0000001121798647,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.0803754524266493,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.387397096561809,
+      "final_measured_vz_m_s": 0.9205723031835422,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000054797829097,
+        1.0000845724046956,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.09810757918186226,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.1905816309649402,
+      "final_measured_vz_m_s": 0.8716858099367258,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.000004353156803,
+        1.0000291430938997,
+        0.00037239445383060885,
+        1.0000006875951604,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07224692252758089,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.1,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.09799616813501,
+      "final_measured_vz_m_s": 0.8568291970325786,
+      "max_joint_velocity_ratios": [
+        6.488418301403635e-05,
+        1.0000043338865507,
+        1.0000291052519077,
+        0.00037239445383060885,
+        1.0000004726741771,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.061447277535125654,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 0.6493926215960467,
+      "final_measured_vz_m_s": 0.001434640446664609,
+      "max_joint_velocity_ratios": [
+        0.00018918556355419585,
+        1.0000021759132893,
+        0.46485055372465384,
+        0.00037239445383060885,
+        1.0000007129782582,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.02149392339364864,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.4634040111442255,
+      "final_measured_vz_m_s": -0.0005187642874392162,
+      "max_joint_velocity_ratios": [
+        0.0001811241305010966,
+        1.0000000583467556,
+        0.5222728033736499,
+        0.00037239445383060885,
+        1.00000049067566,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.10915144239719717,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.489816816858186,
+      "final_measured_vz_m_s": 0.07618405940194306,
+      "max_joint_velocity_ratios": [
+        0.00031903721275620885,
+        0.9999999632176477,
+        1.00011044694356,
+        0.00037239445383060885,
+        1.0000004883444402,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.11312712272137909,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.091122616445574,
+      "final_measured_vz_m_s": 0.6602992959053987,
+      "max_joint_velocity_ratios": [
+        0.00044591460031422373,
+        1.0000014965204091,
+        1.0000147367796441,
+        0.00037239445383060885,
+        1.0000008397989988,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060680354950001805,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0910214993147975,
+      "final_measured_vz_m_s": 0.6527015199389221,
+      "max_joint_velocity_ratios": [
+        0.00046762724917328956,
+        1.0000014965179183,
+        1.0000147368262846,
+        0.00037239445383060885,
+        1.0000008097393187,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060669108662951506,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 0.8942612506661353,
+      "final_measured_vz_m_s": 0.00019056162635030377,
+      "max_joint_velocity_ratios": [
+        8.143936920309831e-05,
+        1.0000017769963958,
+        0.14271547440620666,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.04075959145988585,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.7691955413312253,
+      "final_measured_vz_m_s": -1.108328101043915e-05,
+      "max_joint_velocity_ratios": [
+        8.830685628320663e-05,
+        1.000000035642606,
+        0.7572425120662654,
+        0.00037239445383060885,
+        1.0000004924700003,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.1595337850900248,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.1093353089280427,
+      "final_measured_vz_m_s": 0.20437720998954165,
+      "max_joint_velocity_ratios": [
+        0.00014736060598118285,
+        0.45642358318796655,
+        1.0000187719799578,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06272297796302119,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0912361717169008,
+      "final_measured_vz_m_s": 0.7625784325057648,
+      "max_joint_velocity_ratios": [
+        0.00021855119444317292,
+        1.0000022605783725,
+        1.0000177886863744,
+        0.00037239445383060885,
+        1.0000013541174153,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06069298585440149,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0911853861123513,
+      "final_measured_vz_m_s": 0.7308409151203252,
+      "max_joint_velocity_ratios": [
+        0.0002640556504325387,
+        1.000002015299367,
+        1.000017542167568,
+        0.00037239445383060885,
+        1.0000010362400242,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060687336741343585,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.377556526971704,
+      "final_measured_vz_m_s": 5.037528715839956e-05,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.000002433432415,
+        0.45555539026836595,
+        0.00037239445383060885,
+        1.0000004930121922,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.09672079434262708,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 2.0137808520066396,
+      "final_measured_vz_m_s": 1.732749393083821e-05,
+      "max_joint_velocity_ratios": [
+        5.977240074862223e-05,
+        1.000000005126235,
+        0.9574368082286062,
+        0.00037239445383060885,
+        1.0000004929964512,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.2066928297608862,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0932633301655235,
+      "final_measured_vz_m_s": 0.30834949384813715,
+      "max_joint_velocity_ratios": [
+        0.00010479188912860837,
+        0.6860022128415958,
+        0.999983047968937,
+        0.00037239445383060885,
+        1.0000007724162805,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06091869057515853,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.091264379843256,
+      "final_measured_vz_m_s": 0.807627730629329,
+      "max_joint_velocity_ratios": [
+        0.00015764163832386323,
+        1.000002626617727,
+        1.0000193619626747,
+        0.00037239445383060885,
+        1.0000015203565558,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06069612368576381,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0911453817251604,
+      "final_measured_vz_m_s": 0.7658258398960156,
+      "max_joint_velocity_ratios": [
+        0.00019849035721043984,
+        1.0000023387637935,
+        1.0000181198921387,
+        0.00037239445383060885,
+        1.000000899127064,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060682887057092044,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.232648044942019,
+      "final_measured_vz_m_s": 6.988015586788937e-05,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        0.6463226531627487,
+        1.0000207203316556,
+        0.00037239445383060885,
+        1.0000004935666702,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07744246700812342,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2014401347180321,
+      "final_measured_vz_m_s": 0.00022265710147671702,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        0.5576050748311868,
+        1.0000242111657527,
+        0.00037239445383060885,
+        1.000000493632039,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07357076438895428,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0918343357657279,
+      "final_measured_vz_m_s": 0.9031466682561426,
+      "max_joint_velocity_ratios": [
+        5.8017160561483085e-05,
+        1.0000028082430197,
+        1.000020162190729,
+        0.00037239445383060885,
+        1.0000020465491681,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06075954213848053,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0936366984559212,
+      "final_measured_vz_m_s": 0.8686797752770162,
+      "max_joint_velocity_ratios": [
+        9.035123180798213e-05,
+        1.0000030201745411,
+        1.000021098237076,
+        0.00037239445383060885,
+        1.000000388368,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060960307248194054,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.091648112473204,
+      "final_measured_vz_m_s": 0.8318583949677985,
+      "max_joint_velocity_ratios": [
+        0.00012181711140915208,
+        1.0000027515727328,
+        1.0000199113615418,
+        0.00037239445383060885,
+        1.000000532943902,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06073881760786489,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2247442904693564,
+      "final_measured_vz_m_s": 0.002190969389820635,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000028082495422,
+        1.000020162235043,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07645252686224706,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.250313174184059,
+      "final_measured_vz_m_s": 0.007389158491083292,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000028606009275,
+        1.0000203945394157,
+        0.00037239445383060885,
+        1.0000004735945582,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07967803432916498,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.3725235748987954,
+      "final_measured_vz_m_s": 0.9189513826401037,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000051831090486,
+        1.0000791570682266,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.09601533963572728,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.173605832966096,
+      "final_measured_vz_m_s": 0.8715989612310795,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000044224437794,
+        1.0000305699297234,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07020135836758636,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.05,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.097380317692121,
+      "final_measured_vz_m_s": 0.8564230850383922,
+      "max_joint_velocity_ratios": [
+        6.499644637506184e-05,
+        1.0000030777419249,
+        1.0000213262902513,
+        0.00037239445383060885,
+        1.0000004868702637,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06137836705698576,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 0.6473189574821445,
+      "final_measured_vz_m_s": 0.0014345779308948883,
+      "max_joint_velocity_ratios": [
+        0.00018943777460696669,
+        1.0000018259762011,
+        0.46245418294596613,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.021356872207735494,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.475476166741817,
+      "final_measured_vz_m_s": -0.0005228222525507156,
+      "max_joint_velocity_ratios": [
+        0.00018135587452148934,
+        1.0000020730829329,
+        0.5308228481624917,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.11095973081667308,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.5015995295393834,
+      "final_measured_vz_m_s": 0.07302753486994022,
+      "max_joint_velocity_ratios": [
+        0.00031930203487941233,
+        0.9999999735182273,
+        1.0001119810430252,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.11492360586712015,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.091071388667375,
+      "final_measured_vz_m_s": 0.6596981439056367,
+      "max_joint_velocity_ratios": [
+        0.00044596213980629685,
+        1.0000018102251922,
+        1.0000184369976788,
+        0.00037239445383060885,
+        1.0000006947645574,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06067465724610368,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0909623337731988,
+      "final_measured_vz_m_s": 0.6520976401136708,
+      "max_joint_velocity_ratios": [
+        0.000467670757091725,
+        1.0000018102223134,
+        1.0000184370561316,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060662528731491555,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 0.8938068773526865,
+      "final_measured_vz_m_s": 0.0001902815977636793,
+      "max_joint_velocity_ratios": [
+        8.160721327578437e-05,
+        1.0000024277076196,
+        0.14213530844202157,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.04071818216121103,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.7921055927569587,
+      "final_measured_vz_m_s": -1.2520672198743088e-05,
+      "max_joint_velocity_ratios": [
+        8.843968817466451e-05,
+        1.0000000530395916,
+        0.7729742853278146,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.16369227602399442,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.1094368007189326,
+      "final_measured_vz_m_s": 0.20133448689530048,
+      "max_joint_velocity_ratios": [
+        0.00014749784681928918,
+        0.45642358318796655,
+        1.000016944983288,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06273445539191949,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.091161259950819,
+      "final_measured_vz_m_s": 0.7619315358021832,
+      "max_joint_velocity_ratios": [
+        0.0002184698457572111,
+        1.0000027139338488,
+        1.0000217036283716,
+        0.00037239445383060885,
+        1.0000006705803905,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060684653171124286,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0911268318325988,
+      "final_measured_vz_m_s": 0.7301988477608745,
+      "max_joint_velocity_ratios": [
+        0.0002639755219717618,
+        1.0000024268020637,
+        1.0000205035988892,
+        0.00037239445383060885,
+        1.0000007106124758,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060680823809635284,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.3688183685432525,
+      "final_measured_vz_m_s": 4.992320297378394e-05,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000022382582383,
+        0.448598619729669,
+        0.00037239445383060885,
+        1.0000005409027546,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.0954976414914073,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 2.0410232594021576,
+      "final_measured_vz_m_s": 1.91893140462987e-05,
+      "max_joint_velocity_ratios": [
+        5.987716528846331e-05,
+        0.9999999743503435,
+        0.9610034270042648,
+        0.00037239445383060885,
+        1.0000004219799907,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21232293299799218,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.093186957695114,
+      "final_measured_vz_m_s": 0.3051099965433878,
+      "max_joint_velocity_ratios": [
+        0.00010467392776124557,
+        0.686099516495017,
+        0.9999842374267301,
+        0.00037239445383060885,
+        1.0000005478618914,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060910179636834816,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0911824461289357,
+      "final_measured_vz_m_s": 0.8069425504725851,
+      "max_joint_velocity_ratios": [
+        0.00015752776254418597,
+        1.0000031331335648,
+        1.0000235023621857,
+        0.00037239445383060885,
+        1.000000757068648,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060687009721708846,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0910725245340633,
+      "final_measured_vz_m_s": 0.7651637527360109,
+      "max_joint_velocity_ratios": [
+        0.0001983779518342271,
+        1.0000028046011293,
+        1.000022088368313,
+        0.00037239445383060885,
+        1.0000007187199285,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060674783577631716,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2329235431491947,
+      "final_measured_vz_m_s": 6.893498913009e-05,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        0.6488045997294843,
+        1.0000191144381885,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07747708783137432,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2017588147190603,
+      "final_measured_vz_m_s": 0.00021944852389059466,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        0.559780495175494,
+        1.0000232908947362,
+        0.00037239445383060885,
+        1.000000576492724,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07360979861136395,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0917356870216577,
+      "final_measured_vz_m_s": 0.903062144866407,
+      "max_joint_velocity_ratios": [
+        5.7866612344426424e-05,
+        1.0000033334296075,
+        1.0000243736024372,
+        0.00037239445383060885,
+        1.0000007734329137,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06074856321695468,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0934576452361884,
+      "final_measured_vz_m_s": 0.8681839287254449,
+      "max_joint_velocity_ratios": [
+        9.020267710114845e-05,
+        1.0000035475379558,
+        1.0000252729464238,
+        0.00037239445383060885,
+        1.0000019224009837,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06094034770262334,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0915535710172253,
+      "final_measured_vz_m_s": 0.8312394231035707,
+      "max_joint_velocity_ratios": [
+        0.00012166964920226275,
+        1.000003271818919,
+        1.0000241056598198,
+        0.00037239445383060885,
+        1.0000008810011536,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060728297573927455,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2263072909514734,
+      "final_measured_vz_m_s": 0.002150475784239672,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.000003333437589,
+        1.000024373657696,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07664778653622537,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.25115849660298,
+      "final_measured_vz_m_s": 0.007312832457248251,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.000003389335429,
+        1.0000246157357253,
+        0.00037239445383060885,
+        1.0000004838957455,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07978580956278436,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.3644420287429877,
+      "final_measured_vz_m_s": 0.9180883696040858,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000049621259501,
+        1.000080064500816,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.0948879739959368,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.1624843708127655,
+      "final_measured_vz_m_s": 0.8715533238790509,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.000004508200199,
+        1.0000321547028186,
+        0.00037239445383060885,
+        1.0000146753984132,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06887716169133287,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.02,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.097025676233793,
+      "final_measured_vz_m_s": 0.8561720804523109,
+      "max_joint_velocity_ratios": [
+        6.48243860889101e-05,
+        1.0000035854306772,
+        1.0000253744435355,
+        0.00037239445383060885,
+        1.0000005020142955,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06133870205485275,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 0.6465998904771479,
+      "final_measured_vz_m_s": 0.0014347601157146256,
+      "max_joint_velocity_ratios": [
+        0.0001892709187362017,
+        1.0000023987582083,
+        0.4617287941983036,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.021309450477322103,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.4720869227013285,
+      "final_measured_vz_m_s": -0.000524361072110513,
+      "max_joint_velocity_ratios": [
+        0.00018124538106065391,
+        1.00000160338591,
+        0.5281220333044381,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.11045055596270474,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.5084927173939935,
+      "final_measured_vz_m_s": 0.0719567499794785,
+      "max_joint_velocity_ratios": [
+        0.0003191974856382393,
+        0.9999999922423459,
+        1.0001043897748312,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.1159811558833188,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0910539241197454,
+      "final_measured_vz_m_s": 0.6594999273473904,
+      "max_joint_velocity_ratios": [
+        0.0004457946318808781,
+        1.0000016710679882,
+        1.0000171841705787,
+        0.00037239445383060885,
+        1.0000006904130851,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06067271484898548,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0909422099118082,
+      "final_measured_vz_m_s": 0.6518930498162946,
+      "max_joint_velocity_ratios": [
+        0.00046749491022923557,
+        1.000001671065367,
+        1.0000171842250656,
+        0.00037239445383060885,
+        1.0000005747812177,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060660290793438314,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 0.8936552953490462,
+      "final_measured_vz_m_s": 0.00018954372145578435,
+      "max_joint_velocity_ratios": [
+        8.144243359382504e-05,
+        1.000002218544708,
+        0.14194482746413734,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.040704372421273755,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.7998776798869278,
+      "final_measured_vz_m_s": -1.2999017721691819e-05,
+      "max_joint_velocity_ratios": [
+        8.84295443500114e-05,
+        1.000000071056794,
+        0.7783037616183779,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.16511517138405454,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.1094612702971576,
+      "final_measured_vz_m_s": 0.2003835429670812,
+      "max_joint_velocity_ratios": [
+        0.00014749373699024523,
+        0.45642358318796655,
+        1.0000175283772657,
+        0.00037239445383060885,
+        1.0000005578351623,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06273722274665558,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0911393218582996,
+      "final_measured_vz_m_s": 0.761712114845784,
+      "max_joint_velocity_ratios": [
+        0.00021840758464840534,
+        1.000002516695052,
+        1.0000202403538982,
+        0.00037239445383060885,
+        1.0000006867828737,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06068221303289449,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0911081342116862,
+      "final_measured_vz_m_s": 0.7299955390672686,
+      "max_joint_velocity_ratios": [
+        0.0002639130906891088,
+        1.0000022475145882,
+        1.0000203598030135,
+        0.00037239445383060885,
+        1.0000006343239798,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06067874416630514,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.365836266347908,
+      "final_measured_vz_m_s": 4.9790911341461574e-05,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.000002472430056,
+        0.4462276112562274,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.09508199319425042,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 2.0502588663407053,
+      "final_measured_vz_m_s": 1.9519953533643497e-05,
+      "max_joint_velocity_ratios": [
+        5.988916144116511e-05,
+        1.0000000642416191,
+        0.967185429723378,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21424879811461134,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0931632303167749,
+      "final_measured_vz_m_s": 0.30420190396968033,
+      "max_joint_velocity_ratios": [
+        0.0001046269433056652,
+        0.6861305884346526,
+        0.9999849719459829,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06090753558188614,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0911563538923952,
+      "final_measured_vz_m_s": 0.8067283948186945,
+      "max_joint_velocity_ratios": [
+        0.00015748216579271245,
+        1.0000029099420102,
+        1.0000219617089592,
+        0.00037239445383060885,
+        1.0000007427532065,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06068410747399316,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0910479554648798,
+      "final_measured_vz_m_s": 0.7649233944438932,
+      "max_joint_velocity_ratios": [
+        0.00019833280779492027,
+        1.0000026017501453,
+        1.0000206087483252,
+        0.00037239445383060885,
+        1.0000007244842704,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060672051025692876,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2330139748475262,
+      "final_measured_vz_m_s": 6.866925510704697e-05,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        0.6496335932832799,
+        1.0000176912501388,
+        0.00037239445383060885,
+        1.0000004212638376,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07748845372932191,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2018690407225463,
+      "final_measured_vz_m_s": 0.00021842447863521658,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        0.5605072081459364,
+        1.0000231818843928,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.0736233022959905,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0917040716176134,
+      "final_measured_vz_m_s": 0.9030355794848918,
+      "max_joint_velocity_ratios": [
+        5.783955914623299e-05,
+        1.0000030974622778,
+        1.0000227929820462,
+        0.00037239445383060885,
+        1.0000008779556824,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.0607450448515023,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.093399916291396,
+      "final_measured_vz_m_s": 0.8680327665915575,
+      "max_joint_velocity_ratios": [
+        9.017630702084267e-05,
+        1.000003295758895,
+        1.0000236401979323,
+        0.00037239445383060885,
+        1.0000004528145936,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060933913198064835,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0915247972011943,
+      "final_measured_vz_m_s": 0.831035302007896,
+      "max_joint_velocity_ratios": [
+        0.00012164365501758679,
+        1.000003039855274,
+        1.0000225377232677,
+        0.00037239445383060885,
+        1.0000007900782626,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06072509596865996,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.226792897830315,
+      "final_measured_vz_m_s": 0.002138622680329806,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000030974698593,
+        1.0000227930349146,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.0767085022511163,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2514261328285234,
+      "final_measured_vz_m_s": 0.007272989619102117,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.00000314963256,
+        1.0000230231299994,
+        0.00037239445383060885,
+        1.000000425628165,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07981994729491097,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.3653613900121888,
+      "final_measured_vz_m_s": 0.9178111414191529,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.000004685753653,
+        1.0000717960329424,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.0950158881414891,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.1582588387710337,
+      "final_measured_vz_m_s": 0.8715199221890708,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000044224334843,
+        1.0000316176492683,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06837734646234575,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.01,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0969123765414235,
+      "final_measured_vz_m_s": 0.8560986076014416,
+      "max_joint_velocity_ratios": [
+        6.481305738425194e-05,
+        1.0000033278511498,
+        1.0000237268390473,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.061326032712015977,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 0.6462503007515225,
+      "final_measured_vz_m_s": 0.001434743017892856,
+      "max_joint_velocity_ratios": [
+        0.0001891985481832339,
+        1.000002843895693,
+        0.46138683565972227,
+        0.00037239445383060885,
+        1.0000093033135355,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.021286414435343178,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.4703684634704053,
+      "final_measured_vz_m_s": -0.0005249069761474046,
+      "max_joint_velocity_ratios": [
+        0.0001811670759876409,
+        1.0000022284743375,
+        0.526754751272021,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.11019283477922123,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.5119633333001077,
+      "final_measured_vz_m_s": 0.07141682796566802,
+      "max_joint_velocity_ratios": [
+        0.00031912168235051567,
+        1.0000000001444789,
+        1.000104650958461,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.11651544960468768,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.091045122229688,
+      "final_measured_vz_m_s": 0.659400007180361,
+      "max_joint_velocity_ratios": [
+        0.00044572243891242654,
+        1.0000016043790863,
+        1.0000165770467258,
+        0.00037239445383060885,
+        1.0000005561836622,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06067173591953082,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0909335637255786,
+      "final_measured_vz_m_s": 0.6518053142492238,
+      "max_joint_velocity_ratios": [
+        0.00046741896597792616,
+        1.0000016043765867,
+        1.0000165770992973,
+        0.00037239445383060885,
+        1.000000568622744,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06065932927945927,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 0.8935795987651171,
+      "final_measured_vz_m_s": 0.0001894393337605743,
+      "max_joint_velocity_ratios": [
+        8.14268009414382e-05,
+        1.0000021202010836,
+        0.14184488289350417,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.04069747703003199,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.803789732283404,
+      "final_measured_vz_m_s": -1.3239155188971008e-05,
+      "max_joint_velocity_ratios": [
+        8.839450915157138e-05,
+        1.0000000483020275,
+        0.7809849887768643,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.16583371041238706,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.1094758816762231,
+      "final_measured_vz_m_s": 0.19991953127791923,
+      "max_joint_velocity_ratios": [
+        0.00014746135872322215,
+        0.45642358318796655,
+        1.0000197524899106,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06273887523044,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0911290109879601,
+      "final_measured_vz_m_s": 0.7616097349280121,
+      "max_joint_velocity_ratios": [
+        0.00021838080500128667,
+        1.0000024219429364,
+        1.0000195344744258,
+        0.00037239445383060885,
+        1.0000006929256764,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06068106618856086,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0910987460268071,
+      "final_measured_vz_m_s": 0.729893512422914,
+      "max_joint_velocity_ratios": [
+        0.0002638862627818474,
+        1.0000021614454504,
+        1.0000196644804789,
+        0.00037239445383060885,
+        1.0000006424018277,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060677699978658045,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.3652997739257784,
+      "final_measured_vz_m_s": 4.9722726256258565e-05,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000000409641878,
+        0.4450688447917732,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.09500731257297561,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 2.054906659342541,
+      "final_measured_vz_m_s": 1.9690374643034636e-05,
+      "max_joint_velocity_ratios": [
+        5.986370280071469e-05,
+        1.0000000683702426,
+        0.9702949788581458,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.2152212731197921,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0931512390558813,
+      "final_measured_vz_m_s": 0.30374562284300155,
+      "max_joint_velocity_ratios": [
+        0.00010460662083283971,
+        0.6861468174197283,
+        0.9999849381770315,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06090619936031644,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0911439629239292,
+      "final_measured_vz_m_s": 0.806626415186164,
+      "max_joint_velocity_ratios": [
+        0.00015746253575627228,
+        1.0000028026332406,
+        1.0000212176152556,
+        0.00037239445383060885,
+        1.0000007305274217,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060682729246959076,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0910355613639817,
+      "final_measured_vz_m_s": 0.7648105856450957,
+      "max_joint_velocity_ratios": [
+        0.00019831340707718314,
+        1.0000025042825347,
+        1.0000198947908576,
+        0.00037239445383060885,
+        1.0000007077138182,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06067067258719769,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2330550088940997,
+      "final_measured_vz_m_s": 6.898779433181512e-05,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        0.6500483992873747,
+        1.0000170061955913,
+        0.00037239445383060885,
+        1.000000532514985,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07749361136385464,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.201922290951658,
+      "final_measured_vz_m_s": 0.00021790918270523513,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        0.5608708551229329,
+        1.0000217069847261,
+        0.00037239445383060885,
+        1.0000005313711018,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.0736298263754578,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0916881733387622,
+      "final_measured_vz_m_s": 0.9030220817132029,
+      "max_joint_velocity_ratios": [
+        5.782788757782185e-05,
+        1.0000029839790565,
+        1.0000220291927464,
+        0.00037239445383060885,
+        1.0000007504020463,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06074327562730495,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0933709671208474,
+      "final_measured_vz_m_s": 0.8679565154047453,
+      "max_joint_velocity_ratios": [
+        9.01649756604567e-05,
+        1.0000031746652234,
+        1.0000228508339644,
+        0.00037239445383060885,
+        1.0000004217839962,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06093068663316906,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.09151031239118,
+      "final_measured_vz_m_s": 0.8309324336896002,
+      "max_joint_velocity_ratios": [
+        0.00012163251148697454,
+        1.0000029283058331,
+        1.0000217801795241,
+        0.00037239445383060885,
+        1.0000008384719188,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06072348430460201,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2270345531177826,
+      "final_measured_vz_m_s": 0.002132733163844415,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000029839864417,
+        1.0000220292444355,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07673872551197536,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2515519039374141,
+      "final_measured_vz_m_s": 0.00726011155046901,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000030343465958,
+        1.0000222534448258,
+        0.00037239445383060885,
+        1.000000436375283,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07983599226551305,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.3614922942766228,
+      "final_measured_vz_m_s": 0.9176869319534826,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.000004630856419,
+        1.0000807826025255,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.09447814818423149,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.1561413975699137,
+      "final_measured_vz_m_s": 0.8715122403287766,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000043578185862,
+        1.0000312123352426,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06812757039627489,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.005,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0968557902879554,
+      "final_measured_vz_m_s": 0.8560622462645712,
+      "max_joint_velocity_ratios": [
+        6.480827049801074e-05,
+        1.0000032039994016,
+        1.0000229302472303,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06131970564160118,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 0.6459617856402466,
+      "final_measured_vz_m_s": 0.0014346182370707505,
+      "max_joint_velocity_ratios": [
+        0.00018919831505297927,
+        1.0000031925294022,
+        0.4611021977655686,
+        0.00037239445383060885,
+        1.000000596330347,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.021267412258284196,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.4689930529451534,
+      "final_measured_vz_m_s": -0.0005254014628479908,
+      "max_joint_velocity_ratios": [
+        0.00018116258431329226,
+        1.0000019780605063,
+        0.5256596901040921,
+        0.00037239445383060885,
+        1.0000005009395536,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.1099867782671316,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.514752153412513,
+      "final_measured_vz_m_s": 0.07098308671182907,
+      "max_joint_velocity_ratios": [
+        0.00031912015018803285,
+        1.0000000058902843,
+        1.0001048664707775,
+        0.00037239445383060885,
+        1.0000005005079071,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.11694567208296867,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0910381425325992,
+      "final_measured_vz_m_s": 0.6593212822452392,
+      "max_joint_velocity_ratios": [
+        0.0004457251584488801,
+        1.000001552395835,
+        1.000016100769893,
+        0.00037239445383060885,
+        1.0000005490718316,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06067095965652315,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0909266328442953,
+      "final_measured_vz_m_s": 0.6517351281844492,
+      "max_joint_velocity_ratios": [
+        0.0004674203797899371,
+        1.0000015523934291,
+        1.0000161008209678,
+        0.00037239445383060885,
+        1.0000005635574098,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060658558524413445,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 0.8935182250404572,
+      "final_measured_vz_m_s": 0.0001893578273550675,
+      "max_joint_velocity_ratios": [
+        8.149672085151872e-05,
+        1.000002044199659,
+        0.1417600357054542,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.04069188677265286,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.8015555834542474,
+      "final_measured_vz_m_s": -1.3416699424881329e-05,
+      "max_joint_velocity_ratios": [
+        8.839360794915042e-05,
+        1.0000019899415056,
+        0.7792434332062484,
+        0.00037239445383060885,
+        1.000000501285977,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.1654231661710078,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.1094876680984318,
+      "final_measured_vz_m_s": 0.19954670025926852,
+      "max_joint_velocity_ratios": [
+        0.00014746146981176245,
+        0.45642358318796655,
+        1.000018155233316,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06274020823967869,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0911212415390428,
+      "final_measured_vz_m_s": 0.7615332389034379,
+      "max_joint_velocity_ratios": [
+        0.0002183854233577051,
+        1.000002347972498,
+        1.0000189820178704,
+        0.00037239445383060885,
+        1.0000006881247292,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06068020202536707,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0910911950521545,
+      "final_measured_vz_m_s": 0.7298117692040026,
+      "max_joint_velocity_ratios": [
+        0.0002638909879419929,
+        1.0000020942827876,
+        1.0000191166458914,
+        0.00037239445383060885,
+        1.000000647608544,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.0606768601386513,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.36733684665347,
+      "final_measured_vz_m_s": 4.9669133323139436e-05,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000000441975512,
+        0.44486933283330354,
+        0.00037239445383060885,
+        1.0000005013854454,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.09529103222305073,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 2.0586395689406425,
+      "final_measured_vz_m_s": 1.982947205902974e-05,
+      "max_joint_velocity_ratios": [
+        5.986318843202244e-05,
+        1.0000000783406282,
+        0.9727917144330627,
+        0.00037239445383060885,
+        1.0000005013869606,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21600391818593856,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0931416003475558,
+      "final_measured_vz_m_s": 0.3033779535250537,
+      "max_joint_velocity_ratios": [
+        0.00010461008912817449,
+        0.6861579184311971,
+        0.9999852433202825,
+        0.00037239445383060885,
+        1.0000004862454928,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06090512530124441,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0911339084113008,
+      "final_measured_vz_m_s": 0.80654481959022,
+      "max_joint_velocity_ratios": [
+        0.00015746656900068567,
+        1.0000027188157177,
+        1.0000206348135725,
+        0.00037239445383060885,
+        1.0000006205878071,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060681610911565785,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0910257535657955,
+      "final_measured_vz_m_s": 0.7647287009789528,
+      "max_joint_velocity_ratios": [
+        0.00019831763817382947,
+        1.000002428182557,
+        1.000019335917389,
+        0.00037239445383060885,
+        1.000000643381235,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060669581801417516,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2330976401114009,
+      "final_measured_vz_m_s": 6.824442799603647e-05,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        0.6503803412565429,
+        1.000020399520916,
+        0.00037239445383060885,
+        1.0000005014904005,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07749896993110632,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.201966040205448,
+      "final_measured_vz_m_s": 0.00021749272993659696,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        0.5611618579324238,
+        1.0000220201707741,
+        0.00037239445383060885,
+        1.0000005015087399,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07363518663645079,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0916753903351,
+      "final_measured_vz_m_s": 0.9030114241588303,
+      "max_joint_velocity_ratios": [
+        5.7831236198761304e-05,
+        1.000002895322338,
+        1.0000214307695354,
+        0.00037239445383060885,
+        1.000000745045314,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06074185310210462,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0933477704998866,
+      "final_measured_vz_m_s": 0.8678953467540472,
+      "max_joint_velocity_ratios": [
+        9.016860145915068e-05,
+        1.0000030800581374,
+        1.000022232176885,
+        0.00037239445383060885,
+        1.000000430414706,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060928101287312575,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0914986782294576,
+      "final_measured_vz_m_s": 0.8308498271657517,
+      "max_joint_velocity_ratios": [
+        0.00012163628847701827,
+        1.000002841164179,
+        1.000021186707779,
+        0.00037239445383060885,
+        1.0000006242518134,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060722189835711156,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2272290529412966,
+      "final_measured_vz_m_s": 0.0021280031999713553,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000028953295683,
+        1.0000214308202897,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07676305547314942,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2516398044055317,
+      "final_measured_vz_m_s": 0.00724991074045829,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000029442781697,
+        1.0000216503499209,
+        0.00037239445383060885,
+        1.0000004431554108,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07984720693029142,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.3584096230620393,
+      "final_measured_vz_m_s": 0.9175879473614806,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000047582983906,
+        1.0000804972121036,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.09405080040915145,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.154439596713966,
+      "final_measured_vz_m_s": 0.871506065137341,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000042225006749,
+        1.0000303389189842,
+        0.00037239445383060885,
+        1.0000004038257209,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06792715506937332,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.001,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0968108833536303,
+      "final_measured_vz_m_s": 0.8560324494288294,
+      "max_joint_velocity_ratios": [
+        6.481190207148564e-05,
+        1.0000031072515965,
+        1.0000223058991624,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.061314684701476586,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 0.6458965235453963,
+      "final_measured_vz_m_s": 0.0014346112800566607,
+      "max_joint_velocity_ratios": [
+        0.00018920691865339416,
+        1.000003269830981,
+        0.4610384423822416,
+        0.00037239445383060885,
+        1.0000005940879075,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.021263115144140095,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.46868197035984,
+      "final_measured_vz_m_s": -0.0005256607728231499,
+      "max_joint_velocity_ratios": [
+        0.00018116989863568842,
+        1.000001923528607,
+        0.5254120918359132,
+        0.00037239445383060885,
+        1.0000005038115094,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.10994020030887165,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.515381211314157,
+      "final_measured_vz_m_s": 0.07088526294803603,
+      "max_joint_velocity_ratios": [
+        0.0003191288482353424,
+        1.0000000071190451,
+        1.0001049157628017,
+        0.00037239445383060885,
+        1.0000005033851256,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.11704282444464635,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0910367886783925,
+      "final_measured_vz_m_s": 0.6593057288439974,
+      "max_joint_velocity_ratios": [
+        0.0004457348109023238,
+        1.0000015408659075,
+        1.000015994764455,
+        0.00037239445383060885,
+        1.0000005474713873,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06067080908509986,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.2,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0909250692532328,
+      "final_measured_vz_m_s": 0.6517192193424414,
+      "max_joint_velocity_ratios": [
+        0.00046742983860318434,
+        1.0000015408635228,
+        1.0000159948151972,
+        0.00037239445383060885,
+        1.0000005624027049,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06065838464450411,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 0.89350406685857,
+      "final_measured_vz_m_s": 0.00018933933222584076,
+      "max_joint_velocity_ratios": [
+        8.15009855103376e-05,
+        1.0000020274192198,
+        0.14174142995649627,
+        0.00037239445383060885,
+        1.0,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.040690597221855446,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.8009556576401147,
+      "final_measured_vz_m_s": -1.3456298253805565e-05,
+      "max_joint_velocity_ratios": [
+        8.839779991913127e-05,
+        1.0000019320659628,
+        0.7787805532354916,
+        0.00037239445383060885,
+        1.00000050415395,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.1653130112531059,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.1094903627984323,
+      "final_measured_vz_m_s": 0.19946251832772924,
+      "max_joint_velocity_ratios": [
+        0.0001474658715677846,
+        0.45642358318796655,
+        1.0000178005502034,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06274051300420982,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0911194894121394,
+      "final_measured_vz_m_s": 0.7615159230677194,
+      "max_joint_velocity_ratios": [
+        0.00021839083915940218,
+        1.0000023315518392,
+        1.0000188592076547,
+        0.00037239445383060885,
+        1.000000686906701,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060680007144495805,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.3,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.091089490815544,
+      "final_measured_vz_m_s": 0.7297932791586283,
+      "max_joint_velocity_ratios": [
+        0.0002638964365724605,
+        1.00000207937702,
+        1.0000189945806597,
+        0.00037239445383060885,
+        1.0000006486312172,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06067667058960871,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.3677962687292309,
+      "final_measured_vz_m_s": 4.965662017804989e-05,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000000449082798,
+        0.44520681007945173,
+        0.00037239445383060885,
+        1.0000005042521989,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.0953550781217944,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 2.0594813089289756,
+      "final_measured_vz_m_s": 1.9858871918763954e-05,
+      "max_joint_velocity_ratios": [
+        5.9866421813411036e-05,
+        1.0000000838715184,
+        0.9733545905692818,
+        0.00037239445383060885,
+        1.000000504253763,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21618059438469964,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0931394282914422,
+      "final_measured_vz_m_s": 0.3032946094132514,
+      "max_joint_velocity_ratios": [
+        0.00010461420888800304,
+        0.6861598639597736,
+        0.9999853114951384,
+        0.00037239445383060885,
+        1.0000005003718755,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06090488326632727,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0911316650907594,
+      "final_measured_vz_m_s": 0.8065263359121845,
+      "max_joint_velocity_ratios": [
+        0.000157470817664162,
+        1.000002700203543,
+        1.0000205052033262,
+        0.00037239445383060885,
+        1.0000006217118533,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06068136139468569,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0910238243145778,
+      "final_measured_vz_m_s": 0.7647110588752454,
+      "max_joint_velocity_ratios": [
+        0.0001983219324320041,
+        1.0000024112879617,
+        1.000019211668944,
+        0.00037239445383060885,
+        1.000000644489813,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06066936723863438,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2331072020570222,
+      "final_measured_vz_m_s": 6.821434913133195e-05,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        0.6504550575722388,
+        1.0000202566083025,
+        0.00037239445383060885,
+        1.0000005043559175,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07750017185346064,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2019785656277038,
+      "final_measured_vz_m_s": 0.0002173973815133845,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        0.5612273625274296,
+        1.0000218195510238,
+        0.00037239445383060885,
+        1.0000005043741282,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07363672131643385,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.091672503867195,
+      "final_measured_vz_m_s": 0.9030090492702463,
+      "max_joint_velocity_ratios": [
+        5.783416178249588e-05,
+        1.0000028756335069,
+        1.0000212976607785,
+        0.00037239445383060885,
+        1.0000007438908087,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060741531890910846,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0933425481812662,
+      "final_measured_vz_m_s": 0.8678815253658303,
+      "max_joint_velocity_ratios": [
+        9.017159055069832e-05,
+        1.0000030590471338,
+        1.0000220945425933,
+        0.00037239445383060885,
+        1.0000004321215927,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.060927519248904397,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.45,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0914960550698267,
+      "final_measured_vz_m_s": 0.8308312053467279,
+      "max_joint_velocity_ratios": [
+        0.00012163931163627847,
+        1.0000028218123673,
+        1.0000210547076698,
+        0.00037239445383060885,
+        1.0000006248200564,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06072189797313935,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.05,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.2272729141388758,
+      "final_measured_vz_m_s": 0.0021269151547432252,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000028756407027,
+        1.0000212977113232,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07676854259831441,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.1,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.251662928820998,
+      "final_measured_vz_m_s": 0.007247566152195829,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000029242753927,
+        1.0000215161954555,
+        0.00037239445383060885,
+        1.0000004444661805,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.07985015735906006,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.35,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.357715478794057,
+      "final_measured_vz_m_s": 0.9175655953333127,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.0000047068479256,
+        1.0000792379026318,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.09395470547181323,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.6,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.1540516042353557,
+      "final_measured_vz_m_s": 0.8715046761313188,
+      "max_joint_velocity_ratios": [
+        5.6489580482617805e-05,
+        1.000004192435025,
+        1.0000301444428659,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06788150383477054,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.6,
+        "target_z_m": 1.9,
+        "release_after_steps": 120
+      },
+      "max_measured_vz_m_s": 1.0968007362002337,
+      "final_measured_vz_m_s": 0.8560258909557676,
+      "max_joint_velocity_ratios": [
+        6.481402500448653e-05,
+        1.000003085766829,
+        1.000022166995294,
+        0.00037239445383060885,
+        1.0000000000000002,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.06131355020027393,
+      "joint_speed_limits_passed": true
+    }
+  ],
+  "best": {
+    "trial": 1,
+    "cube_mass_kg": 0.0001,
+    "parameters": {
+      "target_x_m": 0.35,
+      "target_z_m": 1.1,
+      "release_after_steps": 72
+    },
+    "max_measured_vz_m_s": 2.0594813089289756,
+    "final_measured_vz_m_s": 0.0030261783461880895,
+    "max_joint_velocity_ratios": [
+      5.9866421813411036e-05,
+      1.0000000838715184,
+      0.9733545905692818,
+      0.00037239445383060885,
+      1.000000504253763,
+      0.0006103614358251544
+    ],
+    "lifted": true,
+    "release_permitted": false,
+    "released": false,
+    "constraint_retained": true,
+    "safety_stop": true,
+    "ideal_vacuum_rise_from_peak_speed_m": 0.21618059438469964,
+    "joint_speed_limits_passed": true
+  },
+  "best_repeated": [
+    {
+      "trial": 1,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0594813089289756,
+      "final_measured_vz_m_s": 0.0030261783461880895,
+      "max_joint_velocity_ratios": [
+        5.9866421813411036e-05,
+        1.0000000838715184,
+        0.9733545905692818,
+        0.00037239445383060885,
+        1.000000504253763,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21618059438469964,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 2,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0594813089289756,
+      "final_measured_vz_m_s": 0.0030261783461880895,
+      "max_joint_velocity_ratios": [
+        5.9866421813411036e-05,
+        1.0000000838715184,
+        0.9733545905692818,
+        0.00037239445383060885,
+        1.000000504253763,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21618059438469964,
+      "joint_speed_limits_passed": true
+    },
+    {
+      "trial": 3,
+      "cube_mass_kg": 0.0001,
+      "parameters": {
+        "target_x_m": 0.35,
+        "target_z_m": 1.1,
+        "release_after_steps": 72
+      },
+      "max_measured_vz_m_s": 2.0594813089289756,
+      "final_measured_vz_m_s": 0.0030261783461880895,
+      "max_joint_velocity_ratios": [
+        5.9866421813411036e-05,
+        1.0000000838715184,
+        0.9733545905692818,
+        0.00037239445383060885,
+        1.000000504253763,
+        0.0006103614358251544
+      ],
+      "lifted": true,
+      "release_permitted": false,
+      "released": false,
+      "constraint_retained": true,
+      "safety_stop": true,
+      "ideal_vacuum_rise_from_peak_speed_m": 0.21618059438469964,
+      "joint_speed_limits_passed": true
+    }
+  ],
+  "release_gate_reached": false,
+  "goal_achieved": false,
+  "scope": "Single-target xArm6 POSITION_CONTROL, fixed grasp, robot-cube collision disabled; same cube dimensions, gravity, URDF limits, controller and damping across masses. The ideal rise column is a peak-speed estimate, not measured free flight. No full task or verified skill is claimed by a capability probe."
+}

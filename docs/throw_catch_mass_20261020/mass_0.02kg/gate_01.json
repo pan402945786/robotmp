@@ -1,0 +1,2641 @@
+{
+  "trial": 1,
+  "target_rise_m": 2.0,
+  "required_vz_m_s": 6.26418390534633,
+  "parameters": {
+    "target_x_m": 0.35,
+    "target_z_m": 1.1,
+    "release_after_steps": 72
+  },
+  "cube_mass_kg": 0.02,
+  "release_permitted": false,
+  "released": false,
+  "max_measured_vz_m_s": 2.0410232594021576,
+  "safety_stop": true,
+  "final_measured_vz_m_s": 0.002920672869701005,
+  "max_joint_velocity_ratios": [
+    5.987716528846331e-05,
+    0.9999999743503435,
+    0.9610034270042648,
+    0.00037239445383060885,
+    1.0000004219799907,
+    0.0006103614358251544
+  ],
+  "constraint_retained": true,
+  "lifted": true,
+  "events": [
+    {
+      "trial": 1,
+      "kind": "reset",
+      "state": {
+        "timestamp": 0.041666666666666664,
+        "phase": "observe",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.44999801505740383,
+            -5.996499813125927e-07,
+            0.7499144894445089
+          ],
+          "visible": true,
+          "grasped": false,
+          "lifted": false,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": true,
+          "gripper_force": 0.0,
+          "end_effector_position_m": [
+            0.31955069303512573,
+            6.693240720778704e-06,
+            0.8336642980575562
+          ]
+        },
+        "events": []
+      }
+    },
+    {
+      "trial": 1,
+      "kind": "action",
+      "state": {
+        "timestamp": 0.241666666666667,
+        "phase": "approach",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.4499975727835504,
+            2.754546916941356e-06,
+            0.7499879288671614
+          ],
+          "visible": true,
+          "grasped": false,
+          "lifted": false,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": true,
+          "gripper_force": 0.0,
+          "end_effector_position_m": [
+            0.44554394483566284,
+            -5.61762135475874e-07,
+            0.8674953579902649
+          ]
+        },
+        "events": [
+          "object_approached"
+        ]
+      },
+      "action": "approach_object"
+    },
+    {
+      "trial": 1,
+      "kind": "action",
+      "state": {
+        "timestamp": 0.4416666666666663,
+        "phase": "grasp",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.44999822751327706,
+            5.227285467161121e-06,
+            0.7499885941533775
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": false,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.4460051953792572,
+            -2.046930603682995e-06,
+            0.8680776953697205
+          ]
+        },
+        "events": [
+          "gripper_closed",
+          "gripper_contact",
+          "grasp_constraint_created"
+        ]
+      },
+      "action": "close_gripper"
+    },
+    {
+      "trial": 1,
+      "kind": "action",
+      "state": {
+        "timestamp": 0.6416666666666656,
+        "phase": "transport",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.4529656224718677,
+            -0.000634445813840606,
+            0.9053380730157983
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.44818243384361267,
+            -2.0836014300584793e-06,
+            1.0138763189315796
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "action": "lift_object"
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.6458333333333323,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.45117281470376375,
+            -0.0006347214881966414,
+            0.9060154350620938
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.4473026692867279,
+            -2.3375614546239376e-06,
+            1.01459801197052
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 1,
+      "vz_m_s": 0.16256689111092634
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.6499999999999989,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.449379491966038,
+            -0.0006349546459919085,
+            0.907068893886601
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.4463089108467102,
+            -2.5645713321864605e-06,
+            1.015681266784668
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 2,
+      "vz_m_s": 0.2528301178817209
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.6541666666666656,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.44758778884385386,
+            -0.0006351580358114733,
+            0.9084928088237687
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.44520261883735657,
+            -2.762884832918644e-06,
+            1.0171235799789429
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 3,
+      "vz_m_s": 0.34173958492027223
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.6583333333333322,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.44579909473039925,
+            -0.0006353346801529946,
+            0.9102822139150777
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.4439845085144043,
+            -2.935354132205248e-06,
+            1.0189229249954224
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 4,
+      "vz_m_s": 0.42945722191416613
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.6624999999999989,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.44401406144893796,
+            -0.000635487293547016,
+            0.9124327848767064
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.44265449047088623,
+            -3.0841329135000706e-06,
+            1.021077036857605
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 5,
+      "vz_m_s": 0.5161370307908888
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.6666666666666655,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.4422325968590892,
+            -0.0006356183141012861,
+            0.9149408126594152
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.44121161103248596,
+            -3.2112584449350834e-06,
+            1.023584008216858
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 6,
+      "vz_m_s": 0.6019266678500914
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.6708333333333322,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.44045384900804957,
+            -0.0006357299298862733,
+            0.9178031813440026
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.4396539628505707,
+            -3.318535163998604e-06,
+            1.0264421701431274
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 7,
+      "vz_m_s": 0.6869684843009763
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.6749999999999988,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.4386761815526063,
+            -0.0006358241028405879,
+            0.9210173489820916
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.43797892332077026,
+            -3.407476469874382e-06,
+            1.0296498537063599
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 8,
+      "vz_m_s": 0.7714002331413601
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.6791666666666655,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.4368971410169291,
+            -0.0006359025903788383,
+            0.9245813300617031
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.4361828565597534,
+            -3.479945007711649e-06,
+            1.0332057476043701
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 9,
+      "vz_m_s": 0.855355459106747
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.6833333333333321,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.43511341633797007,
+            -0.0006359669648705149,
+            0.9284936783051785
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.43426117300987244,
+            -3.536639269441366e-06,
+            1.0371086597442627
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 10,
+      "vz_m_s": 0.938963578434107
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.6874999999999988,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.4334683213194997,
+            -0.0006360633167669793,
+            0.9326570347853697
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.4324018955230713,
+            -3.581924829632044e-06,
+            1.0412639379501343
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 11,
+      "vz_m_s": 0.9992055552458844
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.6916666666666654,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.4319645574940539,
+            -0.0006361465911405147,
+            0.937064699326863
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.4306120276451111,
+            -3.6163837648928165e-06,
+            1.045664668083191
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 12,
+      "vz_m_s": 1.0578394899583914
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.6958333333333321,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.43059055267137886,
+            -0.0006362176427332943,
+            0.9417185611024962
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.42888033390045166,
+            -3.642111551016569e-06,
+            1.0503114461898804
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 13,
+      "vz_m_s": 1.116926826151976
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.6999999999999987,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.42933422818202427,
+            -0.0006362787933879928,
+            0.9466205102770283
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.42719516158103943,
+            -3.6599813029170036e-06,
+            1.0552053451538086
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 14,
+      "vz_m_s": 1.1764678018877075
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7041666666666654,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.4281830075475677,
+            -0.0006363319553449934,
+            0.9517724152387945
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.42554429173469543,
+            -3.670749720185995e-06,
+            1.060347080230713
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 15,
+      "vz_m_s": 1.2364571908239024
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.708333333333332,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.4271238215428862,
+            -0.0006363187928534808,
+            0.9571760984647896
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.4239150285720825,
+            -3.670633304864168e-06,
+            1.0657373666763306
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 16,
+      "vz_m_s": 1.2968839742388056
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7124999999999987,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.42614312811063687,
+            -0.0006363066039880692,
+            0.9628333003436129
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.4222942292690277,
+            -3.6642886698246002e-06,
+            1.0713765621185303
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 17,
+      "vz_m_s": 1.3577284509176146
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7166666666666653,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.4252269083068346,
+            -0.0006362948596836255,
+            0.9687456549843367
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.42066827416419983,
+            -3.6521232686936855e-06,
+            1.0772650241851807
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 18,
+      "vz_m_s": 1.418965113773705
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.720833333333332,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.42436067848779596,
+            -0.0006362831600986014,
+            0.9749146542359803
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.4190230667591095,
+            -3.635010216385126e-06,
+            1.0834026336669922
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 19,
+      "vz_m_s": 1.4805598203944736
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7249999999999986,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.42352949826353187,
+            -0.0006362711137344876,
+            0.9813416127121578
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.4173441231250763,
+            -3.6125420592725277e-06,
+            1.0897891521453857
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 20,
+      "vz_m_s": 1.5424700342825821
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7291666666666653,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.4227179786334764,
+            -0.0006362586386444469,
+            0.988027631484812
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.4156164526939392,
+            -3.585068043321371e-06,
+            1.0964241027832031
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 21,
+      "vz_m_s": 1.604644505437
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.733333333333332,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.42191029035962585,
+            -0.0006362455804708556,
+            0.9949735606914455
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.4138246774673462,
+            -3.553286660462618e-06,
+            1.1033064126968384
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 22,
+      "vz_m_s": 1.6670230095920298
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7374999999999986,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.42109017274475563,
+            -0.0006362318287156975,
+            1.0021799611729993
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.411952942609787,
+            -3.5167322494089603e-06,
+            1.110434889793396
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 23,
+      "vz_m_s": 1.729536115572904
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7416666666666653,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.4202409428754774,
+            -0.0006362173035072991,
+            1.0096470652856302
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.40998512506484985,
+            -3.4760450944304466e-06,
+            1.1178075075149536
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 24,
+      "vz_m_s": 1.7921049870314223
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7458333333333319,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.41934550542590215,
+            -0.0006362020094764497,
+            1.0173747369646486
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.40790456533432007,
+            -3.4309341572225094e-06,
+            1.1254222393035889
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 25,
+      "vz_m_s": 1.8546412029644488
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7499999999999986,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.4183863631064203,
+            -0.0006361858973548323,
+            1.0253624311182872
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.4056943356990814,
+            -3.3813994377851486e-06,
+            1.1332762241363525
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 26,
+      "vz_m_s": 1.9170465968732529
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7541666666666652,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.4173456278404537,
+            -0.0006361689177629089,
+            1.0336091523578301
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.40333712100982666,
+            -3.327673766762018e-06,
+            1.1413662433624268
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 27,
+      "vz_m_s": 1.9792130974903326
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7583333333333319,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.41620502635367257,
+            -0.0006360859719059857,
+            1.0421134159386725
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.4008151888847351,
+            -3.2681855373084545e-06,
+            1.1496882438659668
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 28,
+      "vz_m_s": 2.0410232594021576
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7624999999999985,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.41479478078284976,
+            -0.0006359891374579202,
+            1.0503386268032828
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3981093466281891,
+            -3.1899544410407543e-06,
+            1.1577223539352417
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 29,
+      "vz_m_s": 1.9740506075064954
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7666666666666652,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.41318226368521416,
+            -0.0006359025382859015,
+            1.0578844253784345
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.39541861414909363,
+            -3.119057510048151e-06,
+            1.1650934219360352
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 30,
+      "vz_m_s": 1.810991658036432
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7708333333333318,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.41138991355025895,
+            -0.0006358208913306272,
+            1.0647452624925577
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.39275601506233215,
+            -3.0518858693540096e-06,
+            1.171802043914795
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 31,
+      "vz_m_s": 1.6466009073895858
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7749999999999985,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.40943770981560434,
+            -0.000635740444583822,
+            1.0709179100424655
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3901337683200836,
+            -2.9890798032283783e-06,
+            1.1778497695922852
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 32,
+      "vz_m_s": 1.4814354119778774
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7791666666666651,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.4073431546388393,
+            -0.0006356650178253762,
+            1.0764012222599766
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3875626027584076,
+            -2.928369212895632e-06,
+            1.1832391023635864
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 33,
+      "vz_m_s": 1.315994932202674
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7833333333333318,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.4051211983785653,
+            -0.0006355936809146421,
+            1.0811958840555886
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.38505175709724426,
+            -2.8703361749649048e-06,
+            1.187972903251648
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 34,
+      "vz_m_s": 1.1507188309468976
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7874999999999984,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.40278420152930056,
+            -0.0006355256672795915,
+            1.0853041869421411
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.38260889053344727,
+            -2.8146314434707165e-06,
+            1.192055106163025
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 35,
+      "vz_m_s": 0.9859926927725804
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7916666666666651,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.4003419217295745,
+            -0.0006354603222027856,
+            1.0887298319093934
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3802397549152374,
+            -2.7620699256658554e-06,
+            1.1954896450042725
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 36,
+      "vz_m_s": 0.8221547921405299
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7958333333333317,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3978015200698846,
+            -0.0006353970662434374,
+            1.0914777610120556
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3779482841491699,
+            -2.712069544941187e-06,
+            1.1982810497283936
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 37,
+      "vz_m_s": 0.6595029846389239
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.7999999999999984,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.39516758341430375,
+            -0.0006353330882009271,
+            1.093554019817726
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.37573641538619995,
+            -2.662243787199259e-06,
+            1.2004337310791016
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 38,
+      "vz_m_s": 0.49830211336087543
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.804166666666665,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3924522459681419,
+            -0.000635274504506267,
+            1.0950042056921159
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3736049234867096,
+            -2.612476237118244e-06,
+            1.2019892930984497
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 39,
+      "vz_m_s": 0.34804460985354846
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8083333333333317,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3897389857382793,
+            -0.000635215800739241,
+            1.0961658529824623
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.371555894613266,
+            -2.5633489713072777e-06,
+            1.203268051147461
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 40,
+      "vz_m_s": 0.27879534968315145
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8124999999999983,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3870287304858127,
+            -0.0006351580464550415,
+            1.0970725520054243
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.36958274245262146,
+            -2.5180052034556866e-06,
+            1.2043005228042603
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 41,
+      "vz_m_s": 0.2176077655108768
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.816666666666665,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.38432169460637866,
+            -0.0006351015486069382,
+            1.0977545225487846
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.36767879128456116,
+            -2.4757464416325092e-06,
+            1.2051140069961548
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 42,
+      "vz_m_s": 0.1636729304064918
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8208333333333316,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3816176092338683,
+            -0.0006350450654878562,
+            1.0982389418537934
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.36583757400512695,
+            -2.433138433843851e-06,
+            1.2057329416275024
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 43,
+      "vz_m_s": 0.11626063320212333
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8249999999999983,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.37891574296323177,
+            -0.0006349910676419811,
+            1.0985500965001804
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.36405283212661743,
+            -2.393906470388174e-06,
+            1.2061794996261597
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 44,
+      "vz_m_s": 0.07467711513289575
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8291666666666649,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.37621521479584935,
+            -0.0006349380301573991,
+            1.0987098323538818
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.36231863498687744,
+            -2.357293851673603e-06,
+            1.2064732313156128
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 45,
+      "vz_m_s": 0.03833660488831168
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8333333333333316,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3735731946255652,
+            -0.0006348865063429571,
+            1.0987666865541752
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3606560528278351,
+            -2.3213797248899937e-06,
+            1.2066563367843628
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 46,
+      "vz_m_s": 0.013645008070410195
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8374999999999982,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3711848346494373,
+            -0.0006348394002223199,
+            1.0988314824057375
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.35915040969848633,
+            -2.2870954126119614e-06,
+            1.2068252563476562
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 47,
+      "vz_m_s": 0.01555100437495541
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8416666666666649,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.36902692710115004,
+            -0.0006347973072196322,
+            1.0989006810749593
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3577878177165985,
+            -2.2592139430344105e-06,
+            1.2069807052612305
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 48,
+      "vz_m_s": 0.016607680613265226
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8458333333333315,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3670782295240365,
+            -0.0006347595638665809,
+            1.0989717301251465
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.35655543208122253,
+            -2.233893610537052e-06,
+            1.2071236371994019
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 49,
+      "vz_m_s": 0.01705177204490044
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8499999999999982,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3653192310833074,
+            -0.0006347253582030199,
+            1.0990427391780704
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3554414212703705,
+            -2.209097146987915e-06,
+            1.207254409790039
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 50,
+      "vz_m_s": 0.01704217270171184
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8541666666666649,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.36373209140923485,
+            -0.0006347288950437333,
+            1.0991123647804761
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.35443490743637085,
+            -2.19541834667325e-06,
+            1.207374095916748
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 51,
+      "vz_m_s": 0.016710144577370082
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8583333333333315,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3623000525614712,
+            -0.000634700173595869,
+            1.0991792451259346
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3535258173942566,
+            -2.192915417253971e-06,
+            1.207483172416687
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 52,
+      "vz_m_s": 0.01605128291004636
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8624999999999982,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3610086837351883,
+            -0.0006346769108994389,
+            1.099243097280353
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.35270509123802185,
+            -2.1886080503463745e-06,
+            1.2075823545455933
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 53,
+      "vz_m_s": 0.015324517060435378
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8666666666666648,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.35984442992952065,
+            -0.0006346580876368755,
+            1.0993034879264059
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.35196441411972046,
+            -2.1837186068296432e-06,
+            1.2076729536056519
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 54,
+      "vz_m_s": 0.014493755052682553
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8708333333333315,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.35879496166141256,
+            -0.0006346433533046382,
+            1.0993601529750974
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3512960970401764,
+            -2.181215677410364e-06,
+            1.2077550888061523
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 55,
+      "vz_m_s": 0.013599611685967402
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8749999999999981,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.35784913801655294,
+            -0.0006346321626504733,
+            1.0994130043171448
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3506932556629181,
+            -2.1805171854794025e-06,
+            1.2078297138214111
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 56,
+      "vz_m_s": 0.012684322091375638
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8791666666666648,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.35699692310823167,
+            -0.0006346228181314398,
+            1.0994621051163935
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.35014963150024414,
+            -2.1766172721982002e-06,
+            1.207897424697876
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 57,
+      "vz_m_s": 0.011784191819674734
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8833333333333314,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.35622910900304494,
+            -0.0006346153512195629,
+            1.0995074878199718
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3496595025062561,
+            -2.1741725504398346e-06,
+            1.2079588174819946
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 58,
+      "vz_m_s": 0.010891848858779838
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8874999999999981,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3555374234521575,
+            -0.0006346095026737276,
+            1.0995492865038996
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3492176830768585,
+            -2.1723099052906036e-06,
+            1.2080144882202148
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 59,
+      "vz_m_s": 0.010031684142656854
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8916666666666647,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.35491438690332905,
+            -0.0006346050377273255,
+            1.0995876691605255
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.34881943464279175,
+            -2.1712039597332478e-06,
+            1.2080647945404053
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 60,
+      "vz_m_s": 0.009211837590243206
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.8958333333333314,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.35435324034766313,
+            -0.0006346017466469375,
+            1.0996228248737665
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3484605550765991,
+            -2.170621883124113e-06,
+            1.2081104516983032
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 61,
+      "vz_m_s": 0.008437371177815775
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.899999999999998,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3538478789512665,
+            -0.0006345994436868863,
+            1.099654954191916
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.34813717007637024,
+            -2.170505467802286e-06,
+            1.2081514596939087
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 62,
+      "vz_m_s": 0.007711036355875223
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.9041666666666647,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.35339279113389416,
+            -0.000634597965053224,
+            1.0996842619511535
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3478458821773529,
+            -2.17073829844594e-06,
+            1.208188772201538
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 63,
+      "vz_m_s": 0.007033862216990566
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.9083333333333313,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.35298300279166545,
+            -0.0006345971689219943,
+            1.0997109520031068
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3475834131240845,
+            -2.1712621673941612e-06,
+            1.2082222700119019
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 64,
+      "vz_m_s": 0.006405612468754519
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.912499999999998,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.35261408369012903,
+            -0.0006345957804468936,
+            1.0997352699082363
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3473470211029053,
+            -2.168002538383007e-06,
+            1.2082526683807373
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 65,
+      "vz_m_s": 0.005836297231080978
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.9166666666666646,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3522819204207901,
+            -0.0006345943018422632,
+            1.099757356656615
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.34713414311408997,
+            -2.1650339476764202e-06,
+            1.208280086517334
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 66,
+      "vz_m_s": 0.0053008196108979624
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.9208333333333313,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.35198286486014896,
+            -0.0006345928119317662,
+            1.0997773951854721
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.34694236516952515,
+            -2.1628220565617085e-06,
+            1.20830500125885
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 67,
+      "vz_m_s": 0.0048092469257318
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.9249999999999979,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.35171362816158874,
+            -0.0006345913646765179,
+            1.0997955581895864
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.34676969051361084,
+            -2.1605519577860832e-06,
+            1.2083271741867065
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 68,
+      "vz_m_s": 0.004359120987441921
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.9291666666666646,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3514712459193823,
+            -0.0006345899956694735,
+            1.0998120075122695
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.34661418199539185,
+            -2.1589803509414196e-06,
+            1.2083474397659302
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 69,
+      "vz_m_s": 0.003947837443942864
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.9333333333333312,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.35125304662964985,
+            -0.0006345887268452869,
+            1.099826893950655
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.34647414088249207,
+            -2.1573505364358425e-06,
+            1.208365559577942
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 70,
+      "vz_m_s": 0.003572745212547253
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.9374999999999979,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3510566231197675,
+            -0.0006345875701533084,
+            1.0998403573352138
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.3463481068611145,
+            -2.1562445908784866e-06,
+            1.2083818912506104
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 71,
+      "vz_m_s": 0.0032312122940847607
+    },
+    {
+      "trial": 1,
+      "kind": "trace_step",
+      "state": {
+        "timestamp": 0.9416666666666645,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3508798066877092,
+            -0.0006345865303436987,
+            1.0998525268055042
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.34623458981513977,
+            -2.1549640223383904e-06,
+            1.2083966732025146
+          ]
+        },
+        "events": [
+          "object_lift_detected"
+        ]
+      },
+      "index": 72,
+      "vz_m_s": 0.002920672869701005
+    },
+    {
+      "trial": 1,
+      "kind": "release_gate_blocked",
+      "state": {
+        "timestamp": 0.9416666666666645,
+        "phase": "trace",
+        "object": {
+          "object_id": "cube",
+          "position_m": [
+            0.3508798066877092,
+            -0.0006345865303436987,
+            1.0998525268055042
+          ],
+          "visible": true,
+          "grasped": true,
+          "lifted": true,
+          "confidence": 0.95
+        },
+        "robot": {
+          "gripper_open": false,
+          "gripper_force": 1.0,
+          "end_effector_position_m": [
+            0.34623458981513977,
+            -2.1549640223383904e-06,
+            1.2083966732025146
+          ]
+        },
+        "events": [
+          "safety_stop"
+        ]
+      },
+      "measured_max_vz_m_s": 2.0410232594021576,
+      "reason": "measured velocity cannot support a 2m rise"
+    }
+  ]
+}

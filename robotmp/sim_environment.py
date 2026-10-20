@@ -40,6 +40,13 @@ class SimConfig:
     arm_model: str = "none"
     arm_base_x: float = 0.10
     frame_callback: Callable[[SceneState], None] | None = None
+    cube_mass_kg: float = 0.10
+
+    def __post_init__(self) -> None:
+        if (isinstance(self.cube_mass_kg, bool)
+                or not isinstance(self.cube_mass_kg, (int, float))
+                or not math.isfinite(self.cube_mass_kg) or self.cube_mass_kg <= 0):
+            raise ValueError("cube_mass_kg must be a finite positive mass in kg")
 
 
 class PyBulletPickPlaceEnv:
@@ -91,7 +98,7 @@ class PyBulletPickPlaceEnv:
 
         cube_shape = p.createCollisionShape(p.GEOM_BOX, halfExtents=[c.cube_half_extent] * 3, physicsClientId=self.client)
         cube_visual = p.createVisualShape(p.GEOM_BOX, halfExtents=[c.cube_half_extent] * 3, rgbaColor=[0.15, 0.75, 0.86, 1], physicsClientId=self.client)
-        self._cube_id = p.createMultiBody(0.10, cube_shape, cube_visual, self._object_start, physicsClientId=self.client)
+        self._cube_id = p.createMultiBody(c.cube_mass_kg, cube_shape, cube_visual, self._object_start, physicsClientId=self.client)
 
         if c.arm_model == "arm6dof":
             arm_urdf = Path(__file__).resolve().parent.parent / "assets" / "arm6dof_gripper.urdf"

@@ -42,15 +42,19 @@ def validate_parameters(raw):
     return dict(raw)
 
 
-def run_gate_trial(index, parameters, audit):
+def run_gate_trial(index, parameters, audit, *, cube_mass_kg=0.10):
     csv_path = audit.output / f"gate_{index:02d}_physics.csv"
     report_path = audit.output / f"gate_{index:02d}.json"
-    env = ThrowEnv(config=SimConfig(arm_model="xarm6"))
+    env = ThrowEnv(config=SimConfig(arm_model="xarm6", cube_mass_kg=cube_mass_kg))
     rows, events = [], []
+    max_velocity_ratios = [0.0] * len(env._arm_joint_ids)
 
     def emit(kind, **extra):
         state = env.observe()
         linear, _ = env.p.getBaseVelocity(env._cube_id, physicsClientId=env.client)
+        for i, joint in enumerate(env._arm_joint_ids):
+            velocity = env.p.getJointState(env._gripper_id, joint, physicsClientId=env.client)[1]
+            max_velocity_ratios[i] = max(max_velocity_ratios[i], abs(velocity) / env._arm_velocity[i])
         rows.append({"t_s": state.timestamp, "phase": state.phase, "x_m": state.object.position_m[0],
                      "y_m": state.object.position_m[1], "z_m": state.object.position_m[2],
                      "vz_m_s": linear[2], "constraint": env._constraint_id is not None,
@@ -60,7 +64,8 @@ def run_gate_trial(index, parameters, audit):
         audit.event(event)
 
     result = {"trial": index, "target_rise_m": TARGET_RISE_M, "required_vz_m_s": REQUIRED_VZ,
-              "parameters": parameters, "release_permitted": False, "released": False}
+              "parameters": parameters, "cube_mass_kg": cube_mass_kg,
+              "release_permitted": False, "released": False}
     try:
         emit("reset")
         for action in ("approach_object", "close_gripper", "lift_object"):
@@ -74,41 +79,38 @@ def run_gate_trial(index, parameters, audit):
         env._phase = "trace"
         env._set_gripper_pose(ee_target, open_gripper=False)
         max_vz = float("-inf")
+        gate = False
         for step in range(parameters["release_after_steps"]):
             env._step(1)
             linear, _ = env.p.getBaseVelocity(env._cube_id, physicsClientId=env.client)
             max_vz = max(max_vz, linear[2])
             emit("trace_step", index=step + 1, vz_m_s=linear[2])
-        gate = max_vz >= REQUIRED_VZ
+            if math.isfinite(linear[2]) and linear[2] >= REQUIRED_VZ:
+                gate = True
+                break
         if gate:
             env.release_in_motion()
-            emit("release_gate_passed", measured_max_vz_m_s=max_vz)
+            emit("release_gate_passed", measured_max_vz_m_s=max_vz, vz_m_s=linear[2])
             result["release_permitted"] = True
             result["released"] = True
+            result["release_vz_m_s"] = linear[2]
         else:
             env.execute("stop")
             emit("release_gate_blocked", measured_max_vz_m_s=max_vz,
                  reason="measured velocity cannot support a 2m rise")
         result.update({"max_measured_vz_m_s": max_vz, "safety_stop": env.stopped,
+                       "final_measured_vz_m_s": linear[2],
+                       "max_joint_velocity_ratios": max_velocity_ratios,
                        "constraint_retained": env._constraint_id is not None,
                        "lifted": env.observe().object.lifted, "events": events})
     except Exception as exc:
         result.update({"error": f"{type(exc).__name__}: {exc}", "events": events})
     finally:
         env.close()
-    audit.append(csv_path, "") if False else None
     with csv_path.open("w", newline="", encoding="utf-8") as stream:
         writer = csv.DictWriter(stream, fieldnames=["t_s", "phase", "x_m", "y_m", "z_m", "vz_m_s", "constraint", "grasped", "lifted"])
         writer.writeheader()
-        # Events carry states, so write the compact trace extracted from them.
-        for event in events:
-            state = event.get("state", {})
-            obj = state.get("object", {})
-            writer.writerow({"t_s": state.get("timestamp", 0), "phase": state.get("phase", ""),
-                             "x_m": obj.get("position_m", [0, 0, 0])[0], "y_m": obj.get("position_m", [0, 0, 0])[1],
-                             "z_m": obj.get("position_m", [0, 0, 0])[2], "vz_m_s": event.get("vz_m_s", ""),
-                             "constraint": event.get("state", {}).get("object", {}).get("grasped", False),
-                             "grasped": obj.get("grasped", False), "lifted": obj.get("lifted", False)})
+        writer.writerows(rows)
     report_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     return result
 

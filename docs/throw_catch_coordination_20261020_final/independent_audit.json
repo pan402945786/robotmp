@@ -1,0 +1,96 @@
+{
+  "passed": true,
+  "traces": [
+    {
+      "label": "best_0.1kg_1",
+      "rows": 1353,
+      "peak_vz_m_s": 4.809325148564174,
+      "checks": {
+        "peak_matches_report": true,
+        "all_recorded_ticks_have_grasp_constraint": true,
+        "no_recorded_ground_contact": true,
+        "recorded_joint_speeds_within_tolerance": true,
+        "recorded_motor_torques_within_limits": true,
+        "recorded_joint_positions_within_limits": true,
+        "no_release_or_complete_task_claim": true
+      },
+      "passed": true
+    },
+    {
+      "label": "best_0.1kg_2",
+      "rows": 1353,
+      "peak_vz_m_s": 4.809325148564174,
+      "checks": {
+        "peak_matches_report": true,
+        "all_recorded_ticks_have_grasp_constraint": true,
+        "no_recorded_ground_contact": true,
+        "recorded_joint_speeds_within_tolerance": true,
+        "recorded_motor_torques_within_limits": true,
+        "recorded_joint_positions_within_limits": true,
+        "no_release_or_complete_task_claim": true
+      },
+      "passed": true
+    },
+    {
+      "label": "best_0.1kg_3",
+      "rows": 1353,
+      "peak_vz_m_s": 4.809325148564174,
+      "checks": {
+        "peak_matches_report": true,
+        "all_recorded_ticks_have_grasp_constraint": true,
+        "no_recorded_ground_contact": true,
+        "recorded_joint_speeds_within_tolerance": true,
+        "recorded_motor_torques_within_limits": true,
+        "recorded_joint_positions_within_limits": true,
+        "no_release_or_complete_task_claim": true
+      },
+      "passed": true
+    },
+    {
+      "label": "best_0.001kg_1",
+      "rows": 1353,
+      "peak_vz_m_s": 4.972308821142963,
+      "checks": {
+        "peak_matches_report": true,
+        "all_recorded_ticks_have_grasp_constraint": true,
+        "no_recorded_ground_contact": true,
+        "recorded_joint_speeds_within_tolerance": true,
+        "recorded_motor_torques_within_limits": true,
+        "recorded_joint_positions_within_limits": true,
+        "no_release_or_complete_task_claim": true
+      },
+      "passed": true
+    },
+    {
+      "label": "best_0.001kg_2",
+      "rows": 1353,
+      "peak_vz_m_s": 4.972308821142963,
+      "checks": {
+        "peak_matches_report": true,
+        "all_recorded_ticks_have_grasp_constraint": true,
+        "no_recorded_ground_contact": true,
+        "recorded_joint_speeds_within_tolerance": true,
+        "recorded_motor_torques_within_limits": true,
+        "recorded_joint_positions_within_limits": true,
+        "no_release_or_complete_task_claim": true
+      },
+      "passed": true
+    },
+    {
+      "label": "best_0.001kg_3",
+      "rows": 1353,
+      "peak_vz_m_s": 4.972308821142963,
+      "checks": {
+        "peak_matches_report": true,
+        "all_recorded_ticks_have_grasp_constraint": true,
+        "no_recorded_ground_contact": true,
+        "recorded_joint_speeds_within_tolerance": true,
+        "recorded_motor_torques_within_limits": true,
+        "recorded_joint_positions_within_limits": true,
+        "no_release_or_complete_task_claim": true
+      },
+      "passed": true
+    }
+  ],
+  "scope": "CSV audit of recorded ticks; self-penetration checks are in trial reports and not independently recomputed here"
+}
