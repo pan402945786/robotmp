@@ -3,7 +3,7 @@
     "skill_id": "causal_observation_catch_v1",
     "name": "causal_observation_catch",
     "status": "candidate",
-    "version": 17,
+    "version": 19,
     "task": "online_throw_catch",
     "object_types": [
       "cube"
@@ -11,7 +11,8 @@
     "trigger_conditions": [
       "measured_lift",
       "fresh_timestamped_object_observations",
-      "joint_encoder_observations"
+      "joint_encoder_observations",
+      "centered_grasp_geometry_fit == true"
     ],
     "facts": [
       "offline_complete_flight_intercepts_are_not_realtime_catch_evidence",

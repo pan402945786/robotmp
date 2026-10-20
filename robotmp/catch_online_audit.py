@@ -15,7 +15,7 @@ from .throw_catch_online import ROOT,SKILL_PATH,save_json
 
 def audit(output):
     rows=[]
-    for folder in sorted((ROOT/"docs").glob("throw_catch_online*20261020")):
+    for folder in sorted({path.parent for path in (ROOT/"docs").glob("*/online_[0-9][0-9][0-9].json")}):
         for path in sorted(folder.glob("online_[0-9][0-9][0-9].json")):
             report=json.loads(path.read_text(encoding="utf-8"))
             label=report["label"]
@@ -66,6 +66,8 @@ def main():
         skill.task="online_throw_catch"
         skill.status="candidate"
         skill.parameters.update(require_centered_grasp_fit=True,handoff_brake_s=.35)
+        if "centered_grasp_geometry_fit == true" not in skill.trigger_conditions:
+            skill.trigger_conditions.append("centered_grasp_geometry_fit == true")
         for fact in ("measured_center_grasp_gap_86_9mm_is_smaller_than_the_100mm_cube",
                      "100mm_centered_box_penetrates_both_open_fingers_80mm_box_clears",
                      "geometry_fit_is_a_prerequisite_for_the_centered_parallel_grasp_policy",

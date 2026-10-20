@@ -1,0 +1,4 @@
+{
+  "exit_code": 0,
+  "suite": "unittest discover -s tests -v"
+}

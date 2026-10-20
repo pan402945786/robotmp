@@ -152,12 +152,25 @@ class OnlineCatchController:
         return position,np.clip(speed,-self.model.vmax,self.model.vmax),False
 
     def executable(self,plan):
-        for fraction in np.linspace(0,1,21):
-            q,qd=plan.evaluate(plan.issued_at+(plan.intercept_at-plan.issued_at)*fraction)
+        duration=plan.intercept_at-plan.issued_at
+        a=(3*(plan.q1-plan.q0)-(2*plan.v0+plan.v1)*duration)/duration**2
+        b=(2*(plan.q0-plan.q1)+(plan.v0+plan.v1)*duration)/duration**3
+        times={0.,duration}
+        for i in range(6):
+            if abs(b[i])>1e-12:
+                times.add(float(-a[i]/(3*b[i])))
+                for root in np.roots([3*b[i],2*a[i],plan.v0[i]]):
+                    if abs(root.imag)<1e-9:
+                        times.add(float(root.real))
+            elif abs(a[i])>1e-12:
+                times.add(float(-plan.v0[i]/(2*a[i])))
+        for elapsed in sorted(t for t in times if 0<=t<=duration):
+            q,qd=plan.evaluate(plan.issued_at+elapsed)
             if (np.max(np.abs(qd)/self.model.vmax)>1.02
                     or np.any(q<self.model.lower) or np.any(q>self.model.upper)):
                 return False
-        q,_=plan.evaluate(plan.intercept_at+.30,coast=float(self.parameters.get("coast_s",.04)))
+        coast=float(self.parameters.get("coast_s",.04))
+        q,_=plan.evaluate(plan.intercept_at+coast+.25,coast=coast)
         return bool(np.all(q>=self.model.lower) and np.all(q<=self.model.upper))
 
     def observe(self,observation,now):

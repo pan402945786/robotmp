@@ -1,11 +1,11 @@
 {
   "scope": "posthoc evidence audit only; no trajectory is fed back as an intercept target",
-  "attempts": 14,
+  "attempts": 15,
   "released_attempts": 13,
   "active_causal_trials": 11,
   "motion_valid_causal_trials": 9,
   "physical_capture_trials": 0,
-  "zero_observation_attempts": 3,
+  "zero_observation_attempts": 4,
   "geometry": {
     "method": "opposed rays from the gripper center to the inner finger collision surfaces at local x=0",
     "finger_joints_rad": 0.0,
@@ -201,6 +201,24 @@
       "latency_s": 0.0,
       "noise_m": 0.0,
       "source_causality_field": true
+    },
+    {
+      "label": "online_015",
+      "report": "docs\\throw_catch_online_geometry_gate_20261020\\online_015.json",
+      "report_sha256": "408ca0ff2e02c470039eae0ded11d418ec3925d1dd5631567def8b58c80bed39",
+      "released": false,
+      "observations": 0,
+      "causal_contract": true,
+      "active_causal": false,
+      "motion_checks": null,
+      "captured": false,
+      "geometry_gate_blocked": true,
+      "forecast_100ms_free_rmse_m": null,
+      "max_planner_wall_s": null,
+      "planner_deadline_misses": null,
+      "latency_s": 0.0,
+      "noise_m": 0.0,
+      "source_causality_field": null
     },
     {
       "label": "online_002",
