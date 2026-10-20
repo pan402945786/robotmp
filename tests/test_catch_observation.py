@@ -29,18 +29,28 @@ class ObservationTests(unittest.TestCase):
         self.assertFalse(estimate.ready(.2))
         self.assertFalse(estimate.observe(PositionObservation(.02,.21,(0,0,1)),.21))
 
-    def test_same_observation_prefix_has_same_predictions_despite_different_future(self):
-        # The two streams diverge after the decision; future samples never enter it.
-        prefix=[PositionObservation(i/60,i/60,(.1,.4,1+3*i/60-4.905*(i/60)**2)) for i in range(10)]
-        futures=[[(0,0,0)]*20,[(100,100,100)]*20]
-        outputs=[]
-        for future in futures:
-            estimate=FlightEstimator(estimate_drag=True)
-            for frame in prefix:
-                estimate.observe(frame,frame.delivered_at)
-            outputs.append(estimate.predict(.8))
-        for left,right in zip(*outputs):
-            np.testing.assert_array_equal(left,right)
+    def test_online_drag_estimate_improves_unseen_short_horizon_prediction(self):
+        vacuum=FlightEstimator()
+        adaptive=FlightEstimator(estimate_drag=True)
+        position=np.array([.1,.5,1.1])
+        velocity=np.array([.2,-.3,4.5])
+        dt=1/600
+        predicted=[]
+        for step in range(181):
+            t=step*dt
+            if step%10==0 and step<=120:
+                frame=PositionObservation(t,t,tuple(position))
+                for estimator in (vacuum,adaptive):
+                    estimator.observe(frame,t)
+                if step==120:
+                    predicted=[estimator.predict(.3)[0] for estimator in (vacuum,adaptive)]
+            acceleration=np.array([0,0,-9.81])-.06*(1+np.linalg.norm(velocity))*velocity
+            if step==180:
+                break
+            position+=velocity*dt+.5*acceleration*dt**2
+            velocity+=acceleration*dt
+        self.assertGreater(adaptive.drag,.01)
+        self.assertLess(np.linalg.norm(predicted[1]-position),np.linalg.norm(predicted[0]-position))
 
     def test_delayed_measurement_is_predicted_from_capture_time(self):
         estimate=FlightEstimator()

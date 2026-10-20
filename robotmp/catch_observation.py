@@ -32,6 +32,8 @@ class FlightEstimator:
         self.position = self.velocity = None
         self.sigma = math.inf
         self.rejected = 0
+        self.drag_updates_enabled = True
+        self.drag_samples = 0
 
     def observe(self, observation: PositionObservation, now: float) -> bool:
         if observation.delivered_at > now + 1e-9:
@@ -53,12 +55,36 @@ class FlightEstimator:
         fit = np.linalg.lstsq(design, values, rcond=None)[0]
         self.position, self.velocity = fit[:2]
         self.sigma = float(np.sqrt(np.mean((design @ fit - values)**2)))
-        if self.estimate_drag and len(self.history) >= 8:
-            speed = np.linalg.norm(self.velocity)
+        if self.estimate_drag and self.drag_updates_enabled and len(self.history) >= 8:
+            # A quadratic fit's acceleration belongs near the center of its
+            # observation window. Pairing it with endpoint velocity biases drag.
+            middle_velocity=fit[1]+fit[2]*times.mean()
+            speed = np.linalg.norm(middle_velocity)
             if speed > .5:
                 gravity = np.array([0., 0., -9.81])
-                estimate = -float(self.velocity @ (fit[2]-gravity)) / ((1+speed)*speed**2)
-                self.drag = .75*self.drag + .25*float(np.clip(estimate, 0., .15))
+                estimate = -float(middle_velocity @ (fit[2]-gravity)) / ((1+speed)*speed**2)
+                weight=.08 if self.sigma>.0015 else .25
+                if self.drag_samples==0 and self.sigma<.0005:
+                    weight=1.
+                self.drag = (1-weight)*self.drag + weight*float(np.clip(estimate, 0., .15))
+                self.drag_samples+=1
+            # Refit p/v to the causal force estimate instead of keeping the
+            # endpoint bias of a constant-acceleration quadratic approximation.
+            velocities=fit[1]+times[:,None]*fit[2]
+            accelerations=np.array([0.,0.,-9.81])-self.drag*(1+np.linalg.norm(velocities,axis=1))[:,None]*velocities
+            dv=np.zeros(3)
+            displacement=np.zeros(3)
+            integrated=[displacement.copy()]
+            for i in range(1,len(times)):
+                h=times[i]-times[i-1]
+                displacement+=dv*h+(accelerations[i-1]/3+accelerations[i]/6)*h*h
+                dv+=(accelerations[i-1]+accelerations[i])*.5*h
+                integrated.append(displacement.copy())
+            relative=times-times[0]
+            corrected=np.linalg.lstsq(np.column_stack((np.ones(len(times)),relative)),
+                                      values-np.array(integrated),rcond=None)[0]
+            self.position=corrected[0]+corrected[1]*relative[-1]+displacement
+            self.velocity=corrected[1]+dv
         return True
 
     def ready(self, now):

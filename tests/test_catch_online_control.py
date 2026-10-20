@@ -73,7 +73,7 @@ class OnlineControllerTests(unittest.TestCase):
         start=np.zeros(6)
         goal=start.copy()
         goal[0]=.8
-        controller.pending_plan=InterceptPlan(0,.12,0,[],[],start,np.zeros(6),goal,np.zeros(6),0.,0.,0.)
+        controller.pending_plan=InterceptPlan(0,.16,0,[],[],start,np.zeros(6),goal,np.zeros(6),0.,0.,0.)
         controller.pending_ready_at=.1
         controller.last_replan=.1
         _,_,closed=controller.control(.1,start,np.zeros(6),1/240)

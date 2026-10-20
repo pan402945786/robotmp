@@ -71,6 +71,18 @@ def checkpoint(output,reason):
 def run_trial(parameters,scenario,output,label,*,observer=None):
     rng=random.Random(scenario["seed"])
     model=RobotModel()
+    from .catch_gripper_geometry import measure_opening
+    geometry=measure_opening(model)
+    geometry_fit=next(row for row in geometry["centered_box_clearance"] if row["box_width_m"]==.10)["centered_fit"]
+    save_json(output/f"{label}_gripper_geometry.json",geometry)
+    if parameters.get("require_centered_grasp_fit",False) and not geometry_fit:
+        report=dict(label=label,released=False,caught=False,physical_capture=False,complete_success=False,
+                    geometry_gate_blocked=True,failure_reason="centered_grasp_geometry_incompatible",
+                    uses_offline_flight=False,position_observations=0,planner_calls=0,scenario=scenario,
+                    controller_parameters=parameters,gripper_geometry=geometry)
+        save_json(output/f"{label}.json",report)
+        model.close()
+        return report
     controller=OnlineCatchController(model,parameters)
     observations=[]
     trace=[]
@@ -96,6 +108,7 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
         best_distance=math.inf
         best_relative=math.inf
         best_row=None
+        best_free_flight_row=None
         capture_gate=None
         first_violation=None
         first_robot_contact=None
@@ -114,6 +127,7 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
             current_contacts=p.getContactPoints(env._cube_id,env._gripper_id,physicsClientId=env.client)
             if current_contacts and first_robot_contact is None:
                 first_robot_contact=now
+                controller.estimator.drag_updates_enabled=False
             if now+1e-9>=next_capture:
                 if rng.random()>=scenario.get("drop_rate",0.):
                     measured=tuple(float(v+rng.gauss(0,scenario.get("noise_m",0.))) for v in true_pos)
@@ -174,6 +188,9 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
                     joint_position_violation=report["joint_position_violation"],self_penetration=report["self_penetration_detected"])
             if vel[2]<-.05 and distance<best_distance:
                 best_distance,best_row=distance,row
+            if (vel[2]<-.05 and first_robot_contact is None and not contacts
+                    and (best_free_flight_row is None or distance<best_free_flight_row["distance_m"])):
+                best_free_flight_row=row
             if vel[2]<-.05 and distance<.04:
                 best_relative=min(best_relative,relative)
             if controller.estimator.ready(now+dt):
@@ -216,6 +233,7 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
             free_flight_forecast_100ms_rmse_m=float(np.sqrt(np.mean(np.square(free_flight_errors)))) if free_flight_errors else None,
             first_robot_contact_time_s=first_robot_contact,
             closest_descending=best_row,best_relative_within_4cm_m_s=best_relative if math.isfinite(best_relative) else None,
+            closest_free_flight_descending=best_free_flight_row,centered_grasp_fit=geometry_fit,
             apex_height_m=apex,free_flight=True,flight_contact=report["ground_contact"],motion_checks_passed=checks,
             capture_offset_m=model.capture_offset.tolist(),controller_parameters=parameters,scenario=scenario)
         if not hold:
@@ -237,7 +255,8 @@ def reflect(skill,report,label):
     skill.validation_trials+=1
     skill.status="candidate"
     lessons=[]
-    if report.get("forecast_100ms_rmse_m",0.) and report["forecast_100ms_rmse_m"]>.025:
+    forecast_error=report.get("free_flight_forecast_100ms_rmse_m",report.get("forecast_100ms_rmse_m"))
+    if forecast_error and forecast_error>.025:
         skill.parameters["estimate_drag"]=True
         lessons.append("position_history_requires_online_drag_estimation")
     if report.get("planner_deadline_misses",0):
