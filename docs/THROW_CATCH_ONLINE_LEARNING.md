@@ -49,3 +49,26 @@
 ```
 
 本次反思：position_history_requires_online_drag_estimation；position_velocity_approach_is_not_bilateral_contact_capture；reject_infeasible_complete_paths_and_recheck_after_planning_delay；reserve_joint_travel_for_followthrough_and_braking。完整接稳未通过时保持 candidate，不记成功。
+
+## online_003：skill v3 → v4
+
+```json
+{
+  "label": "online_003",
+  "released": true,
+  "caught": false,
+  "physical_capture": false,
+  "causality_passed": true,
+  "position_observations": 0,
+  "planner_calls": 0,
+  "planner_deadline_misses": 0,
+  "max_planner_wall_s": 0.0,
+  "forecast_100ms_rmse_m": null,
+  "estimated_drag": 0.0,
+  "motion_checks_passed": false,
+  "error": null,
+  "closest_distance_m": null
+}
+```
+
+本次反思：position_velocity_approach_is_not_bilateral_contact_capture；reject_infeasible_complete_paths_and_recheck_after_planning_delay；reserve_joint_travel_for_followthrough_and_braking。完整接稳未通过时保持 candidate，不记成功。
