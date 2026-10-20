@@ -1,0 +1,111 @@
+{
+  "selected": {
+    "label": "online_005",
+    "report": "docs\\throw_catch_online_round3_20261020\\online_005.json",
+    "time_s": 0.8791666666666169,
+    "distance_m": 0.0849010496969276,
+    "relative_speed_m_s": 2.4313970583637827
+  },
+  "selection_rule": "smallest pre-contact descending distance among active causal motion-valid records",
+  "ranking": [
+    {
+      "label": "online_005",
+      "report": "docs\\throw_catch_online_round3_20261020\\online_005.json",
+      "time_s": 0.8791666666666169,
+      "distance_m": 0.0849010496969276,
+      "relative_speed_m_s": 2.4313970583637827
+    },
+    {
+      "label": "online_006",
+      "report": "docs\\throw_catch_online_round3_20261020\\online_006.json",
+      "time_s": 0.9166666666666148,
+      "distance_m": 0.0893572550353559,
+      "relative_speed_m_s": 2.940565413144995
+    },
+    {
+      "label": "online_010",
+      "report": "docs\\throw_catch_online_round4_20261020\\online_010.json",
+      "time_s": 0.9166666666666148,
+      "distance_m": 0.08953188914455863,
+      "relative_speed_m_s": 2.944888415254241
+    },
+    {
+      "label": "online_012",
+      "report": "docs\\throw_catch_online_round5_20261020\\online_012.json",
+      "time_s": 0.8749999999999505,
+      "distance_m": 0.0911608595162845,
+      "relative_speed_m_s": 2.3998116553461135
+    },
+    {
+      "label": "online_013",
+      "report": "docs\\throw_catch_online_round5_20261020\\online_013.json",
+      "time_s": 0.9083333333332819,
+      "distance_m": 0.09249754567203025,
+      "relative_speed_m_s": 2.7582395634468213
+    },
+    {
+      "label": "online_009",
+      "report": "docs\\throw_catch_online_round4_20261020\\online_009.json",
+      "time_s": 0.8749999999999505,
+      "distance_m": 0.0950674145189555,
+      "relative_speed_m_s": 2.4159060988860626
+    },
+    {
+      "label": "online_011",
+      "report": "docs\\throw_catch_online_round4_20261020\\online_011.json",
+      "time_s": 0.9249999999999476,
+      "distance_m": 0.10089961484203946,
+      "relative_speed_m_s": 2.76183077590768
+    },
+    {
+      "label": "online_014",
+      "report": "docs\\throw_catch_online_round5_20261020\\online_014.json",
+      "time_s": 0.9249999999999476,
+      "distance_m": 0.10782359616238502,
+      "relative_speed_m_s": 3.2243529708430336
+    },
+    {
+      "label": "online_007",
+      "report": "docs\\throw_catch_online_round3_20261020\\online_007.json",
+      "time_s": 0.9208333333332812,
+      "distance_m": 0.11184246001244114,
+      "relative_speed_m_s": 2.739004264373767
+    }
+  ],
+  "source_hashes": {
+    "docs\\throw_catch_online_round3_20261020\\online_005.json": "87bb9bdb3fabd21c2c16b357c68fb8bf906efbb3a96a3bd7907c45d97796336c",
+    "docs\\throw_catch_online_round3_20261020\\online_005_physics.csv": "b5c40ad41f6ed31873ff9c960b6265844f23bd1c8ae7007a18a2c466a38b2921",
+    "docs\\throw_catch_online_round3_20261020\\online_005_control_trace.json": "a8bc17bc644534ac9d4651339e7ed1373d040321e227ef1e86fa3ee85f90b3b5",
+    "docs\\throw_catch_online_round3_20261020\\online_005_observations.json": "04b38419f566fecd30c956551d4063d3ab890a09e98d7465eb6487db1b762b90",
+    "docs\\throw_catch_online_round3_20261020\\online_005_decisions.json": "f55a454898c8e65a79e18df8522c24ffb420864b5d4446d8bdd4771d8101097b"
+  },
+  "source_files_unchanged": true,
+  "physics_csv_trace_max_position_error_m": 0.0,
+  "mode": "posthoc record visualization in an isolated render-only scene; no control or new experiment",
+  "limitations": [
+    "object orientation was not recorded; box orientation is illustrative",
+    "finger joint angles were not recorded; opening illustrates the logged command",
+    "yellow marks are computed candidate points available by that time, not proof of activated plans"
+  ],
+  "frames": 553,
+  "fps": 30,
+  "duration_s": 18.433333333333334,
+  "video_metadata": {
+    "ffmpeg_version": "7.1-essentials_build-www.gyan.dev built with gcc 14.2.0 (Rev1, Built by MSYS2 project)",
+    "codec": "h264",
+    "pix_fmt": "yuv420p(progressive)",
+    "fps": 30.0,
+    "source_size": [
+      1920,
+      1080
+    ],
+    "size": [
+      1920,
+      1080
+    ],
+    "rotate": 0,
+    "duration": 18.43
+  },
+  "video_sha256": "61d034fb4249884eeaf316a9882ed59b310cff38cda73455a2b8965ba874579b",
+  "physical_capture": false
+}

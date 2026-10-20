@@ -1,0 +1,8 @@
+pybullet build time: Oct 21 2025 11:46:21
+test_selection_excludes_post_contact_distance_and_invalid_motion (tests.test_catch_best_video.RecordedVisualizationTests.test_selection_excludes_post_contact_distance_and_invalid_motion) ... ok
+test_visualization_only_reveals_delivered_observations_and_computed_candidates (tests.test_catch_best_video.RecordedVisualizationTests.test_visualization_only_reveals_delivered_observations_and_computed_candidates) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.048s
+
+OK
