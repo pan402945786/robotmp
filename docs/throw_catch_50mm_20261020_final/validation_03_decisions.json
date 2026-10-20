@@ -1,0 +1,97 @@
+[
+  {
+    "issued_at": 0.11666666666666003,
+    "latest_observation_at": 0.0833333333333286,
+    "wall_s": 0.007237499987240881,
+    "candidates": 0,
+    "drag": 0.0,
+    "plan": null
+  },
+  {
+    "issued_at": 0.21666666666665435,
+    "latest_observation_at": 0.14999999999999147,
+    "wall_s": 0.05902590000187047,
+    "candidates": 3,
+    "drag": 0.0003488955298063901,
+    "plan": {
+      "intercept_at": 0.9766666666666545,
+      "cube": [
+        -0.6022654254142207,
+        0.5138683598611868,
+        0.8067164783277593
+      ],
+      "velocity": [
+        0.1388425501519977,
+        0.46196267329967455,
+        -5.058491970981216
+      ],
+      "relative_speed": 2.054704840655674,
+      "planned_speed_ratio": 0.980000000000001,
+      "score": 2.53539433793654
+    }
+  },
+  {
+    "issued_at": 0.31666666666664867,
+    "latest_observation_at": 0.2833333333333172,
+    "wall_s": 0.04752240001107566,
+    "candidates": 0,
+    "drag": 0.018761863782209193,
+    "plan": null
+  },
+  {
+    "issued_at": 0.416666666666643,
+    "latest_observation_at": 0.38333333333331154,
+    "wall_s": 0.04727389998151921,
+    "candidates": 0,
+    "drag": 0.015392172015390646,
+    "plan": null
+  },
+  {
+    "issued_at": 0.5166666666666373,
+    "latest_observation_at": 0.48333333333330586,
+    "wall_s": 0.04878179999650456,
+    "candidates": 0,
+    "drag": 0.043308653879445894,
+    "plan": null
+  },
+  {
+    "issued_at": 0.6166666666666316,
+    "latest_observation_at": 0.5833333333333002,
+    "wall_s": 0.04759229999035597,
+    "candidates": 0,
+    "drag": 0.02404097044387266,
+    "plan": null
+  },
+  {
+    "issued_at": 0.7166666666666259,
+    "latest_observation_at": 0.6833333333332945,
+    "wall_s": 0.04753310000523925,
+    "candidates": 0,
+    "drag": 0.08536833106420291,
+    "plan": null
+  },
+  {
+    "issued_at": 0.8166666666666202,
+    "latest_observation_at": 0.7833333333332888,
+    "wall_s": 0.04768570000305772,
+    "candidates": 0,
+    "drag": 0.05767501352949673,
+    "plan": null
+  },
+  {
+    "issued_at": 0.9166666666666146,
+    "latest_observation_at": 0.8833333333332831,
+    "wall_s": 0.007254100026329979,
+    "candidates": 0,
+    "drag": 0.05130625049983557,
+    "plan": null
+  },
+  {
+    "issued_at": 1.0166666666666089,
+    "latest_observation_at": 0.9833333333332774,
+    "wall_s": 0.00762429999304004,
+    "candidates": 0,
+    "drag": 0.0373970931290629,
+    "plan": null
+  }
+]

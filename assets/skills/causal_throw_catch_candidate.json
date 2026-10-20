@@ -3,7 +3,7 @@
     "skill_id": "causal_observation_catch_v1",
     "name": "causal_observation_catch",
     "status": "candidate",
-    "version": 19,
+    "version": 23,
     "task": "online_throw_catch",
     "object_types": [
       "cube"
@@ -31,7 +31,14 @@
       "contact_impulses_must_not_be_learned_as_air_drag",
       "quadratic_acceleration_and_velocity_must_use_the_same_window_time",
       "floating_point_timestamp_audits_require_separate_tolerance_checks",
-      "zero_observation_aborts_do_not_validate_causal_interception"
+      "zero_observation_aborts_do_not_validate_causal_interception",
+      "50mm_cube_passes_centered_open_finger_geometry_at_100g",
+      "object_size_changes_grasp_offset_and_measured_release_trajectory",
+      "restore_object_robot_collision_after_measured_surface_clearance_without_arbitrary_20cm_center_distance",
+      "bilateral_tactile_contact_requires_switching_from_ballistic_intercept_to_contact_braking",
+      "short_bilateral_contact_without_500ms_hold_is_not_capture",
+      "release_timing_should_reduce_outward_radial_velocity",
+      "fast_contact_braking_can_violate_motion_limits"
     ],
     "hypotheses": [
       "receding_horizon_prediction_can_adapt_to_changed_flights"
@@ -48,7 +55,7 @@
       "record_failed_attempt_before_retry",
       "retain_candidate_status_until_contact_and_hold_validation"
     ],
-    "validation_trials": 15,
+    "validation_trials": 76,
     "false_success_rate": null,
     "recovery_success_rate": null,
     "prerequisite_skill_ids": [
@@ -59,28 +66,41 @@
       "estimate_drag": true,
       "stale_s": 0.075,
       "replan_s": 0.1,
-      "ik_seeds": 1,
+      "ik_seeds": 3,
       "horizon_step_s": 0.1,
       "tilt_weight": 0.0,
       "time_hysteresis": 2.0,
       "coast_s": 0.04,
-      "close_lead_s": 0.22,
+      "close_lead_s": 0.18,
       "strict_trajectory": true,
       "abort_on_motion_violation": true,
-      "ik_iterations": 35,
+      "ik_iterations": 55,
       "require_centered_grasp_fit": true,
-      "handoff_brake_s": 0.35
+      "handoff_brake_s": 0.35,
+      "contact_brake_s": 0.18,
+      "launch_profile": {
+        "release_gate": 1.5,
+        "swing_scale": 0.8,
+        "pre_spin": false,
+        "release_inward_only": true
+      },
+      "cube_size_m": 0.05
     },
     "validation_success_rate": 0.0,
     "validation_metrics": {
       "complete_success": false,
       "uses_offline_flight": false,
-      "causal_trials": 11,
+      "causal_trials": 69,
       "physical_capture_trials": 0,
-      "last_trial": "online_015",
-      "last_observation_count": 0,
-      "motion_valid_causal_trials": 9,
-      "centered_grasp_fit": false
+      "last_trial": "validation_03",
+      "last_observation_count": 58,
+      "motion_valid_causal_trials": 62,
+      "centered_grasp_fit": true,
+      "object_size_m": 0.05,
+      "cube_50mm_attempts": 61,
+      "cube_50mm_releases": 58,
+      "cube_50mm_bilateral_contact_trials": 13,
+      "cube_50mm_max_continuous_bilateral_contact_s": 0.11666666666666667
     }
   }
 ]

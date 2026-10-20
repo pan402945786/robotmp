@@ -22,12 +22,18 @@ class MassConfigurationTests(unittest.TestCase):
     def test_configured_mass_and_inertia_survive_reset(self):
         inertias = []
         for mass in (0.1, 0.001):
-            env = PyBulletPickPlaceEnv(config=SimConfig(cube_mass_kg=mass))
+            env = PyBulletPickPlaceEnv(config=SimConfig(cube_mass_kg=mass,cube_half_extent=.025))
             try:
                 for _ in range(2):
                     dynamics = env.p.getDynamicsInfo(env._cube_id, -1, physicsClientId=env.client)
                     self.assertEqual(dynamics[0], mass)
                     self.assertTrue(all(value > 0 for value in dynamics[2]))
+                    collision=env.p.getCollisionShapeData(env._cube_id,-1,physicsClientId=env.client)[0]
+                    visual=env.p.getVisualShapeData(env._cube_id,physicsClientId=env.client)[0]
+                    for width in (*collision[3],*visual[3]):
+                        self.assertAlmostEqual(width,.05)
+                    for inertia in dynamics[2]:
+                        self.assertAlmostEqual(inertia,mass*.05**2/6)
                     env.reset()
                 inertias.append(dynamics[2])
             finally:

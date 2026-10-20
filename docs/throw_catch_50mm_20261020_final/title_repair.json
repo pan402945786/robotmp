@@ -1,0 +1,9 @@
+{
+  "source": "validation_01.mp4",
+  "source_sha256": "1bd01cb0d5888c876ec5f0feab12f0a3a0226e5ee75e11066993e9efbe908b33",
+  "output": "validation_01_labeled.mp4",
+  "output_sha256": "bcb4a782594826def47603ad262f969a8b231e453cea81202f51fa9e0d5e0f4b",
+  "frames": 213,
+  "fps": 30,
+  "edit": "Only top-left title rectangle [0,0,960,72] repaired for text encoding; scene content and frame order retained; output re-encoded with H.264."
+}

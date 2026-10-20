@@ -43,6 +43,10 @@ class SimConfig:
     cube_mass_kg: float = 0.10
 
     def __post_init__(self) -> None:
+        if (isinstance(self.cube_half_extent, bool)
+                or not isinstance(self.cube_half_extent, (int, float))
+                or not math.isfinite(self.cube_half_extent) or self.cube_half_extent <= 0):
+            raise ValueError("cube_half_extent must be finite and positive in metres")
         if (isinstance(self.cube_mass_kg, bool)
                 or not isinstance(self.cube_mass_kg, (int, float))
                 or not math.isfinite(self.cube_mass_kg) or self.cube_mass_kg <= 0):

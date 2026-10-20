@@ -71,15 +71,21 @@ def checkpoint(output,reason):
 def run_trial(parameters,scenario,output,label,*,observer=None):
     rng=random.Random(scenario["seed"])
     model=RobotModel()
+    if "capture_offset_z_m" in parameters:
+        model.capture_offset[2]=float(parameters["capture_offset_z_m"])
     from .catch_gripper_geometry import measure_opening
-    geometry=measure_opening(model)
-    geometry_fit=next(row for row in geometry["centered_box_clearance"] if row["box_width_m"]==.10)["centered_fit"]
+    cube_size=float(scenario.get("cube_size_m",.05))
+    if not math.isfinite(cube_size) or cube_size<=0:
+        model.close()
+        raise ValueError("cube_size_m must be finite and positive")
+    geometry=measure_opening(model,cube_size)
+    geometry_fit=next(row for row in geometry["centered_box_clearance"] if row["box_width_m"]==cube_size)["centered_fit"]
     save_json(output/f"{label}_gripper_geometry.json",geometry)
     if parameters.get("require_centered_grasp_fit",False) and not geometry_fit:
         report=dict(label=label,released=False,caught=False,physical_capture=False,complete_success=False,
                     geometry_gate_blocked=True,failure_reason="centered_grasp_geometry_incompatible",
                     uses_offline_flight=False,position_observations=0,planner_calls=0,scenario=scenario,
-                    controller_parameters=parameters,gripper_geometry=geometry)
+                    controller_parameters=parameters,gripper_geometry=geometry,cube_size_m=cube_size)
         save_json(output/f"{label}.json",report)
         model.close()
         return report
@@ -101,6 +107,7 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
         next_capture=0.
         inbox=deque()
         enabled=False
+        enabled_at=None
         contact_ticks=0
         capture_at=None
         hold_contacts=0
@@ -150,6 +157,7 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
             states=[p.getJointState(env._gripper_id,j,physicsClientId=env.client) for j in env._arm_joint_ids]
             q=np.array([s[0] for s in states])
             qd=np.array([s[1] for s in states])
+            controller.observe_contacts(now,q,qd,{c[4] for c in current_contacts if c[9]>.05})
             target,speed,closing=controller.control(now,q,qd,dt)
             stale_ticks+=int(now>.12 and not controller.estimator.ready(now))
             command(env,target,speed)
@@ -159,10 +167,11 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
                     force=50,maxVelocity=2,physicsClientId=env.client)
             capture_point,jac,_,rotation=model.state(q)
             clear=not p.getClosestPoints(env._cube_id,env._gripper_id,.015,physicsClientId=env.client)
-            if not enabled and clear and np.linalg.norm(np.array(true_pos)-capture_point)>.20:
+            if not enabled and clear:
                 for link in range(-1,p.getNumJoints(env._gripper_id,physicsClientId=env.client)):
                     p.setCollisionFilterPair(env._gripper_id,env._cube_id,link,-1,1,physicsClientId=env.client)
                 enabled=True
+                enabled_at=now
             env._phase="online_catch"
             env._step(1)
             pos,vel,ground=sample("flight",tick)
@@ -174,12 +183,17 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
             relative=math.dist(vel,point_v)
             contacts=p.getContactPoints(env._cube_id,env._gripper_id,physicsClientId=env.client)
             links={c[4] for c in contacts if c[9]>.05}
+            _,cube_orientation=p.getBasePositionAndOrientation(env._cube_id,physicsClientId=env.client)
+            _,angular_velocity=p.getBaseVelocity(env._cube_id,physicsClientId=env.client)
             bilateral={9,12}.issubset(links)
             row=dict(time_s=now+dt,cube=list(pos),truth_velocity=list(vel),capture_point=point.tolist(),
                 capture_velocity=point_v.tolist(),distance_m=distance,relative_speed_m_s=relative,
                 contacts=sorted(links),closing=closing,collision_enabled=enabled,
                 observation_at=controller.estimator.history[-1].captured_at if controller.estimator.history else None,
                 commanded_q=target.tolist(),commanded_qd=speed.tolist(),q=[s[0] for s in states],qd=[s[1] for s in states])
+            row.update(cube_orientation=list(cube_orientation),truth_angular_velocity=list(angular_velocity),
+                finger_q=[p.getJointState(env._gripper_id,j,physicsClientId=env.client)[0] for j in range(8,14)],
+                contact_forces=[dict(link=c[4],normal_force_n=c[9]) for c in contacts])
             trace.append(row)
             violation=(max(report["max_joint_velocity_ratios"])>1.05 or report["joint_position_violation"]
                        or report["self_penetration_detected"])
@@ -223,6 +237,8 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
         causal &= all(e["latest_observation_at"]<=e["issued_at"]+1e-8 for e in controller.events)
         report.update(caught=hold,catch_hold_passed=hold,complete_success=bool(hold and checks and causal),physical_capture=hold and checks,
             capture_contact_time_s=capture_at,observed_capture_gate=capture_gate,collision_enabled=enabled,
+            tactile_capture_time_s=controller.tactile_capture_at,
+            collision_reenabled_at_s=enabled_at,
             no_catch_constraint=env._constraint_id is None,causality_contract_passed=bool(causal),
             causality_passed=bool(causal and len(observations)>=4 and controller.plan_count>0),uses_offline_flight=False,
             position_observations=len(observations),position_sensor_source="simulated noisy delayed position measurements",
@@ -243,8 +259,9 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
         save_json(output/f"{label}_control_trace.json",trace)
     try:
         report=trial(launch,scenario.get("mass_kg",.1),.35,DELAYS["best_coordination"],
-            spin={"turns":1.5,"joints":[0],"directions":[1]},release_threshold=release_gate,
-            release_handler=handler,output=output,label=label,observer=observer)
+            spin={"turns":1.5,"joints":[0],"directions":[1]} if scenario.get("pre_spin",True) else None,
+            release_threshold=release_gate,release_inward_only=scenario.get("release_inward_only",False),
+            release_handler=handler,output=output,label=label,observer=observer,cube_size_m=cube_size)
     finally:
         model.close()
     if not report.get("released"):
@@ -301,8 +318,11 @@ def main():
     parser.add_argument("--git",action="store_true",help="commit each completed experiment and skill update")
     parser.add_argument("--video",action="store_true",help="record the first fresh causal experiment")
     parser.add_argument("--close-lead",type=float,help="test an alternative finger closing lead, in seconds")
+    parser.add_argument("--cube-size-mm",type=float,default=50.,help="cube edge length in mm (default: 50)")
     parser.add_argument("--diagnostic",action="store_true",help="explicitly test a flight despite incompatible centered-grasp geometry")
     args=parser.parse_args()
+    if not math.isfinite(args.cube_size_mm) or args.cube_size_mm<=0:
+        parser.error("cube size must be finite and positive")
     if not 1<=args.trials<=12:
         parser.error("trials must be between 1 and 12")
     if args.close_lead is not None and not 0<=args.close_lead<=.5:
@@ -326,6 +346,8 @@ def main():
         journal.write_text("# 基于在线观测的接回实验\n\n旧的完整飞行离线选点只保留为历史诊断，不能作为本轮控制输入或成功证据。\n\n传感输入为仿真器采样的位置观测，可带噪声、延迟和漏帧；不是摄像头检测。控制器没有动态世界句柄，只接收已送达的位置观测和关节编码器状态。独立运动学模型允许求解未来动作，不读取未来物体状态。\n",encoding="utf-8")
     for index in range(args.trials):
         scenario=scenarios[index%len(scenarios)].copy()
+        scenario.update(skill.parameters.get("launch_profile",{}))
+        scenario["cube_size_m"]=args.cube_size_mm/1000
         scenario["seed"]+=1000*(index//len(scenarios))
         label=f"online_{skill.validation_trials+1:03d}"
         version_used=skill.version
@@ -343,7 +365,7 @@ def main():
         if args.video and index==0:
             from .throw_catch_493_video import Recorder
             recorder=Recorder(output/f"{label}.mp4",fps=30,title="xArm6 在线观测接回实验",
-                subtitle="位置观测 → 在线预测 → 重规划 | 100 g",release_gate=scenario["release_gate"])
+                subtitle=f"位置观测 → 在线预测 → 重规划 | {args.cube_size_mm:g} mm | {scenario.get('mass_kg',.1)*1000:g} g",release_gate=scenario["release_gate"])
             class VideoObserver:
                 latest={}
                 def __call__(self,env,phase,tick):

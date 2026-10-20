@@ -1,0 +1,74 @@
+[
+  {
+    "issued_at": 0.04999999999999716,
+    "latest_observation_at": 0.04999999999999716,
+    "wall_s": 0.06343889998970553,
+    "candidates": 0,
+    "drag": 0.0,
+    "plan": null
+  },
+  {
+    "issued_at": 0.14999999999999147,
+    "latest_observation_at": 0.14999999999999147,
+    "wall_s": 0.11864270002115518,
+    "candidates": 0,
+    "drag": 0.04087144392802951,
+    "plan": null
+  },
+  {
+    "issued_at": 0.2499999999999858,
+    "latest_observation_at": 0.2499999999999858,
+    "wall_s": 0.13539939999463968,
+    "candidates": 0,
+    "drag": 0.041439974397902035,
+    "plan": null
+  },
+  {
+    "issued_at": 0.3499999999999801,
+    "latest_observation_at": 0.3499999999999801,
+    "wall_s": 0.13850210001692176,
+    "candidates": 0,
+    "drag": 0.04357436942090022,
+    "plan": null
+  },
+  {
+    "issued_at": 0.4499999999999744,
+    "latest_observation_at": 0.4499999999999744,
+    "wall_s": 0.1320873999793548,
+    "candidates": 0,
+    "drag": 0.04311354979084227,
+    "plan": null
+  },
+  {
+    "issued_at": 0.5499999999999687,
+    "latest_observation_at": 0.5499999999999687,
+    "wall_s": 0.08339390001492575,
+    "candidates": 0,
+    "drag": 0.04084748339710124,
+    "plan": null
+  },
+  {
+    "issued_at": 0.649999999999963,
+    "latest_observation_at": 0.649999999999963,
+    "wall_s": 0.008369900024263188,
+    "candidates": 0,
+    "drag": 0.040073861175439,
+    "plan": null
+  },
+  {
+    "issued_at": 0.7499999999999574,
+    "latest_observation_at": 0.7499999999999574,
+    "wall_s": 0.007802799984347075,
+    "candidates": 0,
+    "drag": 0.03987698637073792,
+    "plan": null
+  },
+  {
+    "issued_at": 0.8499999999999517,
+    "latest_observation_at": 0.8499999999999517,
+    "wall_s": 0.007949599996209145,
+    "candidates": 0,
+    "drag": 0.03983810002711585,
+    "plan": null
+  }
+]

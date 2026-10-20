@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "ffmpeg_version": "7.1-essentials_build-www.gyan.dev built with gcc 14.2.0 (Rev1, Built by MSYS2 project)",
+    "codec": "h264",
+    "pix_fmt": "yuv420p(progressive)",
+    "fps": 30.0,
+    "source_size": [
+      1280,
+      720
+    ],
+    "size": [
+      1280,
+      720
+    ],
+    "rotate": 0,
+    "duration": 7.1
+  },
+  "contact_frame_index": 205,
+  "video_sha256": "1bd01cb0d5888c876ec5f0feab12f0a3a0226e5ee75e11066993e9efbe908b33"
+}

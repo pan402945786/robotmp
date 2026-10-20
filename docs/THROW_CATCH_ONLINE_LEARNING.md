@@ -360,3 +360,82 @@
 ??????????????????????????????????????????????????????????????????? online_012?014?100 ms ?????? RMSE ? 1.05?7.59?13.08 mm?????????????????
 
 ?????? candidate??????? 0?52 ?????????????????????????????????????????????????????????? THROW_CATCH_ONLINE_RESULTS.md?
+
+## online_016：skill v19 → v20
+
+```json
+{
+  "label": "online_016",
+  "released": true,
+  "caught": false,
+  "physical_capture": false,
+  "causality_passed": true,
+  "position_observations": 70,
+  "planner_calls": 12,
+  "planner_deadline_misses": 0,
+  "max_planner_wall_s": 0.011596199998166412,
+  "forecast_100ms_rmse_m": 0.0008823454000979809,
+  "estimated_drag": 0.0398464378744699,
+  "motion_checks_passed": true,
+  "error": null,
+  "closest_distance_m": 0.7983026846123443
+}
+```
+
+本次反思：position_velocity_approach_is_not_bilateral_contact_capture。完整接稳未通过时保持 candidate，不记成功。
+
+## online_017：skill v20 → v21
+
+```json
+{
+  "label": "online_017",
+  "released": true,
+  "caught": false,
+  "physical_capture": false,
+  "causality_passed": true,
+  "position_observations": 64,
+  "planner_calls": 11,
+  "planner_deadline_misses": 0,
+  "max_planner_wall_s": 0.008377299993298948,
+  "forecast_100ms_rmse_m": 0.00684427257002545,
+  "estimated_drag": 0.05971410628721805,
+  "motion_checks_passed": true,
+  "error": null,
+  "closest_distance_m": 0.7823845598407032
+}
+```
+
+本次反思：position_velocity_approach_is_not_bilateral_contact_capture。完整接稳未通过时保持 candidate，不记成功。
+
+## online_018：skill v21 → v22
+
+```json
+{
+  "label": "online_018",
+  "released": true,
+  "caught": false,
+  "physical_capture": false,
+  "causality_passed": true,
+  "position_observations": 62,
+  "planner_calls": 11,
+  "planner_deadline_misses": 0,
+  "max_planner_wall_s": 0.008719500008737668,
+  "forecast_100ms_rmse_m": 0.012508321021176909,
+  "estimated_drag": 0.031248642828455325,
+  "motion_checks_passed": true,
+  "error": null,
+  "closest_distance_m": 0.8531884444162613
+}
+```
+
+本次反思：position_velocity_approach_is_not_bilateral_contact_capture。完整接稳未通过时保持 candidate，不记成功。
+
+## 2026-10-20：按用户要求改为 50 mm，集中调参与复测
+
+质量仍为 100 g；本轮 61 次尝试（含 online_016–018，不重复计数）、58 次释放、53 次因果及运动检查通过、13 次出现双指接触。最长连续双指接触 0.1167 s，0.5 s 保持未通过；接稳数仍为 0。另有 1 次不释放的发射测量，不计接回尝试。
+
+改进：尺寸贯通碰撞、外观和惯量；几何检查读本轮尺寸；取消恢复碰撞的任意 20 cm 中心距离门槛，保留实际表面间隙检查；双指触觉接触后保持闭合并制动。测试了释放门槛、向内释放、挥臂比例、闭合提前量、制动时长、姿态及夹持深度。
+
+下一轮候选：无底座预转，挥臂比例 0.8，向内释放，1.5 m/s 门槛，180 ms 闭合提前量及接触制动。实际释放竖直速度约 4.57 m/s。三个新种子的复测均未接稳。集中复核后更新候选 skill 为 v23；手工搜索保存实际参数，不声称逐轮自动反思或逐轮 Git 提交。
+
+完整证据见 [50 mm 结果](THROW_CATCH_50MM_RESULTS.md) 和 [独立审计](throw_catch_50mm_20261020_final/audit.json)。

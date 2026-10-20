@@ -1,0 +1,82 @@
+[
+  {
+    "issued_at": 0.04999999999999716,
+    "latest_observation_at": 0.04999999999999716,
+    "wall_s": 0.008282800001325086,
+    "candidates": 0,
+    "drag": 0.0,
+    "plan": null
+  },
+  {
+    "issued_at": 0.14999999999999147,
+    "latest_observation_at": 0.14999999999999147,
+    "wall_s": 0.007682600000407547,
+    "candidates": 0,
+    "drag": 0.04049698000290608,
+    "plan": null
+  },
+  {
+    "issued_at": 0.2499999999999858,
+    "latest_observation_at": 0.2499999999999858,
+    "wall_s": 0.007389299978967756,
+    "candidates": 0,
+    "drag": 0.04060609964591354,
+    "plan": null
+  },
+  {
+    "issued_at": 0.3499999999999801,
+    "latest_observation_at": 0.3499999999999801,
+    "wall_s": 0.008018799999263138,
+    "candidates": 0,
+    "drag": 0.04067639460624917,
+    "plan": null
+  },
+  {
+    "issued_at": 0.4499999999999744,
+    "latest_observation_at": 0.4499999999999744,
+    "wall_s": 0.0073019000119529665,
+    "candidates": 0,
+    "drag": 0.04055640648882795,
+    "plan": null
+  },
+  {
+    "issued_at": 0.5499999999999687,
+    "latest_observation_at": 0.5499999999999687,
+    "wall_s": 0.007316600007470697,
+    "candidates": 0,
+    "drag": 0.04024910756825821,
+    "plan": null
+  },
+  {
+    "issued_at": 0.649999999999963,
+    "latest_observation_at": 0.649999999999963,
+    "wall_s": 0.00935939999180846,
+    "candidates": 0,
+    "drag": 0.040016629609695424,
+    "plan": null
+  },
+  {
+    "issued_at": 0.7499999999999574,
+    "latest_observation_at": 0.7499999999999574,
+    "wall_s": 0.008217599999625236,
+    "candidates": 0,
+    "drag": 0.03990389893317734,
+    "plan": null
+  },
+  {
+    "issued_at": 0.8499999999999517,
+    "latest_observation_at": 0.8499999999999517,
+    "wall_s": 0.0077575000177603215,
+    "candidates": 0,
+    "drag": 0.039861598989284985,
+    "plan": null
+  },
+  {
+    "issued_at": 0.949999999999946,
+    "latest_observation_at": 0.949999999999946,
+    "wall_s": 0.007314999995287508,
+    "candidates": 0,
+    "drag": 0.039852662931791384,
+    "plan": null
+  }
+]

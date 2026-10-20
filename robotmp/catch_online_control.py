@@ -84,17 +84,16 @@ class RobotModel:
         rotation=np.array(p.getMatrixFromQuaternion(link[5])).reshape(3,3)
         return point,np.array(linear)[:,:6],np.array(angular)[:,:6],rotation
 
-    def fit_position(self,target,seed,*,tilt_weight=0.,iterations=65):
+    def fit_position(self,target,seed,*,tilt_weight=0.,iterations=65,capture_axis=(0,0,-1)):
         q=np.clip(seed,self.lower,self.upper)
         target=np.array(target)
         for _ in range(iterations):
             point,jac,angular,rotation=self.state(q)
             error=target-point
-            if np.linalg.norm(error)<.002:
+            orient=np.cross(rotation[:,2],capture_axis)
+            if np.linalg.norm(error)<.002 and (not tilt_weight or np.linalg.norm(orient)<.03):
                 break
             if tilt_weight:
-                axis=rotation[:,2]
-                orient=np.cross(axis,[0,0,-1])
                 matrix=np.vstack((jac,tilt_weight*angular))
                 residual=np.r_[error,tilt_weight*orient]
             else:
@@ -104,7 +103,7 @@ class RobotModel:
         point,jac,angular,rotation=self.state(q)
         return q,point,jac,rotation
 
-    def fit_velocity(self,jac,velocity,q=None):
+    def fit_velocity(self,jac,velocity,q=None,*,angular=None,angular_weight=0.):
         qd=np.zeros(6)
         limit=self.vmax*.98
         lower=-limit
@@ -113,10 +112,12 @@ class RobotModel:
             # Reserve joint travel for 40 ms of following and 250 ms of braking.
             lower=np.maximum(lower,(self.lower-q)/.165)
             upper=np.minimum(upper,(self.upper-q)/.165)
+        matrix=jac if not angular_weight else np.vstack((jac,angular_weight*angular))
+        target=np.asarray(velocity) if not angular_weight else np.r_[velocity,[0.,0.,0.]]
         for _ in range(35):
             for i in range(6):
-                axis=jac[:,i]
-                qd[i]=np.clip(qd[i]+axis@(velocity-jac@qd)/(axis@axis+1e-10),lower[i],upper[i])
+                axis=matrix[:,i]
+                qd[i]=np.clip(qd[i]+axis@(target-matrix@qd)/(axis@axis+1e-10),lower[i],upper[i])
         return qd,float(np.linalg.norm(velocity-jac@qd))
 
     def close(self):
@@ -140,6 +141,23 @@ class OnlineCatchController:
         self.max_plan_wall_s=0.
         self.late_plan_rejections=0
         self.fallback=None
+        self.tactile_capture_at=None
+
+    def observe_contacts(self,now,q,qd,links):
+        """Brake on measured opposed finger contact during an observed descent."""
+        if (self.tactile_capture_at is not None or not {9,12}.issubset(links)
+                or not self.estimator.ready(now) or self.estimator.predict(now)[1][2]>=0):
+            return
+        duration=float(self.parameters.get("contact_brake_s",.25))
+        start=np.array(q)
+        speed=np.array(qd)
+        stop=start+.5*duration*speed
+        # A contact does not authorize a trajectory beyond a joint limit.
+        if np.any(stop<self.model.lower) or np.any(stop>self.model.upper):
+            return
+        self.tactile_capture_at=now
+        self.plan=self.pending_plan=None
+        self.fallback=InterceptPlan(now,now+duration,now,[],[],start,speed,stop,np.zeros(6),0.,0.,0.)
 
     def brake(self,now,q,qd,dt):
         if self.fallback is None:
@@ -199,7 +217,8 @@ class OnlineCatchController:
         for horizon,cube,cube_v in predictions:
             for seed in seeds:
                 goal,point,jac,rotation=self.model.fit_position(cube,seed,
-                    tilt_weight=float(self.parameters.get("tilt_weight",0.)),iterations=int(self.parameters.get("ik_iterations",65)))
+                    tilt_weight=float(self.parameters.get("tilt_weight",0.)),iterations=int(self.parameters.get("ik_iterations",65)),
+                    capture_axis=self.parameters.get("capture_axis_world",[0,0,-1]))
                 residual=float(np.linalg.norm(point-cube))
                 if residual>.012:
                     continue
@@ -207,7 +226,10 @@ class OnlineCatchController:
                     equivalent=current[i]+(goal[i]-current[i]+math.pi)%(2*math.pi)-math.pi
                     if self.model.lower[i]<=equivalent<=self.model.upper[i]:
                         goal[i]=equivalent
-                terminal,relative=self.model.fit_velocity(jac,cube_v,goal if self.parameters.get("strict_trajectory",False) else None)
+                _,_,angular,_=self.model.state(goal)
+                angular_weight=float(self.parameters.get("angular_velocity_weight",0.))
+                terminal,relative=self.model.fit_velocity(jac,cube_v,goal if self.parameters.get("strict_trajectory",False) else None,
+                    angular=angular,angular_weight=angular_weight)
                 plan=InterceptPlan(now,now+horizon,self.estimator.history[-1].captured_at,
                     cube.tolist(),cube_v.tolist(),current.copy(),velocity.copy(),goal,terminal,relative,0.,0.)
                 peak=0.
@@ -221,8 +243,9 @@ class OnlineCatchController:
                 plan.peak_speed_ratio=peak
                 if self.parameters.get("strict_trajectory",False) and not self.executable(plan):
                     continue
-                tilt=math.acos(float(np.clip(rotation[:,2]@[0,0,-1],-1,1)))
+                tilt=math.acos(float(np.clip(rotation[:,2]@self.parameters.get("capture_axis_world",[0,0,-1]),-1,1)))
                 plan.score=relative+8*max(0.,peak-1.)+.10*np.linalg.norm(goal-current)+.15*tilt+20*residual
+                plan.score+=angular_weight*np.linalg.norm(angular@terminal)
                 if previous is not None:
                     plan.score+=float(self.parameters.get("time_hysteresis",0.))*abs(plan.intercept_at-previous.intercept_at)
                 candidates.append(plan)
@@ -244,6 +267,9 @@ class OnlineCatchController:
         return best
 
     def control(self,now,q,qd,dt):
+        if self.tactile_capture_at is not None:
+            target,speed,_=self.brake(now,q,qd,dt)
+            return target,speed,True
         if not self.estimator.ready(now):
             # Stop extrapolating indefinitely through missing observations.
             self.plan=None

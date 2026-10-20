@@ -18,8 +18,9 @@ from .throw_catch_2m import REQUIRED_VZ
 from .spin_trajectory import accelerate, coast_and_brake, periodic_state, plan_spin
 
 
-def acquire(mass, *, observer=None):
-    env = ThrowEnv(config=SimConfig(arm_model="xarm6", cube_mass_kg=mass))
+def acquire(mass, *, observer=None, cube_size_m=.10):
+    env = ThrowEnv(config=SimConfig(arm_model="xarm6", cube_mass_kg=mass,
+                                  cube_half_extent=cube_size_m/2))
     # Broad swings need floor clearance; preserve the original base elevation.
     env.p.removeBody(env._table_id, physicsClientId=env.client)
     env.ground = env.p.loadURDF("plane.urdf", physicsClientId=env.client)
@@ -123,7 +124,7 @@ def baseline(mass):
 
 def trial(candidate, mass, lead, delays, *, output=None, label="probe", spin=None, loop=None,
           observer=None, swing_steps=None, continuation=None, release_threshold=None,
-          release_handler=None):
+          release_handler=None, cube_size_m=.10, release_inward_only=False):
     """Run a launch probe; optional hooks record and continue a calibrated launch.
 
     A continuation is responsible for its own explicit release policy. The
@@ -131,9 +132,9 @@ def trial(candidate, mass, lead, delays, *, output=None, label="probe", spin=Non
     """
     if swing_steps is not None and (not isinstance(swing_steps, int) or swing_steps < 1):
         raise ValueError("swing_steps must be a positive integer")
-    env, offset = acquire(mass, observer=observer)
+    env, offset = acquire(mass, observer=observer, cube_size_m=cube_size_m)
     p = env.p
-    report = {"label": label, "cube_mass_kg": mass, "lead_s": lead, "delays_s": delays,
+    report = {"label": label, "cube_mass_kg": mass, "cube_size_m": cube_size_m, "lead_s": lead, "delays_s": delays,
               "candidate": candidate, "released": False, "peak_vz_m_s": 0.,
               "max_joint_velocity_ratios": [0.] * 6, "max_motor_torque_ratios": [0.] * 6,
               "ground_contact": False, "joint_position_violation": False,
@@ -305,7 +306,9 @@ def trial(candidate, mass, lead, delays, *, output=None, label="probe", spin=Non
             if contact:
                 raise RuntimeError("swing contacted ground")
             threshold = REQUIRED_VZ if release_threshold is None else release_threshold
-            if vel[2] >= threshold:
+            radial_velocity=(pos[0]-env.config.arm_base_x)*vel[0]+pos[1]*vel[1]
+            release_direction_ok=not release_inward_only or radial_velocity<=0
+            if vel[2] >= threshold and env.observe().object.lifted and release_direction_ok:
                 # Verify joint limits and attachment fidelity before any release.
                 if (max(report["max_joint_velocity_ratios"]) <= 1.05
                         and not report["joint_position_violation"]

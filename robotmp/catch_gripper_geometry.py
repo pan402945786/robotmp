@@ -7,7 +7,7 @@ import numpy as np
 from .catch_online_control import RobotModel
 
 
-def measure_opening(model):
+def measure_opening(model, object_size_m=.05):
     p=model.p
     p.performCollisionDetection(physicsClientId=model.client)
     state=p.getLinkState(model.arm,6,computeForwardKinematics=True,physicsClientId=model.client)
@@ -23,7 +23,7 @@ def measure_opening(model):
                                 left_link=hits[0][1],right_link=hits[1][1]))
     gaps=[sample["gap_m"] for sample in samples]
     clearances=[]
-    for width in (.08,.10):
+    for width in sorted({.05,.08,.10,object_size_m}):
         shape=p.createCollisionShape(p.GEOM_BOX,halfExtents=[width/2]*3,physicsClientId=model.client)
         center=p.multiplyTransforms(state[4],state[5],model.capture_offset,[0,0,0,1])[0]
         box=p.createMultiBody(0,shape,-1,center,state[5],physicsClientId=model.client)
@@ -37,7 +37,7 @@ def measure_opening(model):
     return dict(method="opposed rays from the gripper center to the inner finger collision surfaces at local x=0",
                 finger_joints_rad=0.,capture_offset_m=model.capture_offset.tolist(),samples=samples,
                 max_measured_gap_m=max(gaps) if gaps else None,min_measured_gap_m=min(gaps) if gaps else None,
-                object_min_width_m=.10,
+                object_min_width_m=object_size_m,
                 centered_box_clearance=clearances,
                 limitation="Measured cross-sections of this model, not a global proof over all grasp poses")
 

@@ -94,6 +94,26 @@ class OnlineControllerTests(unittest.TestCase):
         self.assertIsNone(controller.plan)
         self.assertFalse(closing)
 
+    def test_bilateral_tactile_contact_brakes_and_keeps_fingers_closed(self):
+        controller=self.controller()
+        for i in range(7):
+            t=i/60
+            controller.observe(PositionObservation(t,t,(.4,0,1-t-4.905*t*t)),t)
+        q=np.array([0.,-.8,-2.,0.,1.,0.])
+        qd=np.array([.1,-.2,.15,.1,0.,-.1])
+        controller.observe_contacts(.1,q,qd,{9})
+        self.assertIsNone(controller.tactile_capture_at)
+        controller.observe_contacts(.1,q,qd,{9,12})
+        self.assertEqual(controller.tactile_capture_at,.1)
+        target,speed,closed=controller.control(.1,q,qd,1/240)
+        self.assertTrue(closed)
+        np.testing.assert_allclose(speed,qd*(1-(1/240)/.25),atol=1e-10)
+        # Loss of position freshness after contact must not reopen the grip.
+        target,speed,closed=controller.control(.5,q,qd,1/240)
+        self.assertTrue(closed)
+        np.testing.assert_allclose(speed,0,atol=1e-10)
+        np.testing.assert_allclose(target,q+.125*qd,atol=1e-10)
+
     def test_followthrough_must_fit_before_joint_limit(self):
         controller=self.controller()
         q=np.zeros(6)
@@ -108,6 +128,7 @@ class OnlineControllerTests(unittest.TestCase):
         geometry=measure_opening(self.model)
         boxes={round(row["box_width_m"],2):row for row in geometry["centered_box_clearance"]}
         self.assertTrue(boxes[.08]["centered_fit"])
+        self.assertTrue(boxes[.05]["centered_fit"])
         self.assertFalse(boxes[.10]["centered_fit"])
         self.assertLess(geometry["max_measured_gap_m"],.10)
 
@@ -115,7 +136,7 @@ class OnlineControllerTests(unittest.TestCase):
         parameters=initial_skill().parameters
         parameters["require_centered_grasp_fit"]=True
         with tempfile.TemporaryDirectory() as folder:
-            report=run_trial(parameters,dict(seed=991),Path(folder),"blocked")
+            report=run_trial(parameters,dict(seed=991,cube_size_m=.10),Path(folder),"blocked")
         self.assertTrue(report["geometry_gate_blocked"])
         self.assertFalse(report["released"])
         self.assertEqual(report["position_observations"],0)
@@ -128,6 +149,8 @@ class OnlineControllerTests(unittest.TestCase):
             report=run_trial(parameters,dict(seed=992,latency_s=1/60,noise_m=.001,
                 sensor_hz=60,drop_rate=.05,release_gate=4.9),Path(folder),"fresh")
         self.assertTrue(report["released"],report.get("error"))
+        self.assertEqual(report["cube_size_m"],.05)
+        self.assertTrue(report["centered_grasp_fit"])
         self.assertGreater(report["position_observations"],4)
         self.assertTrue(report["causality_passed"])
         self.assertFalse(report["truth_velocity_used_by_controller"])

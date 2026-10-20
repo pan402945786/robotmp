@@ -1,0 +1,8 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>50 mm 方块抛接实验</title>
+<style>body{background:#0b1524;color:#edf4ff;font:18px/1.7 system-ui;max-width:1150px;margin:32px auto;padding:0 24px}video{width:100%;border-radius:12px;background:#101d30}a{color:#72cfff}.result{color:#ffba91}p{color:#c7d3e3}</style>
+<h1>50 mm 方块：抛出后在线接回</h1><p>50 mm · 100 g · 实际 PyBullet 物理仿真 · validation_01</p>
+<p class="result">结果：短暂双指接触后滑脱，未通过 0.5 秒保持，尚未接稳。</p>
+<video controls preload="metadata" poster="contact.png" src="validation_01_labeled.mp4"></video>
+<p>本轮共 61 次尝试、58 次释放，13 次出现双指接触；最长连续双指接触 0.117 秒。画面来自实际运行中的物理场景，物体尺寸、姿态与手指运动均由当时的仿真生成。播放器版本仅修复标题文字的编码，保留场景内容与时序；重新编码为 H.264。</p>
+<p>视频为无噪声复测，连续双指接触 87.5 ms。初始抓取沿用已有约束，释放后移除；接回全程没有固定抓持约束。输入为本轮已送达的位置观测、关节编码器及双指接触信号。</p>
+<p><a href="../THROW_CATCH_50MM_RESULTS.md">实验结果与复现命令</a> · <a href="audit.json">61 次独立审计</a> · <a href="summary.json">最终三次复测</a> · <a href="validation_01.mp4">原始录像</a></p></html>
