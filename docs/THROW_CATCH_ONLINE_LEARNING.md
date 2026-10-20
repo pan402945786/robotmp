@@ -325,3 +325,26 @@
 ```
 
 本次反思：position_velocity_approach_is_not_bilateral_contact_capture；one_sided_finger_impact_does_not_establish_capture；ballistic_prediction_error_after_contact_is_not_free_flight_model_error。完整接稳未通过时保持 candidate，不记成功。
+
+## online_015：skill v16 → v17
+
+```json
+{
+  "label": "online_015",
+  "released": false,
+  "caught": false,
+  "physical_capture": false,
+  "causality_passed": null,
+  "position_observations": 0,
+  "planner_calls": 0,
+  "planner_deadline_misses": null,
+  "max_planner_wall_s": null,
+  "forecast_100ms_rmse_m": null,
+  "estimated_drag": null,
+  "motion_checks_passed": null,
+  "error": null,
+  "closest_distance_m": null
+}
+```
+
+本次反思：position_velocity_approach_is_not_bilateral_contact_capture。完整接稳未通过时保持 candidate，不记成功。
