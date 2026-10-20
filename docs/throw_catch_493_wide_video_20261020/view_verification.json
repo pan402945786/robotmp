@@ -1,0 +1,16 @@
+{
+  "identical_physics_trace": true,
+  "sha256": "8076f201f5b0ad9635af83aaf1d4f1b55e8ab03e1d9dca882700176556743ea6",
+  "video_bytes": 561421,
+  "projected_cube_bounds_px": {
+    "min": [
+      379.2777098151679,
+      79.72919748210809
+    ],
+    "max": [
+      641.4336205279616,
+      636.0041797061524
+    ]
+  },
+  "all_cube_bounds_inside_visible_scene": true
+}
