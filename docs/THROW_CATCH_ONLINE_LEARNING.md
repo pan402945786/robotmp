@@ -118,3 +118,26 @@
 ```
 
 本次反思：position_history_requires_online_drag_estimation；position_velocity_approach_is_not_bilateral_contact_capture。完整接稳未通过时保持 candidate，不记成功。
+
+## online_006：skill v6 → v7
+
+```json
+{
+  "label": "online_006",
+  "released": true,
+  "caught": false,
+  "physical_capture": false,
+  "causality_passed": false,
+  "position_observations": 112,
+  "planner_calls": 20,
+  "planner_deadline_misses": 0,
+  "max_planner_wall_s": 0.05609250001725741,
+  "forecast_100ms_rmse_m": 0.08918331201195863,
+  "estimated_drag": 0.14650289399415484,
+  "motion_checks_passed": true,
+  "error": null,
+  "closest_distance_m": 0.08493263254239354
+}
+```
+
+本次反思：position_history_requires_online_drag_estimation；position_velocity_approach_is_not_bilateral_contact_capture。完整接稳未通过时保持 candidate，不记成功。
