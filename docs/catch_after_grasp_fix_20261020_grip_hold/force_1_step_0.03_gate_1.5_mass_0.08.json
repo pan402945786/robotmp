@@ -1,0 +1,514 @@
+{
+  "label": "force_1_step_0.03_gate_1.5_mass_0.08",
+  "cube_mass_kg": 0.08,
+  "cube_size_m": 0.05,
+  "lead_s": 0.35,
+  "delays_s": [
+    0.0,
+    0.0,
+    0.04,
+    0.06,
+    0.08,
+    0.1
+  ],
+  "candidate": {
+    "q": [
+      0.0,
+      -1.4992445845535043,
+      -2.8759831460282608,
+      -0.22272763178339616,
+      0.32799815400855636,
+      -1.0203010329273017
+    ],
+    "velocity": [
+      0.0,
+      2.983,
+      2.983,
+      -2.983,
+      2.983,
+      -2.983
+    ]
+  },
+  "released": true,
+  "peak_vz_m_s": 1.507767612772468,
+  "max_joint_velocity_ratios": [
+    0.005272457854260147,
+    0.8429420379530475,
+    0.9410384171897791,
+    0.2500044539666966,
+    1.0000002644383092,
+    0.005177608898066269
+  ],
+  "max_motor_torque_ratios": [
+    0.03617302228782044,
+    1.0,
+    1.0,
+    0.06258487894528686,
+    0.18012845535306918,
+    0.010713306139378792
+  ],
+  "ground_contact": false,
+  "joint_position_violation": false,
+  "self_penetration_detected": false,
+  "self_check_stride_steps": 1,
+  "phase_peaks": {
+    "prepare": {
+      "vz_m_s": 0.23597530993817528,
+      "speed_m_s": 0.3593956334069117
+    },
+    "settle": {
+      "vz_m_s": 0.00026109056824457494,
+      "speed_m_s": 0.05250482402433661
+    },
+    "swing": {
+      "vz_m_s": 1.507767612772468,
+      "speed_m_s": 1.508269836044839
+    },
+    "flight": {
+      "vz_m_s": 1.4662622981160762,
+      "speed_m_s": 1.466778301207394
+    }
+  },
+  "spin_milestones": [],
+  "initial_grasp_evidence": {
+    "verified": true,
+    "verified_at_s": 0.8833333333333314,
+    "consecutive_contact_ticks": 12,
+    "geometry": {
+      "finger_signed_distances_m": [
+        -0.0006360242775846961,
+        -0.0008504352160495694
+      ],
+      "bilateral_surface_alignment": true,
+      "finger_angles_rad": [
+        0.41629393544671983,
+        0.4699829877918725,
+        0.35526238453736125,
+        0.4239552895724681,
+        0.46257328668734654,
+        0.3534333775392351
+      ],
+      "constraint_anchor_error_m": null
+    },
+    "normal_forces_n": {
+      "9": 41.38485780958117,
+      "12": 30.586630303983714
+    },
+    "hold_model": "contact-validated fixed constraint; measured finger angles retained"
+  },
+  "pre_release_grasp_checks": {
+    "samples": 1145,
+    "passed": true,
+    "max_positive_gap_m": 0.0,
+    "max_penetration_m": 0.0008602441287129459,
+    "max_constraint_anchor_error_m": 0.00023815196349241642
+  },
+  "vertical_toss": {
+    "settings": {
+      "duration_s": 0.28,
+      "speed_m_s": 1.8
+    },
+    "start_q": [
+      -0.000687635477217787,
+      0.5133009730508085,
+      -0.8516577921800017,
+      3.1415739402377603,
+      2.8023907506200008,
+      0.0006746136606063516
+    ],
+    "goal_q": [
+      -0.0006820359329724068,
+      -0.024228145616092798,
+      -0.9453477706752066,
+      3.141606123698037,
+      2.172185122546059,
+      0.0007007579329763765
+    ],
+    "terminal_qd": [
+      0.0005535195978506282,
+      -1.1642770570512697,
+      -3.0772,
+      0.0010681053052257973,
+      -3.0772,
+      -0.00013436465227754235
+    ],
+    "planned_peak_speed_ratio": 1.006636267653111,
+    "terminal_velocity_residual_m_s": 0.27730157895441604
+  },
+  "current_point_velocity": [
+    5.569319731744435e-07,
+    -6.189288496746076e-07,
+    -6.703214714124036e-07
+  ],
+  "prepared_q": [
+    -0.0006876579725889636,
+    0.5133009725793539,
+    -0.8516577860623288,
+    3.1415739823109146,
+    2.802390750620028,
+    0.0006746151780953585
+  ],
+  "peak_phase": "swing",
+  "peak_time_s": 5.8541666666666545,
+  "peak_position": [
+    0.548692855248525,
+    8.406685162406041e-07,
+    1.3486016225859963
+  ],
+  "peak_velocity": [
+    -0.03891944920780865,
+    2.5894000124707204e-05,
+    1.507767612772468
+  ],
+  "peak_q": [
+    -0.0006830039064096247,
+    -0.024648996805757373,
+    -0.9402586033273703,
+    3.1416049984843135,
+    2.175484501721216,
+    0.000701386916600379
+  ],
+  "peak_qd": [
+    0.0005285082106698709,
+    -1.252420994229309,
+    -2.9548606299759066,
+    0.001027975091863663,
+    -3.117648104011124,
+    -0.00012127268392683743
+  ],
+  "peak_point_velocity": [
+    -0.052811017107423405,
+    3.4020975214933435e-05,
+    1.5118390087044282
+  ],
+  "peak_joint_vz_contributions": [
+    0.0,
+    0.5619522275383236,
+    1.18850682443921,
+    2.596399230180768e-07,
+    -0.2386606791412613,
+    -4.4763465209715746e-11
+  ],
+  "peak_cube_point_velocity_error_m_s": 0.014475910665381777,
+  "release_velocity": [
+    -0.03891944920780865,
+    2.5894000124707204e-05,
+    1.507767612772468
+  ],
+  "release_position": [
+    0.548692855248525,
+    8.406685162406041e-07,
+    1.3486016225859963
+  ],
+  "release_threshold_m_s": 1.5,
+  "release_time_s": 5.8541666666666545,
+  "release_radial_speed_m_s": -0.038919449159225475,
+  "launch_checks_at_release": {
+    "max_joint_velocity_ratios": [
+      0.005272457854260147,
+      0.8429420379530475,
+      0.9410384171897791,
+      0.2500044539666966,
+      1.0000002644383092,
+      0.005177608898066269
+    ],
+    "max_motor_torque_ratios": [
+      0.03617302228782044,
+      1.0,
+      1.0,
+      0.06258487894528686,
+      0.16583979442532387,
+      0.010713306139378792
+    ],
+    "joint_position_violation": false,
+    "self_penetration_detected": false,
+    "ground_contact": false
+  },
+  "measured_rise_m": 0.11171744888445989,
+  "caught": true,
+  "catch_hold_passed": true,
+  "complete_success": true,
+  "physical_capture": true,
+  "capture_contact_time_s": 0.3041666666666496,
+  "observed_capture_gate": {
+    "time_s": 0.33749999999998104,
+    "distance_m": 0.02417776973238852,
+    "relative_speed_m_s": 0.9852844779254321
+  },
+  "collision_enabled": true,
+  "tactile_capture_time_s": 0.25833333333331865,
+  "descent_servo_started_at_s": null,
+  "collision_reenabled_at_s": 0.1124999999999936,
+  "collision_clearance_at_enable_m": 0.015527583392835389,
+  "free_flight_separation_verified": true,
+  "required_hold_duration_s": 1.0,
+  "continuous_hold_duration_s": 1.0041666666666096,
+  "hold_contact_ticks": 242,
+  "hold_final_speed_m_s": 0.0004489857245063947,
+  "catch_hold_finger_targets": [
+    0.49136149023700115,
+    0.5822795494755931,
+    0.4788435428299117,
+    0.49392352300174935,
+    0.5707781513753786,
+    0.47187436979630026
+  ],
+  "no_catch_constraint": true,
+  "causality_contract_passed": true,
+  "causality_passed": true,
+  "uses_offline_flight": false,
+  "position_observations": 70,
+  "position_sensor_source": "simulated noisy delayed position measurements",
+  "truth_velocity_used_by_controller": false,
+  "stale_control_ticks": 1,
+  "planner_calls": 0,
+  "planner_deadline_misses": 0,
+  "max_planner_wall_s": 0.0,
+  "late_plan_rejections": 0,
+  "first_motion_violation": null,
+  "estimated_drag": 0.042541056,
+  "forecast_100ms_rmse_m": 0.09834311619316699,
+  "free_flight_forecast_100ms_rmse_m": 0.04124898075175615,
+  "first_robot_contact_time_s": 0.2541666666666522,
+  "closest_descending": {
+    "time_s": 0.279166666666651,
+    "cube": [
+      0.5371698242209902,
+      -0.00029736266864976654,
+      1.3938391907606846
+    ],
+    "truth_velocity": [
+      -0.09204538713704111,
+      -0.09540398996072016,
+      -0.2553060636335697
+    ],
+    "capture_point": [
+      0.5461604595184326,
+      -0.00030013080686330795,
+      1.3789582252502441
+    ],
+    "capture_velocity": [
+      1.9168857668553003e-05,
+      0.00024545037121970247,
+      -0.00021934595236887465
+    ],
+    "distance_m": 0.01738604800514267,
+    "relative_speed_m_s": 0.287565525478429,
+    "contacts": [
+      9,
+      12
+    ],
+    "closing": true,
+    "collision_enabled": true,
+    "observation_at": 0.23333333333332007,
+    "commanded_q": [
+      -0.0006737924298327203,
+      -0.049695042271143464,
+      -0.9993783005548565,
+      3.141603504571539,
+      2.113137997743277,
+      0.0007046144616695716
+    ],
+    "commanded_qd": [
+      -5.315690302868959e-05,
+      4.07456625189888e-05,
+      0.0005764782787452765,
+      -0.0008195234667697105,
+      0.0001251659866286677,
+      0.00020185377761351004
+    ],
+    "q": [
+      -0.0006740020250926945,
+      -0.04969504350688184,
+      -0.9993781297009711,
+      3.1416003116516045,
+      2.11313950435576,
+      0.0007042484787580076
+    ],
+    "qd": [
+      -7.130791713388647e-05,
+      3.3401243158686506e-05,
+      0.0005513600222944448,
+      -0.0011861147895351545,
+      0.00027885515012239515,
+      6.647317620114466e-05
+    ],
+    "cube_orientation": [
+      0.979960158561693,
+      0.011004972074911374,
+      0.19888399515031027,
+      -0.0014610593496309026
+    ],
+    "truth_angular_velocity": [
+      0.3229494115783416,
+      -8.095434480024077,
+      10.551163270016295
+    ],
+    "finger_q": [
+      0.4450658564015801,
+      0.49477994418660015,
+      0.4168457589529717,
+      0.45054493742644547,
+      0.48726867627715104,
+      0.41625565464384107
+    ],
+    "contact_forces": [
+      {
+        "link": 12,
+        "normal_force_n": 10.077995366837465
+      },
+      {
+        "link": 9,
+        "normal_force_n": 13.388240501284201
+      },
+      {
+        "link": 10,
+        "normal_force_n": 0.0
+      }
+    ]
+  },
+  "best_relative_within_4cm_m_s": 0.287565525478429,
+  "closest_free_flight_descending": {
+    "time_s": 0.24999999999998604,
+    "cube": [
+      0.5390512571054082,
+      7.255444382856663e-06,
+      1.4119882444386413
+    ],
+    "truth_velocity": [
+      -0.03828160381746345,
+      2.54696269911377e-05,
+      -0.9513795453684099
+    ],
+    "capture_point": [
+      0.5461586117744446,
+      -0.0003052985994145274,
+      1.3789665699005127
+    ],
+    "capture_velocity": [
+      0.00014676715894839653,
+      -3.427440655141791e-07,
+      -0.0004489227598731801
+    ],
+    "distance_m": 0.03377933051029669,
+    "relative_speed_m_s": 0.9517067769942791,
+    "contacts": [],
+    "closing": true,
+    "collision_enabled": true,
+    "observation_at": 0.19999999999998863,
+    "commanded_q": [
+      -0.0006724337421962273,
+      -0.049697416690343554,
+      -0.9993558159268885,
+      3.141625557986151,
+      2.1131315396409938,
+      0.0006989614629218422
+    ],
+    "commanded_qd": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "q": [
+      -0.0006723601349347535,
+      -0.04969600023332034,
+      -0.9993980427542442,
+      3.1416255568631737,
+      2.113134970909497,
+      0.00069918892278349
+    ],
+    "qd": [
+      -5.269463696638832e-07,
+      -3.6930659510197444e-05,
+      0.0011279417389980784,
+      2.994606163085958e-08,
+      -9.100244579830774e-05,
+      -1.6871884806442857e-06
+    ],
+    "cube_orientation": [
+      0.9907135889213688,
+      0.0018351643273956518,
+      0.13591126626555822,
+      -0.0033681746577260397
+    ],
+    "truth_angular_velocity": [
+      0.0001246597963972162,
+      -1.0672151605588152,
+      -0.00016904599078326375
+    ],
+    "finger_q": [
+      0.3877569040006297,
+      0.4366411615448814,
+      0.3585133646891975,
+      0.39332987572467004,
+      0.4292005528883725,
+      0.3579523301584148
+    ],
+    "contact_forces": []
+  },
+  "centered_grasp_fit": true,
+  "apex_height_m": 1.4603190714704561,
+  "free_flight": true,
+  "flight_contact": false,
+  "motion_checks_passed": true,
+  "capture_offset_m": [
+    0.0,
+    -1.7830643628258258e-09,
+    0.13013696670532227
+  ],
+  "controller_parameters": {
+    "window_frames": 10,
+    "estimate_drag": true,
+    "stale_s": 0.075,
+    "replan_s": 0.1,
+    "ik_seeds": 3,
+    "horizon_step_s": 0.1,
+    "tilt_weight": 0.0,
+    "time_hysteresis": 2.0,
+    "coast_s": 0.04,
+    "close_lead_s": 0.18,
+    "strict_trajectory": true,
+    "abort_on_motion_violation": true,
+    "ik_iterations": 55,
+    "require_centered_grasp_fit": true,
+    "handoff_brake_s": 0.04,
+    "contact_brake_s": 0.18,
+    "launch_profile": {
+      "release_gate": 1.5,
+      "swing_scale": 0.8,
+      "pre_spin": false,
+      "release_inward_only": true
+    },
+    "cube_size_m": 0.05,
+    "require_initial_bilateral_contact": true,
+    "pre_release_max_finger_gap_m": 0.002,
+    "stationary_catch": true,
+    "descent_servo": false,
+    "require_observed_separation": true,
+    "observed_separation_m": 0.06,
+    "open_finger_angle_rad": 0.1,
+    "hold_duration_s": 1.0,
+    "grip_hold_force_nm": 1.0,
+    "grip_hold_angle_step_rad": 0.03
+  },
+  "scenario": {
+    "seed": 4001,
+    "cube_size_m": 0.05,
+    "pre_spin": false,
+    "release_gate": 1.5,
+    "mass_kg": 0.08,
+    "noise_m": 0.002,
+    "latency_s": 0.03333333333333333,
+    "drop_rate": 0.1,
+    "vertical_toss": {
+      "duration_s": 0.28,
+      "speed_m_s": 1.8
+    }
+  },
+  "launch_valid": true,
+  "valid": true,
+  "ideal_vacuum_rise_m": 0.1158696826771451
+}

@@ -1,0 +1,5 @@
+{
+  "label": "scale_0.8_radial_-0.25_angular_0.1",
+  "complete_success": false,
+  "error": "numpy bool close flag prevented JSON serialization; fixed by bool conversion; results not counted as a validated attempt"
+}

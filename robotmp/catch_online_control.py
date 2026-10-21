@@ -142,6 +142,10 @@ class OnlineCatchController:
         self.late_plan_rejections=0
         self.fallback=None
         self.tactile_capture_at=None
+        self.servo_active=False
+        self.servo_started_at=None
+        self.observed_separation=False
+        self.stationary_close=False
 
     def observe_contacts(self,now,q,qd,links):
         """Brake on measured opposed finger contact during an observed descent."""
@@ -275,6 +279,49 @@ class OnlineCatchController:
             self.plan=None
             self.pending_plan=None
             return self.brake(now,q,qd,dt)
+        if self.parameters.get("require_observed_separation",False) and not self.observed_separation:
+            cube,cube_v=self.estimator.predict(now)
+            point,_,_,_=self.model.state(q)
+            self.observed_separation=bool(cube_v[2]>0 and np.linalg.norm(cube-point)>=
+                float(self.parameters.get("observed_separation_m",.10)))
+            if not self.observed_separation:
+                return self.brake(now,q,qd,dt)
+        if self.parameters.get("stationary_catch",False):
+            cube,cube_v=self.estimator.predict(now)
+            point,_,_,_=self.model.state(q)
+            if not self.stationary_close and cube_v[2]<.1 and np.linalg.norm(cube-point)<.15:
+                self.stationary_close=True
+                self.events.append(dict(issued_at=now,latest_observation_at=self.estimator.history[-1].captured_at,
+                    mode="stationary_catch_after_observed_separation",observed_velocity=cube_v.tolist(),
+                    observed_distance_m=float(np.linalg.norm(cube-point)),wall_s=0.,candidates=0,plan=None))
+            target,speed,_=self.brake(now,q,qd,dt)
+            return target,speed,self.stationary_close
+        if self.parameters.get("descent_servo",False):
+            cube,cube_v=self.estimator.predict(now)
+            point,jac,angular,_=self.model.state(q)
+            distance=np.linalg.norm(cube-point)
+            if cube_v[2]<-.05 and distance<float(self.parameters.get("servo_start_distance_m",.30)):
+                self.servo_active=True
+                if self.servo_started_at is None:
+                    self.servo_started_at=now
+            if self.servo_active:
+                self.plan=self.pending_plan=None
+                desired=cube_v+float(self.parameters.get("servo_position_gain",6.))*(cube-point)
+                speed,_=self.model.fit_velocity(jac,desired,q,angular=angular,
+                    angular_weight=float(self.parameters.get("servo_angular_weight",.1)))
+                # Keep a continuous handoff and respect speed/position margins.
+                change=float(self.parameters.get("servo_acceleration_rad_s2",15.))*dt
+                speed=np.clip(speed,np.asarray(qd)-change,np.asarray(qd)+change)
+                speed=np.clip(speed,-self.model.vmax*.98,self.model.vmax*.98)
+                # Reserve stopping distance at every measured encoder update.
+                lower=-np.sqrt(np.maximum(0.,2*change/dt*(np.asarray(q)-self.model.lower)))
+                upper=np.sqrt(np.maximum(0.,2*change/dt*(self.model.upper-np.asarray(q))))
+                speed=np.clip(speed,lower,upper)
+                # POSITION_CONTROL already adds targetVelocity feedforward.
+                # An extra current+v*dt position lead compounds that speed.
+                target=np.clip(np.asarray(q),self.model.lower,self.model.upper)
+                close=bool(distance<float(self.parameters.get("servo_close_distance_m",.09)))
+                return target,speed,close
         if self.pending_plan is not None and now+1e-9>=self.pending_ready_at:
             if self.pending_plan.intercept_at>now+.03:
                 if self.parameters.get("strict_trajectory",False):

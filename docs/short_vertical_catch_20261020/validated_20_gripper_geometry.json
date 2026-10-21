@@ -1,0 +1,185 @@
+{
+  "method": "opposed rays from the gripper center to the inner finger collision surfaces at local x=0",
+  "finger_joints_rad": 0.0,
+  "capture_offset_m": [
+    0.0,
+    -1.7830643628258258e-09,
+    0.13013696670532227
+  ],
+  "samples": [
+    {
+      "local_z_m": 0.117,
+      "gap_m": 0.08874881557113969,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.11900000000000001,
+      "gap_m": 0.08778896130958756,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.12100000000000001,
+      "gap_m": 0.0871849732745919,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.12300000000000001,
+      "gap_m": 0.08693678518948382,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.125,
+      "gap_m": 0.08692984254482063,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.127,
+      "gap_m": 0.08692984254469376,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.129,
+      "gap_m": 0.08692984254469376,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.131,
+      "gap_m": 0.08692984254469376,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.133,
+      "gap_m": 0.08692984254469376,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.135,
+      "gap_m": 0.08692984254469376,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.137,
+      "gap_m": 0.08692984254469378,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.139,
+      "gap_m": 0.08692984254456688,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.14100000000000001,
+      "gap_m": 0.08692984254469377,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.14300000000000002,
+      "gap_m": 0.08692984254482068,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.14500000000000002,
+      "gap_m": 0.08692984254469414,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.14700000000000002,
+      "gap_m": 0.08692984254469409,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.14900000000000002,
+      "gap_m": 0.08692984254469409,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.15100000000000002,
+      "gap_m": 0.08692984254469409,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.15300000000000002,
+      "gap_m": 0.08692984254482096,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.15500000000000003,
+      "gap_m": 0.08692984254469406,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.15700000000000003,
+      "gap_m": 0.08692984254456712,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.15900000000000003,
+      "gap_m": 0.08692984254469399,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.16100000000000003,
+      "gap_m": 0.0869303913923541,
+      "left_link": 9,
+      "right_link": 12
+    },
+    {
+      "local_z_m": 0.16300000000000003,
+      "gap_m": 0.0922716477535475,
+      "left_link": 9,
+      "right_link": 12
+    }
+  ],
+  "max_measured_gap_m": 0.0922716477535475,
+  "min_measured_gap_m": 0.08692984254456688,
+  "object_min_width_m": 0.05,
+  "centered_box_clearance": [
+    {
+      "box_width_m": 0.05,
+      "finger_signed_distances_m": [
+        0.018464924742881396,
+        0.018464921258442825
+      ],
+      "centered_fit": true
+    },
+    {
+      "box_width_m": 0.08,
+      "finger_signed_distances_m": [
+        0.0034649247428812854,
+        0.0034649212584428957
+      ],
+      "centered_fit": true
+    },
+    {
+      "box_width_m": 0.1,
+      "finger_signed_distances_m": [
+        -0.006535075257113554,
+        -0.00653507874155182
+      ],
+      "centered_fit": false
+    }
+  ],
+  "limitation": "Measured cross-sections of this model, not a global proof over all grasp poses"
+}

@@ -29,7 +29,7 @@ def camera_matrices(p):
 
 class Recorder:
     def __init__(self, output: Path, fps: int = 30, *, title="xArm6 4.93 m/s 完整抛接实验",
-                 subtitle=None, release_gate=RELEASE_GATE):
+                 subtitle=None, release_gate=RELEASE_GATE,grasp_detail=False):
         self.output = output
         self.fps = fps
         self.next_frame_time = -1e-9
@@ -39,6 +39,7 @@ class Recorder:
         self.title = title
         self.subtitle = subtitle
         self.release_gate = release_gate
+        self.grasp_detail=grasp_detail
         self._start_video()
 
     def _start_video(self):
@@ -52,8 +53,8 @@ class Recorder:
             "yuv420p", "-movflags", "+faststart", str(self.output)],
             stdin=subprocess.PIPE, stderr=self.log)
 
-    def capture(self, env, report, phase):
-        if self.process is None or env._time + 1e-8 < self.next_frame_time:
+    def capture(self, env, report, phase,*,force=False):
+        if self.process is None or (not force and env._time + 1e-8 < self.next_frame_time):
             return
         from PIL import Image, ImageDraw, ImageFont
         p = env.p
@@ -67,6 +68,15 @@ class Recorder:
         draw = ImageDraw.Draw(frame)
         font = ImageFont.truetype("C:/Windows/Fonts/msyh.ttc", 19)
         title = ImageFont.truetype("C:/Windows/Fonts/msyh.ttc", 26)
+        if self.grasp_detail:
+            center=env._cube_position()
+            detail_view=p.computeViewMatrixFromYawPitchRoll(center,.42,65,-18,0,2)
+            detail_projection=p.computeProjectionMatrixFOV(48,420/280,.005,5)
+            _,_,detail,_,_=p.getCameraImage(420,280,detail_view,detail_projection,
+                renderer=p.ER_TINY_RENDERER,physicsClientId=env.client)
+            frame.paste(Image.fromarray(detail[:,:,:3]),(20,420))
+            draw.rectangle((20,420,440,450),fill="#0b1524")
+            draw.text((30,423),"实时夹持局部 · 实际物理场景",font=font,fill="#68e6ff")
         draw.rectangle((0, 0, 960, 72), fill="#0b1524")
         draw.text((18, 10), self.title, font=title, fill="#68e6ff")
         draw.text((18, 45), self.subtitle or f"PyBullet | t={env._time:.2f}s | 100 g | 1.5圈底座预转 + 肩肘腕上挥", font=font, fill="white")
@@ -90,9 +100,16 @@ class Recorder:
             draw.text((980, y), label, font=font, fill="#8fa4be")
             draw.text((980, y + 23), value, font=font, fill=color)
             y += 66
-        self.process.stdin.write(frame.tobytes())
+        self.last_frame=frame
+        self.last_raw=frame.tobytes()
+        self.process.stdin.write(self.last_raw)
         self.frames += 1
         self.next_frame_time = env._time + 1.0 / self.fps
+
+    def freeze_last(self,seconds=1.):
+        for _ in range(round(seconds*self.fps)):
+            self.process.stdin.write(self.last_raw)
+            self.frames+=1
 
     def close(self):
         if self.process is None:

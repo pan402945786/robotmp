@@ -108,9 +108,11 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
         inbox=deque()
         enabled=False
         enabled_at=None
+        enabled_clearance=None
         contact_ticks=0
         capture_at=None
         hold_contacts=0
+        hold_finger_targets=None
         stale_ticks=0
         best_distance=math.inf
         best_relative=math.inf
@@ -161,21 +163,55 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
             target,speed,closing=controller.control(now,q,qd,dt)
             stale_ticks+=int(now>.12 and not controller.estimator.ready(now))
             command(env,target,speed)
+            if capture_at is not None and hold_finger_targets is None and parameters.get("latch_contact_fingers",True):
+                squeeze=float(parameters.get("grip_hold_angle_step_rad",.015))
+                hold_finger_targets=[float(np.clip(p.getJointState(env._gripper_id,j,physicsClientId=env.client)[0]+squeeze,0.,.85))
+                                     for j in range(8,14)]
             # The URDF mimic joints need explicit actuation in this simulator.
             for joint in range(8,14):
-                p.setJointMotorControl2(env._gripper_id,joint,p.POSITION_CONTROL,targetPosition=.85 if closing else 0.,
-                    force=50,maxVelocity=2,physicsClientId=env.client)
+                finger_target=(hold_finger_targets[joint-8] if hold_finger_targets is not None else
+                               (.85 if closing else float(parameters.get("open_finger_angle_rad",0.))))
+                finger_force=float(parameters.get("grip_hold_force_nm",1.)) if hold_finger_targets is not None else 50.
+                p.setJointMotorControl2(env._gripper_id,joint,p.POSITION_CONTROL,
+                    targetPosition=finger_target,force=finger_force,maxVelocity=2,physicsClientId=env.client)
             capture_point,jac,_,rotation=model.state(q)
             clear=not p.getClosestPoints(env._cube_id,env._gripper_id,.015,physicsClientId=env.client)
-            if not enabled and clear:
+            # A moving catch can follow the released object closely enough that
+            # the geometric 15 mm query stays occupied even after the object
+            # has causally separated.  Permit an observation-backed handoff
+            # when the caller explicitly requests it; the short vertical skill
+            # keeps the stricter geometric-only gate.
+            observed_clear = False
+            if (not enabled and parameters.get("enable_collision_after_observed_separation", False)
+                    and controller.estimator.ready(now)):
+                observed_cube, observed_velocity = controller.estimator.predict(now)
+                point_now, _, _, _ = model.state(q)
+                observed_clear = bool(np.linalg.norm(observed_cube - point_now)
+                                      >= float(parameters.get("observed_separation_m", .06)))
+            descent_clear = False
+            if (not enabled and parameters.get("enable_collision_on_predicted_descent", False)
+                    and controller.estimator.ready(now)
+                    and now >= float(parameters.get("collision_enable_min_flight_s", 0.0))):
+                descent_cube, descent_velocity = controller.estimator.predict(now)
+                descent_point, _, _, _ = model.state(q)
+                descent_clear = bool(descent_velocity[2] < -.05 and
+                                     np.linalg.norm(descent_cube - descent_point)
+                                     <= float(parameters.get("enable_collision_descent_distance_m", .12)))
+            geometric_allowed = clear and not parameters.get("disable_geometric_collision_enable", False)
+            if not enabled and (geometric_allowed or observed_clear or descent_clear):
                 for link in range(-1,p.getNumJoints(env._gripper_id,physicsClientId=env.client)):
                     p.setCollisionFilterPair(env._gripper_id,env._cube_id,link,-1,1,physicsClientId=env.client)
                 enabled=True
                 enabled_at=now
+                points=p.getClosestPoints(env._cube_id,env._gripper_id,.25,physicsClientId=env.client)
+                enabled_clearance=min((point[8] for point in points),default=.25)
+                report["collision_enable_observed_clear"] = observed_clear
+                report["collision_enable_predicted_descent"] = descent_clear
             env._phase="online_catch"
             env._step(1)
             pos,vel,ground=sample("flight",tick)
             apex=max(apex,pos[2])
+            report["measured_rise_m"]=apex-report["release_position"][2]
             states=[p.getJointState(env._gripper_id,j,physicsClientId=env.client) for j in env._arm_joint_ids]
             point,jac,_,rotation=model.state(np.array([s[0] for s in states]))
             point_v=jac@np.array([s[1] for s in states])
@@ -221,15 +257,27 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
                 capture_at=now+dt
             if capture_at is not None:
                 hold_contacts+=int(bilateral)
-                if now+dt-capture_at>=.5:
+                if now+dt-capture_at>=float(parameters.get("hold_duration_s",.5)):
                     break
             if ground:
                 break
             if violation and parameters.get("abort_on_motion_violation",False):
                 command(env,[s[0] for s in states])
                 break
-        hold=bool(capture_at is not None and env._time-start-capture_at>=.5 and hold_contacts>=96
-                  and env._cube_position()[2]>.2 and not report["ground_contact"])
+        hold_duration=float(parameters.get("hold_duration_s",.5))
+        hold_rows=[row for row in trace if capture_at is not None and row["time_s"]>=capture_at-1e-8]
+        separation=bool(enabled and (first_robot_contact is None or
+                                     enabled_at+dt <= first_robot_contact + 1e-9))
+        final_speed=float(np.linalg.norm(trace[-1]["truth_velocity"])) if trace else math.inf
+        longest_run=run=0
+        for row in hold_rows:
+            run=run+1 if {9,12}.issubset(row["contacts"]) and row["collision_enabled"] else 0
+            longest_run=max(longest_run,run)
+        continuous_hold=max(0,longest_run-1)*dt
+        hold=bool(capture_at is not None and env._time-start-capture_at>=hold_duration
+                  and hold_rows and all({9,12}.issubset(row["contacts"]) for row in hold_rows)
+                  and env._cube_position()[2]>.2 and not report["ground_contact"] and final_speed<.05
+                  and separation and env._constraint_id is None)
         checks=bool(not report["joint_position_violation"] and not report["self_penetration_detected"]
             and max(report["max_joint_velocity_ratios"])<=1.05 and max(report["max_motor_torque_ratios"])<=1.001)
         causal=all(o["captured_at"]<=o["delivered_at"]+1e-8
@@ -238,9 +286,15 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
         report.update(caught=hold,catch_hold_passed=hold,complete_success=bool(hold and checks and causal),physical_capture=hold and checks,
             capture_contact_time_s=capture_at,observed_capture_gate=capture_gate,collision_enabled=enabled,
             tactile_capture_time_s=controller.tactile_capture_at,
+            descent_servo_started_at_s=controller.servo_started_at,
             collision_reenabled_at_s=enabled_at,
+            collision_clearance_at_enable_m=enabled_clearance,free_flight_separation_verified=separation,
+            required_hold_duration_s=hold_duration,continuous_hold_duration_s=continuous_hold,
+            hold_observation_duration_s=hold_rows[-1]["time_s"]-hold_rows[0]["time_s"] if hold_rows else 0.,
+            hold_contact_ticks=hold_contacts,hold_final_speed_m_s=final_speed,
+            catch_hold_finger_targets=hold_finger_targets,
             no_catch_constraint=env._constraint_id is None,causality_contract_passed=bool(causal),
-            causality_passed=bool(causal and len(observations)>=4 and controller.plan_count>0),uses_offline_flight=False,
+            causality_passed=bool(causal and len(observations)>=4 and (controller.plan_count>0 or controller.events)),uses_offline_flight=False,
             position_observations=len(observations),position_sensor_source="simulated noisy delayed position measurements",
             truth_velocity_used_by_controller=False,stale_control_ticks=stale_ticks,planner_calls=controller.plan_count,
             planner_deadline_misses=controller.deadline_misses,max_planner_wall_s=controller.max_plan_wall_s,
@@ -250,17 +304,22 @@ def run_trial(parameters,scenario,output,label,*,observer=None):
             first_robot_contact_time_s=first_robot_contact,
             closest_descending=best_row,best_relative_within_4cm_m_s=best_relative if math.isfinite(best_relative) else None,
             closest_free_flight_descending=best_free_flight_row,centered_grasp_fit=geometry_fit,
-            apex_height_m=apex,free_flight=True,flight_contact=report["ground_contact"],motion_checks_passed=checks,
+            apex_height_m=apex,measured_rise_m=apex-report["release_position"][2],
+            free_flight=separation,flight_contact=report["ground_contact"],motion_checks_passed=checks,
             capture_offset_m=model.capture_offset.tolist(),controller_parameters=parameters,scenario=scenario)
         if not hold:
             report["failure_reason"]="no_bilateral_finger_capture_and_hold"
         save_json(output/f"{label}_observations.json",observations)
         save_json(output/f"{label}_decisions.json",controller.events)
         save_json(output/f"{label}_control_trace.json",trace)
+        if observer is not None:
+            observer(env,"result",tick)
     try:
         report=trial(launch,scenario.get("mass_kg",.1),.35,DELAYS["best_coordination"],
             spin={"turns":1.5,"joints":[0],"directions":[1]} if scenario.get("pre_spin",True) else None,
             release_threshold=release_gate,release_inward_only=scenario.get("release_inward_only",False),
+            release_radial_speed_max=scenario.get("release_radial_speed_max_m_s"),
+            vertical_toss=scenario.get("vertical_toss"),
             release_handler=handler,output=output,label=label,observer=observer,cube_size_m=cube_size)
     finally:
         model.close()
@@ -301,7 +360,7 @@ def reflect(skill,report,label):
     for lesson in lessons:
         if lesson not in skill.facts:
             skill.facts.append(lesson)
-    skill.validation_metrics.update(complete_success=False,uses_offline_flight=False,
+    skill.validation_metrics.update(complete_success=bool(report.get("complete_success")),uses_offline_flight=False,
         causal_trials=int(skill.validation_metrics.get("causal_trials",0))+int(report.get("causality_passed",False)),
         physical_capture_trials=int(skill.validation_metrics.get("physical_capture_trials",0))+int(report.get("physical_capture",False)),
         last_trial=label,last_observation_count=report.get("position_observations",0))
@@ -364,8 +423,10 @@ def main():
         observer=None
         if args.video and index==0:
             from .throw_catch_493_video import Recorder
+            flow="离手观测 → 下降闭合 → 接触保持" if parameters.get("stationary_catch") else "位置观测 → 在线预测 → 重规划"
             recorder=Recorder(output/f"{label}.mp4",fps=30,title="xArm6 在线观测接回实验",
-                subtitle=f"位置观测 → 在线预测 → 重规划 | {args.cube_size_mm:g} mm | {scenario.get('mass_kg',.1)*1000:g} g",release_gate=scenario["release_gate"])
+                subtitle=f"{flow} | {args.cube_size_mm:g} mm | {scenario.get('mass_kg',.1)*1000:g} g",
+                release_gate=scenario["release_gate"],grasp_detail=args.cube_size_mm<=80)
             class VideoObserver:
                 latest={}
                 def __call__(self,env,phase,tick):

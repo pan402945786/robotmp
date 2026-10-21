@@ -1,0 +1,69 @@
+pybullet build time: Oct 21 2025 11:46:21
+test_selection_excludes_post_contact_distance_and_invalid_motion (test_catch_best_video.RecordedVisualizationTests.test_selection_excludes_post_contact_distance_and_invalid_motion) ... ok
+test_visualization_only_reveals_delivered_observations_and_computed_candidates (test_catch_best_video.RecordedVisualizationTests.test_visualization_only_reveals_delivered_observations_and_computed_candidates) ... ok
+test_delayed_measurement_is_predicted_from_capture_time (test_catch_observation.ObservationTests.test_delayed_measurement_is_predicted_from_capture_time) ... ok
+test_future_frames_are_rejected_and_stale_frames_block_control (test_catch_observation.ObservationTests.test_future_frames_are_rejected_and_stale_frames_block_control) ... ok
+test_online_drag_estimate_improves_unseen_short_horizon_prediction (test_catch_observation.ObservationTests.test_online_drag_estimate_improves_unseen_short_horizon_prediction) ... ok
+test_position_only_fit_recovers_ballistic_velocity (test_catch_observation.ObservationTests.test_position_only_fit_recovers_ballistic_velocity) ... ok
+test_bilateral_tactile_contact_brakes_and_keeps_fingers_closed (test_catch_online_control.OnlineControllerTests.test_bilateral_tactile_contact_brakes_and_keeps_fingers_closed) ... ok
+test_controller_cannot_read_results_or_replay_files (test_catch_online_control.OnlineControllerTests.test_controller_cannot_read_results_or_replay_files) ... ok
+test_followthrough_must_fit_before_joint_limit (test_catch_online_control.OnlineControllerTests.test_followthrough_must_fit_before_joint_limit) ... ok
+test_fresh_dynamic_trial_uses_delayed_position_frames_without_attaching_object (test_catch_online_control.OnlineControllerTests.test_fresh_dynamic_trial_uses_delayed_position_frames_without_attaching_object) ... ok
+test_late_plan_rebases_on_encoders_and_rejects_unreachable_remaining_path (test_catch_online_control.OnlineControllerTests.test_late_plan_rebases_on_encoders_and_rejects_unreachable_remaining_path) ... ok
+test_learned_geometry_gate_prevents_an_incompatible_launch (test_catch_online_control.OnlineControllerTests.test_learned_geometry_gate_prevents_an_incompatible_launch) ... ok
+test_open_gripper_geometry_distinguishes_8cm_and_10cm_centered_boxes (test_catch_online_control.OnlineControllerTests.test_open_gripper_geometry_distinguishes_8cm_and_10cm_centered_boxes) ... ok
+test_release_handoff_brakes_continuously_before_sensor_is_ready (test_catch_online_control.OnlineControllerTests.test_release_handoff_brakes_continuously_before_sensor_is_ready) ... ok
+test_same_delivered_prefix_produces_same_commands_when_future_flights_differ (test_catch_online_control.OnlineControllerTests.test_same_delivered_prefix_produces_same_commands_when_future_flights_differ) ... ok
+test_stale_observations_cancel_pending_blind_interception (test_catch_online_control.OnlineControllerTests.test_stale_observations_cancel_pending_blind_interception) ... ok
+test_incomplete_or_flat_motion_cannot_be_accepted (test_figure_eight.FigureEightGeometryTests.test_incomplete_or_flat_motion_cannot_be_accepted) ... ok
+test_two_vertical_lobes_pass_and_horizontal_eight_is_rejected (test_figure_eight.FigureEightGeometryTests.test_two_vertical_lobes_pass_and_horizontal_eight_is_rejected) ... ok
+test_unsafe_model_parameters_are_rejected (test_figure_eight.FigureEightGeometryTests.test_unsafe_model_parameters_are_rejected) ... ok
+test_grasp_required_before_motion (test_figure_eight.FigureEightPhysicsTests.test_grasp_required_before_motion) ... ok
+test_reuses_grasp_skill_traces_both_lobes_and_places (test_figure_eight.FigureEightPhysicsTests.test_reuses_grasp_skill_traces_both_lobes_and_places) ... 开始运行 6a1985804bb2；输出目录 C:\Users\Highland\AppData\Local\Temp\tmpdrrpkbin。
+开始 test，故障=low_grip_force，参数={"half_width_m": 0.05, "half_height_m": 0.08, "center_raise_m": 0.1, "samples": 64, "steps_per_waypoint": 48}
+test 结束：{"label": "test", "failure_mode": "low_grip_force", "parameters": {"half_width_m": 0.05, "half_height_m": 0.08, "center_raise_m": 0.1, "samples": 64, "steps_per_waypoint": 48}, "trajectory": {"waypoints": 65, "max_tracking_error_m": 9.027244164740373e-05, "rms_tracking_error_m": 6.392039357213147e-05, "closure_error_m": 8.744322876877765e-05, "midpoint_crossing_error_m": 8.64254608002044e-05, "plane_error_m": 1.2548601038941953e-05, "upper_loop_area_m2": 0.005311202251796079, "lower_loop_area_m2": -0.005310780052030305, "vertical_span_m": 0.15999258581598585, "horizontal_span_m": 0.0999878680804513, "passed": true, "samples": 3240, "min_clearance_m": 0.14667263808361009, "grasp_retained": true}, "placement": {"drift_m": 3.072891480430896e-05, "speed_m_s": 1.2362704185547546e-05, "target_error_m": 0.0008338375146781496, "released": true, "height_error_m": 1.1393495481848426e-05, "passed": true}, "error": null, "applied_skill_ids": ["grasp_without_lift_v1"], "diagnosis_fallback": false, "result": {"mode": "skills", "failure_mode": "low_grip_force", "status": "recovered", "false_success": false, "recovered": true, "applied_skill_ids": ["grasp_without_lift_v1"]}, "passed": true}
+ok
+test_low_level_model_output_is_rejected (test_llm.LLMTests.test_low_level_model_output_is_rejected) ... ok
+test_responses_client_builds_structured_skill (test_llm.LLMTests.test_responses_client_builds_structured_skill) ... ok
+test_baseline_can_false_success (test_mvp.MvpTests.test_baseline_can_false_success) ... ok
+test_failure_is_detected_and_recovered (test_mvp.MvpTests.test_failure_is_detected_and_recovered) ... ok
+test_normal_episode_succeeds (test_mvp.MvpTests.test_normal_episode_succeeds) ... ok
+test_occlusion_telemetry_stops_without_recovery (test_mvp.MvpTests.test_occlusion_telemetry_stops_without_recovery) ... ok
+test_skill_is_promoted_and_retrieved (test_mvp.MvpTests.test_skill_is_promoted_and_retrieved) ... ok
+test_telemetry_records_detached_states_and_original_result (test_mvp.MvpTests.test_telemetry_records_detached_states_and_original_result) ... ok
+test_closed_gripper_cannot_attach_a_remote_cube (test_prethrow_grasp.PrethrowGraspTests.test_closed_gripper_cannot_attach_a_remote_cube) ... ok
+test_contact_checked_grasp_uses_com_anchor_and_keeps_all_fingers_aligned (test_prethrow_grasp.PrethrowGraspTests.test_contact_checked_grasp_uses_com_anchor_and_keeps_all_fingers_aligned) ... ok
+test_lost_finger_alignment_blocks_the_launch (test_prethrow_grasp.PrethrowGraspTests.test_lost_finger_alignment_blocks_the_launch) ... ok
+test_closure_waits_for_observed_separation_and_descent (test_short_vertical_catch.ShortVerticalCatchTests.test_closure_waits_for_observed_separation_and_descent) ... ok
+test_delayed_noisy_vertical_throw_physically_catches_and_holds_without_constraint (test_short_vertical_catch.ShortVerticalCatchTests.test_delayed_noisy_vertical_throw_physically_catches_and_holds_without_constraint) ... ok
+test_physics_backend_exposes_actual_positions (test_simulation.SimulationTests.test_physics_backend_exposes_actual_positions) ... ok
+test_physics_backend_recovers_low_grip_failure (test_simulation.SimulationTests.test_physics_backend_recovers_low_grip_failure) ... ok
+test_six_dof_arm_moves_end_effector_with_ik (test_simulation.SimulationTests.test_six_dof_arm_moves_end_effector_with_ik) ... ok
+test_xarm6_grasp_is_aligned_before_lift (test_simulation.SimulationTests.test_xarm6_grasp_is_aligned_before_lift) ... ok
+test_xarm6_starts_clear_and_places_normal_pick (test_simulation.SimulationTests.test_xarm6_starts_clear_and_places_normal_pick) ... ok
+test_xarm6_uses_urdf_limits_and_recovers (test_simulation.SimulationTests.test_xarm6_uses_urdf_limits_and_recovers) ... ok
+test_no_angle_wrapping_and_no_two_turns_past_original_limits (test_spin_trajectory.SpinTrajectoryTests.test_no_angle_wrapping_and_no_two_turns_past_original_limits) ... ok
+test_periodic_joint_loop_repeats_with_finite_difference_velocity (test_spin_trajectory.SpinTrajectoryTests.test_periodic_joint_loop_repeats_with_finite_difference_velocity) ... ok
+test_physical_turns_accelerate_without_joint_wrap_or_speed_violation (test_spin_trajectory.SpinTrajectoryTests.test_physical_turns_accelerate_without_joint_wrap_or_speed_violation) ... ok
+test_speed_increases_at_each_revolution_and_transition_is_continuous (test_spin_trajectory.SpinTrajectoryTests.test_speed_increases_at_each_revolution_and_transition_is_continuous) ... ok
+test_catch_rejects_fast_upward_distant_or_contacted_object (test_throw_catch.ThrowEvidenceTests.test_catch_rejects_fast_upward_distant_or_contacted_object) ... ok
+test_height_alone_and_table_placement_cannot_pass (test_throw_catch.ThrowEvidenceTests.test_height_alone_and_table_placement_cannot_pass) ... ok
+test_model_parameter_validation_rejects_nonfinite_and_extra_controls (test_throw_catch.ThrowEvidenceTests.test_model_parameter_validation_rejects_nonfinite_and_extra_controls) ... ok
+test_release_requires_lift_and_preserves_actual_velocity_without_state_reset (test_throw_catch.ThrowPhysicsTests.test_release_requires_lift_and_preserves_actual_velocity_without_state_reset) ... ok
+test_catch_requires_apex_height_flight_and_finger_clearance (test_throw_catch_005m.FiveCentimeterGates.test_catch_requires_apex_height_flight_and_finger_clearance) ... ok
+test_reject_nonfinite_and_out_of_bounds_parameters (test_throw_catch_005m.FiveCentimeterGates.test_reject_nonfinite_and_out_of_bounds_parameters) ... ok
+test_success_cannot_skip_any_stage_or_velocity_limits (test_throw_catch_005m.FiveCentimeterGates.test_success_cannot_skip_any_stage_or_velocity_limits) ... ok
+test_required_velocity_matches_two_metre_rise (test_throw_catch_2m.TwoMetreTargetTests.test_required_velocity_matches_two_metre_rise) ... ok
+test_two_metre_parameter_bounds_reject_old_or_unsafe_shape (test_throw_catch_2m.TwoMetreTargetTests.test_two_metre_parameter_bounds_reject_old_or_unsafe_shape) ... ok
+test_point_jacobian_matches_pose_finite_difference_without_touching_dynamic_robot (test_throw_catch_coordination.CoordinationTests.test_point_jacobian_matches_pose_finite_difference_without_touching_dynamic_robot) ... ok
+test_staggered_motion_preserves_joint_limits_and_explains_point_velocity (test_throw_catch_coordination.CoordinationTests.test_staggered_motion_preserves_joint_limits_and_explains_point_velocity) ... ok
+test_release_gate_requires_10m_energy (test_throw_catch_improvement.ThrowCatchImprovementTests.test_release_gate_requires_10m_energy) ... ok
+test_summary_uses_measured_peak_values (test_throw_catch_improvement.ThrowCatchImprovementTests.test_summary_uses_measured_peak_values) ... ok
+test_configured_mass_and_inertia_survive_reset (test_throw_catch_mass.MassConfigurationTests.test_configured_mass_and_inertia_survive_reset) ... ok
+test_gate_releases_at_qualified_sample_before_velocity_decays (test_throw_catch_mass.MassConfigurationTests.test_gate_releases_at_qualified_sample_before_velocity_decays) ... ok
+test_nonpositive_or_nonfinite_mass_cannot_make_a_static_or_invalid_cube (test_throw_catch_mass.MassConfigurationTests.test_nonpositive_or_nonfinite_mass_cannot_make_a_static_or_invalid_cube) ... ok
+
+----------------------------------------------------------------------
+Ran 60 tests in 11.972s
+
+OK

@@ -1,0 +1,85 @@
+{
+  "before": {
+    "finger_signed_distances_m": [
+      0.05265411028140172,
+      0.05819326591008805
+    ],
+    "cube_position_m": [
+      -0.1682815869613423,
+      -0.12194002612302193,
+      0.38944135497162585
+    ],
+    "finger_angles_rad": [
+      0.8500020884791972,
+      -0.26038112984506867,
+      0.017673449695219664,
+      -0.05375041391048832,
+      -0.26231247695946147,
+      0.0008440718646537595
+    ]
+  },
+  "after": {
+    "finger_signed_distances_m": [
+      -0.0004923825081403846,
+      -0.0006749877431883717
+    ],
+    "cube_position_m": [
+      -0.2615560896941008,
+      -0.10186674293992368,
+      0.34972968840448143
+    ],
+    "finger_angles_rad": [
+      0.4143270070261819,
+      0.4649584058846851,
+      0.3466533430433858,
+      0.41962660031867094,
+      0.46126763675855115,
+      0.34676733421082057
+    ],
+    "initial_contact": {
+      "verified": true,
+      "verified_at_s": 0.8833333333333314,
+      "consecutive_contact_ticks": 12,
+      "geometry": {
+        "finger_signed_distances_m": [
+          -0.0004919897637900672,
+          -0.0006745763730461414
+        ],
+        "bilateral_surface_alignment": true,
+        "finger_angles_rad": [
+          0.41433051360184286,
+          0.4649800051179821,
+          0.3466583993428139,
+          0.4196243377915258,
+          0.4612625868297828,
+          0.34676146006211117
+        ],
+        "constraint_anchor_error_m": null
+      },
+      "normal_forces_n": {
+        "9": 39.81923358393552,
+        "12": 35.816819572715765
+      },
+      "hold_model": "contact-validated fixed constraint; measured finger angles retained"
+    },
+    "retained_geometry": {
+      "finger_signed_distances_m": [
+        -0.0004923825081403846,
+        -0.0006749877431883717
+      ],
+      "bilateral_surface_alignment": true,
+      "finger_angles_rad": [
+        0.4143270070261819,
+        0.4649584058846851,
+        0.3466533430433858,
+        0.41962660031867094,
+        0.46126763675855115,
+        0.34676733421082057
+      ],
+      "constraint_anchor_error_m": 3.956594918182026e-07
+    }
+  },
+  "baseline_commit": "0f2cc612ffc7f9b287327f22e5633943ecdfa23a",
+  "baseline_source_sha256": "a3fd2f16e06bea346288bb1711cd76495f7ced396c7ef789dbeb8f50fe72ac45",
+  "note": "Independent physical runs with the same commanded prethrow pose; no joint or object state resets. Positive signed distance is a gap; negative is contact penetration."
+}

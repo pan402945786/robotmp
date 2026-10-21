@@ -20,18 +20,22 @@ from .spin_trajectory import accelerate, coast_and_brake, periodic_state, plan_s
 
 def acquire(mass, *, observer=None, cube_size_m=.10):
     env = ThrowEnv(config=SimConfig(arm_model="xarm6", cube_mass_kg=mass,
-                                  cube_half_extent=cube_size_m/2))
+                                  cube_half_extent=cube_size_m/2,require_bilateral_grasp=cube_size_m<=.08))
     # Broad swings need floor clearance; preserve the original base elevation.
     env.p.removeBody(env._table_id, physicsClientId=env.client)
     env.ground = env.p.loadURDF("plane.urdf", physicsClientId=env.client)
     # Original cube must retain its tabletop start support until acquired.
-    shape = env.p.createCollisionShape(env.p.GEOM_BOX, halfExtents=[0.08, 0.08, 0.02], physicsClientId=env.client)
+    support_half=min(.08,cube_size_m*.4)
+    shape = env.p.createCollisionShape(env.p.GEOM_BOX, halfExtents=[support_half,support_half,0.02], physicsClientId=env.client)
     stand = env.p.createMultiBody(0, shape, -1, [0.45, 0, 0.68], physicsClientId=env.client)
     if observer is not None:
         observer(env, "scene", 0)
         env.config.frame_callback = lambda state: observer(env, state.phase, round(state.timestamp/env.config.time_step_s))
     for action in ("approach_object", "close_gripper", "lift_object"):
         env.execute(action)
+        if action=="close_gripper" and env.config.require_bilateral_grasp and not env._initial_grasp_evidence.get("verified"):
+            env.close()
+            raise RuntimeError("initial bilateral finger contact not verified; lift blocked")
     if not env.observe().object.lifted or env._constraint_id is None:
         env.close()
         raise RuntimeError("physical lift evidence missing")
@@ -124,7 +128,8 @@ def baseline(mass):
 
 def trial(candidate, mass, lead, delays, *, output=None, label="probe", spin=None, loop=None,
           observer=None, swing_steps=None, continuation=None, release_threshold=None,
-          release_handler=None, cube_size_m=.10, release_inward_only=False):
+          release_handler=None, cube_size_m=.10, release_inward_only=False,release_radial_speed_max=None,
+          vertical_toss=None):
     """Run a launch probe; optional hooks record and continue a calibrated launch.
 
     A continuation is responsible for its own explicit release policy. The
@@ -140,6 +145,10 @@ def trial(candidate, mass, lead, delays, *, output=None, label="probe", spin=Non
               "ground_contact": False, "joint_position_violation": False,
               "self_penetration_detected": False, "self_check_stride_steps": 1 if output is not None else 8,
               "phase_peaks": {}, "spin_milestones": []}
+    if env.config.require_bilateral_grasp:
+        report["initial_grasp_evidence"]=env._initial_grasp_evidence
+        report["pre_release_grasp_checks"]=dict(samples=0,passed=True,max_positive_gap_m=0.,
+            max_penetration_m=0.,max_constraint_anchor_error_m=0.)
     rows = []
     dt = env.config.time_step_s
 
@@ -154,6 +163,17 @@ def trial(candidate, mass, lead, delays, *, output=None, label="probe", spin=Non
                  link[7][2]*delta[0]-link[7][0]*delta[2],
                  link[7][0]*delta[1]-link[7][1]*delta[0]]
         point_v = [a + b for a, b in zip(link[6], cross)]
+        if env.config.require_bilateral_grasp and env._constraint_id is not None:
+            geometry=env.finger_grasp_geometry()
+            grip=report["pre_release_grasp_checks"]
+            grip["samples"]+=1
+            gaps=geometry["finger_signed_distances_m"]
+            grip["max_positive_gap_m"]=max(grip["max_positive_gap_m"],*(d for d in gaps if d is not None))
+            grip["max_penetration_m"]=max(grip["max_penetration_m"],*(-d for d in gaps if d is not None))
+            grip["max_constraint_anchor_error_m"]=max(grip["max_constraint_anchor_error_m"],geometry["constraint_anchor_error_m"])
+            grip["passed"] &= geometry["bilateral_surface_alignment"]
+            if not grip["passed"]:
+                raise RuntimeError("pre-release finger alignment lost; launch blocked")
         report["current_point_velocity"] = point_v
         for i, state in enumerate(states):
             report["max_joint_velocity_ratios"][i] = max(report["max_joint_velocity_ratios"][i], abs(state[1])/env._arm_velocity[i])
@@ -195,6 +215,14 @@ def trial(candidate, mass, lead, delays, *, output=None, label="probe", spin=Non
         return pos, vel, contact
 
     try:
+        vertical_spec=None
+        vertical_plan=None
+        if vertical_toss is not None:
+            if spin is not None or loop is not None:
+                raise ValueError("vertical toss cannot combine with spin/loop")
+            from .vertical_toss import make_vertical_toss
+            vertical_spec=make_vertical_toss(offset,vertical_toss)
+            report["vertical_toss"]=vertical_spec[4]
         if spin is not None and loop is not None:
             raise ValueError("choose a pre-rotation or a periodic loop")
         if loop is not None:
@@ -210,6 +238,8 @@ def trial(candidate, mass, lead, delays, *, output=None, label="probe", spin=Non
                     raise ValueError(f"J{i+1}: periodic loop exceeds target speed limit")
         start = [max(lo + 0.05, min(hi - 0.05, q - v * lead))
                  for lo, hi, q, v in zip(env._arm_lower, env._arm_upper, candidate["q"], candidate["velocity"])]
+        if vertical_spec is not None:
+            start=vertical_spec[0].tolist()
         if loop is not None:
             start = periodic_state(0., **loop)[0]
         spin_plan = None
@@ -233,6 +263,11 @@ def trial(candidate, mass, lead, delays, *, output=None, label="probe", spin=Non
             sample("settle", tick)
         actual_start = [p.getJointState(env._gripper_id, j, physicsClientId=env.client)[0] for j in env._arm_joint_ids]
         report["prepared_q"] = actual_start
+        if vertical_spec is not None:
+            import numpy as np
+            from .catch_online_control import InterceptPlan
+            vertical_plan=InterceptPlan(0.,vertical_spec[3],0.,[],[],np.asarray(actual_start),np.zeros(6),
+                                       vertical_spec[1],vertical_spec[2],0.,0.,0.)
         if spin_plan is not None:
             milestones = {index: .5 for index in spin_plan["joints"]}
             for tick in range(math.ceil(spin_plan["duration_s"] / dt)):
@@ -269,6 +304,8 @@ def trial(candidate, mass, lead, delays, *, output=None, label="probe", spin=Non
         # Acceleration ramp and staggered launches; no state resets or impulses.
         ramp = 0.12
         duration = 2 * lead + max(delays) + .25 if loop is None else 4 * math.pi * loop["turns"] / loop["rate"]
+        if vertical_plan is not None:
+            duration=vertical_spec[3]
         next_cycle = 1
         cycle_peak, cycle_speed = 0., 0.
         ticks = math.ceil(duration / dt)
@@ -290,6 +327,8 @@ def trial(candidate, mass, lead, delays, *, output=None, label="probe", spin=Non
                     qd[index] = spec["direction"] * speed
             if loop is not None:
                 target, qd, phase = periodic_state(elapsed, **loop)
+            if vertical_plan is not None:
+                target,qd=vertical_plan.evaluate(elapsed)
             command(env, target, qd)
             env._step(1)
             pos, vel, contact = sample("swing", tick)
@@ -307,7 +346,12 @@ def trial(candidate, mass, lead, delays, *, output=None, label="probe", spin=Non
                 raise RuntimeError("swing contacted ground")
             threshold = REQUIRED_VZ if release_threshold is None else release_threshold
             radial_velocity=(pos[0]-env.config.arm_base_x)*vel[0]+pos[1]*vel[1]
-            release_direction_ok=not release_inward_only or radial_velocity<=0
+            radius=math.hypot(pos[0]-env.config.arm_base_x,pos[1])
+            radial_speed=radial_velocity/max(radius,1e-9)
+            radial_limit=release_radial_speed_max if release_radial_speed_max is not None else (0. if release_inward_only else math.inf)
+            release_direction_ok=radial_speed<=radial_limit
+            if vertical_plan is not None:
+                release_direction_ok &= math.hypot(vel[0],vel[1])<=vertical_toss.get("max_horizontal_m_s",.25)
             if vel[2] >= threshold and env.observe().object.lifted and release_direction_ok:
                 # Verify joint limits and attachment fidelity before any release.
                 if (max(report["max_joint_velocity_ratios"]) <= 1.05
@@ -317,7 +361,8 @@ def trial(candidate, mass, lead, delays, *, output=None, label="probe", spin=Non
                         and math.dist(vel, report["current_point_velocity"]) < 0.1):
                     env.release_in_motion()
                     report.update(released=True, release_velocity=list(vel), release_position=list(pos),
-                                  release_threshold_m_s=threshold, release_time_s=env._time)
+                                  release_threshold_m_s=threshold, release_time_s=env._time,
+                                  release_radial_speed_m_s=radial_speed)
                     if release_handler is not None:
                         release_handler(env, report, sample, offset)
                         break

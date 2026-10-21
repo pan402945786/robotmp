@@ -1,0 +1,74 @@
+[
+  {
+    "issued_at": 0.05416666666666359,
+    "latest_observation_at": 0.04999999999999716,
+    "wall_s": 0.03893370000878349,
+    "candidates": 0,
+    "drag": 0.0,
+    "plan": null
+  },
+  {
+    "issued_at": 0.1541666666666579,
+    "latest_observation_at": 0.14999999999999147,
+    "wall_s": 0.006756599992513657,
+    "candidates": 0,
+    "drag": 0.04053161785462906,
+    "plan": null
+  },
+  {
+    "issued_at": 0.2541666666666522,
+    "latest_observation_at": 0.2499999999999858,
+    "wall_s": 0.007423999981256202,
+    "candidates": 0,
+    "drag": 0.04066395380575452,
+    "plan": null
+  },
+  {
+    "issued_at": 0.35416666666664653,
+    "latest_observation_at": 0.3499999999999801,
+    "wall_s": 0.006883699999889359,
+    "candidates": 0,
+    "drag": 0.04076443629806311,
+    "plan": null
+  },
+  {
+    "issued_at": 0.45416666666664085,
+    "latest_observation_at": 0.4499999999999744,
+    "wall_s": 0.0067482999875210226,
+    "candidates": 0,
+    "drag": 0.040622358156226585,
+    "plan": null
+  },
+  {
+    "issued_at": 0.5541666666666352,
+    "latest_observation_at": 0.5499999999999687,
+    "wall_s": 0.006840900023235008,
+    "candidates": 0,
+    "drag": 0.0402591549290121,
+    "plan": null
+  },
+  {
+    "issued_at": 0.6541666666666295,
+    "latest_observation_at": 0.649999999999963,
+    "wall_s": 0.007973400002811104,
+    "candidates": 0,
+    "drag": 0.04000981956746824,
+    "plan": null
+  },
+  {
+    "issued_at": 0.7541666666666238,
+    "latest_observation_at": 0.7499999999999574,
+    "wall_s": 0.008007600001292303,
+    "candidates": 0,
+    "drag": 0.03989586968630808,
+    "plan": null
+  },
+  {
+    "issued_at": 0.8541666666666181,
+    "latest_observation_at": 0.8499999999999517,
+    "wall_s": 0.007558999990578741,
+    "candidates": 0,
+    "drag": 0.0398559230843979,
+    "plan": null
+  }
+]

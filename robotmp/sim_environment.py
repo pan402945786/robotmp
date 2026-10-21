@@ -41,6 +41,7 @@ class SimConfig:
     arm_base_x: float = 0.10
     frame_callback: Callable[[SceneState], None] | None = None
     cube_mass_kg: float = 0.10
+    require_bilateral_grasp: bool = False
 
     def __post_init__(self) -> None:
         if (isinstance(self.cube_half_extent, bool)
@@ -89,6 +90,8 @@ class PyBulletPickPlaceEnv:
         self._grasped = False
         self._lifted = False
         self._constraint_id: int | None = None
+        self._grasp_finger_targets: list[float] | None = None
+        self._initial_grasp_evidence: dict[str,Any] = {}
         self._arm_joint_ids: list[int] = []
         self._ee_link_index = -1
         self._arm_lower: list[float] = []
@@ -126,7 +129,7 @@ class PyBulletPickPlaceEnv:
                 p.setCollisionFilterPair(self._gripper_id, self._cube_id, link_index, -1, 0, physicsClientId=self.client)
             self._wrist_id = self._gripper_id
             self._arm_joint_ids = list(range(1, 7))
-            self._finger_joint_ids = [8]
+            self._finger_joint_ids = list(range(8,14))
             self._finger_ids = [self._gripper_id]
             self._ee_link_index = 6
             for joint_id in self._arm_joint_ids:
@@ -257,7 +260,10 @@ class PyBulletPickPlaceEnv:
             )
         target = 0.0 if open_gripper else 0.85
         self._gripper_open = open_gripper
-        p.setJointMotorControl2(self._gripper_id, self._finger_joint_ids[0], p.POSITION_CONTROL, targetPosition=target, force=50, maxVelocity=2, physicsClientId=self.client)
+        targets=self._grasp_finger_targets if not open_gripper and self._grasp_finger_targets is not None else [target]*6
+        for joint_id,finger_target in zip(self._finger_joint_ids,targets):
+            p.setJointMotorControl2(self._gripper_id,joint_id,p.POSITION_CONTROL,
+                targetPosition=finger_target,force=50,maxVelocity=2,physicsClientId=self.client)
 
     def _step(self, count: int | None = None) -> None:
         default_steps = self.config.xarm_steps_per_action if self.config.arm_model == "xarm6" else self.config.steps_per_action
@@ -282,7 +288,9 @@ class PyBulletPickPlaceEnv:
         cube_position, cube_orientation = p.getBasePositionAndOrientation(self._cube_id, physicsClientId=self.client)
         if self.config.arm_model in {"arm6dof", "xarm6"}:
             link_state = p.getLinkState(self._gripper_id, self._ee_link_index, computeForwardKinematics=True, physicsClientId=self.client)
-            parent_position, parent_orientation = link_state[4], link_state[5]
+            # Bullet constraint frames use the link's inertial/COM frame.
+            # FK link frames [4:6] differ by the URDF inertial origin.
+            parent_position, parent_orientation = link_state[0], link_state[1]
             inverse_position, inverse_orientation = p.invertTransform(parent_position, parent_orientation)
             parent_frame_position, parent_frame_orientation = p.multiplyTransforms(
                 inverse_position,
@@ -337,11 +345,18 @@ class PyBulletPickPlaceEnv:
         self._events = []
         if action == "approach_object":
             self._phase = "approach"
-            self._set_gripper_pose([self._object_start[0], self._object_start[1], self.config.table_z + 0.17], open_gripper=True)
+            approach_z=self.config.table_z+.17
+            if self.config.arm_model=="xarm6" and self.config.require_bilateral_grasp:
+                approach_z=self._cube_position()[2]+.130
+            self._set_gripper_pose([self._object_start[0], self._object_start[1], approach_z], open_gripper=True)
             if self.config.arm_model in {"arm6dof", "xarm6"}:
                 self._step()
+                if self.config.require_bilateral_grasp:
+                    self._step(96)
             self._events.append("object_approached")
         elif action == "close_gripper":
+            if self.config.arm_model=="xarm6" and self.config.require_bilateral_grasp:
+                return self._close_bilateral_grasp()
             self._phase = "grasp"
             self._gripper_open = False
             self._gripper_force = 0.4 if self.failure_mode == FailureMode.LOW_GRIP_FORCE else 1.0
@@ -432,6 +447,65 @@ class PyBulletPickPlaceEnv:
         else:
             raise ValueError(f"unknown action: {action}")
         return self.observe()
+
+    def _close_bilateral_grasp(self) -> SceneState:
+        """Acquire at real opposed finger contacts before fixing the measured pose."""
+        p=self.p
+        self._phase="grasp"
+        self._grasped=False
+        self._grasp_finger_targets=None
+        self._gripper_force=.4 if self.failure_mode==FailureMode.LOW_GRIP_FORCE else 1.
+        self._set_gripper_pose(self._ee_position,open_gripper=False)
+        for link in range(-1,p.getNumJoints(self._gripper_id,physicsClientId=self.client)):
+            p.setCollisionFilterPair(self._gripper_id,self._cube_id,link,-1,1,physicsClientId=self.client)
+        consecutive=0
+        for _ in range(240):
+            self._step(1)
+            contacts=p.getContactPoints(self._cube_id,self._gripper_id,physicsClientId=self.client)
+            links={c[4] for c in contacts if c[9]>.05}
+            consecutive=consecutive+1 if {9,12}.issubset(links) else 0
+            if consecutive>=12:
+                break
+        if consecutive<12 or self.failure_mode in {FailureMode.MISALIGNED_GRASP,FailureMode.LOW_GRIP_FORCE}:
+            self._events=["gripper_closed","bilateral_grasp_not_verified"]
+            return self.observe()
+        geometry=self.finger_grasp_geometry()
+        if not geometry["bilateral_surface_alignment"]:
+            self._events=["gripper_closed","bilateral_grasp_geometry_failed"]
+            return self.observe()
+        self._initial_grasp_evidence=dict(verified=True,verified_at_s=self._time,
+            consecutive_contact_ticks=consecutive,geometry=geometry,
+            normal_forces_n={str(link):sum(c[9] for c in contacts if c[4]==link) for link in (9,12)},
+            hold_model="contact-validated fixed constraint; measured finger angles retained")
+        self._grasp_finger_targets=[p.getJointState(self._gripper_id,j,physicsClientId=self.client)[0]
+                                    for j in self._finger_joint_ids]
+        self._grasped=True
+        self._create_grasp_constraint()
+        # Acquisition is contact checked. The existing rigid hold then retains
+        # precisely that pose; fingers hold their measured contact angles.
+        for link in range(-1,p.getNumJoints(self._gripper_id,physicsClientId=self.client)):
+            p.setCollisionFilterPair(self._gripper_id,self._cube_id,link,-1,0,physicsClientId=self.client)
+        self._set_gripper_pose(self._actual_ee_position(),open_gripper=False)
+        self._events=["gripper_closed","bilateral_grasp_contact_verified","grasp_constraint_created"]
+        return self.observe()
+
+    def finger_grasp_geometry(self) -> dict[str,Any]:
+        """Measure actual finger surfaces even while rigid-hold collisions are masked."""
+        p=self.p
+        distances=[]
+        for link in (9,12):
+            points=p.getClosestPoints(self._cube_id,self._gripper_id,.25,linkIndexB=link,physicsClientId=self.client)
+            distances.append(min((point[8] for point in points),default=None))
+        anchor_error=None
+        if self._constraint_id is not None:
+            state=p.getLinkState(self._gripper_id,self._ee_link_index,computeForwardKinematics=True,physicsClientId=self.client)
+            info=p.getConstraintInfo(self._constraint_id,physicsClientId=self.client)
+            anchor=p.multiplyTransforms(state[0],state[1],info[6],info[8])[0]
+            anchor_error=math.dist(anchor,self._cube_position())
+        return dict(finger_signed_distances_m=distances,
+            bilateral_surface_alignment=all(d is not None and -.002<=d<=.002 for d in distances),
+            finger_angles_rad=[p.getJointState(self._gripper_id,j,physicsClientId=self.client)[0] for j in self._finger_joint_ids],
+            constraint_anchor_error_m=anchor_error)
 
     def capture_rgb(self, width: int = 640, height: int = 480) -> Any:
         p = self.p

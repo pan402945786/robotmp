@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>50 mm 方块短抛接回：20/20 通过</title>
+<style>
+body{margin:32px auto;padding:0 24px;max-width:1200px;background:#0b1524;color:#eef5ff;font:18px/1.7 system-ui}
+h1{line-height:1.35}p{color:#c5d4e7}a{color:#72d4ff}video,img{width:100%;border-radius:12px}strong{color:#76e4b3}
+.metrics{display:flex;gap:20px;flex-wrap:wrap;margin:24px 0}.metric{background:#14243b;padding:14px 22px;border-radius:10px}.metric b{display:block;color:#76e4b3;font-size:28px}
+</style>
+<h1>50 mm 方块：已经抛出后接住</h1>
+<p>实际 PyBullet 仿真 · 名义 100 g · 短距离竖直抛接 · 修复抛前夹持间隙</p>
+<div class="metrics"><div class="metric"><b>20 / 20</b>最终复测与独立审计</div><div class="metric"><b>≥ 1.004 s</b>连续受力双指保持</div><div class="metric"><b>10–11 cm</b>实际抛升高度</div></div>
+<video controls preload="metadata" poster="caught.png" src="validated_01.mp4"></video>
+<p>局部视图与全景来自同一实际物理场景。释放后没有物体固定约束，接回依靠真实碰撞与夹持。末尾 1 秒为结果定格，物理保持时间另由逐帧记录审计。</p>
+<p>先确认物体离手，再根据本轮下降观测闭合。夹持后保留接触时的手指角度并施加小预紧，避免继续全闭合将方块挤出。</p>
+<h2>抛前间隙已修复</h2>
+<img src="../prethrow_grasp_fix_20261020/before_after.png" alt="修复前双指表面间隙 52.65 和 58.19 mm；修复后已贴合">
+<p>修复全部联动关节控制与约束坐标框架，增加抬升前双指接触门槛和全程贴合检查。</p>
+<p>验证范围为 50 mm 方块、80–120 g 的离散仿真对照，以及 0–2 mm 位置噪声、0–33.3 ms 延迟和 0–10% 漏帧。高抛和真实硬件仍未验证。</p>
+<p><a href="../SHORT_VERTICAL_CATCH_RESULTS.md">完整结果与复现</a> · <a href="../PRETHROW_GRASP_FIX.md">间隙修复说明</a> · <a href="audit.json">独立审计</a> · <a href="summary.json">20 次原始结果</a> · <a href="../../assets/skills/short_vertical_throw_catch_50mm.json">已验证短抛 skill</a></p>
+</html>

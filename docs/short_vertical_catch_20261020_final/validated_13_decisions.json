@@ -1,0 +1,16 @@
+[
+  {
+    "issued_at": 0.13749999999999218,
+    "latest_observation_at": 0.13333333333332575,
+    "mode": "stationary_catch_after_observed_separation",
+    "observed_velocity": [
+      -0.03176023506185719,
+      2.1348604610083166e-05,
+      0.08515046367979746
+    ],
+    "observed_distance_m": 0.07512832008905064,
+    "wall_s": 0.0,
+    "candidates": 0,
+    "plan": null
+  }
+]
