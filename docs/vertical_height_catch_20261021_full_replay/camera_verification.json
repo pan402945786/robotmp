@@ -1,0 +1,7 @@
+{
+  "all_recorded_cube_corners_within_main_camera": true,
+  "all_recorded_cube_corners_within_detail_camera": true,
+  "max_main_ndc": 0.6320443411134253,
+  "max_detail_ndc": 0.5693775853474936,
+  "samples": 1771
+}

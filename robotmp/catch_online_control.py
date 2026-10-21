@@ -142,6 +142,7 @@ class OnlineCatchController:
         self.late_plan_rejections=0
         self.fallback=None
         self.tactile_capture_at=None
+        self.bilateral_contact_ticks=0
         self.servo_active=False
         self.servo_started_at=None
         self.observed_separation=False
@@ -149,8 +150,16 @@ class OnlineCatchController:
 
     def observe_contacts(self,now,q,qd,links):
         """Brake on measured opposed finger contact during an observed descent."""
-        if (self.tactile_capture_at is not None or not {9,12}.issubset(links)
-                or not self.estimator.ready(now) or self.estimator.predict(now)[1][2]>=0):
+        if self.tactile_capture_at is not None:
+            return
+        if (not {9,12}.issubset(links) or not self.estimator.ready(now)
+                or self.estimator.predict(now)[1][2]>=0):
+            self.bilateral_contact_ticks=0
+            return
+        self.bilateral_contact_ticks+=1
+        # Higher catches can touch both fingers briefly before seating between
+        # the pads. Keep following until contact persists for the requested ticks.
+        if self.bilateral_contact_ticks<max(1,int(self.parameters.get("contact_brake_confirmation_ticks",1))):
             return
         duration=float(self.parameters.get("contact_brake_s",.25))
         start=np.array(q)

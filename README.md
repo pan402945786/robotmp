@@ -1,5 +1,7 @@
 # robotmp
 
+2026-10-21 垂直高度递增实验：50 mm、100 g 方块完成 10.5 / 14.0 / 20.7 / 50.2 cm 四档上抛接回，每档 3/3 通过独立记录审计，连续双指保持至少 1.004 s，接回无物体固定约束。参见 [实验结果](docs/VERTICAL_HEIGHT_CATCH_RESULTS.md) 和 [对比视频](docs/vertical_height_catch_video_full_20261021/index.html)。
+
 2026-10-20 抛前夹持修复与接回：修复联动关节和约束坐标框架，消除原 52.65 / 58.19 mm 夹持间隙；50 mm 方块约 10–11 cm 竖直小抛接回完成 20/20 独立审计，每次连续双指保持至少 1.004 秒，接回阶段无固定约束。通用失败经验已更新至 v25，限定短抛 skill 另存 verified。参见 [修复说明](docs/PRETHROW_GRASP_FIX.md)、[接回结果](docs/SHORT_VERTICAL_CATCH_RESULTS.md) 与 [实际视频](docs/short_vertical_catch_20261020_final/index.html)。
 
 2026-10-20 50 mm 抛接更新：按用户要求缩小方块，质量仍为 100 g；完成 61 次尝试，出现受力双指接触，但最长连续接触约 0.117 s，尚未通过 0.5 s 保持。已修正小抛高时的碰撞恢复与双指接触制动。参见 [50 mm 实验结果](docs/THROW_CATCH_50MM_RESULTS.md) 和 [实际仿真视频](docs/throw_catch_50mm_20261020_final/index.html)。

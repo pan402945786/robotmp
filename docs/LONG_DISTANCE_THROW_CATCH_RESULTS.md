@@ -1,5 +1,7 @@
 # 50 mm 方块长距离抛出接回：2026-10-21
 
+[观看最新一次验证视频](long_distance_catch_video_20261021/index.html) · [MP4](long_distance_catch_video_20261021/latest_experiment.mp4) · [数据来源与校验](long_distance_catch_video_20261021/manifest.json)
+
 本轮在短距离竖直抛接成功 skill 的基础上，加入了有界水平抛出轨迹，并使用本次飞行的时间戳位置观测和关节编码器做在线接回。发射阶段由 xArm6 的 IK 轨迹产生速度，没有注入方块位置或速度；接回阶段没有创建方块固定约束。
 
 最终验证目录为 [`long_distance_throw_catch_20261021_clean_validation`](long_distance_throw_catch_20261021_clean_validation/)，三次独立干净仿真全部通过：

@@ -1,0 +1,55 @@
+{
+  "source": "docs\\long_distance_throw_catch_20261021_clean_validation\\range_y010_03.json",
+  "label": "range_y010_03",
+  "selection": "Last trial in the latest documented final clean validation (2026-10-21), range_y010_03",
+  "source_sha256": {
+    "docs\\long_distance_throw_catch_20261021_clean_validation\\range_y010_03.json": "ad274e7c2c1f8ee9e176e19e46495bd954c9013946156fada4f3ab7a3e5d7250",
+    "docs\\long_distance_throw_catch_20261021_clean_validation\\range_y010_03_control_trace.json": "2a986f0d1f0328758484f015fc8397f6b87983c3e94bdea395681b5764b7e722",
+    "docs\\long_distance_throw_catch_20261021_clean_validation\\range_y010_03_physics.csv": "1da41174431be83002c4c47790c42996a0dedeb3ef3236c4e774987b87c02949"
+  },
+  "source_files_unchanged": true,
+  "mode": "Recorded state replay in isolated visual-only PyBullet client; no simulation steps or control",
+  "recorded_fields": [
+    "q",
+    "finger_q",
+    "cube",
+    "cube_orientation",
+    "contacts",
+    "truth_velocity"
+  ],
+  "sampling": "Nearest recorded state at 240 Hz; presentation at 30 fps",
+  "scope": "Release through flight, capture, and hold; acquisition and pre-throw preparation omitted",
+  "csv_trace_max_position_error_m": 0.0,
+  "every_hold_frame_bilateral": true,
+  "complete_success": true,
+  "horizontal_release_to_closest_m": 0.11738484231306676,
+  "continuous_hold_duration_s": 1.0041666666666667,
+  "frames": 378,
+  "fps": 30,
+  "duration_s": 12.6,
+  "video_metadata": {
+    "ffmpeg_version": "9.0.2 built with clang version 22.1.8",
+    "codec": "h264",
+    "pix_fmt": "yuv420p(progressive)",
+    "fps": 30.0,
+    "source_size": [
+      1920,
+      1080
+    ],
+    "size": [
+      1920,
+      1080
+    ],
+    "rotate": 0,
+    "duration": 12.6
+  },
+  "video_sha256": "fd75b62b72db7c71d4b1676072e524be8f83c5c14a77006c12dbf961398bcea6",
+  "verification": {
+    "full_video_decode_passed": true,
+    "visual_contact_sheet": "contact_sheet.jpg",
+    "resolution": [
+      1920,
+      1080
+    ]
+  }
+}

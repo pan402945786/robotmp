@@ -1,0 +1,80 @@
+{
+  "records": [
+    {
+      "label": "height_10cm_03",
+      "original_report": "docs\\vertical_height_catch_20261021_final\\height_10cm_03.json",
+      "full_motion": "docs\\vertical_height_catch_20261021_full_replay\\height_10cm_03_full_motion.json",
+      "prethrow_recording": "docs\\vertical_height_catch_20261021_full_motion\\height_10cm_03_full_motion.json",
+      "prethrow_numeric_max_error": 0.0,
+      "release_first_frame_max_error": 0.0,
+      "matching_prethrow_samples": 1143,
+      "source_sha256": {
+        "docs\\vertical_height_catch_20261021_full_motion\\height_10cm_03_full_motion.json": "a4846b0edf67a4b97904b26db6cf55fd2a810d02561a1ca30592573b2f0dfa63",
+        "docs\\vertical_height_catch_20261021_full_motion\\height_10cm_03_physics.csv": "15e0baa09c305e904d4cc8461347fa1c63c0e32e11dd60a0a7477feaef8678d1",
+        "docs\\vertical_height_catch_20261021_full_motion\\height_10cm_03_control_trace.json": "c01832b9e33d579381334e1149f2a7c09055a7f96af204ed90d30773270457dc",
+        "docs\\vertical_height_catch_20261021_final\\height_10cm_03.json": "a77a57b94e8d5feea8577d22318730b7fc3f93c4550f7cc1c68dec549451b302",
+        "docs\\vertical_height_catch_20261021_final\\height_10cm_03_control_trace.json": "c01832b9e33d579381334e1149f2a7c09055a7f96af204ed90d30773270457dc",
+        "docs\\vertical_height_catch_20261021_final\\height_10cm_03_physics.csv": "15e0baa09c305e904d4cc8461347fa1c63c0e32e11dd60a0a7477feaef8678d1"
+      },
+      "mode": "Matched pre-release recording followed by the original validated flight and hold."
+    },
+    {
+      "label": "height_14cm_03",
+      "original_report": "docs\\vertical_height_catch_20261021_final\\height_14cm_03.json",
+      "full_motion": "docs\\vertical_height_catch_20261021_full_replay\\height_14cm_03_full_motion.json",
+      "prethrow_recording": "docs\\vertical_height_catch_20261021_full_motion\\height_14cm_03_full_motion.json",
+      "prethrow_numeric_max_error": 0.0,
+      "release_first_frame_max_error": 0.0,
+      "matching_prethrow_samples": 1145,
+      "source_sha256": {
+        "docs\\vertical_height_catch_20261021_full_motion\\height_14cm_03_full_motion.json": "e049aec4439cc7982de6573b641752a03f6d8c1aa22a67297179098f15c3222d",
+        "docs\\vertical_height_catch_20261021_full_motion\\height_14cm_03_physics.csv": "a912403ae1b0e0e7bd8bb626c2af38b5e1f99eb599c4c1899563f31bf1b6b6fd",
+        "docs\\vertical_height_catch_20261021_full_motion\\height_14cm_03_control_trace.json": "ce3e1ea7cbf09183c53e69519f7b8682bebccefe3caa2da0792378f8489df089",
+        "docs\\vertical_height_catch_20261021_final\\height_14cm_03.json": "57729a745bd2977bbfe60e32e25c0142c287f47c3f9be7cba017b6d93eb923dd",
+        "docs\\vertical_height_catch_20261021_final\\height_14cm_03_control_trace.json": "ce3e1ea7cbf09183c53e69519f7b8682bebccefe3caa2da0792378f8489df089",
+        "docs\\vertical_height_catch_20261021_final\\height_14cm_03_physics.csv": "a912403ae1b0e0e7bd8bb626c2af38b5e1f99eb599c4c1899563f31bf1b6b6fd"
+      },
+      "mode": "Matched pre-release recording followed by the original validated flight and hold."
+    },
+    {
+      "label": "height_20cm_03",
+      "original_report": "docs\\vertical_height_catch_20261021_final\\height_20cm_03.json",
+      "full_motion": "docs\\vertical_height_catch_20261021_full_replay\\height_20cm_03_full_motion.json",
+      "prethrow_recording": "docs\\vertical_height_catch_20261021_full_motion\\height_20cm_03_full_motion.json",
+      "prethrow_numeric_max_error": 0.0,
+      "release_first_frame_max_error": 0.0,
+      "matching_prethrow_samples": 1155,
+      "source_sha256": {
+        "docs\\vertical_height_catch_20261021_full_motion\\height_20cm_03_full_motion.json": "703aa4157b1cb58ec08e5eb1571fabdf2f2602b6c4a245a80e5a5d4f541bdf5f",
+        "docs\\vertical_height_catch_20261021_full_motion\\height_20cm_03_physics.csv": "2c9b25855549f07247e23b0fa02f00bf22d922ad75f0d71ddc73adb83d024795",
+        "docs\\vertical_height_catch_20261021_full_motion\\height_20cm_03_control_trace.json": "c7cd46245a4fb34b9e11347b248805c920580a7f95e323ff0409e44cd6816da0",
+        "docs\\vertical_height_catch_20261021_final\\height_20cm_03.json": "a5f57f3e15b8743891bf694de0518a8644d9db9e8e04a69d9362b4757a767d43",
+        "docs\\vertical_height_catch_20261021_final\\height_20cm_03_control_trace.json": "cd9ed4f4ccedb8673ff8ae4d961856404ff20331ca2d0abf3e08e1fc7c6828f0",
+        "docs\\vertical_height_catch_20261021_final\\height_20cm_03_physics.csv": "e42dce5c52d85a2c2149f48a011660a935b003f68f46b4daa198e9f2bf7d90d9"
+      },
+      "mode": "Matched pre-release recording followed by the original validated flight and hold."
+    },
+    {
+      "label": "height_50cm_03",
+      "original_report": "docs\\vertical_height_catch_20261021_final\\height_50cm_03.json",
+      "full_motion": "docs\\vertical_height_catch_20261021_full_replay\\height_50cm_03_full_motion.json",
+      "prethrow_recording": "docs\\vertical_height_catch_20261021_full_motion\\height_50cm_03_take_02_full_motion.json",
+      "prethrow_numeric_max_error": 0.0,
+      "release_first_frame_max_error": 0.0,
+      "matching_prethrow_samples": 1108,
+      "source_sha256": {
+        "docs\\vertical_height_catch_20261021_full_motion\\height_50cm_03_take_02_full_motion.json": "9c3a224378d5977b0c07a726cf5fea23458b67d9faa446f4a3ce904722d67bf1",
+        "docs\\vertical_height_catch_20261021_full_motion\\height_50cm_03_take_02_physics.csv": "31709598f91479dd54bb41b217d69859508506fb850b700143f0b256ed267408",
+        "docs\\vertical_height_catch_20261021_full_motion\\height_50cm_03_take_02_control_trace.json": "58f108cc9f1a38c70d66c4279e951af785e80da138e7a561ccc2c8637fd5c629",
+        "docs\\vertical_height_catch_20261021_final\\height_50cm_03.json": "f095491f59a46e17d5e2b8e1555e801fdf6fbef1c8673eec4c873f52e4958b48",
+        "docs\\vertical_height_catch_20261021_final\\height_50cm_03_control_trace.json": "ebbce034e8f3c640428b903de98c975586107cba2fcb75c68e55f9147eaebdae",
+        "docs\\vertical_height_catch_20261021_final\\height_50cm_03_physics.csv": "ad76e2e248857e56271d7fa35b5b5771f000b7f4766a6503970e37441b53c666",
+        "docs/vertical_height_catch_20261021_full_motion/height_50cm_03_full_motion.json": "811bace6fc7fc68bb8f7fa9bff27a44191b52d9767481ae685fc0212594b7b1a"
+      },
+      "mode": "Matched pre-release recording followed by the original validated flight and hold."
+    }
+  ],
+  "mode": "State-record reconstruction; no controller changes",
+  "original_validation": "docs\\vertical_height_catch_20261021_final\\audit.json",
+  "note": "Fresh recording catches can differ with planner wall time; their outcomes are not substituted for validated catches."
+}
